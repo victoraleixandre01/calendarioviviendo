@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0034)file:///D:/Descargas/index_32.html -->
+<!-- saved from url=(0034)file:///D:/Descargas/index_41.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,11 +29,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 .month-cell:hover{background:#fafafa}
 .month-cell.other-month{background:var(--bg)}
 .month-cell.other-month .cell-num{color:#bbb}
-.cell-num{font-size:11px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:2px;color:var(--text)}
+.cell-num{font-size:11px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 2px auto;color:var(--text);line-height:22px;text-align:center;padding:0}
 .cell-num.today{background:var(--blue);color:#fff;font-weight:500}
-.cell-events{display:flex;flex-direction:column;gap:1px}
-.cell-event{font-size:9px;font-weight:600;color:#fff;border-radius:3px;padding:1px 3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cell-more{font-size:9px;color:var(--muted);padding:1px 3px}
+.cell-events{display:flex;flex-direction:column;gap:2px}
+.cell-event{font-size:11px;font-weight:700;color:#fff;border-radius:4px;padding:3px 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3;letter-spacing:.1px;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+.cell-more{font-size:10px;color:var(--muted);padding:2px 4px;font-weight:600}
 
 /* ===== MODAL PRINCIPAL ===== */
 .modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;align-items:flex-end;justify-content:center}
@@ -50,9 +50,9 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 
 /* Tipos evento */
 .tipo-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
-.tipo-btn{border:none;border-radius:9px;padding:14px 8px;font-size:12px;font-weight:700;color:#fff;cursor:pointer;text-transform:uppercase;letter-spacing:.3px;transition:transform .12s,box-shadow .12s,opacity .12s;opacity:.7}
-.tipo-btn:hover{opacity:.88}
-.tipo-btn.selected{opacity:1;transform:scale(1.04);box-shadow:0 0 0 3px #fff,0 0 0 5px currentColor,0 4px 16px rgba(0,0,0,.2)}
+.tipo-btn{border:none;border-radius:9px;padding:14px 8px;font-size:12px;font-weight:700;color:rgba(255,255,255,.75);cursor:pointer;text-transform:uppercase;letter-spacing:.3px;transition:transform .15s,box-shadow .15s,opacity .15s,filter .15s;opacity:.38;filter:saturate(0.3) brightness(0.85)}
+.tipo-btn:hover{opacity:.55;filter:saturate(0.6) brightness(0.92)}
+.tipo-btn.selected{opacity:1;filter:none;color:#fff;transform:scale(1.06);box-shadow:0 0 0 3px #fff,0 0 0 6px currentColor,0 6px 20px rgba(0,0,0,.3)}
 
 /* Selector de estado y tipo con botón */
 .selector-field{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--border);border-radius:8px;padding:10px 14px;cursor:pointer;margin-bottom:16px;background:#fff}
@@ -91,6 +91,24 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 .btn-save{background:var(--blue);border:none;padding:8px 20px;border-radius:7px;cursor:pointer;font-size:13px;color:#fff;font-weight:600}
 .btn-save:hover{background:#1557b0}
 
+/* ===== POPUP RESUMEN ===== */
+.popup{display:none;position:fixed;z-index:300;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.22);width:88vw;max-width:360px;overflow:hidden}
+.popup.open{display:block}
+.popup-head{padding:14px 16px 10px;display:flex;align-items:center;gap:10px}
+.popup-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
+.popup-titulo{font-size:17px;font-weight:700;color:var(--text);flex:1;line-height:1.2}
+.popup-close{background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.popup-close:hover{background:var(--hover)}
+.popup-body{padding:4px 16px 14px;display:flex;flex-direction:column;gap:8px}
+.popup-row{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text)}
+.popup-icon{font-size:16px;width:20px;text-align:center;flex-shrink:0}
+.popup-badge{padding:3px 10px;border-radius:12px;font-size:12px;font-weight:700;display:inline-block}
+.popup-footer{padding:10px 16px 14px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+.popup-edit-btn{background:var(--blue);border:none;padding:8px 18px;border-radius:7px;cursor:pointer;font-size:13px;color:#fff;font-weight:600}
+.popup-edit-btn:hover{background:#1557b0}
+.popup-del-btn{background:none;border:1px solid #e74c3c;padding:8px 14px;border-radius:7px;cursor:pointer;font-size:13px;color:#e74c3c;font-weight:600}
+.popup-del-btn:hover{background:#fdf0ee}
+
 /* ===== MODAL SECUNDARIO (estado / tipo) ===== */
 .submodal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;align-items:center;justify-content:center}
 .submodal-backdrop.open{display:flex}
@@ -116,77 +134,100 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
       <div class="month-dow">LUN</div><div class="month-dow">MAR</div><div class="month-dow">MIÉ</div>
       <div class="month-dow">JUE</div><div class="month-dow">VIE</div><div class="month-dow">SÁB</div><div class="month-dow">DOM</div>
     </div>
-    <div class="month-grid" id="month-grid"><div class="month-cell other-month" onclick="openModal(&#39;2026-06-29&#39;)">
+    <div class="month-grid" id="month-grid"><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-06-29&#39;)">
       <div class="cell-num">29</div>
-      <div class="cell-events"></div></div><div class="month-cell other-month" onclick="openModal(&#39;2026-06-30&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-06-30&#39;)">
       <div class="cell-num">30</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-01&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-01&#39;)">
       <div class="cell-num">1</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-02&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-02&#39;)">
       <div class="cell-num">2</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-03&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-03&#39;)">
       <div class="cell-num">3</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-04&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-04&#39;)">
       <div class="cell-num">4</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-05&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-05&#39;)">
       <div class="cell-num">5</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-06&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-06&#39;)">
       <div class="cell-num">6</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-07&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-07&#39;)">
       <div class="cell-num">7</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-08&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-08&#39;)">
       <div class="cell-num">8</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-09&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-09&#39;)">
       <div class="cell-num">9</div>
-      <div class="cell-events"><div class="cell-event" style="background:#c0392b">20:00 CASA DE PAPEL</div></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-10&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-10&#39;)">
       <div class="cell-num">10</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-11&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-11&#39;)">
       <div class="cell-num today">11</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-12&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-12&#39;)">
       <div class="cell-num">12</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-13&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-13&#39;)">
       <div class="cell-num">13</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-14&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-14&#39;)">
       <div class="cell-num">14</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-15&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-15&#39;)">
       <div class="cell-num">15</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-16&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-16&#39;)">
       <div class="cell-num">16</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-17&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-17&#39;)">
       <div class="cell-num">17</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-18&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-18&#39;)">
       <div class="cell-num">18</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-19&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-19&#39;)">
       <div class="cell-num">19</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-20&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-20&#39;)">
       <div class="cell-num">20</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-21&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-21&#39;)">
       <div class="cell-num">21</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-22&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-22&#39;)">
       <div class="cell-num">22</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-23&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-23&#39;)">
       <div class="cell-num">23</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-24&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-24&#39;)">
       <div class="cell-num">24</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-25&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-25&#39;)">
       <div class="cell-num">25</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-26&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-26&#39;)">
       <div class="cell-num">26</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-27&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-27&#39;)">
       <div class="cell-num">27</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-28&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-28&#39;)">
       <div class="cell-num">28</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-29&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-29&#39;)">
       <div class="cell-num">29</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-30&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-30&#39;)">
       <div class="cell-num">30</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-31&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-31&#39;)">
       <div class="cell-num">31</div>
-      <div class="cell-events"></div></div><div class="month-cell other-month" onclick="openModal(&#39;2026-08-01&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-08-01&#39;)">
       <div class="cell-num">1</div>
-      <div class="cell-events"></div></div><div class="month-cell other-month" onclick="openModal(&#39;2026-08-02&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-08-02&#39;)">
       <div class="cell-num">2</div>
       <div class="cell-events"></div></div></div>
+  </div>
+</div>
+
+<!-- POPUP RESUMEN -->
+<div class="popup" id="popup">
+  <div class="popup-head">
+    <div class="popup-dot" id="popup-dot"></div>
+    <div class="popup-titulo" id="popup-titulo"></div>
+    <button class="popup-close" onclick="closePopup()">✕</button>
+  </div>
+  <div class="popup-body">
+    <div class="popup-row"><span class="popup-icon">📅</span><span id="popup-fecha"></span></div>
+    <div class="popup-row"><span class="popup-icon">🕐</span><span id="popup-hora"></span></div>
+    <div class="popup-row" id="popup-row-estado"><span class="popup-icon">🔵</span><span id="popup-estado"></span></div>
+    <div class="popup-row" id="popup-row-pax"><span class="popup-icon">👥</span><span id="popup-pax"></span></div>
+    <div class="popup-row" id="popup-row-pob"><span class="popup-icon">📍</span><span id="popup-pob"></span></div>
+    <div class="popup-row" id="popup-row-cliente"><span class="popup-icon">🏢</span><span id="popup-cliente"></span></div>
+    <div class="popup-row" id="popup-row-agencia"><span class="popup-icon">🤝</span><span id="popup-agencia"></span></div>
+    <div class="popup-row" id="popup-row-gestores"><span class="popup-icon">👤</span><span id="popup-gestores"></span></div>
+  </div>
+  <div class="popup-footer">
+    <button class="popup-del-btn" onclick="deleteEvent()">🗑 Eliminar</button>
+    <button class="popup-edit-btn" onclick="editEvent()">✏️ Editar</button>
   </div>
 </div>
 
@@ -194,7 +235,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 <div class="modal-backdrop" id="modal" onclick="closeOut(event)">
   <div class="modal-box">
     <div class="modal-head">
-      <span class="modal-head-date" id="modal-date-label">Jueves, 9 de julio 2026</span>
+      <span class="modal-head-date" id="modal-date-label"></span>
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body">
@@ -213,7 +254,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
       <!-- HORARIO -->
       <div class="sec-label">Horario</div>
       <div class="input-row" style="margin-bottom:16px">
-        <div class="form-group"><label>Inicio</label><input type="time" id="ev-start" value="20:00"></div>
+        <div class="form-group"><label>Inicio</label><input type="time" id="ev-start" value="20:00" oninput="recalcEnd()"></div>
         <div class="form-group"><label>Fin</label><input type="time" id="ev-end" value="23:00"></div>
       </div>
 
@@ -226,14 +267,14 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
       <!-- ESTADO -->
       <div class="sec-label">Estado</div>
       <div class="selector-field" onclick="openSubModal(&#39;estado&#39;)" id="estado-field">
-        <span class="sel-label" id="estado-label" style="">Toca para seleccionar</span>
+        <span class="sel-label" id="estado-label">Toca para seleccionar</span>
         <div class="sel-value"><span id="estado-badge"></span><span class="sel-arrow">›</span></div>
       </div>
 
       <!-- TIPO (categoría) -->
       <div class="sec-label">Categoría</div>
       <div class="selector-field" onclick="openSubModal(&#39;categoria&#39;)" id="categoria-field">
-        <span class="sel-label" id="categoria-label" style="">Toca para seleccionar</span>
+        <span class="sel-label" id="categoria-label">Toca para seleccionar</span>
         <div class="sel-value"><span id="categoria-badge"></span><span class="sel-arrow">›</span></div>
       </div>
 
@@ -241,14 +282,14 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
       <div class="sec-label">Cliente</div>
       <div class="autocomplete-wrap">
         <input type="text" id="cliente-input" placeholder="Buscar cliente..." autocomplete="off" oninput="filterAC(&#39;cliente&#39;)" onfocus="showAC(&#39;cliente&#39;)" onblur="hideAC(&#39;cliente&#39;,300)">
-        <div class="autocomplete-dropdown" id="cliente-dropdown"><div class="ac-add" onmousedown="addToDb(&#39;cliente&#39;)">＋ Añadir "grefusa"</div></div>
+        <div class="autocomplete-dropdown" id="cliente-dropdown"></div>
       </div>
 
       <!-- AGENCIA -->
       <div class="sec-label">¿Hay agencia?</div>
       <div class="autocomplete-wrap">
         <input type="text" id="agencia-input" placeholder="Buscar agencia..." autocomplete="off" oninput="filterAC(&#39;agencia&#39;)" onfocus="showAC(&#39;agencia&#39;)" onblur="hideAC(&#39;agencia&#39;,300)">
-        <div class="autocomplete-dropdown" id="agencia-dropdown"><div class="ac-add" onmousedown="addToDb(&#39;agencia&#39;)">＋ Añadir "corte ingles"</div></div>
+        <div class="autocomplete-dropdown" id="agencia-dropdown"></div>
       </div>
 
       <!-- QUIÉN GESTIONA -->
@@ -270,8 +311,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 <!-- SUBMODAL ESTADO / CATEGORIA -->
 <div class="submodal-backdrop" id="submodal" onclick="closeSubOut(event)">
   <div class="submodal-box">
-    <div class="submodal-title" id="submodal-title">Selecciona la categoría</div>
-    <div class="submodal-btns" id="submodal-btns"><button class="sub-btn" style="background:#5b9bd5;color:#0a3d62" onclick="pickSubModal(0)">Team Building</button><button class="sub-btn" style="background:#f39c12;color:#7d5a00" onclick="pickSubModal(1)">Espectáculos y Eventos</button><button class="sub-btn" style="background:#a8d8a8;color:#1a5c1a" onclick="pickSubModal(2)">Formación</button><button class="sub-btn" style="background:#f8c8d4;color:#8b1a2e" onclick="pickSubModal(3)">Ponencia</button></div>
+    <div class="submodal-title" id="submodal-title"></div>
+    <div class="submodal-btns" id="submodal-btns"></div>
     <button class="submodal-cancel" onclick="closeSubModal()">Cancelar</button>
   </div>
 </div>
@@ -316,6 +357,9 @@ function renderAll(){
   document.getElementById('main-label').textContent=capFirst(MONTHS_ES[cur.getMonth()])+' '+cur.getFullYear();
   renderGrid();
 }
+const TIPO_SHORT={'CASA DE PAPEL':'C.PAPEL','INTOCABLES':'INTOC.','A TEMPO':'A TEMPO','CONCURSO PISTA':'C.PISTA','CONCURSO LIVE MUSIC':'C.LIVE','OTROS':'OTROS'};
+const ESTADO_COLORS={'Posible':'#e0a800','Confirmado':'#1a73e8','Finalizado':'#7f8c8d','Aplazado':'#5daa5d'};
+
 function renderGrid(){
   const g=document.getElementById('month-grid');
   const first=new Date(cur.getFullYear(),cur.getMonth(),1);
@@ -329,11 +373,19 @@ function renderGrid(){
     const isToday=sameDay(dt,today);
     const dayEvs=events.filter(e=>sameDay(e.date,dt));
     const ds=`${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}`;
-    html+=`<div class="month-cell${isThisMonth?'':' other-month'}" onclick="openModal('${ds}')">
+    html+=`<div class="month-cell${isThisMonth?'':' other-month'}" onclick="cellClick(event,'${ds}')">
       <div class="cell-num${isToday?' today':''}">${dt.getDate()}</div>
       <div class="cell-events">`;
-    dayEvs.slice(0,3).forEach(ev=>{
-      html+=`<div class="cell-event" style="background:${TIPO_COLORS[ev.tipo]||'#888'}">${ev.startTime} ${ev.tipo}</div>`;
+    dayEvs.slice(0,3).forEach((ev,idx)=>{
+      const bg=ESTADO_COLORS[ev.estado]||'#888';
+      const short=TIPO_SHORT[ev.tipo]||ev.tipo.slice(0,6);
+      const pax=ev.pax?` · ${ev.pax}p`:'';
+      const pob=ev.poblacion?` · ${ev.poblacion}`:'';
+      const evIdx=events.indexOf(ev);
+      html+=`<div class="cell-event" style="background:${bg}" 
+        onclick="event.stopPropagation();showPopup(${evIdx},this)"
+        ondblclick="event.stopPropagation();editEventByIdx(${evIdx})"
+      >${ev.startTime} ${short}${pax}${pob}</div>`;
     });
     if(dayEvs.length>3)html+=`<div class="cell-more">+${dayEvs.length-3} más</div>`;
     html+=`</div></div>`;
@@ -350,6 +402,7 @@ function openModal(dateStr){
   document.getElementById('modal-date-label').textContent=capFirst(dow)+', '+d.getDate()+' de '+MONTHS_ES[d.getMonth()]+' '+d.getFullYear();
   // reset todo
   selTipoEvento=null;selGestores=new Set();selEstado=null;selCategoria=null;selCliente='';selAgencia='';
+  window._editIdx=null;
   document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('selected'));
   document.querySelectorAll('.gestor-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('ev-start').value='20:00';
@@ -365,9 +418,29 @@ function openModal(dateStr){
 function closeModal(){document.getElementById('modal').classList.remove('open')}
 function closeOut(e){if(e.target===document.getElementById('modal'))closeModal()}
 
+function recalcEnd(){
+  if(!selTipoEvento)return;
+  const startVal=document.getElementById('ev-start').value;
+  if(!startVal)return;
+  const [h,m]=startVal.split(':').map(Number);
+  const esConcurso=selTipoEvento==='CONCURSO PISTA'||selTipoEvento==='CONCURSO LIVE MUSIC';
+  const mins=h*60+m+(esConcurso?90:150);
+  document.getElementById('ev-end').value=`${pad(Math.floor(mins/60)%24)}:${pad(mins%60)}`;
+}
+
 function selTipo(el){
   document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('selected'));
   el.classList.add('selected');selTipoEvento=el.dataset.tipo;
+  // calcular hora fin automática
+  const startVal=document.getElementById('ev-start').value;
+  if(startVal){
+    const [h,m]=startVal.split(':').map(Number);
+    const esConcurso=el.dataset.tipo==='CONCURSO PISTA'||el.dataset.tipo==='CONCURSO LIVE MUSIC';
+    const mins=h*60+m+(esConcurso?90:150);
+    const hFin=Math.floor(mins/60)%24;
+    const mFin=mins%60;
+    document.getElementById('ev-end').value=`${pad(hFin)}:${pad(mFin)}`;
+  }
 }
 function toggleGestor(el){
   el.classList.toggle('active');
@@ -448,11 +521,144 @@ function addToDb(type){
   document.getElementById(type+'-dropdown').classList.remove('open');
 }
 
-// ---- GUARDAR ----
+// ---- CLICK EN CELDA (zona vacía = nuevo evento) ----
+function cellClick(e, dateStr){
+  closePopup();
+  openModal(dateStr);
+}
+
+// ---- POPUP RESUMEN ----
+let _popupEvIdx=null;
+function showPopup(idx, el){
+  closePopup();
+  _popupEvIdx=idx;
+  const ev=events[idx];
+  const d=ev.date;
+  const dow=DAYS_ES[dowLun(d)];
+
+  // colores estado
+  const estadoBg=ESTADO_COLORS[ev.estado]||'#888';
+  const estadoTexts={'Posible':'#7d5a00','Confirmado':'#0a3d62','Finalizado':'#2c3e50','Aplazado':'#1a5c1a'};
+  const estadoTxt=estadoTexts[ev.estado]||'#fff';
+
+  document.getElementById('popup-dot').style.background=estadoBg;
+  document.getElementById('popup-titulo').textContent=ev.tipo;
+  document.getElementById('popup-fecha').textContent=capFirst(dow)+', '+d.getDate()+' de '+MONTHS_ES[d.getMonth()]+' '+d.getFullYear();
+  document.getElementById('popup-hora').textContent=ev.startTime+' – '+ev.endTime;
+
+  const rowEstado=document.getElementById('popup-row-estado');
+  if(ev.estado){
+    rowEstado.style.display='flex';
+    document.getElementById('popup-estado').innerHTML=`<span class="popup-badge" style="background:${estadoBg};color:${estadoTxt}">${ev.estado}</span>`;
+  } else rowEstado.style.display='none';
+
+  const rowPax=document.getElementById('popup-row-pax');
+  if(ev.pax){rowPax.style.display='flex';document.getElementById('popup-pax').textContent=ev.pax+' personas';}
+  else rowPax.style.display='none';
+
+  const rowPob=document.getElementById('popup-row-pob');
+  if(ev.poblacion){rowPob.style.display='flex';document.getElementById('popup-pob').textContent=ev.poblacion;}
+  else rowPob.style.display='none';
+
+  const rowCli=document.getElementById('popup-row-cliente');
+  if(ev.cliente){rowCli.style.display='flex';document.getElementById('popup-cliente').textContent=ev.cliente;}
+  else rowCli.style.display='none';
+
+  const rowAge=document.getElementById('popup-row-agencia');
+  if(ev.agencia){rowAge.style.display='flex';document.getElementById('popup-agencia').textContent=ev.agencia;}
+  else rowAge.style.display='none';
+
+  const rowGes=document.getElementById('popup-row-gestores');
+  if(ev.gestores&&ev.gestores.length){rowGes.style.display='flex';document.getElementById('popup-gestores').textContent=ev.gestores.join(', ');}
+  else rowGes.style.display='none';
+
+  // posicionar popup cerca del elemento pulsado
+  const popup=document.getElementById('popup');
+  popup.classList.add('open');
+  const rect=el.getBoundingClientRect();
+  const pw=popup.offsetWidth||320;
+  const ph=popup.offsetHeight||300;
+  let top=rect.bottom+8;
+  let left=rect.left;
+  if(left+pw>window.innerWidth-8)left=window.innerWidth-pw-8;
+  if(left<8)left=8;
+  if(top+ph>window.innerHeight-8)top=rect.top-ph-8;
+  if(top<8)top=8;
+  popup.style.top=top+'px';
+  popup.style.left=left+'px';
+}
+
+function closePopup(){
+  document.getElementById('popup').classList.remove('open');
+  _popupEvIdx=null;
+}
+
+function deleteEvent(){
+  if(_popupEvIdx===null)return;
+  if(confirm('¿Eliminar este evento?')){
+    events.splice(_popupEvIdx,1);
+    closePopup();
+    renderGrid();
+  }
+}
+
+function editEvent(){
+  if(_popupEvIdx===null)return;
+  editEventByIdx(_popupEvIdx);
+  closePopup();
+}
+
+function editEventByIdx(idx){
+  const ev=events[idx];
+  window._editIdx=idx;
+  // abrir modal con datos del evento
+  const d=ev.date;
+  const ds=`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  openModal(ds);
+  // rellenar campos
+  setTimeout(()=>{
+    // tipo
+    document.querySelectorAll('.tipo-btn').forEach(b=>{
+      if(b.dataset.tipo===ev.tipo){b.classList.add('selected');selTipoEvento=ev.tipo;}
+    });
+    // horario
+    document.getElementById('ev-start').value=ev.startTime;
+    document.getElementById('ev-end').value=ev.endTime;
+    // pax
+    document.getElementById('ev-pax').value=ev.pax||'';
+    // estado
+    if(ev.estado){
+      const est=ESTADOS.find(e=>e.label===ev.estado);
+      if(est)setEstadoBadge(est);
+    }
+    // categoria
+    if(ev.categoria){
+      const cat=CATEGORIAS.find(c=>c.label===ev.categoria);
+      if(cat)setCategoriaBadge(cat);
+    }
+    // cliente / agencia
+    document.getElementById('cliente-input').value=ev.cliente||'';
+    document.getElementById('agencia-input').value=ev.agencia||'';
+    selCliente=ev.cliente||'';selAgencia=ev.agencia||'';
+    // gestores
+    selGestores=new Set(ev.gestores||[]);
+    document.querySelectorAll('.gestor-btn').forEach(b=>{
+      if(selGestores.has(b.dataset.gestor))b.classList.add('active');
+    });
+  },50);
+}
+
+// cerrar popup al pulsar fuera
+document.addEventListener('click',e=>{
+  const popup=document.getElementById('popup');
+  if(popup.classList.contains('open')&&!popup.contains(e.target)){closePopup();}
+});
+
+// ---- GUARDAR (con soporte edición) ----
 function saveEvent(){
   if(!selTipoEvento){alert('Selecciona el tipo de evento');return}
   if(selGestores.size===0){alert('Selecciona quién gestiona');return}
-  events.push({
+  const evData={
     date:new Date(window._currentDate),
     tipo:selTipoEvento,
     startTime:document.getElementById('ev-start').value,
@@ -462,8 +668,15 @@ function saveEvent(){
     categoria:selCategoria,
     cliente:selCliente||document.getElementById('cliente-input').value,
     agencia:selAgencia||document.getElementById('agencia-input').value,
-    gestores:Array.from(selGestores)
-  });
+    gestores:Array.from(selGestores),
+    poblacion:document.getElementById('ev-poblacion').value
+  };
+  if(window._editIdx!==undefined&&window._editIdx!==null){
+    events[window._editIdx]=evData;
+    window._editIdx=null;
+  } else {
+    events.push(evData);
+  }
   closeModal();renderGrid();
 }
 
