@@ -1,158 +1,238 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!-- saved from url=(0034)file:///D:/Descargas/index_30.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mi Calendario</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Google Sans',Roboto,Arial,sans-serif}
-:root{--gc-blue:#1a73e8;--gc-blue-light:#e8f0fe;--gc-surface:#fff;--gc-bg:#f6f8fc;--gc-border:#dadce0;--gc-text:#3c4043;--gc-muted:#70757a;--gc-hover:#f1f3f4;--gc-event5:#d93025}
+:root{--gc-blue:#1a73e8;--gc-blue-light:#e8f0fe;--gc-surface:#fff;--gc-bg:#f6f8fc;--gc-border:#dadce0;--gc-text:#3c4043;--gc-muted:#70757a;--gc-hover:#f1f3f4}
 html,body{height:100%;background:var(--gc-bg);color:var(--gc-text);font-size:14px}
-.cal-root{display:flex;height:100vh;overflow:hidden}
-.sidebar{width:256px;min-width:256px;padding:8px 16px;display:flex;flex-direction:column;gap:4px;border-right:1px solid var(--gc-border);background:var(--gc-surface)}
-.mini-cal{padding:8px}
-.mini-cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.mini-cal-title{font-size:13px;font-weight:500;color:var(--gc-text)}
-.mini-nav-btn{background:none;border:none;cursor:pointer;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gc-muted);font-size:16px}
-.mini-nav-btn:hover{background:var(--gc-hover)}
-.mini-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
-.mini-dow{font-size:11px;color:var(--gc-muted);padding:4px 0;font-weight:500}
-.mini-day{font-size:12px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;margin:auto}
-.mini-day:hover{background:var(--gc-hover)}
-.mini-day.today{background:var(--gc-blue);color:#fff;font-weight:500}
-.mini-day.in-month-view{background:var(--gc-blue-light);color:var(--gc-blue)}
-.mini-day.other-month{color:#ccc}
-.sidebar-section-title{font-size:11px;font-weight:500;color:var(--gc-muted);padding:8px 8px 4px;letter-spacing:.8px;text-transform:uppercase}
-.cal-item{display:flex;align-items:center;gap:12px;padding:8px;border-radius:8px;cursor:pointer;font-size:13px}
-.cal-item:hover{background:var(--gc-hover)}
-.cal-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
-.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
-.topbar{height:64px;display:flex;align-items:center;gap:12px;padding:0 20px;border-bottom:1px solid var(--gc-border);background:var(--gc-surface);flex-shrink:0}
-.topbar-logo{font-size:22px;color:var(--gc-muted);font-weight:400;letter-spacing:-.5px}
+.cal-root{display:flex;flex-direction:column;height:100vh;overflow:hidden}
+
+/* TOPBAR */
+.topbar{height:60px;display:flex;align-items:center;gap:10px;padding:0 16px;border-bottom:1px solid var(--gc-border);background:var(--gc-surface);flex-shrink:0}
+.topbar-logo{font-size:20px;color:var(--gc-muted);font-weight:400;letter-spacing:-.5px}
 .topbar-logo span{color:var(--gc-blue)}
-.today-btn{border:1px solid var(--gc-border);background:var(--gc-surface);border-radius:4px;padding:8px 16px;font-size:14px;cursor:pointer;color:var(--gc-text);font-weight:500}
+.today-btn{border:1px solid var(--gc-border);background:var(--gc-surface);border-radius:4px;padding:7px 14px;font-size:13px;cursor:pointer;color:var(--gc-text);font-weight:500}
 .today-btn:hover{background:var(--gc-hover)}
-.nav-btn{background:none;border:none;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--gc-muted)}
+.nav-btn{background:none;border:none;cursor:pointer;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--gc-muted)}
 .nav-btn:hover{background:var(--gc-hover)}
-.topbar-month{font-size:22px;font-weight:400;color:var(--gc-text);flex:1}
-.view-switcher{display:flex;border:1px solid var(--gc-border);border-radius:4px;overflow:hidden}
-.view-btn{background:none;border:none;padding:8px 14px;font-size:13px;cursor:pointer;color:var(--gc-text)}
-.view-btn:not(:last-child){border-right:1px solid var(--gc-border)}
-.view-btn:hover{background:var(--gc-hover)}
-.view-btn.active{background:var(--gc-blue-light);color:var(--gc-blue);font-weight:500}
+.topbar-month{font-size:18px;font-weight:400;color:var(--gc-text);flex:1}
+
+/* GRID MES */
 .month-wrap{flex:1;display:flex;flex-direction:column;overflow:hidden}
-.month-dow-header{display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid var(--gc-border);background:var(--gc-surface)}
-.month-dow{text-align:center;padding:8px 0;font-size:11px;font-weight:500;color:var(--gc-muted);letter-spacing:.3px}
+.month-dow-header{display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid var(--gc-border);background:var(--gc-surface);flex-shrink:0}
+.month-dow{text-align:center;padding:6px 0;font-size:11px;font-weight:500;color:var(--gc-muted);letter-spacing:.3px}
 .month-grid{flex:1;display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:1fr;border-left:1px solid var(--gc-border);overflow:hidden}
-.month-cell{border-right:1px solid var(--gc-border);border-bottom:1px solid var(--gc-border);padding:4px;min-height:90px;cursor:pointer;background:var(--gc-surface)}
+.month-cell{border-right:1px solid var(--gc-border);border-bottom:1px solid var(--gc-border);padding:4px;cursor:pointer;background:var(--gc-surface);overflow:hidden}
 .month-cell:hover{background:#fafafa}
 .month-cell.other-month{background:var(--gc-bg)}
 .month-cell.other-month .cell-num{color:#bbb}
-.cell-num{font-size:13px;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:2px;color:var(--gc-text)}
+.cell-num{font-size:12px;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:2px;color:var(--gc-text)}
 .cell-num.today{background:var(--gc-blue);color:#fff;font-weight:500}
 .cell-events{display:flex;flex-direction:column;gap:2px}
-.cell-event{font-size:11px;font-weight:500;color:#fff;border-radius:3px;padding:1px 5px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cell-more{font-size:11px;color:var(--gc-muted);padding:1px 5px;cursor:pointer}
-.cell-more:hover{background:var(--gc-hover);border-radius:3px}
-.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:100;align-items:center;justify-content:center}
+.cell-event{font-size:10px;font-weight:600;color:#fff;border-radius:3px;padding:1px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cell-more{font-size:10px;color:var(--gc-muted);padding:1px 4px}
+
+/* MODAL */
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;align-items:flex-end;justify-content:center}
+@media(min-width:600px){.modal-backdrop{align-items:center}}
 .modal-backdrop.open{display:flex}
-.modal{background:#fff;border-radius:8px;width:480px;max-width:95vw;box-shadow:0 11px 15px rgba(0,0,0,.2);overflow:hidden}
-.modal-header{background:var(--gc-blue-light);padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
-.modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--gc-muted);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center}
-.modal-close:hover{background:var(--gc-hover)}
-.modal-body{padding:20px}
-.form-row{margin-bottom:16px}
-.form-row label{font-size:12px;color:var(--gc-muted);display:block;margin-bottom:4px}
-.form-row input{width:100%;border:none;border-bottom:1px solid var(--gc-border);padding:8px 0;font-size:14px;color:var(--gc-text);outline:none;background:none}
-.form-row input:focus{border-bottom:2px solid var(--gc-blue)}
-.color-pickers{display:flex;gap:8px;margin-top:4px}
-.color-picker-dot{width:24px;height:24px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px}
-.modal-footer{display:flex;justify-content:flex-end;gap:8px;padding:12px 20px;border-top:1px solid var(--gc-border)}
-.btn-cancel{background:none;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;color:var(--gc-blue)}
-.btn-cancel:hover{background:var(--gc-blue-light)}
-.btn-save{background:var(--gc-blue);border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;color:#fff;font-weight:500}
+.modal-box{background:#fff;border-radius:16px 16px 0 0;width:100%;max-height:92vh;overflow-y:auto}
+@media(min-width:600px){.modal-box{border-radius:14px;width:520px;max-height:90vh}}
+.modal-head{padding:16px 18px 10px;border-bottom:1px solid var(--gc-border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:2}
+.modal-head-date{font-size:15px;font-weight:600;color:var(--gc-text)}
+.modal-head-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--gc-muted);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.modal-head-close:hover{background:var(--gc-hover)}
+.modal-body{padding:16px 18px}
+.section-label{font-size:10px;font-weight:600;color:var(--gc-muted);letter-spacing:.9px;text-transform:uppercase;margin-bottom:10px}
+
+/* Tipos */
+.tipo-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:20px}
+.tipo-btn{border:none;border-radius:10px;padding:16px 8px;font-size:13px;font-weight:700;color:#fff;cursor:pointer;text-transform:uppercase;letter-spacing:.3px;transition:transform .12s,box-shadow .12s,opacity .12s;opacity:.75}
+.tipo-btn:hover{opacity:.9}
+.tipo-btn.selected{opacity:1;transform:scale(1.04);box-shadow:0 0 0 3px #fff,0 0 0 5px currentColor,0 6px 20px rgba(0,0,0,.25)}
+
+/* Horario */
+.horario-row{display:flex;gap:12px;margin-bottom:18px}
+.form-group{display:flex;flex-direction:column;gap:5px;flex:1}
+.form-group label{font-size:10px;font-weight:600;color:var(--gc-muted);letter-spacing:.7px;text-transform:uppercase}
+.form-group input[type=time],.form-group select{border:1px solid var(--gc-border);border-radius:8px;padding:9px 10px;font-size:14px;color:var(--gc-text);outline:none;background:#fff;width:100%}
+.form-group input[type=time]:focus,.form-group select:focus{border-color:var(--gc-blue)}
+
+/* Gestor */
+.gestor-row{display:flex;gap:10px;margin-bottom:8px}
+.gestor-btn{flex:1;border:3px solid transparent;border-radius:10px;padding:14px 6px;font-size:13px;font-weight:700;color:#fff;cursor:pointer;text-transform:uppercase;letter-spacing:.4px;transition:all .15s;opacity:.35;filter:grayscale(50%)}
+.gestor-btn.active{opacity:1;filter:none;box-shadow:0 0 0 3px #fff, 0 0 20px 5px rgba(0,0,0,.2);transform:scale(1.07)}
+
+/* Footer */
+.modal-footer{padding:12px 18px 20px;display:flex;justify-content:flex-end;gap:10px;border-top:1px solid var(--gc-border);position:sticky;bottom:0;background:#fff}
+.btn-cancel{background:none;border:1px solid var(--gc-border);padding:9px 18px;border-radius:7px;cursor:pointer;font-size:14px;color:var(--gc-muted)}
+.btn-save{background:var(--gc-blue);border:none;padding:9px 22px;border-radius:7px;cursor:pointer;font-size:14px;color:#fff;font-weight:600}
 .btn-save:hover{background:#1557b0}
-.new-btn{background:var(--gc-blue);border:none;border-radius:20px;padding:12px 20px;display:flex;align-items:center;gap:10px;font-size:14px;width:100%;justify-content:flex-start;margin-bottom:8px;color:#fff;cursor:pointer}
-.new-btn:hover{background:#1557b0}
 </style>
 </head>
 <body>
 <div class="cal-root">
-  <div class="sidebar">
-    <button class="new-btn" onclick="openModal(null)">
-      <span style="font-size:22px;font-weight:300">+</span> Nuevo
-    </button>
-    <div class="mini-cal">
-      <div class="mini-cal-header">
-        <span class="mini-cal-title" id="mini-label"></span>
-        <div style="display:flex">
-          <button class="mini-nav-btn" onclick="shiftMonth(-1)">&#8249;</button>
-          <button class="mini-nav-btn" onclick="shiftMonth(1)">&#8250;</button>
-        </div>
-      </div>
-      <div class="mini-grid">
-        <div class="mini-dow">D</div><div class="mini-dow">L</div><div class="mini-dow">M</div>
-        <div class="mini-dow">X</div><div class="mini-dow">J</div><div class="mini-dow">V</div><div class="mini-dow">S</div>
-        <div id="mini-days" style="display:contents"></div>
-      </div>
-    </div>
-    <div class="sidebar-section-title">Mis calendarios</div>
-    <div class="cal-item">
-      <input type="checkbox" checked style="accent-color:var(--gc-blue);width:16px;height:16px;cursor:pointer"/>
-      <div class="cal-dot" style="background:#1a73e8"></div>
-      <span>Vic</span>
-    </div>
+  <div class="topbar">
+    <span class="topbar-logo">Cal<span>.</span></span>
+    <button class="today-btn" onclick="goToday()">Hoy</button>
+    <button class="nav-btn" onclick="shiftMonth(-1)">‹</button>
+    <button class="nav-btn" onclick="shiftMonth(1)">›</button>
+    <span class="topbar-month" id="main-label">Julio 2026</span>
   </div>
-  <div class="main">
-    <div class="topbar">
-      <button style="background:none;border:none;cursor:pointer;padding:8px;border-radius:50%;font-size:18px;color:var(--gc-muted)">&#9776;</button>
-      <span class="topbar-logo">Cal<span>.</span></span>
-      <button class="today-btn" onclick="goToday()">Hoy</button>
-      <button class="nav-btn" onclick="shiftMonth(-1)">&#8249;</button>
-      <button class="nav-btn" onclick="shiftMonth(1)">&#8250;</button>
-      <span class="topbar-month" id="main-label"></span>
-      <div class="view-switcher">
-        <button class="view-btn">Día</button>
-        <button class="view-btn">Semana</button>
-        <button class="view-btn active">Mes</button>
-        <button class="view-btn">Año</button>
-      </div>
+  <div class="month-wrap">
+    <div class="month-dow-header">
+      <div class="month-dow">LUN</div><div class="month-dow">MAR</div><div class="month-dow">MIÉ</div>
+      <div class="month-dow">JUE</div><div class="month-dow">VIE</div><div class="month-dow">SÁB</div><div class="month-dow">DOM</div>
     </div>
-    <div class="month-wrap">
-      <div class="month-dow-header">
-        <div class="month-dow">DOM</div><div class="month-dow">LUN</div><div class="month-dow">MAR</div>
-        <div class="month-dow">MIÉ</div><div class="month-dow">JUE</div><div class="month-dow">VIE</div><div class="month-dow">SÁB</div>
-      </div>
-      <div class="month-grid" id="month-grid"></div>
-    </div>
+    <div class="month-grid" id="month-grid"><div class="month-cell other-month" onclick="openModal(&#39;2026-06-29&#39;)">
+      <div class="cell-num">29</div>
+      <div class="cell-events"></div></div><div class="month-cell other-month" onclick="openModal(&#39;2026-06-30&#39;)">
+      <div class="cell-num">30</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-01&#39;)">
+      <div class="cell-num">1</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-02&#39;)">
+      <div class="cell-num">2</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-03&#39;)">
+      <div class="cell-num">3</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-04&#39;)">
+      <div class="cell-num">4</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-05&#39;)">
+      <div class="cell-num">5</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-06&#39;)">
+      <div class="cell-num">6</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-07&#39;)">
+      <div class="cell-num">7</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-08&#39;)">
+      <div class="cell-num">8</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-09&#39;)">
+      <div class="cell-num">9</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-10&#39;)">
+      <div class="cell-num">10</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-11&#39;)">
+      <div class="cell-num today">11</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-12&#39;)">
+      <div class="cell-num">12</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-13&#39;)">
+      <div class="cell-num">13</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-14&#39;)">
+      <div class="cell-num">14</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-15&#39;)">
+      <div class="cell-num">15</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-16&#39;)">
+      <div class="cell-num">16</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-17&#39;)">
+      <div class="cell-num">17</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-18&#39;)">
+      <div class="cell-num">18</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-19&#39;)">
+      <div class="cell-num">19</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-20&#39;)">
+      <div class="cell-num">20</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-21&#39;)">
+      <div class="cell-num">21</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-22&#39;)">
+      <div class="cell-num">22</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-23&#39;)">
+      <div class="cell-num">23</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-24&#39;)">
+      <div class="cell-num">24</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-25&#39;)">
+      <div class="cell-num">25</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-26&#39;)">
+      <div class="cell-num">26</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-27&#39;)">
+      <div class="cell-num">27</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-28&#39;)">
+      <div class="cell-num">28</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-29&#39;)">
+      <div class="cell-num">29</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-30&#39;)">
+      <div class="cell-num">30</div>
+      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-31&#39;)">
+      <div class="cell-num">31</div>
+      <div class="cell-events"></div></div><div class="month-cell other-month" onclick="openModal(&#39;2026-08-01&#39;)">
+      <div class="cell-num">1</div>
+      <div class="cell-events"></div></div><div class="month-cell other-month" onclick="openModal(&#39;2026-08-02&#39;)">
+      <div class="cell-num">2</div>
+      <div class="cell-events"></div></div></div>
   </div>
 </div>
 
 <div class="modal-backdrop" id="modal" onclick="closeOut(event)">
-  <div class="modal">
-    <div class="modal-header">
-      <span style="font-size:16px;color:var(--gc-text)">Nuevo evento</span>
-      <button class="modal-close" onclick="closeModal()">&#10005;</button>
+  <div class="modal-box">
+    <div class="modal-head">
+      <span class="modal-head-date" id="modal-date-label">Miércoles, 8 de julio 2026</span>
+      <button class="modal-head-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body">
-      <div class="form-row">
-        <input id="ev-title" placeholder="Añadir título" style="font-size:20px;font-weight:400;border-bottom:2px solid var(--gc-blue)"/>
+
+      <div class="section-label">Tipo de evento</div>
+      <div class="tipo-grid">
+        <button class="tipo-btn" style="background:#c0392b" data-tipo="CASA DE PAPEL" onclick="selTipo(this)">🎭 Casa de Papel</button>
+        <button class="tipo-btn" style="background:#1a73e8" data-tipo="INTOCABLES" onclick="selTipo(this)">🎩 Intocables</button>
+        <button class="tipo-btn" style="background:#7d5a3c" data-tipo="A TEMPO" onclick="selTipo(this)">🎵 A Tempo</button>
+        <button class="tipo-btn" style="background:#27ae60" data-tipo="CONCURSO PISTA" onclick="selTipo(this)">🏆 Concurso Pista</button>
+        <button class="tipo-btn" style="background:#e67e22" data-tipo="CONCURSO LIVE MUSIC" onclick="selTipo(this)">🎤 Live Music</button>
+        <button class="tipo-btn" style="background:#5b9bd5" data-tipo="OTROS" onclick="selTipo(this)">📋 Otros</button>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-        <div class="form-row"><label>Inicio</label><input type="datetime-local" id="ev-start"/></div>
-        <div class="form-row"><label>Fin</label><input type="datetime-local" id="ev-end"/></div>
-      </div>
-      <div class="form-row"><label>Descripción</label><input id="ev-desc" placeholder="Añadir descripción"/></div>
-      <div class="form-row"><label>Color</label>
-        <div class="color-pickers">
-          <div class="color-picker-dot" style="background:#1a73e8" data-color="#1a73e8" onclick="selColor(this)">&#10003;</div>
-          <div class="color-picker-dot" style="background:#0b8043" data-color="#0b8043" onclick="selColor(this)">&nbsp;</div>
-          <div class="color-picker-dot" style="background:#e37400" data-color="#e37400" onclick="selColor(this)">&nbsp;</div>
-          <div class="color-picker-dot" style="background:#d93025" data-color="#d93025" onclick="selColor(this)">&nbsp;</div>
-          <div class="color-picker-dot" style="background:#8430ce" data-color="#8430ce" onclick="selColor(this)">&nbsp;</div>
-          <div class="color-picker-dot" style="background:#0097a7" data-color="#0097a7" onclick="selColor(this)">&nbsp;</div>
+
+      <div class="section-label">Horario</div>
+      <div class="horario-row">
+        <div class="form-group">
+          <label>Inicio</label>
+          <input type="time" id="ev-start-time" value="20:00">
+        </div>
+        <div class="form-group">
+          <label>Fin</label>
+          <input type="time" id="ev-end-time" value="23:00">
         </div>
       </div>
+
+      <div class="section-label">Población</div>
+      <div class="form-group" style="margin-bottom:20px">
+        <select id="ev-poblacion">
+          <option value="">— Selecciona población —</option>
+          <option>A Coruña</option><option>Albacete</option><option>Alcalá de Henares</option>
+          <option>Alcorcón</option><option>Algeciras</option><option>Alicante</option>
+          <option>Almería</option><option>Alzira</option><option>Arrecife</option>
+          <option>Ávila</option><option>Badajoz</option><option>Badalona</option>
+          <option>Barcelona</option><option>Benidorm</option><option>Bilbao</option>
+          <option>Burgos</option><option>Cáceres</option><option>Cádiz</option>
+          <option>Cartagena</option><option>Castellón de la Plana</option><option>Ceuta</option>
+          <option>Ciudad Real</option><option>Córdoba</option><option>Cuenca</option>
+          <option>Elche</option><option>Fuengirola</option><option>Gandía</option>
+          <option>Getafe</option><option>Gijón</option><option>Girona</option>
+          <option>Granada</option><option>Guadalajara</option><option>Huelva</option>
+          <option>Huesca</option><option>Ibiza</option><option>Jaén</option>
+          <option>Jerez de la Frontera</option><option>L'Hospitalet de Llobregat</option>
+          <option>La Palma</option><option>Las Palmas de Gran Canaria</option>
+          <option>León</option><option>Lérida</option><option>Linares</option>
+          <option>Logroño</option><option>Lugo</option><option>Madrid</option>
+          <option>Málaga</option><option>Manresa</option><option>Marbella</option>
+          <option>Melilla</option><option>Mérida</option><option>Móstoles</option>
+          <option>Murcia</option><option>Oviedo</option><option>Palencia</option>
+          <option>Palma de Mallorca</option><option>Pamplona</option><option>Pontevedra</option>
+          <option>Reus</option><option>Sabadell</option><option>Salamanca</option>
+          <option>San Cristóbal de La Laguna</option><option>San Sebastián</option>
+          <option>Santa Cruz de Tenerife</option><option>Santander</option>
+          <option>Santiago de Compostela</option><option>Segovia</option>
+          <option>Sevilla</option><option>Soria</option><option>Tarragona</option>
+          <option>Terrassa</option><option>Toledo</option><option>Torrevieja</option>
+          <option>Valencia</option><option>Valladolid</option><option>Vigo</option>
+          <option>Vitoria-Gasteiz</option><option>Zamora</option><option>Zaragoza</option>
+        </select>
+      </div>
+
+      <div class="section-label">¿Quién gestiona?</div>
+      <div class="gestor-row">
+        <button class="gestor-btn active" style="background:#9b59b6" data-gestor="DIANA" onclick="selGestor(this)">💜 Diana</button>
+        <button class="gestor-btn" style="background:#1a73e8" data-gestor="VIC" onclick="selGestor(this)">💙 Vic</button>
+        <button class="gestor-btn" style="background:#27ae60" data-gestor="JL" onclick="selGestor(this)">💚 JL</button>
+      </div>
+
     </div>
     <div class="modal-footer">
       <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
@@ -163,98 +243,84 @@ html,body{height:100%;background:var(--gc-bg);color:var(--gc-text);font-size:14p
 
 <script>
 const MONTHS_ES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const DAYS_ES=['lunes','martes','miércoles','jueves','viernes','sábado','domingo'];
 const today=new Date();today.setHours(0,0,0,0);
 let cur=new Date(today.getFullYear(),today.getMonth(),1);
-let selectedColor='#1a73e8';
-let events=[
-  {title:'Reunión de equipo',start:new Date(2026,3,23,9,0),end:new Date(2026,3,23,10,0),color:'#1a73e8'},
-  {title:'Almuerzo con María',start:new Date(2026,3,23,13,30),end:new Date(2026,3,23,14,30),color:'#0b8043'},
-  {title:'Champions League',start:new Date(2026,3,22,21,0),end:new Date(2026,3,22,23,0),color:'#e37400'},
-  {title:'Revisión proyecto',start:new Date(2026,3,24,10,0),end:new Date(2026,3,24,11,30),color:'#8430ce'},
-  {title:'Call con cliente',start:new Date(2026,3,25,16,0),end:new Date(2026,3,25,17,0),color:'#d93025'},
-  {title:'Dentista',start:new Date(2026,3,21,9,0),end:new Date(2026,3,21,10,0),color:'#0097a7'},
-  {title:'Comida familia',start:new Date(2026,3,19,14,0),end:new Date(2026,3,19,16,0),color:'#0b8043'},
-  {title:'Gimnasio',start:new Date(2026,3,28,7,0),end:new Date(2026,3,28,8,0),color:'#1a73e8'},
-  {title:'Vuelo Madrid',start:new Date(2026,3,30,6,0),end:new Date(2026,3,30,8,0),color:'#e37400'},
-];
+let selectedTipo=null,selectedGestor=null,currentDate=null;
+let events=[];
+const TIPO_COLORS={'CASA DE PAPEL':'#c0392b','INTOCABLES':'#1a73e8','A TEMPO':'#7d5a3c','CONCURSO PISTA':'#27ae60','CONCURSO LIVE MUSIC':'#e67e22','OTROS':'#5b9bd5'};
+
 function pad(n){return String(n).padStart(2,'0')}
 function sameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
-function fmt(d){return`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`}
 function capFirst(s){return s.charAt(0).toUpperCase()+s.slice(1)}
-function renderAll(){renderMain();renderMini();renderGrid()}
-function renderMain(){
+function dowLun(d){return(d.getDay()+6)%7}
+
+function renderAll(){
   document.getElementById('main-label').textContent=capFirst(MONTHS_ES[cur.getMonth()])+' '+cur.getFullYear();
+  renderGrid();
 }
-function renderMini(){
-  document.getElementById('mini-label').textContent=capFirst(MONTHS_ES[cur.getMonth()])+' '+cur.getFullYear();
-  const first=new Date(cur.getFullYear(),cur.getMonth(),1);
-  const last=new Date(cur.getFullYear(),cur.getMonth()+1,0);
-  let html='';
-  for(let i=0;i<first.getDay();i++){const d=new Date(first);d.setDate(d.getDate()-(first.getDay()-i));html+=`<div class="mini-day other-month">${d.getDate()}</div>`}
-  for(let d=1;d<=last.getDate();d++){
-    const dt=new Date(cur.getFullYear(),cur.getMonth(),d);
-    const isT=sameDay(dt,today);
-    html+=`<div class="mini-day${isT?' today':' in-month-view'}" onclick="jumpTo(${cur.getFullYear()},${cur.getMonth()},${d})">${d}</div>`;
-  }
-  const rem=(7-(first.getDay()+last.getDate())%7)%7;
-  for(let i=1;i<=rem;i++)html+=`<div class="mini-day other-month">${i}</div>`;
-  document.getElementById('mini-days').innerHTML=html;
-}
+
 function renderGrid(){
   const g=document.getElementById('month-grid');
   const first=new Date(cur.getFullYear(),cur.getMonth(),1);
   const last=new Date(cur.getFullYear(),cur.getMonth()+1,0);
-  const startDow=first.getDay();
+  const startDow=dowLun(first);
   const totalCells=Math.ceil((startDow+last.getDate())/7)*7;
   let html='';
   for(let i=0;i<totalCells;i++){
     const dt=new Date(first);dt.setDate(dt.getDate()-startDow+i);
     const isThisMonth=dt.getMonth()===cur.getMonth();
     const isToday=sameDay(dt,today);
-    const dayEvs=events.filter(e=>sameDay(e.start,dt)).sort((a,b)=>a.start-b.start);
-    const maxShow=3;
-    const ds=fmt(new Date(dt.getFullYear(),dt.getMonth(),dt.getDate(),9,0));
+    const dayEvs=events.filter(e=>sameDay(e.date,dt)).sort((a,b)=>a.startTime.localeCompare(b.startTime));
+    const ds=`${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}`;
     html+=`<div class="month-cell${isThisMonth?'':' other-month'}" onclick="openModal('${ds}')">
       <div class="cell-num${isToday?' today':''}">${dt.getDate()}</div>
       <div class="cell-events">`;
-    dayEvs.slice(0,maxShow).forEach(ev=>{
-      html+=`<div class="cell-event" style="background:${ev.color}" title="${ev.title}">${pad(ev.start.getHours())}:${pad(ev.start.getMinutes())} ${ev.title}</div>`;
+    dayEvs.slice(0,3).forEach(ev=>{
+      const color=TIPO_COLORS[ev.tipo]||'#888';
+      html+=`<div class="cell-event" style="background:${color}">${ev.startTime} ${ev.tipo}</div>`;
     });
-    if(dayEvs.length>maxShow)html+=`<div class="cell-more">+${dayEvs.length-maxShow} más</div>`;
+    if(dayEvs.length>3)html+=`<div class="cell-more">+${dayEvs.length-3} más</div>`;
     html+=`</div></div>`;
   }
   g.innerHTML=html;
 }
+
 function shiftMonth(n){cur=new Date(cur.getFullYear(),cur.getMonth()+n,1);renderAll()}
 function goToday(){cur=new Date(today.getFullYear(),today.getMonth(),1);renderAll()}
-function jumpTo(y,m,d){cur=new Date(y,m,1);renderAll()}
+
 function openModal(dateStr){
+  currentDate=new Date(dateStr+'T00:00:00');
+  selectedTipo=null;selectedGestor=null;
+  document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('selected'));
+  document.querySelectorAll('.gestor-btn').forEach(b=>b.classList.remove('active'));
+  const d=currentDate;
+  const dow=DAYS_ES[dowLun(d)];
+  document.getElementById('modal-date-label').textContent=capFirst(dow)+', '+d.getDate()+' de '+MONTHS_ES[d.getMonth()]+' '+d.getFullYear();
+  document.getElementById('ev-start-time').value='20:00';
+  document.getElementById('ev-end-time').value='23:00';
+  document.getElementById('ev-poblacion').value='';
   document.getElementById('modal').classList.add('open');
-  if(dateStr){
-    const d=new Date(dateStr);
-    const end=new Date(d.getTime()+3600000);
-    document.getElementById('ev-start').value=fmt(d);
-    document.getElementById('ev-end').value=fmt(end);
-  }
-  document.getElementById('ev-title').value='';
-  document.getElementById('ev-desc').value='';
 }
 function closeModal(){document.getElementById('modal').classList.remove('open')}
 function closeOut(e){if(e.target===document.getElementById('modal'))closeModal()}
-function selColor(el){
-  document.querySelectorAll('.color-picker-dot').forEach(d=>d.textContent=' ');
-  el.textContent='✓';
-  selectedColor=el.dataset.color;
+
+function selTipo(el){
+  document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');selectedTipo=el.dataset.tipo;
+}
+function selGestor(el){
+  document.querySelectorAll('.gestor-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');selectedGestor=el.dataset.gestor;
 }
 function saveEvent(){
-  const title=document.getElementById('ev-title').value||'(Sin título)';
-  const s=new Date(document.getElementById('ev-start').value);
-  const e=new Date(document.getElementById('ev-end').value);
-  if(isNaN(s)||isNaN(e))return;
-  events.push({title,start:s,end:e,color:selectedColor});
+  if(!selectedTipo){alert('Selecciona el tipo de evento');return}
+  if(!selectedGestor){alert('Selecciona quién gestiona');return}
+  events.push({date:new Date(currentDate),tipo:selectedTipo,startTime:document.getElementById('ev-start-time').value,endTime:document.getElementById('ev-end-time').value,poblacion:document.getElementById('ev-poblacion').value,gestor:selectedGestor});
   closeModal();renderGrid();
 }
 renderAll();
 </script>
-</body>
-</html>
+
+
+</body></html>
