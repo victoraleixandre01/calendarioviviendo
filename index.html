@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0034)file:///D:/Descargas/index_45.html -->
+<!-- saved from url=(0034)file:///D:/Descargas/index_47.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,7 +85,33 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 .ac-add{padding:9px 14px;cursor:pointer;font-size:13px;color:var(--blue);font-weight:500;border-top:1px solid var(--border)}
 .ac-add:hover{background:var(--blue-light)}
 
-/* Footer modal */
+/* MÓVIL portrait */
+@media(max-width:480px){
+  .topbar{height:48px;padding:0 10px;gap:6px}
+  .topbar-logo{font-size:16px}
+  .topbar-month{font-size:14px}
+  .today-btn{padding:5px 8px;font-size:12px}
+  .nav-btn{width:26px;height:26px;font-size:16px}
+  .month-dow{font-size:9px;padding:3px 0}
+  .cell-num{width:18px;height:18px;font-size:10px;line-height:18px}
+  .cell-event{font-size:10px;padding:2px 3px}
+}
+/* MÓVIL landscape */
+@media(max-height:500px){
+  .topbar{height:40px;padding:0 10px}
+  .topbar-month{font-size:13px}
+  .month-dow{padding:2px 0;font-size:9px}
+  .cell-num{width:16px;height:16px;font-size:9px;line-height:16px;margin-bottom:1px}
+  .cell-event{font-size:9px;padding:1px 3px;line-height:1.2}
+  .cell-more{font-size:8px}
+  .modal-box{max-height:98vh}
+  .modal-body{padding:8px 14px}
+  .modal-body .sec-label{margin-bottom:4px;margin-top:6px}
+  .selector-field{padding:7px 10px;margin-bottom:8px}
+  .form-group{margin-bottom:8px!important}
+  .input-row{margin-bottom:8px!important}
+  .autocomplete-wrap{margin-bottom:8px}
+}
 .modal-footer{padding:10px 18px 16px;display:flex;justify-content:flex-end;gap:10px;border-top:1px solid var(--border);position:sticky;bottom:0;background:#fff;flex-shrink:0}
 .btn-cancel{background:none;border:1px solid var(--border);padding:8px 16px;border-radius:7px;cursor:pointer;font-size:13px;color:var(--muted)}
 .btn-save{background:var(--blue);border:none;padding:8px 20px;border-radius:7px;cursor:pointer;font-size:13px;color:#fff;font-weight:600}
@@ -170,7 +196,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
       <div class="cell-num">15</div>
       <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-16&#39;)">
       <div class="cell-num">16</div>
-      <div class="cell-events"><div class="cell-event" style="background:#e0a800" onclick="event.stopPropagation();showPopup(0,this)" ondblclick="event.stopPropagation();editEventByIdx(0)">16:00 A TEMPO · 200p · Valencia</div></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-17&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-17&#39;)">
       <div class="cell-num">17</div>
       <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-18&#39;)">
       <div class="cell-num">18</div>
@@ -235,7 +261,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 <div class="modal-backdrop" id="modal" onclick="closeOut(event)">
   <div class="modal-box">
     <div class="modal-head">
-      <span class="modal-head-date" id="modal-date-label">Jueves, 16 de julio 2026</span>
+      <span class="modal-head-date" id="modal-date-label"></span>
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body">
@@ -243,8 +269,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
       <!-- TIPO DE EVENTO -->
       <div class="sec-label">Tipo de evento</div>
       <div class="selector-field" onclick="openSubModal(&#39;tipo&#39;)" id="tipo-field">
-        <span class="sel-label" id="tipo-label" style="display: none;">Toca para seleccionar</span>
-        <div class="sel-value"><span id="tipo-badge"><span class="sel-badge" style="background:#7d5a3c;color:#fff;font-size:13px;font-weight:700">A TEMPO</span></span><span class="sel-arrow">›</span></div>
+        <span class="sel-label" id="tipo-label">Toca para seleccionar</span>
+        <div class="sel-value"><span id="tipo-badge"></span><span class="sel-arrow">›</span></div>
       </div>
 
       <!-- HORARIO -->
@@ -257,78 +283,49 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
       <!-- PAX -->
       <div class="sec-label">Número de pax</div>
       <div class="form-group" style="margin-bottom:16px">
-        <input type="number" id="ev-pax" min="1" placeholder="Ej: 150">
+        <input type="number" id="ev-pax" min="1" inputmode="numeric" pattern="[0-9]*" placeholder="Ej: 150">
       </div>
 
       <!-- ESTADO -->
       <div class="sec-label">Estado</div>
       <div class="selector-field" onclick="openSubModal(&#39;estado&#39;)" id="estado-field">
-        <span class="sel-label" id="estado-label" style="display: none;">Toca para seleccionar</span>
-        <div class="sel-value"><span id="estado-badge"><span class="sel-badge" style="background:#f39c12;color:#7d5a00">Posible</span></span><span class="sel-arrow">›</span></div>
+        <span class="sel-label" id="estado-label">Toca para seleccionar</span>
+        <div class="sel-value"><span id="estado-badge"></span><span class="sel-arrow">›</span></div>
       </div>
 
       <!-- TIPO (categoría) -->
       <div class="sec-label">Categoría</div>
       <div class="selector-field" onclick="openSubModal(&#39;categoria&#39;)" id="categoria-field">
-        <span class="sel-label" id="categoria-label" style="display: none;">Toca para seleccionar</span>
-        <div class="sel-value"><span id="categoria-badge"><span class="sel-badge" style="background:#5b9bd5;color:#0a3d62">Team Building</span></span><span class="sel-arrow">›</span></div>
+        <span class="sel-label" id="categoria-label">Toca para seleccionar</span>
+        <div class="sel-value"><span id="categoria-badge"></span><span class="sel-arrow">›</span></div>
       </div>
 
       <!-- CLIENTE -->
       <div class="sec-label">Cliente</div>
       <div class="autocomplete-wrap">
         <input type="text" id="cliente-input" placeholder="Buscar cliente..." autocomplete="off" oninput="filterAC(&#39;cliente&#39;)" onfocus="showAC(&#39;cliente&#39;)" onblur="hideAC(&#39;cliente&#39;,300)">
-        <div class="autocomplete-dropdown" id="cliente-dropdown"><div class="ac-add" onmousedown="addToDb(&#39;cliente&#39;)">＋ Añadir "Grefusa"</div></div>
+        <div class="autocomplete-dropdown" id="cliente-dropdown"></div>
       </div>
 
       <!-- AGENCIA -->
       <div class="sec-label">¿Hay agencia?</div>
       <div class="autocomplete-wrap">
         <input type="text" id="agencia-input" placeholder="Buscar agencia..." autocomplete="off" oninput="filterAC(&#39;agencia&#39;)" onfocus="showAC(&#39;agencia&#39;)" onblur="hideAC(&#39;agencia&#39;,300)">
-        <div class="autocomplete-dropdown" id="agencia-dropdown"><div class="ac-item" onmousedown="pickAC(&#39;agencia&#39;,&#39;Agencia Creativa BCN&#39;)"> Agencia Creativa BCN</div><div class="ac-item" onmousedown="pickAC(&#39;agencia&#39;,&#39;Eventalia&#39;)"> Eventalia</div><div class="ac-item" onmousedown="pickAC(&#39;agencia&#39;,&#39;Grupo Eventoplus&#39;)"> Grupo Eventoplus</div><div class="ac-item" onmousedown="pickAC(&#39;agencia&#39;,&#39;ilusiona Eventos&#39;)"> ilusiona Eventos</div><div class="ac-item" onmousedown="pickAC(&#39;agencia&#39;,&#39;Mònica Serrano Events&#39;)"> Mònica Serrano Events</div><div class="ac-item" onmousedown="pickAC(&#39;agencia&#39;,&#39;Producciones XYZ&#39;)"> Producciones XYZ</div><div class="ac-item" onmousedown="pickAC(&#39;agencia&#39;,&#39;Wonder Events&#39;)"> Wonder Events</div></div>
+        <div class="autocomplete-dropdown" id="agencia-dropdown"></div>
       </div>
 
       <!-- POBLACIÓN -->
       <div class="sec-label">Población</div>
-      <div class="form-group" style="margin-bottom:16px">
-        <select id="ev-poblacion" style="border:1px solid var(--border);border-radius:7px;padding:9px 10px;font-size:14px;color:var(--text);outline:none;background:#fff;width:100%">
-          <option value="">— Selecciona población —</option>
-          <option>A Coruña</option><option>Albacete</option><option>Alcalá de Henares</option>
-          <option>Alcorcón</option><option>Algeciras</option><option>Alicante</option>
-          <option>Almería</option><option>Alzira</option><option>Arrecife</option>
-          <option>Ávila</option><option>Badajoz</option><option>Badalona</option>
-          <option>Barcelona</option><option>Benidorm</option><option>Bilbao</option>
-          <option>Burgos</option><option>Cáceres</option><option>Cádiz</option>
-          <option>Cartagena</option><option>Castellón de la Plana</option><option>Ceuta</option>
-          <option>Ciudad Real</option><option>Córdoba</option><option>Cuenca</option>
-          <option>Elche</option><option>Fuengirola</option><option>Gandía</option>
-          <option>Getafe</option><option>Gijón</option><option>Girona</option>
-          <option>Granada</option><option>Guadalajara</option><option>Huelva</option>
-          <option>Huesca</option><option>Ibiza</option><option>Jaén</option>
-          <option>Jerez de la Frontera</option><option>L'Hospitalet de Llobregat</option>
-          <option>La Palma</option><option>Las Palmas de Gran Canaria</option>
-          <option>León</option><option>Lérida</option><option>Linares</option>
-          <option>Logroño</option><option>Lugo</option><option>Madrid</option>
-          <option>Málaga</option><option>Manresa</option><option>Marbella</option>
-          <option>Melilla</option><option>Mérida</option><option>Móstoles</option>
-          <option>Murcia</option><option>Oviedo</option><option>Palencia</option>
-          <option>Palma de Mallorca</option><option>Pamplona</option><option>Pontevedra</option>
-          <option>Reus</option><option>Sabadell</option><option>Salamanca</option>
-          <option>San Cristóbal de La Laguna</option><option>San Sebastián</option>
-          <option>Santa Cruz de Tenerife</option><option>Santander</option>
-          <option>Santiago de Compostela</option><option>Segovia</option>
-          <option>Sevilla</option><option>Soria</option><option>Tarragona</option>
-          <option>Terrassa</option><option>Toledo</option><option>Torrevieja</option>
-          <option>Valencia</option><option>Valladolid</option><option>Vigo</option>
-          <option>Vitoria-Gasteiz</option><option>Zamora</option><option>Zaragoza</option>
-        </select>
+      <div class="autocomplete-wrap">
+        <input type="text" id="ev-poblacion" placeholder="Escribe o busca ciudad..." autocomplete="off" oninput="filterAC(&#39;poblacion&#39;)" onfocus="showAC(&#39;poblacion&#39;)" onblur="hideAC(&#39;poblacion&#39;,300)">
+        <div class="autocomplete-dropdown" id="poblacion-dropdown"></div>
       </div>
 
       <!-- QUIÉN GESTIONA -->
       <div class="sec-label">¿Quién gestiona?</div>
       <div class="selector-field" onclick="openSubModal(&#39;gestor&#39;)" id="gestor-field">
-        <span class="sel-label" id="gestor-label" style="display: none;">Toca para seleccionar</span>
-        <div class="sel-value"><span id="gestor-badges" style="display:flex;gap:6px;flex-wrap:wrap"><span class="sel-badge" style="background:#1a73e8;color:#fff;font-weight:700">VIC</span></span><span class="sel-arrow">›</span></div>
+        <span class="sel-label" id="gestor-label">¿Quién gestiona?</span>
+        <div class="sel-value"><span id="gestor-badges" style="display:flex;gap:6px;flex-wrap:wrap"></span><span class="sel-arrow">›</span></div>
       </div>
 
     </div>
@@ -342,8 +339,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 <!-- SUBMODAL ESTADO / CATEGORIA -->
 <div class="submodal-backdrop" id="submodal" onclick="closeSubOut(event)">
   <div class="submodal-box">
-    <div class="submodal-title" id="submodal-title">¿Quién gestiona?</div>
-    <div class="submodal-btns" id="submodal-btns"><button class="sub-btn gestor-sub-btn" style="background:#9b59b6;color:#fff;opacity:0.45;filter:saturate(0.2) brightness(0.85);display:flex;align-items:center;justify-content:space-between" data-idx="0" onclick="toggleGestorSub(this,0)">DIANA<span class="gsub-check" style="font-size:22px;opacity:0">✓</span></button><button class="sub-btn gestor-sub-btn" style="background: rgb(26, 115, 232); color: rgb(255, 255, 255); opacity: 1; filter: none; display: flex; align-items: center; justify-content: space-between;" data-idx="1" onclick="toggleGestorSub(this,1)">VIC<span class="gsub-check" style="font-size: 22px; opacity: 1;">✓</span></button><button class="sub-btn gestor-sub-btn" style="background:#27ae60;color:#fff;opacity:0.45;filter:saturate(0.2) brightness(0.85);display:flex;align-items:center;justify-content:space-between" data-idx="2" onclick="toggleGestorSub(this,2)">JL<span class="gsub-check" style="font-size:22px;opacity:0">✓</span></button><button class="btn-save" style="margin-top:4px;width:100%;padding:14px;font-size:15px;border-radius:10px" onclick="closeSubModal()">Listo</button></div>
+    <div class="submodal-title" id="submodal-title"></div>
+    <div class="submodal-btns" id="submodal-btns"></div>
     <button class="submodal-cancel" onclick="closeSubModal()">Cancelar</button>
   </div>
 </div>
@@ -391,6 +388,7 @@ const CATEGORIAS=[
 // Datos de ejemplo (luego vendrán de Google Sheets)
 let DB_CLIENTES=['Banco Santander','Coca-Cola España','El Corte Inglés','Ferrovial','Iberdrola','Inditex','MAPFRE','Mercadona','Repsol','Telefónica'];
 let DB_AGENCIAS=['Agencia Creativa BCN','Eventalia','Grupo Eventoplus','ilusiona Eventos','Mònica Serrano Events','Producciones XYZ','Wonder Events'];
+const DB_POBLACIONES=['A Coruña','Albacete','Alcalá de Henares','Alcorcón','Algeciras','Alicante','Almería','Alzira','Arrecife','Ávila','Badajoz','Badalona','Barcelona','Benidorm','Bilbao','Burgos','Cáceres','Cádiz','Cartagena','Castellón de la Plana','Ceuta','Ciudad Real','Córdoba','Cuenca','Elche','Fuengirola','Gandía','Getafe','Gijón','Girona','Granada','Guadalajara','Huelva','Huesca','Ibiza','Jaén','Jerez de la Frontera','L\'Hospitalet de Llobregat','La Palma','Las Palmas de Gran Canaria','León','Lérida','Linares','Logroño','Lugo','Madrid','Málaga','Manresa','Marbella','Melilla','Mérida','Móstoles','Murcia','Oviedo','Palencia','Palma de Mallorca','Pamplona','Pontevedra','Reus','Sabadell','Salamanca','San Cristóbal de La Laguna','San Sebastián','Santa Cruz de Tenerife','Santander','Santiago de Compostela','Segovia','Sevilla','Soria','Tarragona','Terrassa','Toledo','Torrevieja','Valencia','Valladolid','Vigo','Vitoria-Gasteiz','Zamora','Zaragoza'];
 
 function pad(n){return String(n).padStart(2,'0')}
 function sameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
@@ -496,7 +494,7 @@ function setCategoriaBadge(item){
 function setGestorBadges(){
   const lbl=document.getElementById('gestor-label');
   const cont=document.getElementById('gestor-badges');
-  if(selGestores.size===0){lbl.style.display='';lbl.textContent='Toca para seleccionar';cont.innerHTML='';return}
+  if(selGestores.size===0){lbl.style.display='';lbl.textContent='¿Quién gestiona?';cont.innerHTML='';return}
   lbl.style.display='none';
   cont.innerHTML=Array.from(selGestores).map(g=>{
     const gest=GESTORES.find(x=>x.label===g);
@@ -564,30 +562,35 @@ function closeSubOut(e){if(e.target===document.getElementById('submodal'))closeS
 
 // ---- AUTOCOMPLETE ----
 function filterAC(type){
-  const input=document.getElementById(type+'-input').value.toLowerCase();
-  const db=type==='cliente'?DB_CLIENTES:DB_AGENCIAS;
-  const filtered=db.filter(x=>x.toLowerCase().includes(input));
-  renderDropdown(type,filtered,input);
+  const input=document.getElementById(type==='poblacion'?'ev-poblacion':type+'-input').value.toLowerCase();
+  const db=type==='cliente'?DB_CLIENTES:type==='agencia'?DB_AGENCIAS:DB_POBLACIONES;
+  renderDropdown(type,db.filter(x=>x.toLowerCase().includes(input)),input);
 }
 function showAC(type){
-  const input=document.getElementById(type+'-input').value.toLowerCase();
-  const db=type==='cliente'?DB_CLIENTES:DB_AGENCIAS;
-  renderDropdown(type,db.filter(x=>x.toLowerCase().includes(input)),input);
+  const input=document.getElementById(type==='poblacion'?'ev-poblacion':type+'-input').value.toLowerCase();
+  const db=type==='cliente'?DB_CLIENTES:type==='agencia'?DB_AGENCIAS:DB_POBLACIONES;
+  renderDropdown(type,db.filter(x=>!input||x.toLowerCase().includes(input)),input);
 }
 function hideAC(type,delay){setTimeout(()=>{document.getElementById(type+'-dropdown').classList.remove('open')},delay)}
 function renderDropdown(type,items,query){
-  const dd=document.getElementById(type+'-dropdown');
-  let html=items.map(it=>`<div class="ac-item" onmousedown="pickAC('${type}','${it.replace(/'/g,"\\'")}')"> ${it}</div>`).join('');
-  if(query&&!items.some(x=>x.toLowerCase()===query)){
-    html+=`<div class="ac-add" onmousedown="addToDb('${type}')">＋ Añadir "${document.getElementById(type+'-input').value}"</div>`;
+  const ddId=type==='poblacion'?'poblacion-dropdown':type+'-dropdown';
+  const inputId=type==='poblacion'?'ev-poblacion':type+'-input';
+  const dd=document.getElementById(ddId);
+  const isPob=type==='poblacion';
+  let html=items.slice(0,20).map(it=>`<div class="ac-item" onmousedown="pickAC('${type}','${it.replace(/'/g,"\\'")}')">${it}</div>`).join('');
+  if(!isPob&&query&&!items.some(x=>x.toLowerCase()===query)){
+    html+=`<div class="ac-add" onmousedown="addToDb('${type}')">＋ Añadir "${document.getElementById(inputId).value}"</div>`;
   }
   dd.innerHTML=html;
   dd.classList.toggle('open',html.length>0);
 }
 function pickAC(type,val){
-  document.getElementById(type+'-input').value=val;
-  document.getElementById(type+'-dropdown').classList.remove('open');
-  if(type==='cliente')selCliente=val; else selAgencia=val;
+  const inputId=type==='poblacion'?'ev-poblacion':type+'-input';
+  const ddId=type==='poblacion'?'poblacion-dropdown':type+'-dropdown';
+  document.getElementById(inputId).value=val;
+  document.getElementById(ddId).classList.remove('open');
+  if(type==='cliente')selCliente=val;
+  else if(type==='agencia')selAgencia=val;
 }
 function addToDb(type){
   const val=document.getElementById(type+'-input').value.trim();
@@ -618,7 +621,7 @@ function showPopup(idx, el){
   const estadoTxt=estadoTexts[ev.estado]||'#fff';
 
   document.getElementById('popup-dot').style.background=estadoBg;
-  document.getElementById('popup-titulo').textContent=ev.tipo;
+  document.getElementById('popup-titulo').textContent=ev.startTime+' '+ev.tipo;
   document.getElementById('popup-fecha').textContent=capFirst(dow)+', '+d.getDate()+' de '+MONTHS_ES[d.getMonth()]+' '+d.getFullYear();
   document.getElementById('popup-hora').textContent=ev.startTime+' – '+ev.endTime;
 
