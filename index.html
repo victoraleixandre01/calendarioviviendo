@@ -1,76 +1,105 @@
 <!DOCTYPE html>
-<!-- saved from url=(0034)file:///D:/Descargas/index_30.html -->
+<!-- saved from url=(0034)file:///D:/Descargas/index_32.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mi Calendario</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Google Sans',Roboto,Arial,sans-serif}
-:root{--gc-blue:#1a73e8;--gc-blue-light:#e8f0fe;--gc-surface:#fff;--gc-bg:#f6f8fc;--gc-border:#dadce0;--gc-text:#3c4043;--gc-muted:#70757a;--gc-hover:#f1f3f4}
-html,body{height:100%;background:var(--gc-bg);color:var(--gc-text);font-size:14px}
+:root{--blue:#1a73e8;--blue-light:#e8f0fe;--surface:#fff;--bg:#f6f8fc;--border:#dadce0;--text:#3c4043;--muted:#70757a;--hover:#f1f3f4}
+html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 .cal-root{display:flex;flex-direction:column;height:100vh;overflow:hidden}
 
 /* TOPBAR */
-.topbar{height:60px;display:flex;align-items:center;gap:10px;padding:0 16px;border-bottom:1px solid var(--gc-border);background:var(--gc-surface);flex-shrink:0}
-.topbar-logo{font-size:20px;color:var(--gc-muted);font-weight:400;letter-spacing:-.5px}
-.topbar-logo span{color:var(--gc-blue)}
-.today-btn{border:1px solid var(--gc-border);background:var(--gc-surface);border-radius:4px;padding:7px 14px;font-size:13px;cursor:pointer;color:var(--gc-text);font-weight:500}
-.today-btn:hover{background:var(--gc-hover)}
-.nav-btn{background:none;border:none;cursor:pointer;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--gc-muted)}
-.nav-btn:hover{background:var(--gc-hover)}
-.topbar-month{font-size:18px;font-weight:400;color:var(--gc-text);flex:1}
+.topbar{height:56px;display:flex;align-items:center;gap:10px;padding:0 14px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0}
+.topbar-logo{font-size:20px;color:var(--muted);font-weight:400}
+.topbar-logo span{color:var(--blue)}
+.today-btn{border:1px solid var(--border);background:var(--surface);border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;color:var(--text);font-weight:500}
+.today-btn:hover{background:var(--hover)}
+.nav-btn{background:none;border:none;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--muted)}
+.nav-btn:hover{background:var(--hover)}
+.topbar-month{font-size:17px;font-weight:400;color:var(--text);flex:1}
 
 /* GRID MES */
 .month-wrap{flex:1;display:flex;flex-direction:column;overflow:hidden}
-.month-dow-header{display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid var(--gc-border);background:var(--gc-surface);flex-shrink:0}
-.month-dow{text-align:center;padding:6px 0;font-size:11px;font-weight:500;color:var(--gc-muted);letter-spacing:.3px}
-.month-grid{flex:1;display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:1fr;border-left:1px solid var(--gc-border);overflow:hidden}
-.month-cell{border-right:1px solid var(--gc-border);border-bottom:1px solid var(--gc-border);padding:4px;cursor:pointer;background:var(--gc-surface);overflow:hidden}
+.month-dow-header{display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0}
+.month-dow{text-align:center;padding:5px 0;font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.3px}
+.month-grid{flex:1;display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:1fr;border-left:1px solid var(--border);overflow:hidden}
+.month-cell{border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:3px;cursor:pointer;background:var(--surface);overflow:hidden}
 .month-cell:hover{background:#fafafa}
-.month-cell.other-month{background:var(--gc-bg)}
+.month-cell.other-month{background:var(--bg)}
 .month-cell.other-month .cell-num{color:#bbb}
-.cell-num{font-size:12px;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:2px;color:var(--gc-text)}
-.cell-num.today{background:var(--gc-blue);color:#fff;font-weight:500}
-.cell-events{display:flex;flex-direction:column;gap:2px}
-.cell-event{font-size:10px;font-weight:600;color:#fff;border-radius:3px;padding:1px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cell-more{font-size:10px;color:var(--gc-muted);padding:1px 4px}
+.cell-num{font-size:11px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:2px;color:var(--text)}
+.cell-num.today{background:var(--blue);color:#fff;font-weight:500}
+.cell-events{display:flex;flex-direction:column;gap:1px}
+.cell-event{font-size:9px;font-weight:600;color:#fff;border-radius:3px;padding:1px 3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cell-more{font-size:9px;color:var(--muted);padding:1px 3px}
 
-/* MODAL */
+/* ===== MODAL PRINCIPAL ===== */
 .modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;align-items:flex-end;justify-content:center}
-@media(min-width:600px){.modal-backdrop{align-items:center}}
+@media(min-width:640px){.modal-backdrop{align-items:center}}
 .modal-backdrop.open{display:flex}
-.modal-box{background:#fff;border-radius:16px 16px 0 0;width:100%;max-height:92vh;overflow-y:auto}
-@media(min-width:600px){.modal-box{border-radius:14px;width:520px;max-height:90vh}}
-.modal-head{padding:16px 18px 10px;border-bottom:1px solid var(--gc-border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:2}
-.modal-head-date{font-size:15px;font-weight:600;color:var(--gc-text)}
-.modal-head-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--gc-muted);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.modal-head-close:hover{background:var(--gc-hover)}
-.modal-body{padding:16px 18px}
-.section-label{font-size:10px;font-weight:600;color:var(--gc-muted);letter-spacing:.9px;text-transform:uppercase;margin-bottom:10px}
+.modal-box{background:#fff;border-radius:16px 16px 0 0;width:100%;max-height:95vh;overflow-y:auto;display:flex;flex-direction:column}
+@media(min-width:640px){.modal-box{border-radius:14px;width:580px;max-height:92vh}}
+.modal-head{padding:14px 18px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:2;flex-shrink:0}
+.modal-head-date{font-size:15px;font-weight:600;color:var(--text)}
+.modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:var(--hover)}
+.modal-body{padding:14px 18px;flex:1;overflow-y:auto}
+.sec-label{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.9px;text-transform:uppercase;margin-bottom:8px}
 
-/* Tipos */
-.tipo-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:20px}
-.tipo-btn{border:none;border-radius:10px;padding:16px 8px;font-size:13px;font-weight:700;color:#fff;cursor:pointer;text-transform:uppercase;letter-spacing:.3px;transition:transform .12s,box-shadow .12s,opacity .12s;opacity:.75}
-.tipo-btn:hover{opacity:.9}
-.tipo-btn.selected{opacity:1;transform:scale(1.04);box-shadow:0 0 0 3px #fff,0 0 0 5px currentColor,0 6px 20px rgba(0,0,0,.25)}
+/* Tipos evento */
+.tipo-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+.tipo-btn{border:none;border-radius:9px;padding:14px 8px;font-size:12px;font-weight:700;color:#fff;cursor:pointer;text-transform:uppercase;letter-spacing:.3px;transition:transform .12s,box-shadow .12s,opacity .12s;opacity:.7}
+.tipo-btn:hover{opacity:.88}
+.tipo-btn.selected{opacity:1;transform:scale(1.04);box-shadow:0 0 0 3px #fff,0 0 0 5px currentColor,0 4px 16px rgba(0,0,0,.2)}
 
-/* Horario */
-.horario-row{display:flex;gap:12px;margin-bottom:18px}
-.form-group{display:flex;flex-direction:column;gap:5px;flex:1}
-.form-group label{font-size:10px;font-weight:600;color:var(--gc-muted);letter-spacing:.7px;text-transform:uppercase}
-.form-group input[type=time],.form-group select{border:1px solid var(--gc-border);border-radius:8px;padding:9px 10px;font-size:14px;color:var(--gc-text);outline:none;background:#fff;width:100%}
-.form-group input[type=time]:focus,.form-group select:focus{border-color:var(--gc-blue)}
+/* Selector de estado y tipo con botón */
+.selector-field{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--border);border-radius:8px;padding:10px 14px;cursor:pointer;margin-bottom:16px;background:#fff}
+.selector-field:hover{border-color:var(--blue)}
+.selector-field .sel-label{font-size:13px;color:var(--muted)}
+.selector-field .sel-value{display:flex;align-items:center;gap:8px}
+.sel-badge{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;display:inline-block}
+.sel-arrow{color:var(--muted);font-size:12px}
 
-/* Gestor */
-.gestor-row{display:flex;gap:10px;margin-bottom:8px}
-.gestor-btn{flex:1;border:3px solid transparent;border-radius:10px;padding:14px 6px;font-size:13px;font-weight:700;color:#fff;cursor:pointer;text-transform:uppercase;letter-spacing:.4px;transition:all .15s;opacity:.35;filter:grayscale(50%)}
-.gestor-btn.active{opacity:1;filter:none;box-shadow:0 0 0 3px #fff, 0 0 20px 5px rgba(0,0,0,.2);transform:scale(1.07)}
+/* Gestores */
+.gestor-row{display:flex;gap:8px;margin-bottom:16px}
+.gestor-btn{flex:1;border:2px solid transparent;border-radius:9px;padding:12px 6px;font-size:12px;font-weight:700;color:#fff;cursor:pointer;text-transform:uppercase;letter-spacing:.3px;transition:all .15s;opacity:.3;filter:grayscale(60%)}
+.gestor-btn.active{opacity:1;filter:none;box-shadow:0 0 0 3px #fff,0 0 16px 4px rgba(0,0,0,.2);transform:scale(1.06)}
 
-/* Footer */
-.modal-footer{padding:12px 18px 20px;display:flex;justify-content:flex-end;gap:10px;border-top:1px solid var(--gc-border);position:sticky;bottom:0;background:#fff}
-.btn-cancel{background:none;border:1px solid var(--gc-border);padding:9px 18px;border-radius:7px;cursor:pointer;font-size:14px;color:var(--gc-muted)}
-.btn-save{background:var(--gc-blue);border:none;padding:9px 22px;border-radius:7px;cursor:pointer;font-size:14px;color:#fff;font-weight:600}
+/* Inputs numéricos y texto */
+.input-row{display:flex;gap:12px;margin-bottom:16px}
+.form-group{display:flex;flex-direction:column;gap:4px;flex:1}
+.form-group label{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.7px;text-transform:uppercase}
+.form-group input[type=time],.form-group input[type=number],.form-group input[type=text]{border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-size:14px;color:var(--text);outline:none;background:#fff;width:100%}
+.form-group input:focus{border-color:var(--blue)}
+
+/* Autocomplete cliente/agencia */
+.autocomplete-wrap{position:relative;margin-bottom:16px}
+.autocomplete-wrap input{width:100%;border:1px solid var(--border);border-radius:7px;padding:9px 12px;font-size:14px;color:var(--text);outline:none}
+.autocomplete-wrap input:focus{border-color:var(--blue)}
+.autocomplete-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:1px solid var(--border);border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.12);z-index:50;max-height:180px;overflow-y:auto;display:none}
+.autocomplete-dropdown.open{display:block}
+.ac-item{padding:9px 14px;cursor:pointer;font-size:13px;color:var(--text)}
+.ac-item:hover{background:var(--hover)}
+.ac-add{padding:9px 14px;cursor:pointer;font-size:13px;color:var(--blue);font-weight:500;border-top:1px solid var(--border)}
+.ac-add:hover{background:var(--blue-light)}
+
+/* Footer modal */
+.modal-footer{padding:10px 18px 16px;display:flex;justify-content:flex-end;gap:10px;border-top:1px solid var(--border);position:sticky;bottom:0;background:#fff;flex-shrink:0}
+.btn-cancel{background:none;border:1px solid var(--border);padding:8px 16px;border-radius:7px;cursor:pointer;font-size:13px;color:var(--muted)}
+.btn-save{background:var(--blue);border:none;padding:8px 20px;border-radius:7px;cursor:pointer;font-size:13px;color:#fff;font-weight:600}
 .btn-save:hover{background:#1557b0}
+
+/* ===== MODAL SECUNDARIO (estado / tipo) ===== */
+.submodal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;align-items:center;justify-content:center}
+.submodal-backdrop.open{display:flex}
+.submodal-box{background:#fff;border-radius:14px;width:320px;max-width:92vw;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.submodal-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:14px;text-align:center}
+.submodal-btns{display:flex;flex-direction:column;gap:10px}
+.sub-btn{border:none;border-radius:10px;padding:14px 16px;font-size:14px;font-weight:700;cursor:pointer;text-align:left;letter-spacing:.3px;transition:transform .1s}
+.sub-btn:hover{transform:scale(1.02)}
+.submodal-cancel{margin-top:10px;width:100%;background:none;border:1px solid var(--border);border-radius:8px;padding:10px;font-size:13px;cursor:pointer;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -109,7 +138,7 @@ html,body{height:100%;background:var(--gc-bg);color:var(--gc-text);font-size:14p
       <div class="cell-num">8</div>
       <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-09&#39;)">
       <div class="cell-num">9</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-10&#39;)">
+      <div class="cell-events"><div class="cell-event" style="background:#c0392b">20:00 CASA DE PAPEL</div></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-10&#39;)">
       <div class="cell-num">10</div>
       <div class="cell-events"></div></div><div class="month-cell" onclick="openModal(&#39;2026-07-11&#39;)">
       <div class="cell-num today">11</div>
@@ -161,15 +190,17 @@ html,body{height:100%;background:var(--gc-bg);color:var(--gc-text);font-size:14p
   </div>
 </div>
 
+<!-- MODAL PRINCIPAL -->
 <div class="modal-backdrop" id="modal" onclick="closeOut(event)">
   <div class="modal-box">
     <div class="modal-head">
-      <span class="modal-head-date" id="modal-date-label">Miércoles, 8 de julio 2026</span>
-      <button class="modal-head-close" onclick="closeModal()">✕</button>
+      <span class="modal-head-date" id="modal-date-label">Jueves, 9 de julio 2026</span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body">
 
-      <div class="section-label">Tipo de evento</div>
+      <!-- TIPO DE EVENTO -->
+      <div class="sec-label">Tipo de evento</div>
       <div class="tipo-grid">
         <button class="tipo-btn" style="background:#c0392b" data-tipo="CASA DE PAPEL" onclick="selTipo(this)">🎭 Casa de Papel</button>
         <button class="tipo-btn" style="background:#1a73e8" data-tipo="INTOCABLES" onclick="selTipo(this)">🎩 Intocables</button>
@@ -179,58 +210,53 @@ html,body{height:100%;background:var(--gc-bg);color:var(--gc-text);font-size:14p
         <button class="tipo-btn" style="background:#5b9bd5" data-tipo="OTROS" onclick="selTipo(this)">📋 Otros</button>
       </div>
 
-      <div class="section-label">Horario</div>
-      <div class="horario-row">
-        <div class="form-group">
-          <label>Inicio</label>
-          <input type="time" id="ev-start-time" value="20:00">
-        </div>
-        <div class="form-group">
-          <label>Fin</label>
-          <input type="time" id="ev-end-time" value="23:00">
-        </div>
+      <!-- HORARIO -->
+      <div class="sec-label">Horario</div>
+      <div class="input-row" style="margin-bottom:16px">
+        <div class="form-group"><label>Inicio</label><input type="time" id="ev-start" value="20:00"></div>
+        <div class="form-group"><label>Fin</label><input type="time" id="ev-end" value="23:00"></div>
       </div>
 
-      <div class="section-label">Población</div>
-      <div class="form-group" style="margin-bottom:20px">
-        <select id="ev-poblacion">
-          <option value="">— Selecciona población —</option>
-          <option>A Coruña</option><option>Albacete</option><option>Alcalá de Henares</option>
-          <option>Alcorcón</option><option>Algeciras</option><option>Alicante</option>
-          <option>Almería</option><option>Alzira</option><option>Arrecife</option>
-          <option>Ávila</option><option>Badajoz</option><option>Badalona</option>
-          <option>Barcelona</option><option>Benidorm</option><option>Bilbao</option>
-          <option>Burgos</option><option>Cáceres</option><option>Cádiz</option>
-          <option>Cartagena</option><option>Castellón de la Plana</option><option>Ceuta</option>
-          <option>Ciudad Real</option><option>Córdoba</option><option>Cuenca</option>
-          <option>Elche</option><option>Fuengirola</option><option>Gandía</option>
-          <option>Getafe</option><option>Gijón</option><option>Girona</option>
-          <option>Granada</option><option>Guadalajara</option><option>Huelva</option>
-          <option>Huesca</option><option>Ibiza</option><option>Jaén</option>
-          <option>Jerez de la Frontera</option><option>L'Hospitalet de Llobregat</option>
-          <option>La Palma</option><option>Las Palmas de Gran Canaria</option>
-          <option>León</option><option>Lérida</option><option>Linares</option>
-          <option>Logroño</option><option>Lugo</option><option>Madrid</option>
-          <option>Málaga</option><option>Manresa</option><option>Marbella</option>
-          <option>Melilla</option><option>Mérida</option><option>Móstoles</option>
-          <option>Murcia</option><option>Oviedo</option><option>Palencia</option>
-          <option>Palma de Mallorca</option><option>Pamplona</option><option>Pontevedra</option>
-          <option>Reus</option><option>Sabadell</option><option>Salamanca</option>
-          <option>San Cristóbal de La Laguna</option><option>San Sebastián</option>
-          <option>Santa Cruz de Tenerife</option><option>Santander</option>
-          <option>Santiago de Compostela</option><option>Segovia</option>
-          <option>Sevilla</option><option>Soria</option><option>Tarragona</option>
-          <option>Terrassa</option><option>Toledo</option><option>Torrevieja</option>
-          <option>Valencia</option><option>Valladolid</option><option>Vigo</option>
-          <option>Vitoria-Gasteiz</option><option>Zamora</option><option>Zaragoza</option>
-        </select>
+      <!-- PAX -->
+      <div class="sec-label">Número de pax</div>
+      <div class="form-group" style="margin-bottom:16px">
+        <input type="number" id="ev-pax" min="1" placeholder="Ej: 150">
       </div>
 
-      <div class="section-label">¿Quién gestiona?</div>
+      <!-- ESTADO -->
+      <div class="sec-label">Estado</div>
+      <div class="selector-field" onclick="openSubModal(&#39;estado&#39;)" id="estado-field">
+        <span class="sel-label" id="estado-label" style="">Toca para seleccionar</span>
+        <div class="sel-value"><span id="estado-badge"></span><span class="sel-arrow">›</span></div>
+      </div>
+
+      <!-- TIPO (categoría) -->
+      <div class="sec-label">Categoría</div>
+      <div class="selector-field" onclick="openSubModal(&#39;categoria&#39;)" id="categoria-field">
+        <span class="sel-label" id="categoria-label" style="">Toca para seleccionar</span>
+        <div class="sel-value"><span id="categoria-badge"></span><span class="sel-arrow">›</span></div>
+      </div>
+
+      <!-- CLIENTE -->
+      <div class="sec-label">Cliente</div>
+      <div class="autocomplete-wrap">
+        <input type="text" id="cliente-input" placeholder="Buscar cliente..." autocomplete="off" oninput="filterAC(&#39;cliente&#39;)" onfocus="showAC(&#39;cliente&#39;)" onblur="hideAC(&#39;cliente&#39;,300)">
+        <div class="autocomplete-dropdown" id="cliente-dropdown"><div class="ac-add" onmousedown="addToDb(&#39;cliente&#39;)">＋ Añadir "grefusa"</div></div>
+      </div>
+
+      <!-- AGENCIA -->
+      <div class="sec-label">¿Hay agencia?</div>
+      <div class="autocomplete-wrap">
+        <input type="text" id="agencia-input" placeholder="Buscar agencia..." autocomplete="off" oninput="filterAC(&#39;agencia&#39;)" onfocus="showAC(&#39;agencia&#39;)" onblur="hideAC(&#39;agencia&#39;,300)">
+        <div class="autocomplete-dropdown" id="agencia-dropdown"><div class="ac-add" onmousedown="addToDb(&#39;agencia&#39;)">＋ Añadir "corte ingles"</div></div>
+      </div>
+
+      <!-- QUIÉN GESTIONA -->
+      <div class="sec-label">¿Quién gestiona?</div>
       <div class="gestor-row">
-        <button class="gestor-btn active" style="background:#9b59b6" data-gestor="DIANA" onclick="selGestor(this)">💜 Diana</button>
-        <button class="gestor-btn" style="background:#1a73e8" data-gestor="VIC" onclick="selGestor(this)">💙 Vic</button>
-        <button class="gestor-btn" style="background:#27ae60" data-gestor="JL" onclick="selGestor(this)">💚 JL</button>
+        <button class="gestor-btn" style="background:#9b59b6" data-gestor="DIANA" onclick="toggleGestor(this)">💜 Diana</button>
+        <button class="gestor-btn" style="background:#1a73e8" data-gestor="VIC" onclick="toggleGestor(this)">💙 Vic</button>
+        <button class="gestor-btn" style="background:#27ae60" data-gestor="JL" onclick="toggleGestor(this)">💚 JL</button>
       </div>
 
     </div>
@@ -241,14 +267,45 @@ html,body{height:100%;background:var(--gc-bg);color:var(--gc-text);font-size:14p
   </div>
 </div>
 
+<!-- SUBMODAL ESTADO / CATEGORIA -->
+<div class="submodal-backdrop" id="submodal" onclick="closeSubOut(event)">
+  <div class="submodal-box">
+    <div class="submodal-title" id="submodal-title">Selecciona la categoría</div>
+    <div class="submodal-btns" id="submodal-btns"><button class="sub-btn" style="background:#5b9bd5;color:#0a3d62" onclick="pickSubModal(0)">Team Building</button><button class="sub-btn" style="background:#f39c12;color:#7d5a00" onclick="pickSubModal(1)">Espectáculos y Eventos</button><button class="sub-btn" style="background:#a8d8a8;color:#1a5c1a" onclick="pickSubModal(2)">Formación</button><button class="sub-btn" style="background:#f8c8d4;color:#8b1a2e" onclick="pickSubModal(3)">Ponencia</button></div>
+    <button class="submodal-cancel" onclick="closeSubModal()">Cancelar</button>
+  </div>
+</div>
+
 <script>
 const MONTHS_ES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 const DAYS_ES=['lunes','martes','miércoles','jueves','viernes','sábado','domingo'];
 const today=new Date();today.setHours(0,0,0,0);
 let cur=new Date(today.getFullYear(),today.getMonth(),1);
-let selectedTipo=null,selectedGestor=null,currentDate=null;
 let events=[];
+
+// Estado del formulario
+let selTipoEvento=null, selGestores=new Set(), selEstado=null, selCategoria=null;
+let selCliente='', selAgencia='';
+let subModalTarget=null;
+
 const TIPO_COLORS={'CASA DE PAPEL':'#c0392b','INTOCABLES':'#1a73e8','A TEMPO':'#7d5a3c','CONCURSO PISTA':'#27ae60','CONCURSO LIVE MUSIC':'#e67e22','OTROS':'#5b9bd5'};
+
+const ESTADOS=[
+  {label:'Posible',color:'#f39c12',text:'#7d5a00'},
+  {label:'Confirmado',color:'#3498db',text:'#0a3d62'},
+  {label:'Finalizado',color:'#95a5a6',text:'#2c3e50'},
+  {label:'Aplazado',color:'#a8d8a8',text:'#1a5c1a'},
+];
+const CATEGORIAS=[
+  {label:'Team Building',color:'#5b9bd5',text:'#0a3d62'},
+  {label:'Espectáculos y Eventos',color:'#f39c12',text:'#7d5a00'},
+  {label:'Formación',color:'#a8d8a8',text:'#1a5c1a'},
+  {label:'Ponencia',color:'#f8c8d4',text:'#8b1a2e'},
+];
+
+// Datos de ejemplo (luego vendrán de Google Sheets)
+let DB_CLIENTES=['Banco Santander','Coca-Cola España','El Corte Inglés','Ferrovial','Iberdrola','Inditex','MAPFRE','Mercadona','Repsol','Telefónica'];
+let DB_AGENCIAS=['Agencia Creativa BCN','Eventalia','Grupo Eventoplus','ilusiona Eventos','Mònica Serrano Events','Producciones XYZ','Wonder Events'];
 
 function pad(n){return String(n).padStart(2,'0')}
 function sameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
@@ -259,7 +316,6 @@ function renderAll(){
   document.getElementById('main-label').textContent=capFirst(MONTHS_ES[cur.getMonth()])+' '+cur.getFullYear();
   renderGrid();
 }
-
 function renderGrid(){
   const g=document.getElementById('month-grid');
   const first=new Date(cur.getFullYear(),cur.getMonth(),1);
@@ -271,54 +327,146 @@ function renderGrid(){
     const dt=new Date(first);dt.setDate(dt.getDate()-startDow+i);
     const isThisMonth=dt.getMonth()===cur.getMonth();
     const isToday=sameDay(dt,today);
-    const dayEvs=events.filter(e=>sameDay(e.date,dt)).sort((a,b)=>a.startTime.localeCompare(b.startTime));
+    const dayEvs=events.filter(e=>sameDay(e.date,dt));
     const ds=`${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}`;
     html+=`<div class="month-cell${isThisMonth?'':' other-month'}" onclick="openModal('${ds}')">
       <div class="cell-num${isToday?' today':''}">${dt.getDate()}</div>
       <div class="cell-events">`;
     dayEvs.slice(0,3).forEach(ev=>{
-      const color=TIPO_COLORS[ev.tipo]||'#888';
-      html+=`<div class="cell-event" style="background:${color}">${ev.startTime} ${ev.tipo}</div>`;
+      html+=`<div class="cell-event" style="background:${TIPO_COLORS[ev.tipo]||'#888'}">${ev.startTime} ${ev.tipo}</div>`;
     });
     if(dayEvs.length>3)html+=`<div class="cell-more">+${dayEvs.length-3} más</div>`;
     html+=`</div></div>`;
   }
   g.innerHTML=html;
 }
-
 function shiftMonth(n){cur=new Date(cur.getFullYear(),cur.getMonth()+n,1);renderAll()}
 function goToday(){cur=new Date(today.getFullYear(),today.getMonth(),1);renderAll()}
 
+// ---- MODAL PRINCIPAL ----
 function openModal(dateStr){
-  currentDate=new Date(dateStr+'T00:00:00');
-  selectedTipo=null;selectedGestor=null;
-  document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('selected'));
-  document.querySelectorAll('.gestor-btn').forEach(b=>b.classList.remove('active'));
-  const d=currentDate;
+  const d=new Date(dateStr+'T00:00:00');
   const dow=DAYS_ES[dowLun(d)];
   document.getElementById('modal-date-label').textContent=capFirst(dow)+', '+d.getDate()+' de '+MONTHS_ES[d.getMonth()]+' '+d.getFullYear();
-  document.getElementById('ev-start-time').value='20:00';
-  document.getElementById('ev-end-time').value='23:00';
-  document.getElementById('ev-poblacion').value='';
+  // reset todo
+  selTipoEvento=null;selGestores=new Set();selEstado=null;selCategoria=null;selCliente='';selAgencia='';
+  document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('selected'));
+  document.querySelectorAll('.gestor-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('ev-start').value='20:00';
+  document.getElementById('ev-end').value='23:00';
+  document.getElementById('ev-pax').value='';
+  document.getElementById('cliente-input').value='';
+  document.getElementById('agencia-input').value='';
+  setEstadoBadge(null);
+  setCategoriaBadge(null);
   document.getElementById('modal').classList.add('open');
+  window._currentDate=new Date(dateStr+'T00:00:00');
 }
 function closeModal(){document.getElementById('modal').classList.remove('open')}
 function closeOut(e){if(e.target===document.getElementById('modal'))closeModal()}
 
 function selTipo(el){
   document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('selected'));
-  el.classList.add('selected');selectedTipo=el.dataset.tipo;
+  el.classList.add('selected');selTipoEvento=el.dataset.tipo;
 }
-function selGestor(el){
-  document.querySelectorAll('.gestor-btn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');selectedGestor=el.dataset.gestor;
+function toggleGestor(el){
+  el.classList.toggle('active');
+  const g=el.dataset.gestor;
+  if(selGestores.has(g))selGestores.delete(g); else selGestores.add(g);
 }
+
+// Badges de estado y categoría
+function setEstadoBadge(item){
+  const lbl=document.getElementById('estado-label');
+  const badge=document.getElementById('estado-badge');
+  if(!item){lbl.textContent='Toca para seleccionar';lbl.style.display='';badge.innerHTML='';return}
+  lbl.style.display='none';
+  badge.innerHTML=`<span class="sel-badge" style="background:${item.color};color:${item.text}">${item.label}</span>`;
+  selEstado=item.label;
+}
+function setCategoriaBadge(item){
+  const lbl=document.getElementById('categoria-label');
+  const badge=document.getElementById('categoria-badge');
+  if(!item){lbl.textContent='Toca para seleccionar';lbl.style.display='';badge.innerHTML='';return}
+  lbl.style.display='none';
+  badge.innerHTML=`<span class="sel-badge" style="background:${item.color};color:${item.text}">${item.label}</span>`;
+  selCategoria=item.label;
+}
+
+// ---- SUBMODAL ----
+function openSubModal(target){
+  subModalTarget=target;
+  const isEstado=target==='estado';
+  document.getElementById('submodal-title').textContent=isEstado?'Selecciona el estado':'Selecciona la categoría';
+  const items=isEstado?ESTADOS:CATEGORIAS;
+  document.getElementById('submodal-btns').innerHTML=items.map((it,i)=>
+    `<button class="sub-btn" style="background:${it.color};color:${it.text}" onclick="pickSubModal(${i})">${it.label}</button>`
+  ).join('');
+  document.getElementById('submodal').classList.add('open');
+}
+function pickSubModal(i){
+  const items=subModalTarget==='estado'?ESTADOS:CATEGORIAS;
+  if(subModalTarget==='estado')setEstadoBadge(items[i]);
+  else setCategoriaBadge(items[i]);
+  closeSubModal();
+}
+function closeSubModal(){document.getElementById('submodal').classList.remove('open')}
+function closeSubOut(e){if(e.target===document.getElementById('submodal'))closeSubModal()}
+
+// ---- AUTOCOMPLETE ----
+function filterAC(type){
+  const input=document.getElementById(type+'-input').value.toLowerCase();
+  const db=type==='cliente'?DB_CLIENTES:DB_AGENCIAS;
+  const filtered=db.filter(x=>x.toLowerCase().includes(input));
+  renderDropdown(type,filtered,input);
+}
+function showAC(type){
+  const input=document.getElementById(type+'-input').value.toLowerCase();
+  const db=type==='cliente'?DB_CLIENTES:DB_AGENCIAS;
+  renderDropdown(type,db.filter(x=>x.toLowerCase().includes(input)),input);
+}
+function hideAC(type,delay){setTimeout(()=>{document.getElementById(type+'-dropdown').classList.remove('open')},delay)}
+function renderDropdown(type,items,query){
+  const dd=document.getElementById(type+'-dropdown');
+  let html=items.map(it=>`<div class="ac-item" onmousedown="pickAC('${type}','${it.replace(/'/g,"\\'")}')"> ${it}</div>`).join('');
+  if(query&&!items.some(x=>x.toLowerCase()===query)){
+    html+=`<div class="ac-add" onmousedown="addToDb('${type}')">＋ Añadir "${document.getElementById(type+'-input').value}"</div>`;
+  }
+  dd.innerHTML=html;
+  dd.classList.toggle('open',html.length>0);
+}
+function pickAC(type,val){
+  document.getElementById(type+'-input').value=val;
+  document.getElementById(type+'-dropdown').classList.remove('open');
+  if(type==='cliente')selCliente=val; else selAgencia=val;
+}
+function addToDb(type){
+  const val=document.getElementById(type+'-input').value.trim();
+  if(!val)return;
+  if(type==='cliente'){if(!DB_CLIENTES.includes(val))DB_CLIENTES.push(val);selCliente=val;}
+  else{if(!DB_AGENCIAS.includes(val))DB_AGENCIAS.push(val);selAgencia=val;}
+  document.getElementById(type+'-dropdown').classList.remove('open');
+}
+
+// ---- GUARDAR ----
 function saveEvent(){
-  if(!selectedTipo){alert('Selecciona el tipo de evento');return}
-  if(!selectedGestor){alert('Selecciona quién gestiona');return}
-  events.push({date:new Date(currentDate),tipo:selectedTipo,startTime:document.getElementById('ev-start-time').value,endTime:document.getElementById('ev-end-time').value,poblacion:document.getElementById('ev-poblacion').value,gestor:selectedGestor});
+  if(!selTipoEvento){alert('Selecciona el tipo de evento');return}
+  if(selGestores.size===0){alert('Selecciona quién gestiona');return}
+  events.push({
+    date:new Date(window._currentDate),
+    tipo:selTipoEvento,
+    startTime:document.getElementById('ev-start').value,
+    endTime:document.getElementById('ev-end').value,
+    pax:document.getElementById('ev-pax').value,
+    estado:selEstado,
+    categoria:selCategoria,
+    cliente:selCliente||document.getElementById('cliente-input').value,
+    agencia:selAgencia||document.getElementById('agencia-input').value,
+    gestores:Array.from(selGestores)
+  });
   closeModal();renderGrid();
 }
+
 renderAll();
 </script>
 
