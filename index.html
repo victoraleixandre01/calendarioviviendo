@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0034)file:///D:/Descargas/index_50.html -->
+<!-- saved from url=(0034)file:///D:/Descargas/index_51.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,10 +51,15 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 /* Selector de estado y tipo con botón */
 .selector-field{display:flex;align-items:center;justify-content:space-between;border:2px solid var(--border);border-radius:12px;padding:16px 18px;cursor:pointer;margin-bottom:14px;background:#fff}
 .selector-field:hover{border-color:var(--blue)}
-.selector-field .sel-label{font-size:20px;color:#bbb;font-weight:500}
+.selector-field .sel-label{font-size:20px;color:#888;font-weight:600}
 .selector-field .sel-value{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .sel-badge{padding:6px 16px;border-radius:20px;font-size:17px;font-weight:800;display:inline-block}
 .sel-arrow{color:var(--muted);font-size:22px;font-weight:700}
+
+/* Botones turno */
+.turno-btn{border:2px solid var(--border);background:#fff;border-radius:20px;padding:6px 14px;font-size:13px;font-weight:700;cursor:pointer;color:var(--muted);transition:all .15s;white-space:nowrap}
+.turno-btn:hover{border-color:var(--blue);color:var(--blue)}
+.turno-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
 
 /* Inputs numéricos y texto */
 .input-row{display:flex;gap:12px;margin-bottom:14px}
@@ -298,7 +303,12 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
       </div>
 
       <!-- HORARIO -->
-      <div class="sec-label">Horario</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+        <span class="sec-label" style="margin-bottom:0">Horario</span>
+        <button onclick="setTurno(&#39;manana&#39;)" class="turno-btn" id="turno-manana">☀️ Mañana</button>
+        <button onclick="setTurno(&#39;tarde&#39;)" class="turno-btn" id="turno-tarde">🌤 Tarde</button>
+        <button onclick="setTurno(&#39;noche&#39;)" class="turno-btn" id="turno-noche">🌙 Noche</button>
+      </div>
       <div class="input-row" style="margin-bottom:16px">
         <div class="form-group"><label>Inicio</label><input type="time" id="ev-start" value="10:00" oninput="recalcEnd()"></div>
         <div class="form-group"><label>Fin</label><input type="time" id="ev-end" value="12:30" oninput="recalcTiming()"></div>
@@ -498,8 +508,10 @@ function openModal(dateStr){
   document.getElementById('agencia-input').value='';
   document.getElementById('ev-poblacion').value='';
   document.getElementById('ev-detalles').value='';
-  document.getElementById('ev-timing-cliente').value='';
+  document.getElementById('ev-timing-cliente').value='10:00 Inicio actividad\n12:30 Fin actividad\n';
   document.getElementById('ev-timing-nuestro').value=calcTiming('10:00','12:30');
+  document.querySelectorAll('.turno-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('turno-manana').classList.add('active');
   setEstadoBadge(null);
   setCategoriaBadge(null);
   setTipoBadge(null);
@@ -528,9 +540,9 @@ function calcTiming(startVal, endVal){
     m=m%(24*60);
     return pad(Math.floor(m/60))+':'+pad(m%60);
   };
-  return `${t(-225)} Quedada para desayunar (como sabéis esto lo decidís vosotros)
-${t(-180)} Salida desde el hotel
-${t(-90)} Llegada Sebas y la furgo para descarga y montaje
+  return `${t(-210)} Quedada en la oficina y carga
+${t(-180)} Salida de la oficina
+${t(-150)} Llegada, descarga y montaje
 ${t(-60)} Vestirse
 ${t(-30)} Preparados
 ${t(0)} Inicio actividad
@@ -539,13 +551,27 @@ ${te(15)} Recoger y cargar
 ${te(75)} Fin`;
 }
 
+function defaultTimingCliente(startVal, endVal){
+  if(!startVal) return '';
+  return `${startVal} Inicio actividad\n${endVal||''} Fin actividad\n`;
+}
+
+function setTurno(turno){
+  document.querySelectorAll('.turno-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('turno-'+turno).classList.add('active');
+  const horas={manana:'10:00',tarde:'16:00',noche:'23:00'};
+  const startVal=horas[turno];
+  document.getElementById('ev-start').value=startVal;
+  recalcEnd();
+}
+
 function recalcEnd(){
   if(!selTipoEvento)return;
   const startVal=document.getElementById('ev-start').value;
   if(!startVal)return;
   const [h,m]=startVal.split(':').map(Number);
   const esConcurso=selTipoEvento==='CONCURSO PISTA'||selTipoEvento==='CONCURSO LIVE MUSIC';
-  const mins=h*60+m+(esConcurso?90:150);
+  const mins=h*60+m+(esConcurso?75:150);
   const endVal=`${pad(Math.floor(mins/60)%24)}:${pad(mins%60)}`;
   document.getElementById('ev-end').value=endVal;
   document.getElementById('ev-timing-nuestro').value=calcTiming(startVal,endVal);
@@ -877,7 +903,7 @@ function editEventByIdx(idx){
     selCliente=ev.cliente||'';selAgencia=ev.agencia||'';
     document.getElementById('ev-poblacion').value=ev.poblacion||'';
     document.getElementById('ev-detalles').value=ev.detalles||'';
-    document.getElementById('ev-timing-cliente').value=ev.timingCliente||'';
+    document.getElementById('ev-timing-cliente').value=ev.timingCliente||defaultTimingCliente(ev.startTime,ev.endTime);
     document.getElementById('ev-timing-nuestro').value=ev.timingNuestro||calcTiming(ev.startTime,ev.endTime);
     // gestores
     selGestores=new Set(ev.gestores||[]);
