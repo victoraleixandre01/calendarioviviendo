@@ -1,157 +1,158 @@
 <!DOCTYPE html>
-<!-- saved from url=(0034)file:///D:/Descargas/index_60.html -->
+<!-- saved from url=(0034)file:///D:/Descargas/index_69.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Calendario</title>
+<title>Calendario Viviendo</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Google Sans',Roboto,Arial,sans-serif}
 :root{--blue:#1a73e8;--blue-light:#e8f0fe;--surface:#fff;--bg:#f6f8fc;--border:#dadce0;--text:#3c4043;--muted:#70757a;--hover:#f1f3f4}
 html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 .cal-root{display:flex;flex-direction:column;height:100vh;overflow:hidden}
-
-/* TOPBAR */
 .topbar{height:56px;display:flex;align-items:center;gap:10px;padding:0 14px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0}
-.topbar-logo{font-size:20px;color:var(--muted);font-weight:400}
-.topbar-logo span{color:var(--blue)}
 .today-btn{border:1px solid var(--border);background:var(--surface);border-radius:4px;padding:6px 12px;font-size:13px;cursor:pointer;color:var(--text);font-weight:500}
 .today-btn:hover{background:var(--hover)}
 .nav-btn{background:none;border:none;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--muted)}
 .nav-btn:hover{background:var(--hover)}
-.topbar-month{font-size:17px;font-weight:400;color:var(--text);flex:1}
-
-/* GRID MES */
+.topbar-month{font-size:18px;font-weight:800;color:var(--text);flex:1;text-transform:uppercase;letter-spacing:.5px}
+.stats-btn{background:var(--blue);border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer}
+.trash-wrap{position:relative}
+.trash-icon{background:none;border:none;font-size:24px;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.trash-icon:hover{background:var(--hover)}
+#trash-count{display:none;position:absolute;top:0;right:0;background:#e74c3c;color:#fff;font-size:9px;font-weight:800;width:16px;height:16px;border-radius:50%;line-height:16px;text-align:center}
 .month-wrap{flex:1;display:flex;flex-direction:column;overflow:hidden}
-.month-dow-header{display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0;position:sticky;top:0;z-index:5}
+.month-dow-header{display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0}
 .month-dow{text-align:center;padding:5px 0;font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.3px}
 .month-grid{flex:1;display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:1fr;border-left:1px solid var(--border);overflow:hidden}
 .month-cell{border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:3px;cursor:pointer;background:var(--surface);overflow:hidden}
 .month-cell:hover{background:#fafafa}
 .month-cell.other-month{background:var(--bg)}
 .month-cell.other-month .cell-num{color:#bbb}
-.cell-num{font-size:15px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 2px auto;color:var(--text);line-height:28px;text-align:center;padding:0;font-weight:500}
+.cell-num{font-size:15px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 2px;color:var(--text);line-height:28px;font-weight:500}
 .cell-num.today{background:var(--blue);color:#fff;font-weight:700}
 .cell-events{display:flex;flex-direction:column;gap:2px}
-.cell-event{font-size:13px;font-weight:800;color:#1a1a1a;border-radius:4px;padding:4px 6px;white-space:nowrap;overflow:hidden;text-overflow:clip;line-height:1.4;letter-spacing:.1px;text-shadow:none}
-.cell-more{font-size:12px;color:#1a1a1a;padding:2px 4px;font-weight:800}
-/* Solo en móvil: scroll y celdas compactas */
+.cell-event{font-size:12px;font-weight:800;color:#1a1a1a;border-radius:4px;padding:3px 6px;white-space:nowrap;overflow:hidden;text-overflow:clip;line-height:1.4}
+.cell-more{font-size:12px;color:#1a1a1a;padding:2px 4px;font-weight:800;cursor:pointer}
+.cell-more:hover{text-decoration:underline}
 @media(max-width:640px){
   .month-wrap{overflow-y:auto}
   .month-grid{grid-auto-rows:unset;overflow:visible}
   .month-cell{min-height:70px}
+  .cell-num{font-size:12px;width:22px;height:22px;line-height:22px}
 }
 
-/* ===== ANIMACIONES ===== */
-@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeInScale{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+/* MODAL PRINCIPAL */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInScale{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.modal-backdrop.open .modal-box{animation:fadeInUp .25s cubic-bezier(.22,1,.36,1)}
-@media(min-width:640px){.modal-backdrop.open .modal-box{animation:fadeInScale .2s cubic-bezier(.22,1,.36,1)}}
-.submodal-backdrop.open .submodal-box{animation:fadeInScale .18s cubic-bezier(.22,1,.36,1)}
-.trash-backdrop.open .trash-box{animation:fadeInUp .22s cubic-bezier(.22,1,.36,1)}
-@media(min-width:640px){.trash-backdrop.open .trash-box{animation:fadeInScale .2s cubic-bezier(.22,1,.36,1)}}
-.popup.open{animation:fadeInScale .15s cubic-bezier(.22,1,.36,1)}
-
-/* ===== DAY VIEW POPUP ===== */
-.dayview-backdrop{display:none;position:fixed;inset:0;z-index:250;align-items:flex-start;justify-content:center;pointer-events:none}
-.dayview-backdrop.open{display:flex;pointer-events:auto}
-.dayview-box{background:#fff;border-radius:14px;width:260px;max-height:400px;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,.25);position:absolute;animation:fadeInScale .15s cubic-bezier(.22,1,.36,1)}
-.dayview-head{padding:12px 14px 8px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;background:#fff;z-index:2}
-.dayview-dow{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.dayview-num{font-size:28px;font-weight:400;color:var(--text);line-height:1}
-.dayview-num.today{background:var(--blue);color:#fff;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px}
-.dayview-close{background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.dayview-close:hover{background:var(--hover)}
-.dayview-events{padding:8px 10px;display:flex;flex-direction:column;gap:4px}
-.dayview-event{border-radius:6px;padding:5px 8px;font-size:12px;font-weight:700;color:#1a1a1a;cursor:pointer}
-.dayview-event:hover{filter:brightness(.95)}
 .modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;align-items:flex-end;justify-content:center}
-@media(min-width:640px){.modal-backdrop{align-items:center}}
 .modal-backdrop.open{display:flex}
-.modal-box{background:#fff;border-radius:16px 16px 0 0;width:100%;max-height:95vh;overflow-y:auto;display:flex;flex-direction:column}
-@media(min-width:640px){.modal-box{border-radius:14px;width:640px;max-height:92vh}}
-.modal-head{padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:2;flex-shrink:0}
-.modal-head-date{font-size:24px;font-weight:800;color:var(--text);line-height:1.2}
-.modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.modal-box{background:#fff;border-radius:16px 16px 0 0;width:100%;max-height:95vh;overflow-y:auto;display:flex;flex-direction:column;animation:fadeInUp .25s cubic-bezier(.22,1,.36,1)}
+@media(min-width:700px){
+  .modal-backdrop{align-items:center}
+  .modal-box{border-radius:14px;width:min(1400px,98vw);max-height:95vh;animation:fadeInScale .2s cubic-bezier(.22,1,.36,1)}
+}
+.modal-head{padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:2;flex-shrink:0}
+.modal-head-date{font-size:26px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.3px}
+.modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center}
 .modal-close:hover{background:var(--hover)}
-.modal-body{padding:14px 18px;flex:1;overflow-y:auto}
-.sec-label{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.9px;text-transform:uppercase;margin-bottom:8px;margin-top:2px}
-
-/* Selector de estado y tipo con botón */
-.selector-field{display:flex;align-items:center;justify-content:space-between;border:2px solid var(--border);border-radius:12px;padding:16px 18px;cursor:pointer;margin-bottom:14px;background:#fff}
+.modal-body{padding:16px 20px;flex:1;overflow-y:auto}
+.modal-two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:700px){.modal-two-col{grid-template-columns:1fr}}
+.modal-col-left,.modal-col-right{display:flex;flex-direction:column}
+.modal-footer{padding:12px 20px 16px;display:flex;justify-content:flex-end;gap:10px;border-top:1px solid var(--border);position:sticky;bottom:0;background:#fff;flex-shrink:0}
+.sec-label{font-size:12px;font-weight:700;color:#1a1a1a;letter-spacing:.9px;text-transform:uppercase;margin-bottom:8px;margin-top:4px}
+.selector-field{display:flex;align-items:center;justify-content:space-between;border:2px solid var(--border);border-radius:12px;padding:14px 16px;cursor:pointer;margin-bottom:14px;background:#fff;min-height:56px}
 .selector-field:hover{border-color:var(--blue)}
-.selector-field .sel-label{font-size:20px;color:#888;font-weight:600}
-.selector-field .sel-value{display:flex;align-items:center;gap:8px;flex-shrink:0}
-.sel-badge{padding:6px 16px;border-radius:20px;font-size:17px;font-weight:800;display:inline-block}
-.sel-arrow{color:var(--muted);font-size:22px;font-weight:700}
-
-/* Botones turno */
-.turno-btn{border:2px solid var(--border);background:#fff;border-radius:20px;padding:6px 14px;font-size:13px;font-weight:700;cursor:pointer;color:var(--muted);transition:all .15s;white-space:nowrap}
+.sel-label{font-size:18px;color:#999;font-weight:500}
+.sel-arrow{color:var(--muted);font-size:20px;font-weight:700;flex-shrink:0}
+.sel-badge{padding:5px 14px;border-radius:20px;font-size:15px;font-weight:800;display:inline-block}
+.input-row{display:flex;gap:12px;margin-bottom:14px}
+.form-group{display:flex;flex-direction:column;gap:5px;flex:1}
+.form-group label{font-size:11px;font-weight:700;color:#1a1a1a;letter-spacing:.7px;text-transform:uppercase}
+.form-group input[type=time],.form-group input[type=number],.form-group input[type=text]{border:2px solid var(--border);border-radius:10px;padding:12px 12px;font-size:18px;color:var(--text);outline:none;background:#fff;width:100%;font-weight:600}
+.form-group input:focus{border-color:var(--blue)}
+.turno-btn{border:2px solid var(--border);background:#fff;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted);transition:all .15s}
 .turno-btn:hover{border-color:var(--blue);color:var(--blue)}
 .turno-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
-
-/* Inputs numéricos y texto */
-.input-row{display:flex;gap:12px;margin-bottom:14px}
-.form-group{display:flex;flex-direction:column;gap:6px;flex:1}
-.form-group label{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.7px;text-transform:uppercase}
-.form-group input[type=time],.form-group input[type=number],.form-group input[type=text]{border:2px solid var(--border);border-radius:10px;padding:14px 14px;font-size:20px;color:var(--text);outline:none;background:#fff;width:100%;font-weight:600}
-.form-group input:focus{border-color:var(--blue)}
-
-/* Autocomplete cliente/agencia */
 .autocomplete-wrap{position:relative;margin-bottom:14px}
-.autocomplete-wrap input{width:100%;border:2px solid var(--border);border-radius:10px;padding:14px 14px;font-size:18px;color:var(--text);outline:none;font-weight:500}
+.autocomplete-wrap input{width:100%;border:2px solid var(--border);border-radius:10px;padding:12px 14px;font-size:16px;color:var(--text);outline:none;font-weight:500}
 .autocomplete-wrap input:focus{border-color:var(--blue)}
 .autocomplete-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:1px solid var(--border);border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.12);z-index:50;max-height:180px;overflow-y:auto;display:none}
 .autocomplete-dropdown.open{display:block}
-.ac-item{padding:14px 16px;cursor:pointer;font-size:17px;color:var(--text);border-bottom:1px solid var(--border)}
+.ac-item{padding:12px 16px;cursor:pointer;font-size:16px;color:var(--text);border-bottom:1px solid var(--border)}
 .ac-item:hover{background:var(--hover)}
-.ac-add{padding:14px 16px;cursor:pointer;font-size:17px;color:var(--blue);font-weight:700;border-top:1px solid var(--border)}
+.ac-add{padding:12px 16px;cursor:pointer;font-size:16px;color:var(--blue);font-weight:700;border-top:1px solid var(--border)}
 .ac-add:hover{background:var(--blue-light)}
-
-/* MÓVIL portrait */
-@media(max-width:480px){
-  .topbar{height:48px;padding:0 10px;gap:6px}
-  .topbar-logo{font-size:16px}
-  .topbar-month{font-size:14px}
-  .today-btn{padding:5px 8px;font-size:12px}
-  .nav-btn{width:26px;height:26px;font-size:16px}
-  .month-dow{font-size:9px;padding:3px 0}
-  .cell-num{width:18px;height:18px;font-size:10px;line-height:18px}
-  .cell-event{font-size:10px;padding:2px 3px}
-}
-/* MÓVIL landscape */
-@media(max-height:500px){
-  .topbar{height:40px;padding:0 10px}
-  .topbar-month{font-size:13px}
-  .month-dow{padding:2px 0;font-size:9px}
-  .cell-num{width:16px;height:16px;font-size:9px;line-height:16px;margin-bottom:1px}
-  .cell-event{font-size:9px;padding:1px 3px;line-height:1.2}
-  .cell-more{font-size:8px}
-  .modal-box{max-height:98vh}
-  .modal-body{padding:8px 14px}
-  .modal-body .sec-label{margin-bottom:4px;margin-top:6px}
-  .selector-field{padding:7px 10px;margin-bottom:8px}
-  .form-group{margin-bottom:8px!important}
-  .input-row{margin-bottom:8px!important}
-  .autocomplete-wrap{margin-bottom:8px}
-}
-.modal-footer{padding:10px 18px 16px;display:flex;justify-content:flex-end;gap:10px;border-top:1px solid var(--border);position:sticky;bottom:0;background:#fff;flex-shrink:0}
-.btn-cancel{background:none;border:2px solid var(--border);padding:14px 22px;border-radius:10px;cursor:pointer;font-size:17px;color:var(--muted);font-weight:600}
-.btn-save{background:var(--blue);border:none;padding:14px 28px;border-radius:10px;cursor:pointer;font-size:17px;color:#fff;font-weight:700}
+.modal-textarea{width:100%;border:2px solid var(--border);border-radius:10px;padding:14px;font-size:15px;color:var(--text);outline:none;resize:vertical;font-family:inherit;line-height:1.6;margin-bottom:14px}
+.modal-textarea:focus{border-color:var(--blue)}
+.btn-cancel{background:none;border:2px solid var(--border);padding:12px 20px;border-radius:8px;cursor:pointer;font-size:16px;color:var(--muted);font-weight:600}
+.btn-save{background:var(--blue);border:none;padding:12px 24px;border-radius:8px;cursor:pointer;font-size:16px;color:#fff;font-weight:700}
 .btn-save:hover{background:#1557b0}
 
-/* ===== PAPELERA ===== */
+/* ACTORES */
+.actores-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px}
+.actores-col{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:8px;overflow:hidden;min-height:120px}
+.actores-col-head{padding:10px 4px;font-size:13px;font-weight:900;color:#fff;text-align:center;letter-spacing:.3px;text-transform:uppercase;display:flex;align-items:center;justify-content:center;min-height:52px;word-break:break-word;line-height:1.1}
+.actores-col-body{padding:4px;display:flex;flex-direction:column;gap:4px;flex:1}
+.actor-btn{border:none;border-radius:6px;padding:7px 4px;font-size:12px;font-weight:700;cursor:pointer;width:100%;text-align:center;transition:transform .1s}
+.actor-btn:hover{transform:scale(1.03);filter:brightness(.9)}
+.actor-btn.bbdd{background:#d6eaf8;color:#1a5c8a}
+.actor-btn.propuesto{background:#fdebd0;color:#7d5a00}
+.actor-btn.confirmado{background:#d5f5e3;color:#1a5c35}
+.actor-btn.nodisponible{background:#fadbd8;color:#922b21}
+@media(max-width:480px){.actores-cols{grid-template-columns:repeat(2,1fr)}}
+
+/* SUBMODAL */
+.submodal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;align-items:center;justify-content:center}
+.submodal-backdrop.open{display:flex}
+.submodal-box{background:#fff;border-radius:16px;width:92vw;max-width:700px;padding:22px;box-shadow:0 8px 32px rgba(0,0,0,.2);animation:fadeInScale .18s cubic-bezier(.22,1,.36,1)}
+.submodal-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:16px;text-align:center;text-transform:uppercase;letter-spacing:.5px}
+.submodal-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sub-btn{border:none;border-radius:12px;padding:16px 8px;font-size:15px;font-weight:800;cursor:pointer;text-align:center;text-transform:uppercase;letter-spacing:.3px;transition:transform .1s;color:#2c2c2c;min-height:60px}
+.sub-btn:hover{transform:scale(1.02);filter:brightness(.96)}
+.submodal-cancel{margin-top:12px;width:100%;background:none;border:2px solid var(--border);border-radius:10px;padding:14px;font-size:16px;font-weight:600;cursor:pointer;color:var(--muted)}
+
+/* POPUP RESUMEN */
+.popup{display:none;position:fixed;z-index:300;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.22);width:88vw;max-width:360px;overflow:hidden}
+.popup.open{display:block;animation:fadeInScale .15s cubic-bezier(.22,1,.36,1)}
+.popup-head{padding:14px 16px 10px;display:flex;align-items:center;gap:10px}
+.popup-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
+.popup-titulo{font-size:16px;font-weight:700;color:var(--text);flex:1;line-height:1.2}
+.popup-close{background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.popup-close:hover{background:var(--hover)}
+.popup-body{padding:4px 16px 14px;display:flex;flex-direction:column;gap:7px}
+.popup-row{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text)}
+.popup-icon{font-size:16px;width:20px;text-align:center;flex-shrink:0}
+.popup-badge{padding:3px 10px;border-radius:12px;font-size:12px;font-weight:700;display:inline-block}
+.popup-footer{padding:10px 16px 14px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+.popup-edit-btn{background:var(--blue);border:none;padding:8px 18px;border-radius:7px;cursor:pointer;font-size:13px;color:#fff;font-weight:600}
+.popup-del-btn{background:none;border:2px solid #e74c3c;padding:8px 14px;border-radius:7px;cursor:pointer;font-size:13px;color:#e74c3c;font-weight:600}
+
+/* DAYVIEW */
+.dayview-backdrop{display:none;position:fixed;inset:0;z-index:250;pointer-events:none}
+.dayview-backdrop.open{display:block;pointer-events:auto}
+.dayview-box{background:#fff;border-radius:14px;width:260px;max-height:400px;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,.25);position:absolute;animation:fadeInScale .15s cubic-bezier(.22,1,.36,1)}
+.dayview-head{padding:12px 14px 8px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;background:#fff}
+.dayview-dow{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase}
+.dayview-num{font-size:26px;font-weight:400;color:var(--text)}
+.dayview-num.today{background:var(--blue);color:#fff;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.dayview-events{padding:8px 10px;display:flex;flex-direction:column;gap:4px}
+.dayview-event{border-radius:6px;padding:5px 8px;font-size:12px;font-weight:700;color:#1a1a1a;cursor:pointer}
+.dayview-event:hover{filter:brightness(.95)}
+
+/* PAPELERA */
 .trash-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;align-items:flex-end;justify-content:center}
+.trash-backdrop.open{display:flex;animation:fadeIn .2s}
 @media(min-width:640px){.trash-backdrop{align-items:center}}
-.trash-backdrop.open{display:flex}
-.trash-box{background:#fff;border-radius:16px 16px 0 0;width:100%;max-height:92vh;overflow-y:auto;display:flex;flex-direction:column}
-@media(min-width:640px){.trash-box{border-radius:14px;width:600px;max-height:88vh}}
-.trash-head{padding:18px 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:2}
-.trash-head-title{font-size:20px;font-weight:800;color:var(--text)}
+.trash-box{background:#fff;border-radius:16px 16px 0 0;width:100%;max-height:92vh;overflow-y:auto;display:flex;flex-direction:column;animation:fadeInUp .22s cubic-bezier(.22,1,.36,1)}
+@media(min-width:640px){.trash-box{border-radius:14px;width:600px;animation:fadeInScale .2s cubic-bezier(.22,1,.36,1)}}
+.trash-head{padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff}
+.trash-head-title{font-size:20px;font-weight:800}
 .trash-item{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--border)}
 .trash-item-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
 .trash-item-info{flex:1;min-width:0}
-.trash-item-title{font-size:16px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trash-item-title{font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .trash-item-sub{font-size:13px;color:var(--muted);margin-top:2px}
 .trash-item-actions{display:flex;gap:8px;flex-shrink:0}
 .trash-restore-btn{background:var(--blue);border:none;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px;color:#fff;font-weight:700}
@@ -160,32 +161,28 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 .trash-footer{padding:14px 18px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;bottom:0;background:#fff}
 .trash-clear-btn{background:none;border:2px solid #e74c3c;padding:10px 18px;border-radius:8px;cursor:pointer;font-size:14px;color:#e74c3c;font-weight:700}
 .trash-close-btn{background:var(--blue);border:none;padding:10px 22px;border-radius:8px;cursor:pointer;font-size:15px;color:#fff;font-weight:700}
-.popup{display:none;position:fixed;z-index:300;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.22);width:88vw;max-width:360px;overflow:hidden}
-.popup.open{display:block}
-.popup-head{padding:14px 16px 10px;display:flex;align-items:center;gap:10px}
-.popup-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
-.popup-titulo{font-size:17px;font-weight:700;color:var(--text);flex:1;line-height:1.2}
-.popup-close{background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.popup-close:hover{background:var(--hover)}
-.popup-body{padding:4px 16px 14px;display:flex;flex-direction:column;gap:8px}
-.popup-row{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text)}
-.popup-icon{font-size:16px;width:20px;text-align:center;flex-shrink:0}
-.popup-badge{padding:3px 10px;border-radius:12px;font-size:12px;font-weight:700;display:inline-block}
-.popup-footer{padding:10px 16px 14px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
-.popup-edit-btn{background:var(--blue);border:none;padding:8px 18px;border-radius:7px;cursor:pointer;font-size:13px;color:#fff;font-weight:600}
-.popup-edit-btn:hover{background:#1557b0}
-.popup-del-btn{background:none;border:1px solid #e74c3c;padding:8px 14px;border-radius:7px;cursor:pointer;font-size:13px;color:#e74c3c;font-weight:600}
-.popup-del-btn:hover{background:#fdf0ee}
 
-/* ===== MODAL SECUNDARIO (estado / tipo) ===== */
-.submodal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;align-items:center;justify-content:center}
-.submodal-backdrop.open{display:flex}
-.submodal-box{background:#fff;border-radius:16px;width:92vw;max-width:420px;padding:22px;box-shadow:0 8px 32px rgba(0,0,0,.2)}
-.submodal-title{font-size:20px;font-weight:800;color:var(--text);margin-bottom:18px;text-align:center;text-transform:uppercase;letter-spacing:.5px}
-.submodal-btns{display:flex;flex-direction:column;gap:12px}
-.sub-btn{border:none;border-radius:12px;padding:22px 16px;font-size:22px;font-weight:800;cursor:pointer;text-align:center;letter-spacing:.5px;text-transform:uppercase;transition:transform .1s;color:#1a1a1a;text-shadow:none}
-.sub-btn:hover{transform:scale(1.02)}
-.submodal-cancel{margin-top:12px;width:100%;background:none;border:2px solid var(--border);border-radius:10px;padding:16px;font-size:18px;font-weight:600;cursor:pointer;color:var(--muted)}
+/* ESTADÍSTICAS */
+.stats-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;align-items:center;justify-content:center}
+.stats-backdrop.open{display:flex;animation:fadeIn .2s}
+.stats-box{background:#f6f8fc;border-radius:16px;width:min(1100px,96vw);max-height:92vh;overflow-y:auto;box-shadow:0 16px 48px rgba(0,0,0,.25);animation:fadeInScale .2s cubic-bezier(.22,1,.36,1)}
+.stats-head{padding:20px 24px 14px;background:#fff;border-radius:16px 16px 0 0;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:2;border-bottom:1px solid var(--border)}
+.stats-title{font-size:22px;font-weight:800}
+.stats-body{padding:20px 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:700px){.stats-body{grid-template-columns:1fr}}
+.stats-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.stats-card.wide{grid-column:span 2}
+.stats-card.full{grid-column:1/-1}
+.stats-card-title{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.8px;text-transform:uppercase;margin-bottom:12px}
+.stats-big{font-size:42px;font-weight:900;color:var(--blue);text-align:center;padding:10px 0}
+.stats-big-sub{font-size:12px;color:var(--muted);text-align:center;margin-top:-6px}
+.stats-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f0f0;font-size:14px}
+.stats-row:last-child{border-bottom:none}
+.stats-row-val{font-weight:800;color:var(--blue);font-size:16px}
+.stats-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:12px}
+.stats-bar{height:18px;border-radius:4px;min-width:4px}
+.stats-bar-label{min-width:120px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stats-bar-num{font-weight:700;color:var(--blue);min-width:24px;text-align:right}
 </style>
 </head>
 <body>
@@ -194,104 +191,180 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
     <button class="today-btn" onclick="goToday()">Hoy</button>
     <button class="nav-btn" onclick="shiftMonth(-1)">‹</button>
     <button class="nav-btn" onclick="shiftMonth(1)">›</button>
-    <span class="topbar-month" id="main-label" style="font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:.5px">Julio 2026</span>
-    <button class="nav-btn" onclick="openTrash()" id="trash-btn" title="Papelera" style="position:relative;font-size:26px;width:40px;height:40px">🗑<span id="trash-count" style="display:none;position:absolute;top:0px;right:0px;background:#e74c3c;color:#fff;font-size:10px;font-weight:800;width:18px;height:18px;border-radius:50%;line-height:18px;text-align:center"></span></button>
+    <span class="topbar-month" id="main-label">Marzo 2026</span>
+    <button class="stats-btn" onclick="openStats()">📊 Estadísticas</button>
+    <div class="trash-wrap">
+      <button class="trash-icon" onclick="openTrash()">🗑</button>
+      <span id="trash-count"></span>
+    </div>
   </div>
   <div class="month-wrap">
     <div class="month-dow-header">
       <div class="month-dow">LUN</div><div class="month-dow">MAR</div><div class="month-dow">MIÉ</div>
       <div class="month-dow">JUE</div><div class="month-dow">VIE</div><div class="month-dow">SÁB</div><div class="month-dow">DOM</div>
     </div>
-    <div class="month-grid" id="month-grid"><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-06-29&#39;)">
-      <div class="cell-num">29</div>
-      <div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-06-30&#39;)">
-      <div class="cell-num">30</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-01&#39;)">
-      <div class="cell-num">1</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-02&#39;)">
-      <div class="cell-num">2</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-03&#39;)">
-      <div class="cell-num">3</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-04&#39;)">
-      <div class="cell-num">4</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-05&#39;)">
-      <div class="cell-num">5</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-06&#39;)">
-      <div class="cell-num">6</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-07&#39;)">
-      <div class="cell-num">7</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-08&#39;)">
-      <div class="cell-num">8</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-09&#39;)">
-      <div class="cell-num">9</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-10&#39;)">
-      <div class="cell-num">10</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-11&#39;)">
-      <div class="cell-num">11</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-12&#39;)">
-      <div class="cell-num today">12</div>
-      <div class="cell-events"><div class="cell-event" style="background:#1a73e8" onclick="event.stopPropagation();showPopup(1,this)" ondblclick="event.stopPropagation();editEventByIdx(1)">10:00 C.PAPEL</div><div class="cell-event" style="background:#e0a800" onclick="event.stopPropagation();showPopup(0,this)" ondblclick="event.stopPropagation();editEventByIdx(0)">16:00 C.PAPEL · 40p</div></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-13&#39;)">
-      <div class="cell-num">13</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-14&#39;)">
-      <div class="cell-num">14</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-15&#39;)">
-      <div class="cell-num">15</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-16&#39;)">
-      <div class="cell-num">16</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-17&#39;)">
-      <div class="cell-num">17</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-18&#39;)">
-      <div class="cell-num">18</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-19&#39;)">
-      <div class="cell-num">19</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-20&#39;)">
-      <div class="cell-num">20</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-21&#39;)">
-      <div class="cell-num">21</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-22&#39;)">
-      <div class="cell-num">22</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-23&#39;)">
-      <div class="cell-num">23</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-24&#39;)">
-      <div class="cell-num">24</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-25&#39;)">
-      <div class="cell-num">25</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-26&#39;)">
-      <div class="cell-num">26</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-27&#39;)">
-      <div class="cell-num">27</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-28&#39;)">
-      <div class="cell-num">28</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-29&#39;)">
-      <div class="cell-num">29</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-30&#39;)">
-      <div class="cell-num">30</div>
-      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-31&#39;)">
-      <div class="cell-num">31</div>
-      <div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-08-01&#39;)">
-      <div class="cell-num">1</div>
-      <div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-08-02&#39;)">
-      <div class="cell-num">2</div>
-      <div class="cell-events"></div></div></div>
+    <div class="month-grid" id="month-grid"><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-02-23&#39;)"><div class="cell-num">23</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-02-24&#39;)"><div class="cell-num">24</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-02-25&#39;)"><div class="cell-num">25</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-02-26&#39;)"><div class="cell-num">26</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-02-27&#39;)"><div class="cell-num">27</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-02-28&#39;)"><div class="cell-num">28</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-01&#39;)"><div class="cell-num">1</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-02&#39;)"><div class="cell-num">2</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-03&#39;)"><div class="cell-num">3</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-04&#39;)"><div class="cell-num">4</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-05&#39;)"><div class="cell-num">5</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-06&#39;)"><div class="cell-num">6</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-07&#39;)"><div class="cell-num">7</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-08&#39;)"><div class="cell-num">8</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-09&#39;)"><div class="cell-num">9</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-10&#39;)"><div class="cell-num">10</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-11&#39;)"><div class="cell-num">11</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-12&#39;)"><div class="cell-num">12</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-13&#39;)"><div class="cell-num">13</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-14&#39;)"><div class="cell-num">14</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-15&#39;)"><div class="cell-num">15</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-16&#39;)"><div class="cell-num">16</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-17&#39;)"><div class="cell-num">17</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-18&#39;)"><div class="cell-num">18</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-19&#39;)"><div class="cell-num">19</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-20&#39;)"><div class="cell-num">20</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-21&#39;)"><div class="cell-num">21</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-22&#39;)"><div class="cell-num">22</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-23&#39;)"><div class="cell-num">23</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-24&#39;)"><div class="cell-num">24</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-25&#39;)"><div class="cell-num">25</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-26&#39;)"><div class="cell-num">26</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-27&#39;)"><div class="cell-num">27</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-28&#39;)"><div class="cell-num">28</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-29&#39;)"><div class="cell-num">29</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-30&#39;)"><div class="cell-num">30</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-03-31&#39;)"><div class="cell-num">31</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-04-01&#39;)"><div class="cell-num">1</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-04-02&#39;)"><div class="cell-num">2</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-04-03&#39;)"><div class="cell-num">3</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-04-04&#39;)"><div class="cell-num">4</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-04-05&#39;)"><div class="cell-num">5</div><div class="cell-events"></div></div></div>
   </div>
 </div>
 
-<!-- DAY VIEW -->
+<!-- POPUP RESUMEN -->
+<div class="popup" id="popup">
+  <div class="popup-head">
+    <div class="popup-dot" id="popup-dot"></div>
+    <div class="popup-titulo" id="popup-titulo"></div>
+    <button class="popup-close" onclick="closePopup()">✕</button>
+  </div>
+  <div class="popup-body">
+    <div class="popup-row" id="pr-fecha"><span class="popup-icon">📅</span><span id="popup-fecha"></span></div>
+    <div class="popup-row" id="pr-hora"><span class="popup-icon">🕐</span><span id="popup-hora"></span></div>
+    <div class="popup-row" id="pr-estado"><span class="popup-icon">🔵</span><span id="popup-estado"></span></div>
+    <div class="popup-row" id="pr-pax"><span class="popup-icon">👥</span><span id="popup-pax"></span></div>
+    <div class="popup-row" id="pr-pob"><span class="popup-icon">📍</span><span id="popup-pob"></span></div>
+    <div class="popup-row" id="pr-cliente"><span class="popup-icon">🏢</span><span id="popup-cliente"></span></div>
+    <div class="popup-row" id="pr-gestores"><span class="popup-icon">👤</span><span id="popup-gestores"></span></div>
+  </div>
+  <div class="popup-footer">
+    <button class="popup-del-btn" onclick="deleteEvent()">🗑 Eliminar</button>
+    <button class="popup-edit-btn" onclick="editEvent()">✏️ Editar</button>
+  </div>
+</div>
+
+<!-- DAYVIEW -->
 <div class="dayview-backdrop" id="dayview" onclick="closeDayViewOut(event)">
   <div class="dayview-box" id="dayview-box">
     <div class="dayview-head">
-      <div>
-        <div class="dayview-dow" id="dv-dow"></div>
-        <div class="dayview-num" id="dv-num"></div>
-      </div>
-      <button class="dayview-close" onclick="closeDayView()">✕</button>
+      <div><div class="dayview-dow" id="dv-dow"></div><div class="dayview-num" id="dv-num"></div></div>
+      <button class="popup-close" onclick="closeDayView()">✕</button>
     </div>
     <div class="dayview-events" id="dv-events"></div>
   </div>
 </div>
 
+<!-- MODAL PRINCIPAL -->
+<div class="modal-backdrop" id="modal">
+  <div class="modal-box" id="modal-box">
+    <div class="modal-head">
+      <span class="modal-head-date" id="modal-date-label">Jueves, 16 de julio 2026</span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-two-col">
+        <div class="modal-col-left">
+          <div class="sec-label">Evento</div>
+          <div class="selector-field" id="evento-field" onclick="openActividadModal()" style="min-height:64px">
+            <span class="sel-label" id="evento-label" style="display: none;">Toca para seleccionar</span>
+            <div style="display:flex;align-items:center;gap:8px"><span id="evento-badge"><span class="sel-badge" style="background:#e8c4c4;color:#2c2c2c;font-size:16px;font-weight:800;padding:8px 16px">Casa de Papel</span></span><span class="sel-arrow">›</span></div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+            <span class="sec-label" style="margin-bottom:0">Horario</span>
+            <button class="turno-btn" id="turno-manana" onclick="setTurno(&#39;manana&#39;)">☀️ Mañana</button>
+            <button class="turno-btn active" id="turno-tarde" onclick="setTurno(&#39;tarde&#39;)">🌤 Tarde</button>
+            <button class="turno-btn" id="turno-noche" onclick="setTurno(&#39;noche&#39;)">🌙 Noche</button>
+          </div>
+          <div class="input-row">
+            <div class="form-group"><label>Inicio</label><input type="time" id="ev-start" value="10:00" oninput="recalcEnd()"></div>
+            <div class="form-group"><label>Fin</label><input type="time" id="ev-end" value="12:30" oninput="recalcTiming()"></div>
+          </div>
+
+          <div class="sec-label">Número de pax</div>
+          <div class="form-group" style="margin-bottom:14px">
+            <input type="number" id="ev-pax" min="1" inputmode="numeric" placeholder="Ej: 150">
+          </div>
+
+          <div class="sec-label">Estado</div>
+          <div class="selector-field" onclick="openSubModal(&#39;estado&#39;)">
+            <span class="sel-label" id="estado-label" style="display: none;">Toca para seleccionar</span>
+            <div style="display:flex;align-items:center;gap:8px"><span id="estado-badge"><span class="sel-badge" style="background:#fdebd0;color:#7d5a00">Posible</span></span><span class="sel-arrow">›</span></div>
+          </div>
+
+          <div class="sec-label">Cliente</div>
+          <div class="autocomplete-wrap">
+            <input type="text" id="cliente-input" placeholder="Buscar cliente..." autocomplete="off" oninput="filterAC(&#39;cliente&#39;)" onfocus="showAC(&#39;cliente&#39;)" onblur="hideAC(&#39;cliente&#39;,300)">
+            <div class="autocomplete-dropdown" id="cliente-dropdown"><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Banco Santander&#39;)">Banco Santander</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Coca-Cola España&#39;)">Coca-Cola España</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;El Corte Inglés&#39;)">El Corte Inglés</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Ferrovial&#39;)">Ferrovial</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Iberdrola&#39;)">Iberdrola</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Inditex&#39;)">Inditex</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;MAPFRE&#39;)">MAPFRE</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Mercadona&#39;)">Mercadona</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Repsol&#39;)">Repsol</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Telefónica&#39;)">Telefónica</div></div>
+          </div>
+
+          <div class="sec-label">Detalles del cliente</div>
+          <textarea id="ev-detalles-cliente" class="modal-textarea" placeholder="Notas sobre el cliente..." style="min-height:70px"></textarea>
+
+          <div class="sec-label">¿Hay agencia?</div>
+          <div class="autocomplete-wrap">
+            <input type="text" id="agencia-input" placeholder="Buscar agencia..." autocomplete="off" oninput="filterAC(&#39;agencia&#39;)" onfocus="showAC(&#39;agencia&#39;)" onblur="hideAC(&#39;agencia&#39;,300)">
+            <div class="autocomplete-dropdown" id="agencia-dropdown"></div>
+          </div>
+
+          <div class="sec-label">Población</div>
+          <div class="autocomplete-wrap">
+            <input type="text" id="ev-poblacion" placeholder="Escribe o busca ciudad..." autocomplete="off" oninput="filterAC(&#39;poblacion&#39;)" onfocus="showAC(&#39;poblacion&#39;)" onblur="hideAC(&#39;poblacion&#39;,300)">
+            <div class="autocomplete-dropdown" id="poblacion-dropdown"><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;A Coruña&#39;)">A Coruña</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Albacete&#39;)">Albacete</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Alcalá de Henares&#39;)">Alcalá de Henares</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Alicante&#39;)">Alicante</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Almería&#39;)">Almería</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Ávila&#39;)">Ávila</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Badajoz&#39;)">Badajoz</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Badalona&#39;)">Badalona</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Barcelona&#39;)">Barcelona</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Benidorm&#39;)">Benidorm</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Bilbao&#39;)">Bilbao</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Burgos&#39;)">Burgos</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Cáceres&#39;)">Cáceres</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Cádiz&#39;)">Cádiz</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Cartagena&#39;)">Cartagena</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Castellón de la Plana&#39;)">Castellón de la Plana</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Ciudad Real&#39;)">Ciudad Real</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Córdoba&#39;)">Córdoba</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Cuenca&#39;)">Cuenca</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Elche&#39;)">Elche</div></div>
+          </div>
+
+          <div class="sec-label">¿Quién gestiona?</div>
+          <div class="selector-field" onclick="openSubModal(&#39;gestor&#39;)">
+            <span class="sel-label" id="gestor-label" style="display: none;">¿Quién gestiona?</span>
+            <div style="display:flex;align-items:center;gap:8px"><span id="gestor-badges" style="display:flex;gap:6px;flex-wrap:wrap"><span class="sel-badge" style="background:#1a73e8;color:#fff;font-weight:700">VIC</span></span><span class="sel-arrow">›</span></div>
+          </div>
+
+          <div class="sec-label">Detalles del evento</div>
+          <textarea id="ev-detalles" class="modal-textarea" placeholder="Detalles del evento..." style="min-height:80px"></textarea>
+        </div>
+
+        <div class="modal-col-right">
+          <div class="sec-label">Actores</div>
+          <div class="actores-cols">
+            <div class="actores-col">
+              <div class="actores-col-head" style="background:#27ae60">CONFIRMADO/A</div>
+              <div class="actores-col-body" id="col-confirmado"><button class="actor-btn confirmado" onclick="cycleActor(&#39;ARANCHA&#39;,&#39;confirmado&#39;)">ARANCHA</button><button class="actor-btn confirmado" onclick="cycleActor(&#39;MAX&#39;,&#39;confirmado&#39;)">MAX</button><button class="actor-btn confirmado" onclick="cycleActor(&#39;JL&#39;,&#39;confirmado&#39;)">JL</button></div>
+            </div>
+            <div class="actores-col">
+              <div class="actores-col-head" style="background:#f39c12">PROPUESTO/A</div>
+              <div class="actores-col-body" id="col-propuesto"><button class="actor-btn propuesto" onclick="cycleActor(&#39;VIC&#39;,&#39;propuesto&#39;)">VIC</button><button class="actor-btn propuesto" onclick="cycleActor(&#39;MON&#39;,&#39;propuesto&#39;)">MON</button><button class="actor-btn propuesto" onclick="cycleActor(&#39;AGUS&#39;,&#39;propuesto&#39;)">AGUS</button><button class="actor-btn propuesto" onclick="cycleActor(&#39;ISRA&#39;,&#39;propuesto&#39;)">ISRA</button></div>
+            </div>
+            <div class="actores-col">
+              <div class="actores-col-head" style="background:#e74c3c">NO DISPONIBLE</div>
+              <div class="actores-col-body" id="col-nodisponible"></div>
+            </div>
+            <div class="actores-col">
+              <div class="actores-col-head" style="background:#5b9bd5">BASE DE DATOS</div>
+              <div class="actores-col-body" id="col-bbdd"><button class="actor-btn bbdd" onclick="moveActorTo(&#39;OTROS&#39;,&#39;propuesto&#39;)" ondblclick="event.stopPropagation();moveActorTo(&#39;OTROS&#39;,&#39;confirmado&#39;)">OTROS</button><button class="actor-btn bbdd" onclick="moveActorTo(&#39;PABLO BARRIOS&#39;,&#39;propuesto&#39;)" ondblclick="event.stopPropagation();moveActorTo(&#39;PABLO BARRIOS&#39;,&#39;confirmado&#39;)">PABLO BARRIOS</button><button class="actor-btn bbdd" onclick="moveActorTo(&#39;DIANA&#39;,&#39;propuesto&#39;)" ondblclick="event.stopPropagation();moveActorTo(&#39;DIANA&#39;,&#39;confirmado&#39;)">DIANA</button></div>
+            </div>
+          </div>
+
+          <div class="sec-label">Timing del cliente</div>
+          <textarea id="ev-timing-cliente" class="modal-textarea" style="min-height:120px"></textarea>
+
+          <div class="sec-label">Timing nuestro</div>
+          <textarea id="ev-timing-nuestro" class="modal-textarea" style="min-height:260px"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="btn-save" onclick="saveEvent()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUBMODAL -->
+<div class="submodal-backdrop" id="submodal" onclick="if(event.target===this)closeSubModal()">
+  <div class="submodal-box">
+    <div class="submodal-title" id="submodal-title">Estado</div>
+    <div class="submodal-btns" id="submodal-btns" style="grid-template-columns: repeat(2, 1fr);"><button class="sub-btn" style="background:#fdebd0;color:#7d5a00" onclick="pickSubModal(0)">Posible</button><button class="sub-btn" style="background:#d1ecf1;color:#0a3d62" onclick="pickSubModal(1)">Confirmado</button><button class="sub-btn" style="background:#e2e3e5;color:#2c3e50" onclick="pickSubModal(2)">Finalizado</button><button class="sub-btn" style="background:#d4edda;color:#1a5c1a" onclick="pickSubModal(3)">Aplazado</button></div>
+    <button class="submodal-cancel" onclick="closeSubModal()">Cancelar</button>
+  </div>
+</div>
+
+<!-- MODAL ACTIVIDAD -->
+<div class="submodal-backdrop" id="actividad-modal" onclick="if(event.target===this)closeActividadModal()">
+  <div class="submodal-box" style="max-width:720px">
+    <div class="submodal-title" id="act-title">1. TEAM BUILDING</div>
+    <div class="submodal-btns" id="act-btns" style="grid-template-columns: repeat(3, 1fr);"><button class="sub-btn" style="background:#eee;color:#333;grid-column:1/-1;min-height:44px;font-size:13px" onclick="openActividadModal()">← Volver</button><button class="sub-btn" style="background:#f8d7da" onclick="pickItem(&#39;Casa de Papel&#39;)">Casa de Papel</button><button class="sub-btn" style="background:#fce8d5" onclick="pickItem(&#39;Intocables&#39;)">Intocables</button><button class="sub-btn" style="background:#fef9c3" onclick="pickItem(&#39;A Tempo&#39;)">A Tempo</button><button class="sub-btn" style="background:#d4edda" onclick="pickItem(&#39;Concurso Pista&#39;)">Concurso Pista</button><button class="sub-btn" style="background:#d1ecf1" onclick="pickItem(&#39;Concurso Live Music&#39;)">Concurso Live Music</button><button class="sub-btn" style="background:#e2d9f3" onclick="pickItem(&#39;First Dates&#39;)">First Dates</button><button class="sub-btn" style="background:#fddde6" onclick="pickItem(&#39;Concurso MIX&#39;)">Concurso MIX</button><button class="sub-btn" style="background:#d6eaf8" onclick="pickItem(&#39;Aquellos Maravillosos Años&#39;)">Aquellos Maravillosos Años</button><button class="sub-btn" style="background:#fde8d8" onclick="pickItem(&#39;Guardianes&#39;)">Guardianes</button><button class="sub-btn" style="background:#e8f5e9" onclick="pickItem(&#39;Cluedo&#39;)">Cluedo</button><button class="sub-btn" style="background:#f0f0f0" onclick="pickItem(&#39;OTROS&#39;)">OTROS</button></div>
+    <button class="submodal-cancel" onclick="closeActividadModal()">Cancelar</button>
+  </div>
+</div>
+
 <!-- PAPELERA -->
-<div class="trash-backdrop" id="trash-modal" onclick="closeTrashOut(event)">
+<div class="trash-backdrop" id="trash-modal" onclick="if(event.target===this)closeTrash()">
   <div class="trash-box">
     <div class="trash-head">
       <span class="trash-head-title">🗑 Papelera</span>
@@ -305,198 +378,62 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
   </div>
 </div>
 
-<!-- POPUP RESUMEN -->
-<div class="popup" id="popup">
-  <div class="popup-head">
-    <div class="popup-dot" id="popup-dot"></div>
-    <div class="popup-titulo" id="popup-titulo"></div>
-    <button class="popup-close" onclick="closePopup()">✕</button>
-  </div>
-  <div class="popup-body">
-    <div class="popup-row"><span class="popup-icon">📅</span><span id="popup-fecha"></span></div>
-    <div class="popup-row"><span class="popup-icon">🕐</span><span id="popup-hora"></span></div>
-    <div class="popup-row" id="popup-row-estado"><span class="popup-icon">🔵</span><span id="popup-estado"></span></div>
-    <div class="popup-row" id="popup-row-pax"><span class="popup-icon">👥</span><span id="popup-pax"></span></div>
-    <div class="popup-row" id="popup-row-pob"><span class="popup-icon">📍</span><span id="popup-pob"></span></div>
-    <div class="popup-row" id="popup-row-cliente"><span class="popup-icon">🏢</span><span id="popup-cliente"></span></div>
-    <div class="popup-row" id="popup-row-agencia"><span class="popup-icon">🤝</span><span id="popup-agencia"></span></div>
-    <div class="popup-row" id="popup-row-gestores"><span class="popup-icon">👤</span><span id="popup-gestores"></span></div>
-  </div>
-  <div class="popup-footer">
-    <button class="popup-del-btn" onclick="deleteEvent()">🗑 Eliminar</button>
-    <button class="popup-edit-btn" onclick="editEvent()">✏️ Editar</button>
-  </div>
-</div>
-
-<!-- MODAL PRINCIPAL -->
-<div class="modal-backdrop" id="modal" onclick="closeOut(event)">
-  <div class="modal-box">
-    <div class="modal-head">
-      <span class="modal-head-date" id="modal-date-label">Domingo, 12 de julio 2026</span>
-      <button class="modal-close" onclick="closeModal()">✕</button>
+<!-- ESTADÍSTICAS -->
+<div class="stats-backdrop" id="stats-modal" onclick="if(event.target===this)closeStats()">
+  <div class="stats-box">
+    <div class="stats-head">
+      <span class="stats-title">📊 Estadísticas</span>
+      <button class="modal-close" onclick="closeStats()">✕</button>
     </div>
-    <div class="modal-body">
-
-      <!-- TIPO DE EVENTO -->
-      <div class="sec-label">Tipo de evento</div>
-      <div class="selector-field" onclick="openSubModal(&#39;tipo&#39;)" id="tipo-field">
-        <span class="sel-label" id="tipo-label" style="">Toca para seleccionar</span>
-        <div class="sel-value"><span id="tipo-badge"></span><span class="sel-arrow">›</span></div>
-      </div>
-
-      <!-- HORARIO -->
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
-        <span class="sec-label" style="margin-bottom:0">Horario</span>
-        <button onclick="setTurno(&#39;manana&#39;)" class="turno-btn active" id="turno-manana">☀️ Mañana</button>
-        <button onclick="setTurno(&#39;tarde&#39;)" class="turno-btn" id="turno-tarde">🌤 Tarde</button>
-        <button onclick="setTurno(&#39;noche&#39;)" class="turno-btn" id="turno-noche">🌙 Noche</button>
-      </div>
-      <div class="input-row" style="margin-bottom:16px">
-        <div class="form-group"><label>Inicio</label><input type="time" id="ev-start" value="10:00" oninput="recalcEnd()"></div>
-        <div class="form-group"><label>Fin</label><input type="time" id="ev-end" value="12:30" oninput="recalcTiming()"></div>
-      </div>
-
-      <!-- PAX -->
-      <div class="sec-label">Número de pax</div>
-      <div class="form-group" style="margin-bottom:16px">
-        <input type="number" id="ev-pax" min="1" inputmode="numeric" pattern="[0-9]*" placeholder="Ej: 150">
-      </div>
-
-      <!-- ESTADO -->
-      <div class="sec-label">Estado</div>
-      <div class="selector-field" onclick="openSubModal(&#39;estado&#39;)" id="estado-field">
-        <span class="sel-label" id="estado-label" style="">Toca para seleccionar</span>
-        <div class="sel-value"><span id="estado-badge"></span><span class="sel-arrow">›</span></div>
-      </div>
-
-      <!-- TIPO (categoría) -->
-      <div class="sec-label">Categoría</div>
-      <div class="selector-field" onclick="openSubModal(&#39;categoria&#39;)" id="categoria-field">
-        <span class="sel-label" id="categoria-label">Toca para seleccionar</span>
-        <div class="sel-value"><span id="categoria-badge"></span><span class="sel-arrow">›</span></div>
-      </div>
-
-      <!-- CLIENTE -->
-      <div class="sec-label">Cliente</div>
-      <div class="autocomplete-wrap">
-        <input type="text" id="cliente-input" placeholder="Buscar cliente..." autocomplete="off" oninput="filterAC(&#39;cliente&#39;)" onfocus="showAC(&#39;cliente&#39;)" onblur="hideAC(&#39;cliente&#39;,300)">
-        <div class="autocomplete-dropdown" id="cliente-dropdown"></div>
-      </div>
-
-      <!-- AGENCIA -->
-      <div class="sec-label">¿Hay agencia?</div>
-      <div class="autocomplete-wrap">
-        <input type="text" id="agencia-input" placeholder="Buscar agencia..." autocomplete="off" oninput="filterAC(&#39;agencia&#39;)" onfocus="showAC(&#39;agencia&#39;)" onblur="hideAC(&#39;agencia&#39;,300)">
-        <div class="autocomplete-dropdown" id="agencia-dropdown"></div>
-      </div>
-
-      <!-- POBLACIÓN -->
-      <div class="sec-label">Población</div>
-      <div class="autocomplete-wrap">
-        <input type="text" id="ev-poblacion" placeholder="Escribe o busca ciudad..." autocomplete="off" oninput="filterAC(&#39;poblacion&#39;)" onfocus="showAC(&#39;poblacion&#39;)" onblur="hideAC(&#39;poblacion&#39;,300)">
-        <div class="autocomplete-dropdown" id="poblacion-dropdown"></div>
-      </div>
-
-      <!-- QUIÉN GESTIONA -->
-      <div class="sec-label">¿Quién gestiona?</div>
-      <div class="selector-field" onclick="openSubModal(&#39;gestor&#39;)" id="gestor-field">
-        <span class="sel-label" id="gestor-label" style="">¿Quién gestiona?</span>
-        <div class="sel-value"><span id="gestor-badges" style="display:flex;gap:6px;flex-wrap:wrap"></span><span class="sel-arrow">›</span></div>
-      </div>
-
-      <!-- DETALLES -->
-      <div class="sec-label">Detalles del evento</div>
-      <textarea id="ev-detalles" placeholder="Escribe aquí los detalles del evento..." style="width:100%;border:2px solid var(--border);border-radius:10px;padding:14px;font-size:16px;color:var(--text);outline:none;resize:vertical;min-height:90px;font-family:inherit;line-height:1.5;margin-bottom:14px"></textarea>
-
-      <!-- TIMING CLIENTE -->
-      <div class="sec-label">Timing del cliente</div>
-      <textarea id="ev-timing-cliente" placeholder="Pega aquí el timing que envía el cliente..." style="width:100%;border:2px solid var(--border);border-radius:10px;padding:14px;font-size:16px;color:var(--text);outline:none;resize:vertical;min-height:90px;font-family:inherit;line-height:1.5;margin-bottom:14px"></textarea>
-
-      <!-- TIMING NUESTRO -->
-      <div class="sec-label">Timing nuestro</div>
-      <textarea id="ev-timing-nuestro" style="width:100%;border:2px solid var(--border);border-radius:10px;padding:14px;font-size:16px;color:var(--text);outline:none;resize:vertical;min-height:280px;font-family:inherit;line-height:1.8;margin-bottom:14px">__:__ Quedada para desayunar (como sabéis esto lo decidís vosotros)
-__:__ Salida desde el hotel
-__:__ Llegada Sebas y la furgo para descarga y montaje
-__:__ Vestirse
-__:__ Preparados
-__:__ Inicio actividad
-__:__ Fin actividad
-__:__ Recoger y cargar
-__:__ Fin</textarea>
-
-    </div>
-    <div class="modal-footer">
-      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
-      <button class="btn-save" onclick="saveEvent()">Guardar</button>
-    </div>
-  </div>
-</div>
-
-<!-- SUBMODAL ESTADO / CATEGORIA -->
-<div class="submodal-backdrop" id="submodal" onclick="closeSubOut(event)">
-  <div class="submodal-box">
-    <div class="submodal-title" id="submodal-title">¿Quién gestiona?</div>
-    <div class="submodal-btns" id="submodal-btns"><button class="sub-btn gestor-sub-btn" style="background:#9b59b6;color:#fff;opacity:0.45;filter:saturate(0.2) brightness(0.85);display:flex;align-items:center;justify-content:space-between" data-idx="0" onclick="toggleGestorSub(this,0)">DIANA<span class="gsub-check" style="font-size:22px;opacity:0">✓</span></button><button class="sub-btn gestor-sub-btn" style="background: rgb(26, 115, 232); color: rgb(255, 255, 255); opacity: 1; filter: none; display: flex; align-items: center; justify-content: space-between;" data-idx="1" onclick="toggleGestorSub(this,1)">VIC<span class="gsub-check" style="font-size: 22px; opacity: 1;">✓</span></button><button class="sub-btn gestor-sub-btn" style="background:#27ae60;color:#fff;opacity:0.45;filter:saturate(0.2) brightness(0.85);display:flex;align-items:center;justify-content:space-between" data-idx="2" onclick="toggleGestorSub(this,2)">JL<span class="gsub-check" style="font-size:22px;opacity:0">✓</span></button><button class="btn-save" style="margin-top:4px;width:100%;padding:14px;font-size:15px;border-radius:10px" onclick="closeSubModal()">Listo</button></div>
-    <button class="submodal-cancel" onclick="closeSubModal()">Cancelar</button>
+    <div class="stats-body" id="stats-body"></div>
   </div>
 </div>
 
 <script>
+// ===== DATOS =====
 const MONTHS_ES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 const DAYS_ES=['lunes','martes','miércoles','jueves','viernes','sábado','domingo'];
-const today=new Date();today.setHours(0,0,0,0);
+const today=new Date(); today.setHours(0,0,0,0);
 let cur=new Date(today.getFullYear(),today.getMonth(),1);
 let events=[];
+let trash=[];
 
-// Estado del formulario
-let selTipoEvento=null, selGestores=new Set(), selEstado=null, selCategoria=null;
-let selCliente='', selAgencia='';
-let subModalTarget=null;
+const ESTADO_COLORS={Posible:'#e0a800',Confirmado:'#1a73e8',Finalizado:'#7f8c8d',Aplazado:'#5daa5d'};
+const TIPO_SHORT={'CASA DE PAPEL':'C.PAPEL','INTOCABLES':'INTOC.','A TEMPO':'A TEMPO','CONCURSO PISTA':'C.PISTA','CONCURSO LIVE MUSIC':'C.LIVE','FIRST DATES':'F.DATES','CONCURSO MIX':'C.MIX','AQUELLOS MARAVILLOSOS AÑOS':'A.MAR.','GUARDIANES':'GUARD.','CLUEDO':'CLUEDO','WATER TEAM':'W.TEAM','CABALLEROS DEL GRIAL':'C.GRIAL','EUROVISION':'EUROVISION','MEN IN BLACK':'M.BLACK','ABORDAJE PIRATA':'PIRATA','TELECONCURSO':'TELEC.','INVENTO NUEVO':'INVENTO'};
 
-const TIPO_COLORS={'CASA DE PAPEL':'#c0392b','INTOCABLES':'#1a73e8','A TEMPO':'#7d5a3c','CONCURSO PISTA':'#27ae60','CONCURSO LIVE MUSIC':'#e67e22','OTROS':'#5b9bd5'};
+const ACTIVIDADES_TREE={
+  '1. TEAM BUILDING':{color:'#e8c4c4',items:['Casa de Papel','Intocables','A Tempo','Concurso Pista','Concurso Live Music','First Dates','Concurso MIX','Aquellos Maravillosos Años','Guardianes','Cluedo','OTROS'],itemColors:['#f8d7da','#fce8d5','#fef9c3','#d4edda','#d1ecf1','#e2d9f3','#fddde6','#d6eaf8','#fde8d8','#e8f5e9','#f0f0f0'],otros:['Water Team','Caballeros del Grial','Eurovision','Men in Black','Abordaje Pirata','Teleconcurso','Invento nuevo'],otrosColors:['#d6eaf8','#fef9c3','#fddde6','#d4edda','#ffe0cc','#e8d5f5','#c8e6c9']},
+  '2. ESPECTÁCULOS Y EVENTOS':{color:'#fce8d5',items:[]},
+  '3. PRESENTACIÓN DE ACTOS':{color:'#e2d9f3',items:[]},
+  '4. FORMACIÓN Y PONENCIAS':{color:'#d4edda',items:[]}
+};
 
-const TIPOS=[
-  {label:'CASA DE PAPEL',color:'#c0392b',text:'#fff'},
-  {label:'INTOCABLES',color:'#1a73e8',text:'#fff'},
-  {label:'A TEMPO',color:'#7d5a3c',text:'#fff'},
-  {label:'CONCURSO PISTA',color:'#27ae60',text:'#fff'},
-  {label:'CONCURSO LIVE MUSIC',color:'#e67e22',text:'#fff'},
-  {label:'OTROS',color:'#5b9bd5',text:'#fff'},
-];
-const GESTORES=[
-  {label:'DIANA',color:'#9b59b6',text:'#fff'},
-  {label:'VIC',color:'#1a73e8',text:'#fff'},
-  {label:'JL',color:'#27ae60',text:'#fff'},
-];
-const ESTADOS=[
-  {label:'Posible',color:'#f39c12',text:'#7d5a00'},
-  {label:'Confirmado',color:'#3498db',text:'#0a3d62'},
-  {label:'Finalizado',color:'#95a5a6',text:'#2c3e50'},
-  {label:'Aplazado',color:'#a8d8a8',text:'#1a5c1a'},
-];
-const CATEGORIAS=[
-  {label:'Team Building',color:'#5b9bd5',text:'#0a3d62'},
-  {label:'Espectáculos y Eventos',color:'#f39c12',text:'#7d5a00'},
-  {label:'Formación',color:'#a8d8a8',text:'#1a5c1a'},
-  {label:'Ponencia',color:'#f8c8d4',text:'#8b1a2e'},
-];
+const ESTADOS=[{label:'Posible',color:'#fdebd0',text:'#7d5a00'},{label:'Confirmado',color:'#d1ecf1',text:'#0a3d62'},{label:'Finalizado',color:'#e2e3e5',text:'#2c3e50'},{label:'Aplazado',color:'#d4edda',text:'#1a5c1a'}];
+const GESTORES=[{label:'DIANA',color:'#9b59b6',text:'#fff'},{label:'VIC',color:'#1a73e8',text:'#fff'},{label:'JL',color:'#27ae60',text:'#fff'}];
+const ACTORES_BBDD=['VIC','JL','MON','ARANCHA','AGUS','DIANA','MAX','ISRA','PABLO BARRIOS','OTROS'];
 
-// Datos de ejemplo (luego vendrán de Google Sheets)
 let DB_CLIENTES=['Banco Santander','Coca-Cola España','El Corte Inglés','Ferrovial','Iberdrola','Inditex','MAPFRE','Mercadona','Repsol','Telefónica'];
-let DB_AGENCIAS=['Agencia Creativa BCN','Eventalia','Grupo Eventoplus','ilusiona Eventos','Mònica Serrano Events','Producciones XYZ','Wonder Events'];
-const DB_POBLACIONES=['A Coruña','Albacete','Alcalá de Henares','Alcorcón','Algeciras','Alicante','Almería','Alzira','Arrecife','Ávila','Badajoz','Badalona','Barcelona','Benidorm','Bilbao','Burgos','Cáceres','Cádiz','Cartagena','Castellón de la Plana','Ceuta','Ciudad Real','Córdoba','Cuenca','Elche','Fuengirola','Gandía','Getafe','Gijón','Girona','Granada','Guadalajara','Huelva','Huesca','Ibiza','Jaén','Jerez de la Frontera','L\'Hospitalet de Llobregat','La Palma','Las Palmas de Gran Canaria','León','Lérida','Linares','Logroño','Lugo','Madrid','Málaga','Manresa','Marbella','Melilla','Mérida','Móstoles','Murcia','Oviedo','Palencia','Palma de Mallorca','Pamplona','Pontevedra','Reus','Sabadell','Salamanca','San Cristóbal de La Laguna','San Sebastián','Santa Cruz de Tenerife','Santander','Santiago de Compostela','Segovia','Sevilla','Soria','Tarragona','Terrassa','Toledo','Torrevieja','Valencia','Valladolid','Vigo','Vitoria-Gasteiz','Zamora','Zaragoza'];
+let DB_AGENCIAS=['Agencia Creativa BCN','Eventalia','Grupo Eventoplus','ilusiona Eventos','Wonder Events'];
+const DB_POBLACIONES=['A Coruña','Albacete','Alcalá de Henares','Alicante','Almería','Ávila','Badajoz','Badalona','Barcelona','Benidorm','Bilbao','Burgos','Cáceres','Cádiz','Cartagena','Castellón de la Plana','Ciudad Real','Córdoba','Cuenca','Elche','Fuengirola','Gandía','Getafe','Gijón','Girona','Granada','Guadalajara','Huelva','Huesca','Ibiza','Jaén','Jerez de la Frontera','Las Palmas de Gran Canaria','León','Lérida','Logroño','Lugo','Madrid','Málaga','Marbella','Melilla','Mérida','Móstoles','Murcia','Oviedo','Palencia','Palma de Mallorca','Pamplona','Pontevedra','Reus','Sabadell','Salamanca','San Sebastián','Santa Cruz de Tenerife','Santander','Santiago de Compostela','Segovia','Sevilla','Soria','Tarragona','Terrassa','Toledo','Torrevieja','Valencia','Valladolid','Vigo','Vitoria-Gasteiz','Zamora','Zaragoza'];
 
+// Estado formulario
+let selActividad=null, selEstado=null, selGestores=new Set();
+let selCliente='', selAgencia='';
+let actoresState={confirmado:[],propuesto:[],nodisponible:[],bbdd:[...ACTORES_BBDD]};
+let subModalTarget=null, _actividadCategoria=null;
+let _popupEvIdx=null, _editIdx=null, _currentDate=null;
+
+// ===== UTILS =====
 function pad(n){return String(n).padStart(2,'0')}
 function sameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
 function capFirst(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 function dowLun(d){return(d.getDay()+6)%7}
 
+// ===== CALENDARIO =====
 function renderAll(){
   document.getElementById('main-label').textContent=capFirst(MONTHS_ES[cur.getMonth()])+' '+cur.getFullYear();
   renderGrid();
 }
-const TIPO_SHORT={'CASA DE PAPEL':'C.PAPEL','INTOCABLES':'INTOC.','A TEMPO':'A TEMPO','CONCURSO PISTA':'C.PISTA','CONCURSO LIVE MUSIC':'C.LIVE','OTROS':'OTROS'};
-const ESTADO_COLORS={'Posible':'#e0a800','Confirmado':'#1a73e8','Finalizado':'#7f8c8d','Aplazado':'#5daa5d'};
 
 function renderGrid(){
   const g=document.getElementById('month-grid');
@@ -506,239 +443,251 @@ function renderGrid(){
   const totalCells=Math.ceil((startDow+last.getDate())/7)*7;
   let html='';
   for(let i=0;i<totalCells;i++){
-    const dt=new Date(first);dt.setDate(dt.getDate()-startDow+i);
+    const dt=new Date(first); dt.setDate(dt.getDate()-startDow+i);
     const isThisMonth=dt.getMonth()===cur.getMonth();
     const isToday=sameDay(dt,today);
+    const ds=dt.getFullYear()+'-'+pad(dt.getMonth()+1)+'-'+pad(dt.getDate());
     const dayEvs=events.filter(e=>sameDay(e.date,dt)).sort((a,b)=>a.startTime.localeCompare(b.startTime));
-    const ds=`${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}`;
-    html+=`<div class="month-cell${isThisMonth?'':' other-month'}" onclick="cellClick(event,'${ds}')">
-      <div class="cell-num${isToday?' today':''}">${dt.getDate()}</div>
-      <div class="cell-events">`;
-    dayEvs.slice(0,4).forEach((ev,idx)=>{
-      const bg=ESTADO_COLORS[ev.estado]||'#888';
-      const short=TIPO_SHORT[ev.tipo]||ev.tipo.slice(0,6);
+    html+=`<div class="month-cell${isThisMonth?'':' other-month'}" onclick="cellClick(event,'${ds}')">`;
+    html+=`<div class="cell-num${isToday?' today':''}">${dt.getDate()}</div>`;
+    html+=`<div class="cell-events">`;
+    dayEvs.slice(0,4).forEach(ev=>{
+      const bg=ESTADO_COLORS[ev.estado]||'#aaa';
+      const short=TIPO_SHORT[ev.actividad||ev.tipo]||(ev.actividad||ev.tipo||'').slice(0,8);
       const pax=ev.pax?` · ${ev.pax}p`:'';
       const pob=ev.poblacion?` · ${ev.poblacion}`:'';
-      const evIdx=events.indexOf(ev);
-      html+=`<div class="cell-event" style="background:${bg}" 
-        onclick="event.stopPropagation();showPopup(${evIdx},this)"
-        ondblclick="event.stopPropagation();editEventByIdx(${evIdx})"
-      >${ev.startTime} ${short}${pax}${pob}</div>`;
+      const idx=events.indexOf(ev);
+      html+=`<div class="cell-event" style="background:${bg}" onclick="event.stopPropagation();showPopup(${idx},this)" ondblclick="event.stopPropagation();editEventByIdx(${idx})">${ev.startTime} ${short}${pax}${pob}</div>`;
     });
-    if(dayEvs.length>4){
-      const ds2=ds;
-      html+=`<div class="cell-more" onclick="event.stopPropagation();openDayView('${ds2}')">+${dayEvs.length-4} más</div>`;
-    }
+    if(dayEvs.length>4) html+=`<div class="cell-more" onclick="event.stopPropagation();openDayView('${ds}')">+${dayEvs.length-4} más</div>`;
     html+=`</div></div>`;
   }
   g.innerHTML=html;
 }
+
+function cellClick(event,dateStr){
+  if(document.getElementById('popup').classList.contains('open')){closePopup();return;}
+  openModal(dateStr);
+}
 function shiftMonth(n){cur=new Date(cur.getFullYear(),cur.getMonth()+n,1);renderAll()}
 function goToday(){cur=new Date(today.getFullYear(),today.getMonth(),1);renderAll()}
 
-// ---- MODAL PRINCIPAL ----
+document.addEventListener('wheel',function(e){
+  const anyOpen=['modal','submodal','actividad-modal','trash-modal','stats-modal'].some(id=>document.getElementById(id).classList.contains('open'));
+  if(anyOpen)return;
+  if(e.deltaY>0)shiftMonth(1); else shiftMonth(-1);
+},{passive:true});
+
+document.addEventListener('click',function(e){
+  const popup=document.getElementById('popup');
+  if(popup.classList.contains('open')&&!popup.contains(e.target))closePopup();
+});
+
+// ===== MODAL PRINCIPAL =====
 function openModal(dateStr){
-  const d=new Date(dateStr+'T00:00:00');
+  _currentDate=dateStr?new Date(dateStr+'T00:00:00'):new Date();
+  _editIdx=null;
+  const d=_currentDate;
   const dow=DAYS_ES[dowLun(d)];
   document.getElementById('modal-date-label').textContent=capFirst(dow)+', '+d.getDate()+' de '+MONTHS_ES[d.getMonth()]+' '+d.getFullYear();
-  // reset todo
-  selTipoEvento=null;selGestores=new Set();selEstado=null;selCategoria=null;selCliente='';selAgencia='';
-  window._editIdx=null;
-  document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('selected'));
-  document.querySelectorAll('.gestor-btn').forEach(b=>b.classList.remove('active'));
+  // reset campos
+  selActividad=null; selEstado=null; selGestores=new Set(); selCliente=''; selAgencia='';
+  document.getElementById('evento-label').style.display=''; document.getElementById('evento-label').textContent='Toca para seleccionar'; document.getElementById('evento-badge').innerHTML='';
+  document.getElementById('estado-label').style.display=''; document.getElementById('estado-label').textContent='Toca para seleccionar'; document.getElementById('estado-badge').innerHTML='';
+  document.getElementById('gestor-label').style.display=''; document.getElementById('gestor-label').textContent='¿Quién gestiona?'; document.getElementById('gestor-badges').innerHTML='';
   document.getElementById('ev-start').value='10:00';
   document.getElementById('ev-end').value='12:30';
   document.getElementById('ev-pax').value='';
   document.getElementById('cliente-input').value='';
   document.getElementById('agencia-input').value='';
   document.getElementById('ev-poblacion').value='';
+  document.getElementById('ev-detalles-cliente').value='';
   document.getElementById('ev-detalles').value='';
   document.getElementById('ev-timing-cliente').value='10:00 Inicio actividad\n12:30 Fin actividad\n';
   document.getElementById('ev-timing-nuestro').value=calcTiming('10:00','12:30');
   document.querySelectorAll('.turno-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('turno-manana').classList.add('active');
-  setEstadoBadge(null);
-  setCategoriaBadge(null);
-  setTipoBadge(null);
-  setGestorBadges();
+  resetActores();
+  const mb=document.getElementById('modal-box');
+  mb.scrollTop=0;
   document.getElementById('modal').classList.add('open');
-  const mb=document.querySelector('.modal-box');
-  if(mb){mb.scrollTop=0;}
-  setTimeout(()=>{if(mb)mb.scrollTop=0;},50);
-  window._currentDate=new Date(dateStr+'T00:00:00');
+  requestAnimationFrame(()=>{mb.scrollTop=0;});
 }
 function closeModal(){document.getElementById('modal').classList.remove('open')}
-function closeOut(e){if(e.target===document.getElementById('modal'))closeModal()}
 
-function calcTiming(startVal, endVal){
-  if(!startVal) return '';
+// ===== TIMING =====
+function calcTiming(startVal,endVal){
+  if(!startVal)return '';
   const [sh,sm]=startVal.split(':').map(Number);
-  const startMins=sh*60+sm;
-  const t=(offset)=>{
-    let m=startMins+offset;
-    if(m<0)m+=24*60;
-    m=m%(24*60);
-    return pad(Math.floor(m/60))+':'+pad(m%60);
-  };
-  const [eh,em]=endVal?endVal.split(':').map(Number):[sh+2,sm+30];
-  const endMins=(eh||0)*60+(em||0);
-  const te=(offset)=>{
-    let m=endMins+offset;
-    if(m<0)m+=24*60;
-    m=m%(24*60);
-    return pad(Math.floor(m/60))+':'+pad(m%60);
-  };
-  return `${t(-210)} Quedada en la oficina y carga
-${t(-180)} Salida de la oficina
-${t(-150)} Llegada, descarga y montaje
-${t(-60)} Vestirse
-${t(-30)} Preparados
-${t(0)} Inicio actividad
-${te(0)} Fin actividad
-${te(15)} Recoger y cargar
-${te(75)} Fin`;
+  const sm0=sh*60+sm;
+  const t=off=>{let m=sm0+off;if(m<0)m+=1440;m%=1440;return pad(Math.floor(m/60))+':'+pad(m%60)};
+  const [eh,em]=(endVal||'').split(':').map(Number);
+  const em0=(eh||0)*60+(em||0);
+  const te=off=>{let m=em0+off;if(m<0)m+=1440;m%=1440;return pad(Math.floor(m/60))+':'+pad(m%60)};
+  return `${t(-210)} Quedada en la oficina y carga\n${t(-180)} Salida de la oficina\n${t(-150)} Llegada, descarga y montaje\n${t(-60)} Vestirse\n${t(-30)} Preparados\n${t(0)} Inicio actividad\n${te(0)} Fin actividad\n${te(15)} Recoger y cargar\n${te(75)} Fin`;
 }
-
-function defaultTimingCliente(startVal, endVal){
-  if(!startVal) return '';
-  return `${startVal} Inicio actividad\n${endVal||''} Fin actividad\n`;
-}
-
-function setTurno(turno){
-  document.querySelectorAll('.turno-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('turno-'+turno).classList.add('active');
-  const horas={manana:'10:00',tarde:'16:00',noche:'23:00'};
-  const startVal=horas[turno];
-  document.getElementById('ev-start').value=startVal;
-  recalcEnd();
-}
-
 function recalcEnd(){
-  if(!selTipoEvento)return;
   const startVal=document.getElementById('ev-start').value;
-  if(!startVal)return;
+  if(!startVal||!selActividad)return;
   const [h,m]=startVal.split(':').map(Number);
-  const esConcurso=selTipoEvento==='CONCURSO PISTA'||selTipoEvento==='CONCURSO LIVE MUSIC';
+  const esConcurso=selActividad.toLowerCase().includes('concurso');
   const mins=h*60+m+(esConcurso?75:150);
-  const endVal=`${pad(Math.floor(mins/60)%24)}:${pad(mins%60)}`;
+  const endVal=pad(Math.floor(mins/60)%24)+':'+pad(mins%60);
   document.getElementById('ev-end').value=endVal;
   document.getElementById('ev-timing-nuestro').value=calcTiming(startVal,endVal);
 }
-
 function recalcTiming(){
-  const startVal=document.getElementById('ev-start').value;
-  const endVal=document.getElementById('ev-end').value;
-  if(startVal&&endVal) document.getElementById('ev-timing-nuestro').value=calcTiming(startVal,endVal);
+  const s=document.getElementById('ev-start').value;
+  const e=document.getElementById('ev-end').value;
+  if(s&&e)document.getElementById('ev-timing-nuestro').value=calcTiming(s,e);
 }
-
-// Badges de estado y categoría
-function setEstadoBadge(item){
-  const lbl=document.getElementById('estado-label');
-  const badge=document.getElementById('estado-badge');
-  if(!item){lbl.textContent='Toca para seleccionar';lbl.style.display='';badge.innerHTML='';return}
-  lbl.style.display='none';
-  badge.innerHTML=`<span class="sel-badge" style="background:${item.color};color:${item.text}">${item.label}</span>`;
-  selEstado=item.label;
-}
-function setCategoriaBadge(item){
-  const lbl=document.getElementById('categoria-label');
-  const badge=document.getElementById('categoria-badge');
-  if(!item){lbl.textContent='Toca para seleccionar';lbl.style.display='';badge.innerHTML='';return}
-  lbl.style.display='none';
-  badge.innerHTML=`<span class="sel-badge" style="background:${item.color};color:${item.text}">${item.label}</span>`;
-  selCategoria=item.label;
-}
-
-function setGestorBadges(){
-  const lbl=document.getElementById('gestor-label');
-  const cont=document.getElementById('gestor-badges');
-  if(selGestores.size===0){lbl.style.display='';lbl.textContent='¿Quién gestiona?';cont.innerHTML='';return}
-  lbl.style.display='none';
-  cont.innerHTML=Array.from(selGestores).map(g=>{
-    const gest=GESTORES.find(x=>x.label===g);
-    return gest?`<span class="sel-badge" style="background:${gest.color};color:${gest.text};font-weight:700">${gest.label}</span>`:'';
-  }).join('');
-}
-
-function setTipoBadge(item){
-  const lbl=document.getElementById('tipo-label');
-  const badge=document.getElementById('tipo-badge');
-  if(!item){lbl.textContent='Toca para seleccionar';lbl.style.display='';badge.innerHTML='';selTipoEvento=null;return}
-  lbl.style.display='none';
-  badge.innerHTML=`<span class="sel-badge" style="background:${item.color};color:${item.text};font-size:13px;font-weight:700">${item.label}</span>`;
-  selTipoEvento=item.label;
+function setTurno(t){
+  document.querySelectorAll('.turno-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('turno-'+t).classList.add('active');
+  const horas={manana:'10:00',tarde:'16:00',noche:'23:00'};
+  document.getElementById('ev-start').value=horas[t];
   recalcEnd();
 }
 
-// ---- SUBMODAL ----
+// ===== ACTIVIDAD CASCADA =====
+function openActividadModal(){
+  document.getElementById('act-title').textContent='Tipo de evento';
+  const btns=document.getElementById('act-btns');
+  btns.style.gridTemplateColumns='repeat(2,1fr)';
+  btns.innerHTML=Object.keys(ACTIVIDADES_TREE).map(cat=>{
+    const c=ACTIVIDADES_TREE[cat].color;
+    return `<button class="sub-btn" style="background:${c};font-size:16px;min-height:80px" onclick="pickCat('${cat}')">${cat}</button>`;
+  }).join('');
+  document.getElementById('actividad-modal').classList.add('open');
+}
+function closeActividadModal(){document.getElementById('actividad-modal').classList.remove('open')}
+function pickCat(cat){
+  _actividadCategoria=cat;
+  const tree=ACTIVIDADES_TREE[cat];
+  if(!tree.items||tree.items.length===0){setEvento(cat,tree.color);closeActividadModal();return;}
+  document.getElementById('act-title').textContent=cat;
+  const btns=document.getElementById('act-btns');
+  btns.style.gridTemplateColumns='repeat(3,1fr)';
+  btns.innerHTML=`<button class="sub-btn" style="background:#eee;color:#333;grid-column:1/-1;min-height:44px;font-size:13px" onclick="openActividadModal()">← Volver</button>`+
+    tree.items.map((item,i)=>`<button class="sub-btn" style="background:${(tree.itemColors||[])[i]||tree.color}" onclick="pickItem('${item}')">${item}</button>`).join('');
+}
+function pickItem(item){
+  const tree=ACTIVIDADES_TREE[_actividadCategoria];
+  if(item==='OTROS'&&tree.otros&&tree.otros.length){
+    document.getElementById('act-title').textContent='OTROS';
+    const btns=document.getElementById('act-btns');
+    btns.style.gridTemplateColumns='repeat(3,1fr)';
+    btns.innerHTML=`<button class="sub-btn" style="background:#eee;color:#333;grid-column:1/-1;min-height:44px;font-size:13px" onclick="pickCat('${_actividadCategoria}')">← Volver</button>`+
+      tree.otros.map((o,i)=>`<button class="sub-btn" style="background:${(tree.otrosColors||[])[i]||tree.color}" onclick="pickOtro('${o}')">${o}</button>`).join('');
+    return;
+  }
+  setEvento(item,tree.color);closeActividadModal();
+}
+function pickOtro(item){const tree=ACTIVIDADES_TREE[_actividadCategoria];setEvento(item,tree.color);closeActividadModal();}
+function setEvento(val,color){
+  selActividad=val;
+  document.getElementById('evento-label').style.display='none';
+  document.getElementById('evento-badge').innerHTML=`<span class="sel-badge" style="background:${color};color:#2c2c2c;font-size:16px;font-weight:800;padding:8px 16px">${val}</span>`;
+  recalcEnd();
+}
+
+// ===== SUBMODAL (estado / gestor) =====
 function openSubModal(target){
   subModalTarget=target;
-  const titles={tipo:'Tipo de evento',estado:'Estado',categoria:'Categoría',gestor:'¿Quién gestiona?'};
+  const titles={estado:'Estado',gestor:'¿Quién gestiona?'};
   document.getElementById('submodal-title').textContent=titles[target]||target;
-  const itemsMap={tipo:TIPOS,estado:ESTADOS,categoria:CATEGORIAS,gestor:GESTORES};
-  const items=itemsMap[target]||[];
-  if(target==='gestor'){
-    // botones toggle con checkmark, sin cerrar al pulsar
-    document.getElementById('submodal-btns').innerHTML=items.map((it,i)=>{
+  const btns=document.getElementById('submodal-btns');
+  if(target==='estado'){
+    btns.style.gridTemplateColumns='repeat(2,1fr)';
+    btns.innerHTML=ESTADOS.map((it,i)=>`<button class="sub-btn" style="background:${it.color};color:${it.text}" onclick="pickSubModal(${i})">${it.label}</button>`).join('');
+  } else if(target==='gestor'){
+    btns.style.gridTemplateColumns='repeat(3,1fr)';
+    btns.innerHTML=GESTORES.map((it,i)=>{
       const active=selGestores.has(it.label);
-      return `<button class="sub-btn gestor-sub-btn${active?' gsub-active':''}" 
-        style="background:${it.color};color:${it.text};opacity:${active?1:.45};filter:${active?'none':'saturate(0.2) brightness(0.85)'};display:flex;align-items:center;justify-content:space-between"
-        data-idx="${i}" onclick="toggleGestorSub(this,${i})">${it.label}<span class="gsub-check" style="font-size:22px;opacity:${active?1:0}">✓</span></button>`;
-    }).join('')+'<button class="btn-save" style="margin-top:4px;width:100%;padding:14px;font-size:15px;border-radius:10px" onclick="closeSubModal()">Listo</button>';
-  } else {
-    document.getElementById('submodal-btns').innerHTML=items.map((it,i)=>
-      `<button class="sub-btn" style="background:${it.color};color:${it.text}" onclick="pickSubModal(${i})">${it.label}</button>`
-    ).join('');
+      return `<button class="sub-btn" id="gbtn-${it.label}" style="background:${it.color};color:${it.text};opacity:${active?1:.4};font-size:18px;min-height:70px" onclick="toggleGestorBtn('${it.label}')">${it.label}${active?' ✓':''}</button>`;
+    }).join('')+'<button class="btn-save" style="grid-column:1/-1;margin-top:4px;border-radius:10px;padding:14px;font-size:15px" onclick="closeSubModal()">Listo</button>';
   }
   document.getElementById('submodal').classList.add('open');
 }
-
-function toggleGestorSub(el,i){
-  const g=GESTORES[i].label;
-  if(selGestores.has(g)){
-    selGestores.delete(g);
-    el.style.opacity='.45';el.style.filter='saturate(0.2) brightness(0.85)';
-    el.querySelector('.gsub-check').style.opacity='0';
-  } else {
-    selGestores.add(g);
-    el.style.opacity='1';el.style.filter='none';
-    el.querySelector('.gsub-check').style.opacity='1';
-  }
-  setGestorBadges();
-}
-
 function pickSubModal(i){
-  const itemsMap={tipo:TIPOS,estado:ESTADOS,categoria:CATEGORIAS};
-  const items=itemsMap[subModalTarget]||[];
-  if(subModalTarget==='tipo')setTipoBadge(items[i]);
-  else if(subModalTarget==='estado')setEstadoBadge(items[i]);
-  else setCategoriaBadge(items[i]);
-  closeSubModal();
+  if(subModalTarget==='estado'){
+    const it=ESTADOS[i];
+    selEstado=it.label;
+    document.getElementById('estado-label').style.display='none';
+    document.getElementById('estado-badge').innerHTML=`<span class="sel-badge" style="background:${it.color};color:${it.text}">${it.label}</span>`;
+    closeSubModal();
+  }
+}
+function toggleGestorBtn(label){
+  if(selGestores.has(label))selGestores.delete(label); else selGestores.add(label);
+  // update button appearance
+  GESTORES.forEach(g=>{
+    const btn=document.getElementById('gbtn-'+g.label);
+    if(btn){const a=selGestores.has(g.label);btn.style.opacity=a?1:.4;btn.textContent=g.label+(a?' ✓':'');}
+  });
+  // update badge
+  const lbl=document.getElementById('gestor-label');
+  const cont=document.getElementById('gestor-badges');
+  if(selGestores.size===0){lbl.style.display='';cont.innerHTML='';}
+  else{lbl.style.display='none';cont.innerHTML=Array.from(selGestores).map(g=>{const gest=GESTORES.find(x=>x.label===g);return gest?`<span class="sel-badge" style="background:${gest.color};color:${gest.text};font-weight:700">${gest.label}</span>`:''}).join('');}
 }
 function closeSubModal(){document.getElementById('submodal').classList.remove('open')}
-function closeSubOut(e){if(e.target===document.getElementById('submodal'))closeSubModal()}
 
-// ---- AUTOCOMPLETE ----
+// ===== ACTORES =====
+function renderActores(){
+  const cols={confirmado:'col-confirmado',propuesto:'col-propuesto',nodisponible:'col-nodisponible',bbdd:'col-bbdd'};
+  const classes={confirmado:'confirmado',propuesto:'propuesto',nodisponible:'nodisponible',bbdd:'bbdd'};
+  Object.keys(cols).forEach(state=>{
+    const el=document.getElementById(cols[state]);
+    if(!el)return;
+    el.innerHTML=actoresState[state].map(name=>{
+      const cls='actor-btn '+classes[state];
+      if(state==='bbdd'){
+        return `<button class="${cls}" onclick="moveActorTo('${name}','propuesto')" ondblclick="event.stopPropagation();moveActorTo('${name}','confirmado')">${name}</button>`;
+      }
+      return `<button class="${cls}" onclick="cycleActor('${name}','${state}')">${name}</button>`;
+    }).join('');
+  });
+}
+function moveActorTo(name,target){
+  Object.keys(actoresState).forEach(s=>{actoresState[s]=actoresState[s].filter(n=>n!==name);});
+  actoresState[target].push(name);
+  renderActores();
+}
+function cycleActor(name,from){
+  const next={propuesto:'confirmado',confirmado:'nodisponible',nodisponible:'bbdd'};
+  moveActorTo(name,next[from]||'bbdd');
+}
+function resetActores(){actoresState={confirmado:[],propuesto:[],nodisponible:[],bbdd:[...ACTORES_BBDD]};renderActores();}
+function getActoresData(){return{confirmado:[...actoresState.confirmado],propuesto:[...actoresState.propuesto],nodisponible:[...actoresState.nodisponible]};}
+function restoreActores(data){
+  if(!data){resetActores();return;}
+  const usados=[...(data.confirmado||[]),...(data.propuesto||[]),...(data.nodisponible||[])];
+  actoresState={confirmado:data.confirmado||[],propuesto:data.propuesto||[],nodisponible:data.nodisponible||[],bbdd:ACTORES_BBDD.filter(n=>!usados.includes(n))};
+  renderActores();
+}
+
+// ===== AUTOCOMPLETE =====
 function filterAC(type){
-  const input=document.getElementById(type==='poblacion'?'ev-poblacion':type+'-input').value.toLowerCase();
+  const inputId=type==='poblacion'?'ev-poblacion':type+'-input';
+  const inp=document.getElementById(inputId).value.toLowerCase();
   const db=type==='cliente'?DB_CLIENTES:type==='agencia'?DB_AGENCIAS:DB_POBLACIONES;
-  renderDropdown(type,db.filter(x=>x.toLowerCase().includes(input)),input);
+  renderDropdown(type,db.filter(x=>x.toLowerCase().includes(inp)),inp);
 }
 function showAC(type){
-  const input=document.getElementById(type==='poblacion'?'ev-poblacion':type+'-input').value.toLowerCase();
+  const inputId=type==='poblacion'?'ev-poblacion':type+'-input';
+  const inp=document.getElementById(inputId).value.toLowerCase();
   const db=type==='cliente'?DB_CLIENTES:type==='agencia'?DB_AGENCIAS:DB_POBLACIONES;
-  renderDropdown(type,db.filter(x=>!input||x.toLowerCase().includes(input)),input);
+  renderDropdown(type,db.filter(x=>!inp||x.toLowerCase().includes(inp)),inp);
 }
-function hideAC(type,delay){setTimeout(()=>{document.getElementById(type+'-dropdown').classList.remove('open')},delay)}
+function hideAC(type,delay){setTimeout(()=>{const ddId=type==='poblacion'?'poblacion-dropdown':type+'-dropdown';document.getElementById(ddId).classList.remove('open');},delay)}
 function renderDropdown(type,items,query){
   const ddId=type==='poblacion'?'poblacion-dropdown':type+'-dropdown';
   const inputId=type==='poblacion'?'ev-poblacion':type+'-input';
   const dd=document.getElementById(ddId);
-  const isPob=type==='poblacion';
   let html=items.slice(0,20).map(it=>`<div class="ac-item" onmousedown="pickAC('${type}','${it.replace(/'/g,"\\'")}')">${it}</div>`).join('');
-  if(!isPob&&query&&!items.some(x=>x.toLowerCase()===query)){
+  if(type!=='poblacion'&&query&&!items.some(x=>x.toLowerCase()===query))
     html+=`<div class="ac-add" onmousedown="addToDb('${type}')">＋ Añadir "${document.getElementById(inputId).value}"</div>`;
-  }
   dd.innerHTML=html;
   dd.classList.toggle('open',html.length>0);
 }
@@ -747,8 +696,7 @@ function pickAC(type,val){
   const ddId=type==='poblacion'?'poblacion-dropdown':type+'-dropdown';
   document.getElementById(inputId).value=val;
   document.getElementById(ddId).classList.remove('open');
-  if(type==='cliente')selCliente=val;
-  else if(type==='agencia')selAgencia=val;
+  if(type==='cliente')selCliente=val; else if(type==='agencia')selAgencia=val;
 }
 function addToDb(type){
   const val=document.getElementById(type+'-input').value.trim();
@@ -758,288 +706,155 @@ function addToDb(type){
   document.getElementById(type+'-dropdown').classList.remove('open');
 }
 
-// ---- CLICK EN CELDA (zona vacía = nuevo evento) ----
-function cellClick(event,dateStr){
-  if(document.getElementById('popup').classList.contains('open')){
-    closePopup();
-    event.stopPropagation();
-    return;
-  }
-  closePopup();
-  openModal(dateStr);
-}
-
-// ---- POPUP RESUMEN ----
-let _popupEvIdx=null;
-function showPopup(idx, el){
-  closePopup();
-  _popupEvIdx=idx;
-  const ev=events[idx];
-  const d=ev.date;
-  const dow=DAYS_ES[dowLun(d)];
-
-  // colores estado
-  const estadoBg=ESTADO_COLORS[ev.estado]||'#888';
-  const estadoTexts={'Posible':'#7d5a00','Confirmado':'#0a3d62','Finalizado':'#2c3e50','Aplazado':'#1a5c1a'};
-  const estadoTxt=estadoTexts[ev.estado]||'#fff';
-
-  document.getElementById('popup-dot').style.background=estadoBg;
-  document.getElementById('popup-titulo').textContent=ev.startTime+' '+ev.tipo;
-  document.getElementById('popup-fecha').textContent=capFirst(dow)+', '+d.getDate()+' de '+MONTHS_ES[d.getMonth()]+' '+d.getFullYear();
-  document.getElementById('popup-hora').textContent=ev.startTime+' – '+ev.endTime;
-
-  const rowEstado=document.getElementById('popup-row-estado');
-  if(ev.estado){
-    rowEstado.style.display='flex';
-    document.getElementById('popup-estado').innerHTML=`<span class="popup-badge" style="background:${estadoBg};color:${estadoTxt}">${ev.estado}</span>`;
-  } else rowEstado.style.display='none';
-
-  const rowPax=document.getElementById('popup-row-pax');
-  if(ev.pax){rowPax.style.display='flex';document.getElementById('popup-pax').textContent=ev.pax+' personas';}
-  else rowPax.style.display='none';
-
-  const rowPob=document.getElementById('popup-row-pob');
-  if(ev.poblacion){rowPob.style.display='flex';document.getElementById('popup-pob').textContent=ev.poblacion;}
-  else rowPob.style.display='none';
-
-  const rowCli=document.getElementById('popup-row-cliente');
-  if(ev.cliente){rowCli.style.display='flex';document.getElementById('popup-cliente').textContent=ev.cliente;}
-  else rowCli.style.display='none';
-
-  const rowAge=document.getElementById('popup-row-agencia');
-  if(ev.agencia){rowAge.style.display='flex';document.getElementById('popup-agencia').textContent=ev.agencia;}
-  else rowAge.style.display='none';
-
-  const rowGes=document.getElementById('popup-row-gestores');
-  if(ev.gestores&&ev.gestores.length){rowGes.style.display='flex';document.getElementById('popup-gestores').textContent=ev.gestores.join(', ');}
-  else rowGes.style.display='none';
-
-  // posicionar popup cerca del elemento pulsado
-  const popup=document.getElementById('popup');
-  popup.classList.add('open');
-  const rect=el.getBoundingClientRect();
-  const pw=popup.offsetWidth||320;
-  const ph=popup.offsetHeight||300;
-  let top=rect.bottom+8;
-  let left=rect.left;
-  if(left+pw>window.innerWidth-8)left=window.innerWidth-pw-8;
-  if(left<8)left=8;
-  if(top+ph>window.innerHeight-8)top=rect.top-ph-8;
-  if(top<8)top=8;
-  popup.style.top=top+'px';
-  popup.style.left=left+'px';
-}
-
-function closePopup(){
-  document.getElementById('popup').classList.remove('open');
-  _popupEvIdx=null;
-}
-
-let trash=[];
-
-function updateTrashCount(){
-  const badge=document.getElementById('trash-count');
-  if(trash.length>0){badge.style.display='block';badge.textContent=trash.length;}
-  else badge.style.display='none';
-}
-
-function deleteEvent(){
-  if(_popupEvIdx===null)return;
-  const ev=events[_popupEvIdx];
-  ev._deletedAt=new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric'});
-  trash.push(ev);
-  events.splice(_popupEvIdx,1);
-  closePopup();
-  renderGrid();
-  updateTrashCount();
-}
-
-function openTrash(){
-  renderTrashList();
-  document.getElementById('trash-modal').classList.add('open');
-}
-function closeTrash(){document.getElementById('trash-modal').classList.remove('open')}
-function closeTrashOut(e){if(e.target===document.getElementById('trash-modal'))closeTrash()}
-
-function renderTrashList(){
-  const container=document.getElementById('trash-list');
-  if(trash.length===0){
-    container.innerHTML='<div class="trash-empty">La papelera está vacía</div>';
-    return;
-  }
-  const ESTADO_COLORS_LOCAL={'Posible':'#e0a800','Confirmado':'#1a73e8','Finalizado':'#7f8c8d','Aplazado':'#5daa5d'};
-  container.innerHTML=trash.map((ev,i)=>{
-    const bg=ESTADO_COLORS_LOCAL[ev.estado]||TIPO_COLORS[ev.tipo]||'#888';
-    const d=ev.date;
-    const dateStr=d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
-    const sub=[dateStr, ev.startTime, ev.poblacion, ev.pax?ev.pax+'p':'', ev.cliente].filter(Boolean).join(' · ');
-    return `<div class="trash-item">
-      <div class="trash-item-dot" style="background:${bg}"></div>
-      <div class="trash-item-info">
-        <div class="trash-item-title">${ev.tipo}</div>
-        <div class="trash-item-sub">${sub}</div>
-        ${ev._deletedAt?`<div class="trash-item-sub" style="color:#e74c3c;font-size:11px">Eliminado el ${ev._deletedAt}</div>`:''}
-      </div>
-      <div class="trash-item-actions">
-        <button class="trash-restore-btn" onclick="restoreEvent(${i})">↩ Restaurar</button>
-        <button class="trash-del-btn" onclick="permanentDelete(${i})">✕</button>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function restoreEvent(i){
-  if(i<0||i>=trash.length)return;
-  events.push(trash[i]);
-  trash.splice(i,1);
-  renderGrid();
-  renderTrashList();
-  updateTrashCount();
-}
-
-function permanentDelete(i){
-  if(i<0||i>=trash.length)return;
-  if(confirm('¿Eliminar definitivamente este evento? Esta acción no se puede deshacer.')){
-    trash.splice(i,1);
-    renderTrashList();
-    updateTrashCount();
-  }
-}
-
-function clearAllTrash(){
-  if(trash.length===0)return;
-  if(confirm('¿Vaciar la papelera? Se eliminarán '+trash.length+' evento(s) definitivamente.')){
-    trash=[];
-    renderTrashList();
-    updateTrashCount();
-  }
-}
-
-function editEvent(){
-  if(_popupEvIdx===null)return;
-  editEventByIdx(_popupEvIdx);
-  closePopup();
-}
-
-function editEventByIdx(idx){
-  const ev=events[idx];
-  window._editIdx=idx;
-  // abrir modal con datos del evento
-  const d=ev.date;
-  const ds=`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
-  openModal(ds);
-  // rellenar campos
-  setTimeout(()=>{
-    // tipo
-    if(ev.tipo){
-      const tipoItem=TIPOS.find(t=>t.label===ev.tipo);
-      if(tipoItem)setTipoBadge(tipoItem);
-    }
-    // horario
-    document.getElementById('ev-start').value=ev.startTime;
-    document.getElementById('ev-end').value=ev.endTime;
-    // pax
-    document.getElementById('ev-pax').value=ev.pax||'';
-    // estado
-    if(ev.estado){
-      const est=ESTADOS.find(e=>e.label===ev.estado);
-      if(est)setEstadoBadge(est);
-    }
-    // categoria
-    if(ev.categoria){
-      const cat=CATEGORIAS.find(c=>c.label===ev.categoria);
-      if(cat)setCategoriaBadge(cat);
-    }
-    // cliente / agencia
-    document.getElementById('cliente-input').value=ev.cliente||'';
-    document.getElementById('agencia-input').value=ev.agencia||'';
-    selCliente=ev.cliente||'';selAgencia=ev.agencia||'';
-    document.getElementById('ev-poblacion').value=ev.poblacion||'';
-    document.getElementById('ev-detalles').value=ev.detalles||'';
-    document.getElementById('ev-timing-cliente').value=ev.timingCliente||defaultTimingCliente(ev.startTime,ev.endTime);
-    document.getElementById('ev-timing-nuestro').value=ev.timingNuestro||calcTiming(ev.startTime,ev.endTime);
-    // gestores
-    selGestores=new Set(ev.gestores||[]);
-    setGestorBadges();
-  },50);
-}
-
-function openDayView(ds){
-  closePopup();
-  const dt=new Date(ds+'T00:00:00');
-  const dow=DAYS_ES[dowLun(dt)].toUpperCase();
-  const isT=sameDay(dt,today);
-  document.getElementById('dv-dow').textContent=dow;
-  const numEl=document.getElementById('dv-num');
-  numEl.textContent=dt.getDate();
-  numEl.className='dayview-num'+(isT?' today':'');
-  const dayEvs=events.filter(e=>sameDay(e.date,dt)).sort((a,b)=>a.startTime.localeCompare(b.startTime));
-  document.getElementById('dv-events').innerHTML=dayEvs.map((ev)=>{
-    const bg=ESTADO_COLORS[ev.estado]||'#888';
-    const idx=events.indexOf(ev);
-    return `<div class="dayview-event" style="background:${bg}" 
-      onclick="closeDayView();showPopup(${idx},this)"
-      ondblclick="closeDayView();editEventByIdx(${idx})"
-    >${ev.startTime} ${ev.tipo}${ev.pax?' · '+ev.pax+'p':''}${ev.poblacion?' · '+ev.poblacion:''}</div>`;
-  }).join('');
-  // posicionar cerca del elemento que se pulsó
-  const dv=document.getElementById('dayview');
-  const box=document.getElementById('dayview-box');
-  dv.classList.add('open');
-  // centrar en pantalla
-  setTimeout(()=>{
-    const bw=box.offsetWidth||260;
-    const bh=box.offsetHeight||300;
-    box.style.top=Math.max(60,window.innerHeight/2-bh/2)+'px';
-    box.style.left=Math.max(8,window.innerWidth/2-bw/2)+'px';
-  },10);
-}
-function closeDayView(){document.getElementById('dayview').classList.remove('open')}
-function closeDayViewOut(e){if(e.target===document.getElementById('dayview'))closeDayView()}
-document.addEventListener('click',e=>{
-  const popup=document.getElementById('popup');
-  if(!popup.classList.contains('open'))return;
-  if(!popup.contains(e.target)){closePopup();}
-},true);
-
-// ---- GUARDAR (con soporte edición) ----
+// ===== GUARDAR / EDITAR =====
 function saveEvent(){
-  if(!selTipoEvento){alert('Selecciona el tipo de evento');return}
+  if(!selActividad){alert('Selecciona el tipo de evento');return}
   if(selGestores.size===0){alert('Selecciona quién gestiona');return}
   const evData={
-    date:new Date(window._currentDate),
-    tipo:selTipoEvento,
+    date:new Date(_currentDate),
+    actividad:selActividad,
+    tipo:selActividad,
     startTime:document.getElementById('ev-start').value,
     endTime:document.getElementById('ev-end').value,
     pax:document.getElementById('ev-pax').value,
     estado:selEstado,
-    categoria:selCategoria,
     cliente:selCliente||document.getElementById('cliente-input').value,
     agencia:selAgencia||document.getElementById('agencia-input').value,
-    gestores:Array.from(selGestores),
     poblacion:document.getElementById('ev-poblacion').value,
+    gestores:Array.from(selGestores),
+    detallesCliente:document.getElementById('ev-detalles-cliente').value,
     detalles:document.getElementById('ev-detalles').value,
     timingCliente:document.getElementById('ev-timing-cliente').value,
-    timingNuestro:document.getElementById('ev-timing-nuestro').value
+    timingNuestro:document.getElementById('ev-timing-nuestro').value,
+    actores:getActoresData()
   };
-  if(window._editIdx!==undefined&&window._editIdx!==null){
-    events[window._editIdx]=evData;
-    window._editIdx=null;
-  } else {
-    events.push(evData);
-  }
+  if(_editIdx!==null&&_editIdx!==undefined) events[_editIdx]=evData;
+  else events.push(evData);
+  _editIdx=null;
   closeModal();renderGrid();
 }
+function editEvent(){if(_popupEvIdx===null)return;editEventByIdx(_popupEvIdx);closePopup();}
+function editEventByIdx(idx){
+  const ev=events[idx];
+  _editIdx=idx;
+  openModal(ev.date.getFullYear()+'-'+pad(ev.date.getMonth()+1)+'-'+pad(ev.date.getDate()));
+  setTimeout(()=>{
+    if(ev.actividad){
+      let color='#aaa';
+      Object.keys(ACTIVIDADES_TREE).forEach(cat=>{const t=ACTIVIDADES_TREE[cat];if([...t.items||[],...t.otros||[]].includes(ev.actividad)||cat===ev.actividad)color=t.color;});
+      setEvento(ev.actividad,color);
+    }
+    document.getElementById('ev-start').value=ev.startTime;
+    document.getElementById('ev-end').value=ev.endTime;
+    document.getElementById('ev-pax').value=ev.pax||'';
+    if(ev.estado){selEstado=ev.estado;document.getElementById('estado-label').style.display='none';const it=ESTADOS.find(e=>e.label===ev.estado);if(it)document.getElementById('estado-badge').innerHTML=`<span class="sel-badge" style="background:${it.color};color:${it.text}">${it.label}</span>`;}
+    document.getElementById('cliente-input').value=ev.cliente||''; selCliente=ev.cliente||'';
+    document.getElementById('agencia-input').value=ev.agencia||''; selAgencia=ev.agencia||'';
+    document.getElementById('ev-poblacion').value=ev.poblacion||'';
+    document.getElementById('ev-detalles-cliente').value=ev.detallesCliente||'';
+    document.getElementById('ev-detalles').value=ev.detalles||'';
+    document.getElementById('ev-timing-cliente').value=ev.timingCliente||'';
+    document.getElementById('ev-timing-nuestro').value=ev.timingNuestro||calcTiming(ev.startTime,ev.endTime);
+    selGestores=new Set(ev.gestores||[]);
+    const lbl=document.getElementById('gestor-label');const cont=document.getElementById('gestor-badges');
+    if(selGestores.size>0){lbl.style.display='none';cont.innerHTML=Array.from(selGestores).map(g=>{const gest=GESTORES.find(x=>x.label===g);return gest?`<span class="sel-badge" style="background:${gest.color};color:${gest.text}">${gest.label}</span>`:''}).join('');}
+    restoreActores(ev.actores||null);
+    document.getElementById('modal-box').scrollTop=0;
+  },50);
+}
 
-// Cambiar mes con rueda del ratón
-document.addEventListener('wheel',e=>{
-  const modal=document.getElementById('modal');
-  const trash=document.getElementById('trash-modal');
-  const submodal=document.getElementById('submodal');
-  if(modal.classList.contains('open')||trash.classList.contains('open')||submodal.classList.contains('open'))return;
-  if(e.deltaY>0) shiftMonth(1);
-  else shiftMonth(-1);
-},{passive:true});
+// ===== POPUP RESUMEN =====
+function showPopup(idx,el){
+  closePopup();_popupEvIdx=idx;
+  const ev=events[idx];const d=ev.date;
+  const bg=ESTADO_COLORS[ev.estado]||'#888';
+  document.getElementById('popup-dot').style.background=bg;
+  document.getElementById('popup-titulo').textContent=ev.startTime+' '+(ev.actividad||ev.tipo);
+  document.getElementById('popup-fecha').textContent=capFirst(DAYS_ES[dowLun(d)])+', '+d.getDate()+' de '+MONTHS_ES[d.getMonth()]+' '+d.getFullYear();
+  document.getElementById('popup-hora').textContent=ev.startTime+' – '+ev.endTime;
+  const showRow=(id,val,content)=>{const r=document.getElementById(id);r.style.display=val?'flex':'none';if(val)document.getElementById(id.replace('pr-','popup-')).innerHTML=content||val;};
+  showRow('pr-estado',ev.estado,`<span class="popup-badge" style="background:${bg};color:#fff">${ev.estado}</span>`);
+  showRow('pr-pax',ev.pax,ev.pax+' personas');
+  showRow('pr-pob',ev.poblacion,ev.poblacion);
+  showRow('pr-cliente',ev.cliente,ev.cliente);
+  showRow('pr-gestores',ev.gestores&&ev.gestores.length,(ev.gestores||[]).join(', '));
+  const popup=document.getElementById('popup');
+  popup.classList.add('open');
+  const rect=el.getBoundingClientRect();
+  let top=rect.bottom+8,left=rect.left;
+  const pw=320;
+  if(left+pw>window.innerWidth-8)left=window.innerWidth-pw-8;
+  if(left<8)left=8;
+  if(top+300>window.innerHeight-8)top=rect.top-310;
+  if(top<8)top=8;
+  popup.style.top=top+'px';popup.style.left=left+'px';
+}
+function closePopup(){document.getElementById('popup').classList.remove('open');_popupEvIdx=null;}
+
+// ===== DAYVIEW =====
+function openDayView(ds){
+  closePopup();
+  const dt=new Date(ds+'T00:00:00');
+  const isT=sameDay(dt,today);
+  document.getElementById('dv-dow').textContent=DAYS_ES[dowLun(dt)].toUpperCase();
+  const numEl=document.getElementById('dv-num');numEl.textContent=dt.getDate();numEl.className='dayview-num'+(isT?' today':'');
+  const dayEvs=events.filter(e=>sameDay(e.date,dt)).sort((a,b)=>a.startTime.localeCompare(b.startTime));
+  document.getElementById('dv-events').innerHTML=dayEvs.map(ev=>{
+    const bg=ESTADO_COLORS[ev.estado]||'#aaa';const idx=events.indexOf(ev);
+    return `<div class="dayview-event" style="background:${bg}" onclick="closeDayView();showPopup(${idx},this)" ondblclick="closeDayView();editEventByIdx(${idx})">${ev.startTime} ${ev.actividad||ev.tipo}${ev.pax?' · '+ev.pax+'p':''}${ev.poblacion?' · '+ev.poblacion:''}</div>`;
+  }).join('');
+  const dv=document.getElementById('dayview');const box=document.getElementById('dayview-box');
+  dv.classList.add('open');
+  setTimeout(()=>{const bw=box.offsetWidth||260,bh=box.offsetHeight||300;box.style.top=Math.max(60,window.innerHeight/2-bh/2)+'px';box.style.left=Math.max(8,window.innerWidth/2-bw/2)+'px';},10);
+}
+function closeDayView(){document.getElementById('dayview').classList.remove('open')}
+function closeDayViewOut(e){if(e.target===document.getElementById('dayview'))closeDayView()}
+
+// ===== PAPELERA =====
+function updateTrashCount(){const b=document.getElementById('trash-count');if(trash.length>0){b.style.display='block';b.textContent=trash.length;}else b.style.display='none';}
+function deleteEvent(){
+  if(_popupEvIdx===null)return;
+  const ev=events[_popupEvIdx];ev._deletedAt=new Date().toLocaleDateString('es-ES');
+  trash.push(ev);events.splice(_popupEvIdx,1);
+  closePopup();renderGrid();updateTrashCount();
+}
+function openTrash(){renderTrashList();document.getElementById('trash-modal').classList.add('open')}
+function closeTrash(){document.getElementById('trash-modal').classList.remove('open')}
+function renderTrashList(){
+  const c=document.getElementById('trash-list');
+  if(!trash.length){c.innerHTML='<div class="trash-empty">La papelera está vacía</div>';return;}
+  c.innerHTML=trash.map((ev,i)=>{
+    const bg=ESTADO_COLORS[ev.estado]||'#888';
+    const d=ev.date;const ds=d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
+    const sub=[ds,ev.startTime,ev.poblacion,ev.pax?ev.pax+'p':'',ev.cliente].filter(Boolean).join(' · ');
+    return `<div class="trash-item"><div class="trash-item-dot" style="background:${bg}"></div><div class="trash-item-info"><div class="trash-item-title">${ev.actividad||ev.tipo}</div><div class="trash-item-sub">${sub}</div>${ev._deletedAt?`<div class="trash-item-sub" style="color:#e74c3c;font-size:11px">Eliminado el ${ev._deletedAt}</div>`:''}</div><div class="trash-item-actions"><button class="trash-restore-btn" onclick="restoreEvent(${i})">↩</button><button class="trash-del-btn" onclick="permanentDelete(${i})">✕</button></div></div>`;
+  }).join('');
+}
+function restoreEvent(i){events.push(trash[i]);trash.splice(i,1);renderGrid();renderTrashList();updateTrashCount();}
+function permanentDelete(i){if(confirm('¿Eliminar definitivamente?')){trash.splice(i,1);renderTrashList();updateTrashCount();}}
+function clearAllTrash(){if(!trash.length)return;if(confirm('¿Vaciar la papelera?')){trash=[];renderTrashList();updateTrashCount();}}
+
+// ===== ESTADÍSTICAS =====
+function openStats(){renderStats();document.getElementById('stats-modal').classList.add('open')}
+function closeStats(){document.getElementById('stats-modal').classList.remove('open')}
+function renderStats(){
+  const evs=events;const total=evs.length;
+  const count=(arr,key)=>{const r={};arr.forEach(e=>{if(e[key]){r[e[key]]=(r[e[key]]||0)+1;}});return Object.entries(r).sort((a,b)=>b[1]-a[1]);};
+  const byAct=count(evs,'actividad');const byPob=count(evs,'poblacion').slice(0,10);const byCli=count(evs,'cliente').slice(0,10);
+  const byEstado={Posible:0,Confirmado:0,Finalizado:0,Aplazado:0};evs.forEach(e=>{if(e.estado&&byEstado[e.estado]!==undefined)byEstado[e.estado]++;});
+  const byGest={};evs.forEach(e=>{(e.gestores||[]).forEach(g=>{byGest[g]=(byGest[g]||0)+1;});});
+  const bars=(data,max,color)=>data.map(([k,v])=>`<div class="stats-bar-row"><div class="stats-bar-label" title="${k}">${k}</div><div class="stats-bar" style="width:${Math.round(v/max*100)}%;max-width:calc(100% - 160px);background:${color||'var(--blue)'}"></div><div class="stats-bar-num">${v}</div></div>`).join('');
+  const ec={'Posible':'#f39c12','Confirmado':'#1a73e8','Finalizado':'#7f8c8d','Aplazado':'#5daa5d'};
+  const gc={DIANA:'#9b59b6',VIC:'#1a73e8',JL:'#27ae60'};
+  let html=`<div class="stats-card"><div class="stats-big">${total}</div><div class="stats-big-sub">EVENTOS TOTALES</div></div>`;
+  html+=`<div class="stats-card wide"><div class="stats-card-title">Por estado</div>${Object.entries(byEstado).map(([k,v])=>`<div class="stats-row"><span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:${ec[k]};display:inline-block"></span>${k}</span><span class="stats-row-val">${v}${total>0?` <span style="font-size:11px;font-weight:400;color:var(--muted)">(${Math.round(v/total*100)}%)</span>`:''}</span></div>`).join('')}</div>`;
+  if(byAct.length)html+=`<div class="stats-card full"><div class="stats-card-title">Actividades realizadas</div>${bars(byAct,byAct[0][1],'#f8d7da')}</div>`;
+  if(byPob.length)html+=`<div class="stats-card wide"><div class="stats-card-title">Top ciudades</div>${bars(byPob,byPob[0][1],'#d1ecf1')}</div>`;
+  const gestArr=Object.entries(byGest).sort((a,b)=>b[1]-a[1]);
+  html+=`<div class="stats-card"><div class="stats-card-title">Por gestor</div>${gestArr.length?gestArr.map(([k,v])=>`<div class="stats-row"><span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:${gc[k]||'#888'};display:inline-block"></span>${k}</span><span class="stats-row-val">${v}</span></div>`).join(''):'<div style="color:var(--muted);font-size:13px">Sin datos</div>'}</div>`;
+  if(byCli.length)html+=`<div class="stats-card full"><div class="stats-card-title">Clientes con más eventos</div>${bars(byCli,byCli[0][1],'#d4edda')}</div>`;
+  document.getElementById('stats-body').innerHTML=html||'<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted)">Aún no hay eventos</div>';
+}
 
 renderAll();
 </script>
