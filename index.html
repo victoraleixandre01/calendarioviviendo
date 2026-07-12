@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0034)file:///D:/Descargas/index_55.html -->
+<!-- saved from url=(0034)file:///D:/Descargas/index_56.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +32,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 .cell-num{font-size:15px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 2px auto;color:var(--text);line-height:28px;text-align:center;padding:0;font-weight:500}
 .cell-num.today{background:var(--blue);color:#fff;font-weight:700}
 .cell-events{display:flex;flex-direction:column;gap:2px}
-.cell-event{font-size:11px;font-weight:700;color:#fff;border-radius:4px;padding:3px 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3;letter-spacing:.1px;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+.cell-event{font-size:12px;font-weight:800;color:#1a1a1a;border-radius:4px;padding:3px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.4;letter-spacing:.1px;text-shadow:none}
 .cell-more{font-size:10px;color:var(--muted);padding:2px 4px;font-weight:600}
 /* Solo en móvil: scroll y celdas compactas */
 @media(max-width:640px){
@@ -207,7 +207,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
       <div class="cell-num">11</div>
       <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-12&#39;)">
       <div class="cell-num today">12</div>
-      <div class="cell-events"><div class="cell-event" style="background:#e0a800" onclick="event.stopPropagation();showPopup(0,this)" ondblclick="event.stopPropagation();editEventByIdx(0)">16:00 INTOC. · 30p · Albacete</div></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-13&#39;)">
+      <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-13&#39;)">
       <div class="cell-num">13</div>
       <div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-14&#39;)">
       <div class="cell-num">14</div>
@@ -295,7 +295,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 <div class="modal-backdrop" id="modal" onclick="closeOut(event)">
   <div class="modal-box">
     <div class="modal-head">
-      <span class="modal-head-date" id="modal-date-label">Domingo, 12 de julio 2026</span>
+      <span class="modal-head-date" id="modal-date-label"></span>
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body">
@@ -303,15 +303,15 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
       <!-- TIPO DE EVENTO -->
       <div class="sec-label">Tipo de evento</div>
       <div class="selector-field" onclick="openSubModal(&#39;tipo&#39;)" id="tipo-field">
-        <span class="sel-label" id="tipo-label" style="display: none;">Toca para seleccionar</span>
-        <div class="sel-value"><span id="tipo-badge"><span class="sel-badge" style="background:#1a73e8;color:#fff;font-size:13px;font-weight:700">INTOCABLES</span></span><span class="sel-arrow">›</span></div>
+        <span class="sel-label" id="tipo-label">Toca para seleccionar</span>
+        <div class="sel-value"><span id="tipo-badge"></span><span class="sel-arrow">›</span></div>
       </div>
 
       <!-- HORARIO -->
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
         <span class="sec-label" style="margin-bottom:0">Horario</span>
         <button onclick="setTurno(&#39;manana&#39;)" class="turno-btn" id="turno-manana">☀️ Mañana</button>
-        <button onclick="setTurno(&#39;tarde&#39;)" class="turno-btn active" id="turno-tarde">🌤 Tarde</button>
+        <button onclick="setTurno(&#39;tarde&#39;)" class="turno-btn" id="turno-tarde">🌤 Tarde</button>
         <button onclick="setTurno(&#39;noche&#39;)" class="turno-btn" id="turno-noche">🌙 Noche</button>
       </div>
       <div class="input-row" style="margin-bottom:16px">
@@ -328,22 +328,22 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
       <!-- ESTADO -->
       <div class="sec-label">Estado</div>
       <div class="selector-field" onclick="openSubModal(&#39;estado&#39;)" id="estado-field">
-        <span class="sel-label" id="estado-label" style="display: none;">Toca para seleccionar</span>
-        <div class="sel-value"><span id="estado-badge"><span class="sel-badge" style="background:#f39c12;color:#7d5a00">Posible</span></span><span class="sel-arrow">›</span></div>
+        <span class="sel-label" id="estado-label">Toca para seleccionar</span>
+        <div class="sel-value"><span id="estado-badge"></span><span class="sel-arrow">›</span></div>
       </div>
 
       <!-- TIPO (categoría) -->
       <div class="sec-label">Categoría</div>
       <div class="selector-field" onclick="openSubModal(&#39;categoria&#39;)" id="categoria-field">
-        <span class="sel-label" id="categoria-label" style="display: none;">Toca para seleccionar</span>
-        <div class="sel-value"><span id="categoria-badge"><span class="sel-badge" style="background:#a8d8a8;color:#1a5c1a">Formación</span></span><span class="sel-arrow">›</span></div>
+        <span class="sel-label" id="categoria-label">Toca para seleccionar</span>
+        <div class="sel-value"><span id="categoria-badge"></span><span class="sel-arrow">›</span></div>
       </div>
 
       <!-- CLIENTE -->
       <div class="sec-label">Cliente</div>
       <div class="autocomplete-wrap">
         <input type="text" id="cliente-input" placeholder="Buscar cliente..." autocomplete="off" oninput="filterAC(&#39;cliente&#39;)" onfocus="showAC(&#39;cliente&#39;)" onblur="hideAC(&#39;cliente&#39;,300)">
-        <div class="autocomplete-dropdown" id="cliente-dropdown"><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Banco Santander&#39;)">Banco Santander</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Coca-Cola España&#39;)">Coca-Cola España</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;El Corte Inglés&#39;)">El Corte Inglés</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Ferrovial&#39;)">Ferrovial</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Iberdrola&#39;)">Iberdrola</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Inditex&#39;)">Inditex</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;MAPFRE&#39;)">MAPFRE</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Mercadona&#39;)">Mercadona</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Repsol&#39;)">Repsol</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Telefónica&#39;)">Telefónica</div></div>
+        <div class="autocomplete-dropdown" id="cliente-dropdown"></div>
       </div>
 
       <!-- AGENCIA -->
@@ -357,14 +357,14 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
       <div class="sec-label">Población</div>
       <div class="autocomplete-wrap">
         <input type="text" id="ev-poblacion" placeholder="Escribe o busca ciudad..." autocomplete="off" oninput="filterAC(&#39;poblacion&#39;)" onfocus="showAC(&#39;poblacion&#39;)" onblur="hideAC(&#39;poblacion&#39;,300)">
-        <div class="autocomplete-dropdown" id="poblacion-dropdown"><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;A Coruña&#39;)">A Coruña</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Albacete&#39;)">Albacete</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Alcalá de Henares&#39;)">Alcalá de Henares</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Alcorcón&#39;)">Alcorcón</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Algeciras&#39;)">Algeciras</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Alicante&#39;)">Alicante</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Almería&#39;)">Almería</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Alzira&#39;)">Alzira</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Arrecife&#39;)">Arrecife</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Ávila&#39;)">Ávila</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Badajoz&#39;)">Badajoz</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Badalona&#39;)">Badalona</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Barcelona&#39;)">Barcelona</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Benidorm&#39;)">Benidorm</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Bilbao&#39;)">Bilbao</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Burgos&#39;)">Burgos</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Cáceres&#39;)">Cáceres</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Cádiz&#39;)">Cádiz</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Cartagena&#39;)">Cartagena</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Castellón de la Plana&#39;)">Castellón de la Plana</div></div>
+        <div class="autocomplete-dropdown" id="poblacion-dropdown"></div>
       </div>
 
       <!-- QUIÉN GESTIONA -->
       <div class="sec-label">¿Quién gestiona?</div>
       <div class="selector-field" onclick="openSubModal(&#39;gestor&#39;)" id="gestor-field">
-        <span class="sel-label" id="gestor-label" style="display: none;">¿Quién gestiona?</span>
-        <div class="sel-value"><span id="gestor-badges" style="display:flex;gap:6px;flex-wrap:wrap"><span class="sel-badge" style="background:#1a73e8;color:#fff;font-weight:700">VIC</span><span class="sel-badge" style="background:#27ae60;color:#fff;font-weight:700">JL</span></span><span class="sel-arrow">›</span></div>
+        <span class="sel-label" id="gestor-label">¿Quién gestiona?</span>
+        <div class="sel-value"><span id="gestor-badges" style="display:flex;gap:6px;flex-wrap:wrap"></span><span class="sel-arrow">›</span></div>
       </div>
 
       <!-- DETALLES -->
@@ -398,8 +398,8 @@ __:__ Fin</textarea>
 <!-- SUBMODAL ESTADO / CATEGORIA -->
 <div class="submodal-backdrop" id="submodal" onclick="closeSubOut(event)">
   <div class="submodal-box">
-    <div class="submodal-title" id="submodal-title">¿Quién gestiona?</div>
-    <div class="submodal-btns" id="submodal-btns"><button class="sub-btn gestor-sub-btn" style="background:#9b59b6;color:#fff;opacity:0.45;filter:saturate(0.2) brightness(0.85);display:flex;align-items:center;justify-content:space-between" data-idx="0" onclick="toggleGestorSub(this,0)">DIANA<span class="gsub-check" style="font-size:22px;opacity:0">✓</span></button><button class="sub-btn gestor-sub-btn" style="background: rgb(26, 115, 232); color: rgb(255, 255, 255); opacity: 1; filter: none; display: flex; align-items: center; justify-content: space-between;" data-idx="1" onclick="toggleGestorSub(this,1)">VIC<span class="gsub-check" style="font-size: 22px; opacity: 1;">✓</span></button><button class="sub-btn gestor-sub-btn" style="background: rgb(39, 174, 96); color: rgb(255, 255, 255); opacity: 1; filter: none; display: flex; align-items: center; justify-content: space-between;" data-idx="2" onclick="toggleGestorSub(this,2)">JL<span class="gsub-check" style="font-size: 22px; opacity: 1;">✓</span></button><button class="btn-save" style="margin-top:4px;width:100%;padding:14px;font-size:15px;border-radius:10px" onclick="closeSubModal()">Listo</button></div>
+    <div class="submodal-title" id="submodal-title"></div>
+    <div class="submodal-btns" id="submodal-btns"></div>
     <button class="submodal-cancel" onclick="closeSubModal()">Cancelar</button>
   </div>
 </div>
@@ -522,6 +522,7 @@ function openModal(dateStr){
   setTipoBadge(null);
   setGestorBadges();
   document.getElementById('modal').classList.add('open');
+  setTimeout(()=>{const mb=document.querySelector('.modal-box');if(mb)mb.scrollTop=0;},10);
   window._currentDate=new Date(dateStr+'T00:00:00');
 }
 function closeModal(){document.getElementById('modal').classList.remove('open')}
