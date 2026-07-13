@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0034)file:///D:/Descargas/index_82.html -->
+<!-- saved from url=(0034)file:///D:/Descargas/index_83.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -344,16 +344,16 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
 <div class="modal-backdrop" id="modal">
   <div class="modal-box" id="modal-box" autocomplete="off">
     <div class="modal-head">
-      <span class="modal-head-date" id="modal-date-label">Jueves, 16 de julio 2026</span>
+      <span class="modal-head-date" id="modal-date-label"></span>
       <div style="display:flex;gap:8px;align-items:center"><button onclick="openGestionar()" style="background:#8430ce;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">⚙️ Gestionar</button><button onclick="openConocidos()" style="background:#0097a7;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">🔍 ¿Cómo nos conocieron?</button><button onclick="cloneEvent()" style="background:#f39c12;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">📋 Clonar</button><button class="modal-close" onclick="closeModal()">✕</button></div>
     </div>
     <div class="modal-body">
       <div class="modal-two-col">
         <div class="modal-col-left">
           <div class="sec-label">Evento</div>
-          <div class="selector-field" id="evento-field" onclick="openActividadModal()" style="min-height: 96px; background: rgb(240, 160, 164); border-color: rgb(240, 160, 164);">
-            <span class="sel-label" id="evento-label" style="display: none;">Toca para seleccionar</span>
-            <div style="display:flex;align-items:center;gap:8px"><span id="evento-badge"><span style="font-size:30px;font-weight:900;color:#1a1a1a;text-shadow:none;text-transform:uppercase;letter-spacing:.5px;line-height:1.2">Casa de Papel</span></span><span class="sel-arrow">›</span></div>
+          <div class="selector-field" id="evento-field" onclick="openActividadModal()" style="min-height:96px">
+            <span class="sel-label" id="evento-label">Toca para seleccionar</span>
+            <div style="display:flex;align-items:center;gap:8px"><span id="evento-badge"></span><span class="sel-arrow">›</span></div>
           </div>
 
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
@@ -367,8 +367,8 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
             </div>
           </div>
           <div class="input-row">
-            <div class="form-group"><label>Inicio</label><input type="time" id="ev-start" value="10:00" oninput="recalcEnd()" style="background: rgb(255, 249, 230); border-color: rgb(243, 156, 18);"></div>
-            <div class="form-group"><label>Fin</label><input type="time" id="ev-end" value="12:30" oninput="recalcTiming()" style="background: rgb(255, 249, 230); border-color: rgb(243, 156, 18);"></div>
+            <div class="form-group"><label>Inicio</label><input type="time" id="ev-start" value="10:00" oninput="recalcEnd()"></div>
+            <div class="form-group"><label>Fin</label><input type="time" id="ev-end" value="12:30" oninput="recalcTiming()"></div>
           </div>
 
           <div class="sec-label">Número de pax</div>
@@ -377,9 +377,9 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
           </div>
 
           <div class="sec-label">Estado</div>
-          <div class="selector-field" id="estado-field" onclick="openSubModal(&#39;estado&#39;)" style="background: rgb(245, 197, 24); border-color: rgb(245, 197, 24);">
-            <span class="sel-label" id="estado-label" style="display: none;">Toca para seleccionar</span>
-            <div style="display:flex;align-items:center;gap:8px"><span id="estado-badge"><span style="font-size:17px;font-weight:900;color:#1a1a1a;text-transform:uppercase">POSIBLE</span></span><span class="sel-arrow">›</span></div>
+          <div class="selector-field" id="estado-field" onclick="openSubModal(&#39;estado&#39;)">
+            <span class="sel-label" id="estado-label">Toca para seleccionar</span>
+            <div style="display:flex;align-items:center;gap:8px"><span id="estado-badge"></span><span class="sel-arrow">›</span></div>
           </div>
 
           <div class="sec-label">Cliente</div>
@@ -411,8 +411,8 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
 
           <div class="sec-label">¿Quién gestiona?</div>
           <div class="selector-field" onclick="openSubModal(&#39;gestor&#39;)">
-            <span class="sel-label" id="gestor-label" style="display: none;">¿Quién gestiona?</span>
-            <div style="display:flex;align-items:center;gap:8px"><span id="gestor-badges" style="display:flex;gap:6px;flex-wrap:wrap"><span class="sel-badge" style="background:#c5d8f7;color:#1a1a1a;font-weight:700">VIC</span></span><span class="sel-arrow">›</span></div>
+            <span class="sel-label" id="gestor-label">¿Quién gestiona?</span>
+            <div style="display:flex;align-items:center;gap:8px"><span id="gestor-badges" style="display:flex;gap:6px;flex-wrap:wrap"></span><span class="sel-arrow">›</span></div>
           </div>
 
           <div class="sec-label">Detalles del evento</div>
@@ -440,7 +440,7 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
             </div>
             <div class="actores-col">
               <div class="actores-col-head" style="background:#5b9bd5">BASE DE DATOS</div>
-              <div class="actores-col-body" id="col-bbdd"><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;VIC&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;VIC&#39;)">VIC</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;JL&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;JL&#39;)">JL</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;MON&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;MON&#39;)">MON</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;ARANCHA&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;ARANCHA&#39;)">ARANCHA</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;AGUS&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;AGUS&#39;)">AGUS</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;DIANA&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;DIANA&#39;)">DIANA</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;MAX&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;MAX&#39;)">MAX</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;ISRA&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;ISRA&#39;)">ISRA</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;PABLO BARRIOS&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;PABLO BARRIOS&#39;)">PABLO BARRIOS</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;OTROS&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;OTROS&#39;)">OTROS</button></div>
+              <div class="actores-col-body" id="col-bbdd"></div>
             </div>
           </div>
 
@@ -477,8 +477,8 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
 <!-- SUBMODAL -->
 <div class="submodal-backdrop" id="submodal" onclick="if(event.target===this)closeSubModal()">
   <div class="submodal-box">
-    <div class="submodal-title" id="submodal-title">¿Quién gestiona?</div>
-    <div class="submodal-btns" id="submodal-btns" style="grid-template-columns: repeat(3, 1fr);"><button class="sub-btn" id="gbtn-DIANA" style="background: rgb(232, 213, 245); color: rgb(26, 26, 26); opacity: 0.4; font-size: 22px; font-weight: 900; min-height: 80px;" onclick="toggleGestorBtn(&#39;DIANA&#39;)">DIANA</button><button class="sub-btn" id="gbtn-VIC" style="background: rgb(197, 216, 247); color: rgb(26, 26, 26); opacity: 1; font-size: 22px; font-weight: 900; min-height: 80px;" onclick="toggleGestorBtn(&#39;VIC&#39;)">VIC ✓</button><button class="sub-btn" id="gbtn-JL" style="background: rgb(197, 232, 213); color: rgb(26, 26, 26); opacity: 0.4; font-size: 22px; font-weight: 900; min-height: 80px;" onclick="toggleGestorBtn(&#39;JL&#39;)">JL</button><button class="btn-save" style="grid-column:1/-1;margin-top:4px;border-radius:10px;padding:14px;font-size:15px" onclick="closeSubModal();if(_pendingSave)saveEvent()">Listo</button></div>
+    <div class="submodal-title" id="submodal-title"></div>
+    <div class="submodal-btns" id="submodal-btns"></div>
     <button class="submodal-cancel" onclick="closeSubModal()">Cancelar</button>
   </div>
 </div>
@@ -486,8 +486,8 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
 <!-- MODAL ACTIVIDAD -->
 <div class="submodal-backdrop" id="actividad-modal" onclick="if(event.target===this)closeActividadModal()">
   <div class="submodal-box" style="max-width:720px">
-    <div class="submodal-title" id="act-title">TEAM BUILDING</div>
-    <div class="submodal-btns" id="act-btns" style="grid-template-columns: repeat(3, 1fr);"><button class="sub-btn" style="background:#eee;color:#333;grid-column:1/-1;min-height:44px;font-size:13px" onclick="openActividadModal()">← Volver</button><button class="sub-btn" style="background:#f0a0a4" onclick="pickItem(&#39;Casa de Papel&#39;)">Casa de Papel</button><button class="sub-btn" style="background:#7ab3e0" onclick="pickItem(&#39;Intocables&#39;)">Intocables</button><button class="sub-btn" style="background:#c4a882" onclick="pickItem(&#39;A Tempo&#39;)">A Tempo</button><button class="sub-btn" style="background:#a8d8b8" onclick="pickItem(&#39;Concurso Música es la Pista&#39;)">Concurso Música es la Pista</button><button class="sub-btn" style="background:#94cce0" onclick="pickItem(&#39;Concurso Live Music&#39;)">Concurso Live Music</button><button class="sub-btn" style="background:#e89898" onclick="pickItem(&#39;First Dates&#39;)">First Dates</button><button class="sub-btn" style="background:#e0bcd8" onclick="pickItem(&#39;Concurso MIX&#39;)">Concurso MIX</button><button class="sub-btn" style="background:#94c8e8" onclick="pickItem(&#39;Aquellos Maravillosos Años&#39;)">Aquellos Maravillosos Años</button><button class="sub-btn" style="background:#c4a882" onclick="pickItem(&#39;Guardianes&#39;)">Guardianes</button><button class="sub-btn" style="background:#a8d8aa" onclick="pickItem(&#39;Cluedo&#39;)">Cluedo</button><button class="sub-btn" style="background:#d0d0d0" onclick="pickItem(&#39;OTROS&#39;)">OTROS</button></div>
+    <div class="submodal-title" id="act-title">Tipo de evento</div>
+    <div class="submodal-btns" id="act-btns" style="grid-template-columns:repeat(3,1fr)"></div>
     <button class="submodal-cancel" onclick="closeActividadModal()">Cancelar</button>
   </div>
 </div>
@@ -687,7 +687,7 @@ function cloneEvent(){
     timingCliente:document.getElementById('ev-timing-cliente').value,
     timingNuestro:document.getElementById('ev-timing-nuestro').value,
     actores:getActoresData(),
-    conocidos:window._tempConocidos||savedEv?.conocidos||'',
+    conocidos:window._tempConocidos||(_editIdx!==null&&events[_editIdx]?events[_editIdx].conocidos:'')||'',
     numActores:document.getElementById('ev-num-actores').value,
     obsActores:document.getElementById('ev-obs-actores').value
   };
@@ -1218,7 +1218,7 @@ function saveEvent(){
     timingCliente:document.getElementById('ev-timing-cliente').value,
     timingNuestro:document.getElementById('ev-timing-nuestro').value,
     actores:getActoresData(),
-    conocidos:window._tempConocidos||savedEv?.conocidos||'',
+    conocidos:window._tempConocidos||(_editIdx!==null&&events[_editIdx]?events[_editIdx].conocidos:'')||'',
     numActores:document.getElementById('ev-num-actores').value,
     obsActores:document.getElementById('ev-obs-actores').value
   };
