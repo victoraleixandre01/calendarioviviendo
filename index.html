@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0048)file:///C:/Users/Usuario/Downloads/index_22.html -->
+<!-- saved from url=(0048)file:///C:/Users/Usuario/Downloads/index_30.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -172,9 +172,9 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 .gest-head-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .gest-title{font-size:18px;font-weight:800;color:var(--text)}
 .gest-tabs{display:flex;gap:0;border-bottom:2px solid var(--border);overflow-x:auto}
-.gest-tab{padding:10px 16px;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;letter-spacing:.5px;text-transform:uppercase;transition:all .15s}
-.gest-tab:hover{color:var(--text)}
-.gest-tab.active{color:#8430ce;border-bottom-color:#8430ce}
+.gest-tab{display:none}
+
+
 .gest-body{flex:1;overflow-y:auto;padding:20px}
 .gest-field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
 .gest-field label{font-size:11px;font-weight:700;color:#1a1a1a;letter-spacing:.7px;text-transform:uppercase}
@@ -182,6 +182,10 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 .gest-field input:focus,.gest-field textarea:focus{border-color:#8430ce}
 .gest-two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:640px){.gest-two-col{grid-template-columns:1fr}}
+.gest-big-btn{border:none;border-radius:12px;padding:16px 10px;font-size:16px;font-weight:900;color:#1a1a1a;cursor:pointer;text-align:center;text-transform:uppercase;letter-spacing:.3px;transition:transform .12s,filter .12s,box-shadow .12s;opacity:.45;filter:saturate(.2) brightness(.85)}
+.gest-big-btn:hover{opacity:.7;filter:saturate(.5)}
+.gest-big-btn.active{opacity:1;filter:none;transform:scale(1.04);box-shadow:0 0 0 3px #fff,0 0 0 5px currentColor,0 4px 16px rgba(0,0,0,.2)}
+.gest-small-btn{padding:10px 8px;font-size:13px}
 .gest-footer{padding:12px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px;flex-shrink:0;background:#fff;border-radius:0 0 14px 14px}
 .gest-save-btn{background:#8430ce;border:none;padding:10px 22px;border-radius:8px;cursor:pointer;font-size:14px;color:#fff;font-weight:700}
 .gest-save-btn:hover{background:#6a25a8}
@@ -297,25 +301,25 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
       <div class="month-dow">LUN</div><div class="month-dow">MAR</div><div class="month-dow">MIÉ</div>
       <div class="month-dow">JUE</div><div class="month-dow">VIE</div><div class="month-dow">SÁB</div><div class="month-dow">DOM</div>
     </div>
-    <div class="month-grid" id="month-grid"><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-06-29&#39;)"><div class="cell-num">29</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-06-30&#39;)"><div class="cell-num">30</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-01&#39;)"><div class="cell-num">1</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-02&#39;)"><div class="cell-num">2</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-03&#39;)"><div class="cell-num">3</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-04&#39;)"><div class="cell-num">4</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-05&#39;)"><div class="cell-num">5</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-06&#39;)"><div class="cell-num">6</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-07&#39;)"><div class="cell-num">7</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-08&#39;)"><div class="cell-num">8</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-09&#39;)"><div class="cell-num">9</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-10&#39;)"><div class="cell-num">10</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-11&#39;)"><div class="cell-num">11</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-12&#39;)"><div class="cell-num">12</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-13&#39;)"><div class="cell-num today">13</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-14&#39;)"><div class="cell-num">14</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-15&#39;)"><div class="cell-num">15</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-16&#39;)"><div class="cell-num">16</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-17&#39;)"><div class="cell-num">17</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-18&#39;)"><div class="cell-num">18</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-19&#39;)"><div class="cell-num">19</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-20&#39;)"><div class="cell-num">20</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-21&#39;)"><div class="cell-num">21</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-22&#39;)"><div class="cell-num">22</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-23&#39;)"><div class="cell-num">23</div><div class="cell-events"><div class="cell-event" style="background:#4a90d9" onclick="event.stopPropagation();showPopup(0,this)" ondblclick="event.stopPropagation();editEventByIdx(0)">16:00 INTOCABLES · 30p · Valencia</div></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-24&#39;)"><div class="cell-num">24</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-25&#39;)"><div class="cell-num">25</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-26&#39;)"><div class="cell-num">26</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-27&#39;)"><div class="cell-num">27</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-28&#39;)"><div class="cell-num">28</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-29&#39;)"><div class="cell-num">29</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-30&#39;)"><div class="cell-num">30</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-31&#39;)"><div class="cell-num">31</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-08-01&#39;)"><div class="cell-num">1</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-08-02&#39;)"><div class="cell-num">2</div><div class="cell-events"></div></div></div>
+    <div class="month-grid" id="month-grid"><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-06-29&#39;)"><div class="cell-num">29</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-06-30&#39;)"><div class="cell-num">30</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-01&#39;)"><div class="cell-num">1</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-02&#39;)"><div class="cell-num">2</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-03&#39;)"><div class="cell-num">3</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-04&#39;)"><div class="cell-num">4</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-05&#39;)"><div class="cell-num">5</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-06&#39;)"><div class="cell-num">6</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-07&#39;)"><div class="cell-num">7</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-08&#39;)"><div class="cell-num">8</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-09&#39;)"><div class="cell-num">9</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-10&#39;)"><div class="cell-num">10</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-11&#39;)"><div class="cell-num">11</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-12&#39;)"><div class="cell-num">12</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-13&#39;)"><div class="cell-num today">13</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-14&#39;)"><div class="cell-num">14</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-15&#39;)"><div class="cell-num">15</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-16&#39;)"><div class="cell-num">16</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-17&#39;)"><div class="cell-num">17</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-18&#39;)"><div class="cell-num">18</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-19&#39;)"><div class="cell-num">19</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-20&#39;)"><div class="cell-num">20</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-21&#39;)"><div class="cell-num">21</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-22&#39;)"><div class="cell-num">22</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-23&#39;)"><div class="cell-num">23</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-24&#39;)"><div class="cell-num">24</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-25&#39;)"><div class="cell-num">25</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-26&#39;)"><div class="cell-num">26</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-27&#39;)"><div class="cell-num">27</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-28&#39;)"><div class="cell-num">28</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-29&#39;)"><div class="cell-num">29</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-30&#39;)"><div class="cell-num">30</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-31&#39;)"><div class="cell-num">31</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-08-01&#39;)"><div class="cell-num">1</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-08-02&#39;)"><div class="cell-num">2</div><div class="cell-events"></div></div></div>
   </div>
 </div>
 
 <!-- POPUP RESUMEN -->
-<div class="popup" id="popup" style="top: 301.594px; left: 826.422px;">
+<div class="popup" id="popup">
   <div class="popup-head">
-    <div class="popup-dot" id="popup-dot" style="background: rgb(74, 144, 217);"></div>
-    <div class="popup-titulo" id="popup-titulo">16:00 Intocables</div>
+    <div class="popup-dot" id="popup-dot"></div>
+    <div class="popup-titulo" id="popup-titulo"></div>
     <button class="popup-close" onclick="closePopup()">✕</button>
   </div>
   <div class="popup-body">
-    <div class="popup-row" id="pr-fecha"><span class="popup-icon">📅</span><span id="popup-fecha">Jueves, 23 de julio 2026</span></div>
-    <div class="popup-row" id="pr-hora"><span class="popup-icon">🕐</span><span id="popup-hora">16:00 – 18:30</span></div>
-    <div class="popup-row" id="pr-estado" style="display: flex;"><span class="popup-icon">🔵</span><span id="popup-estado"><span class="popup-badge" style="background:#4a90d9;color:#fff">CONFIRMADO</span></span></div>
-    <div class="popup-row" id="pr-pax" style="display: flex;"><span class="popup-icon">👥</span><span id="popup-pax">30 personas</span></div>
-    <div class="popup-row" id="pr-pob" style="display: flex;"><span class="popup-icon">📍</span><span id="popup-pob">Valencia</span></div>
-    <div class="popup-row" id="pr-cliente" style="display: none;"><span class="popup-icon">🏢</span><span id="popup-cliente"></span></div>
-    <div class="popup-row" id="pr-gestores" style="display: flex;"><span class="popup-icon">👤</span><span id="popup-gestores">VIC</span></div>
+    <div class="popup-row" id="pr-fecha"><span class="popup-icon">📅</span><span id="popup-fecha"></span></div>
+    <div class="popup-row" id="pr-hora"><span class="popup-icon">🕐</span><span id="popup-hora"></span></div>
+    <div class="popup-row" id="pr-estado"><span class="popup-icon">🔵</span><span id="popup-estado"></span></div>
+    <div class="popup-row" id="pr-pax"><span class="popup-icon">👥</span><span id="popup-pax"></span></div>
+    <div class="popup-row" id="pr-pob"><span class="popup-icon">📍</span><span id="popup-pob"></span></div>
+    <div class="popup-row" id="pr-cliente"><span class="popup-icon">🏢</span><span id="popup-cliente"></span></div>
+    <div class="popup-row" id="pr-gestores"><span class="popup-icon">👤</span><span id="popup-gestores"></span></div>
   </div>
   <div class="popup-footer">
     <button class="popup-del-btn" onclick="deleteEvent()">🗑 Eliminar</button>
@@ -339,26 +343,26 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
 <div class="modal-backdrop" id="modal">
   <div class="modal-box" id="modal-box" autocomplete="off">
     <div class="modal-head">
-      <span class="modal-head-date" id="modal-date-label">Jueves, 23 de julio 2026</span>
+      <span class="modal-head-date" id="modal-date-label">Miércoles, 22 de julio 2026</span>
       <div style="display:flex;gap:8px;align-items:center"><button onclick="openGestionar()" style="background:#8430ce;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">⚙️ Gestionar</button><button onclick="cloneEvent()" style="background:#f39c12;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">📋 Clonar</button><button class="modal-close" onclick="closeModal()">✕</button></div>
     </div>
     <div class="modal-body">
       <div class="modal-two-col">
         <div class="modal-col-left">
           <div class="sec-label">Evento</div>
-          <div class="selector-field" id="evento-field" onclick="openActividadModal()" style="min-height: 96px; background: rgb(232, 196, 196); border-color: rgb(232, 196, 196);">
+          <div class="selector-field" id="evento-field" onclick="openActividadModal()" style="min-height: 96px; background: rgb(196, 168, 130); border-color: rgb(196, 168, 130);">
             <span class="sel-label" id="evento-label" style="display: none;">Toca para seleccionar</span>
-            <div style="display:flex;align-items:center;gap:8px"><span id="evento-badge"><span style="font-size:30px;font-weight:900;color:#1a1a1a;text-shadow:none;text-transform:uppercase;letter-spacing:.5px;line-height:1.2">Intocables</span></span><span class="sel-arrow">›</span></div>
+            <div style="display:flex;align-items:center;gap:8px"><span id="evento-badge"><span style="font-size:30px;font-weight:900;color:#1a1a1a;text-shadow:none;text-transform:uppercase;letter-spacing:.5px;line-height:1.2">A Tempo</span></span><span class="sel-arrow">›</span></div>
           </div>
 
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
             <span class="sec-label" style="margin-bottom:0">Horario</span>
-            <button class="turno-btn active" id="turno-manana" onclick="setTurno(&#39;manana&#39;)">☀️ Mañana</button>
-            <button class="turno-btn" id="turno-tarde" onclick="setTurno(&#39;tarde&#39;)">🌤 Tarde</button>
+            <button class="turno-btn" id="turno-manana" onclick="setTurno(&#39;manana&#39;)">☀️ Mañana</button>
+            <button class="turno-btn active" id="turno-tarde" onclick="setTurno(&#39;tarde&#39;)">🌤 Tarde</button>
             <button class="turno-btn" id="turno-noche" onclick="setTurno(&#39;noche&#39;)">🌙 Noche</button>
             <div style="margin-left:8px;display:flex;border:2px solid var(--border);border-radius:20px;overflow:hidden;flex-shrink:0">
-              <button id="btn-provisional" onclick="setHorarioTipo(&#39;provisional&#39;)" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; padding: 6px 12px; font-size: 12px; font-weight: 700; cursor: pointer; background: rgb(243, 156, 18); color: rgb(255, 255, 255); transition: 0.15s;">PROVISIONAL</button>
-              <button id="btn-real" onclick="setHorarioTipo(&#39;real&#39;)" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; padding: 6px 12px; font-size: 12px; font-weight: 700; cursor: pointer; background: rgb(240, 240, 240); color: rgb(170, 170, 170); transition: 0.15s;">REAL</button>
+              <button id="btn-provisional" onclick="setHorarioTipo(&#39;provisional&#39;)" style="border:none;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;background:#f39c12;color:#fff;transition:all .15s">PROVISIONAL</button>
+              <button id="btn-real" onclick="setHorarioTipo(&#39;real&#39;)" style="border:none;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;background:#f0f0f0;color:#aaa;transition:all .15s">REAL</button>
             </div>
           </div>
           <div class="input-row">
@@ -372,15 +376,15 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
           </div>
 
           <div class="sec-label">Estado</div>
-          <div class="selector-field" id="estado-field" onclick="openSubModal(&#39;estado&#39;)" style="background: rgb(74, 144, 217); border-color: rgb(74, 144, 217);">
+          <div class="selector-field" id="estado-field" onclick="openSubModal(&#39;estado&#39;)" style="background: rgb(245, 197, 24); border-color: rgb(245, 197, 24);">
             <span class="sel-label" id="estado-label" style="display: none;">Toca para seleccionar</span>
-            <div style="display:flex;align-items:center;gap:8px"><span id="estado-badge"><span style="font-size:17px;font-weight:900;color:#fff;text-transform:uppercase">CONFIRMADO</span></span><span class="sel-arrow">›</span></div>
+            <div style="display:flex;align-items:center;gap:8px"><span id="estado-badge"><span style="font-size:17px;font-weight:900;color:#1a1a1a;text-transform:uppercase">POSIBLE</span></span><span class="sel-arrow">›</span></div>
           </div>
 
           <div class="sec-label">Cliente</div>
           <div class="autocomplete-wrap">
             <input type="text" id="cliente-input" placeholder="Buscar cliente..." autocomplete="off" oninput="filterAC(&#39;cliente&#39;)" onfocus="showAC(&#39;cliente&#39;)" onblur="hideAC(&#39;cliente&#39;,300)">
-            <div class="autocomplete-dropdown" id="cliente-dropdown"></div>
+            <div class="autocomplete-dropdown" id="cliente-dropdown"><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;A J VALENCIA GUIAS SL&#39;)">A J VALENCIA GUIAS SL</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;A V A E ESCUELAS DE CONDUCTORES SOCIEDAD LIMITADA&#39;)">A V A E ESCUELAS DE CONDUCTORES SOCIEDAD LIMITADA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ABO ENERGY ESPAÑA SA&#39;)">ABO ENERGY ESPAÑA SA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ABOLLADO REGO, MARCOS&#39;)">ABOLLADO REGO, MARCOS</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ABSOLUTE EXPERIENCIAS DE COMUNICACION SL&#39;)">ABSOLUTE EXPERIENCIAS DE COMUNICACION SL</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AC HOTEL VALENCIA SL&#39;)">AC HOTEL VALENCIA SL</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ACEESCA&#39;)">ACEESCA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ACEESCA ASOC DE APOYO A PERSONAS CON DIVERSIDAD INTELECTUAL&#39;)">ACEESCA ASOC DE APOYO A PERSONAS CON DIVERSIDAD INTELECTUAL</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ACHM SPAIN MANAGEMENT SL&#39;)">ACHM SPAIN MANAGEMENT SL</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ACTEMIUM ASAS SOCIEDAD LIMITADA&#39;)">ACTEMIUM ASAS SOCIEDAD LIMITADA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ADECCO FORMACIÓN SA.&#39;)">ADECCO FORMACIÓN SA.</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ADN COMUNICACIO S.L&#39;)">ADN COMUNICACIO S.L</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AGENCIA PUBLICIDAD MKPLACE SL&#39;)">AGENCIA PUBLICIDAD MKPLACE SL</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AGRO2AGRI SL&#39;)">AGRO2AGRI SL</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AGUA MINERAL SAN BENEDETTO SA&#39;)">AGUA MINERAL SAN BENEDETTO SA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AGUAS DE VALENCIA SA&#39;)">AGUAS DE VALENCIA SA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AGUAS DEL ARCO MEDITERRANEO SA&#39;)">AGUAS DEL ARCO MEDITERRANEO SA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AGUAS MUNICIPALIZADAS DE ALICANTE E.MIXTA&#39;)">AGUAS MUNICIPALIZADAS DE ALICANTE E.MIXTA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AIGUES I SANEJAMENT D\&#39;ELX SA&#39;)">AIGUES I SANEJAMENT D'ELX SA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AIMPLAS-ASOCIACION DE INVESTIGACION DE MATERIALES PLASTICOS Y CONEXAS&#39;)">AIMPLAS-ASOCIACION DE INVESTIGACION DE MATERIALES PLASTICOS Y CONEXAS</div></div>
           </div>
 
           <div class="sec-label">Detalles del cliente</div>
@@ -398,10 +402,16 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
             <div class="autocomplete-dropdown" id="poblacion-dropdown"><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Valencia&#39;)">Valencia</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;A Coruña&#39;)">A Coruña</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Albacete&#39;)">Albacete</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Alcalá de Henares&#39;)">Alcalá de Henares</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Alicante&#39;)">Alicante</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Almería&#39;)">Almería</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Ávila&#39;)">Ávila</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Badajoz&#39;)">Badajoz</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Badalona&#39;)">Badalona</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Barcelona&#39;)">Barcelona</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Benidorm&#39;)">Benidorm</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Bilbao&#39;)">Bilbao</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Burgos&#39;)">Burgos</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Cáceres&#39;)">Cáceres</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Cádiz&#39;)">Cádiz</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Cartagena&#39;)">Cartagena</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Castellón de la Plana&#39;)">Castellón de la Plana</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Ciudad Real&#39;)">Ciudad Real</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Córdoba&#39;)">Córdoba</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Cuenca&#39;)">Cuenca</div></div>
           </div>
 
+          <div class="sec-label">Espacio</div>
+          <div class="autocomplete-wrap">
+            <input type="text" id="ev-espacio" placeholder="Buscar o añadir espacio..." autocomplete="off" oninput="filterAC(&#39;espacio&#39;)" onfocus="showAC(&#39;espacio&#39;)" onblur="hideAC(&#39;espacio&#39;,300)">
+            <div class="autocomplete-dropdown" id="espacio-dropdown2"><div class="ac-item" onmousedown="pickEspacioMain(&#39;AC Hotel by Marriott Alicante&#39;)"> AC Hotel by Marriott Alicante</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Ad Hoc Parque Bétera&#39;)"> Ad Hoc Parque Bétera</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Akuarela Playa&#39;)"> Akuarela Playa</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Alquería del Básquet&#39;)"> Alquería del Básquet</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Alquería Kukala&#39;)"> Alquería Kukala</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Ateneo Restaurante&#39;)"> Ateneo Restaurante</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Barrio Hub Madrid&#39;)"> Barrio Hub Madrid</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Base 1 La Marina&#39;)"> Base 1 La Marina</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;BIOHUB&#39;)"> BIOHUB</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Bodega Casa Sicilia&#39;)"> Bodega Casa Sicilia</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Box Art Hotel Alpino (Navacerrada)&#39;)"> Box Art Hotel Alpino (Navacerrada)</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Caixa Forum&#39;)"> Caixa Forum</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Casa de la mar&#39;)"> Casa de la mar</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Casino Cirsa Valencia&#39;)"> Casino Cirsa Valencia</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Chalet Alquilado&#39;)"> Chalet Alquilado</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;El Huerto de Santa María (El Puig)&#39;)"> El Huerto de Santa María (El Puig)</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;El Poblet de Atalayas&#39;)"> El Poblet de Atalayas</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Masía Xamandreu&#39;)"> Masía Xamandreu</div></div>
+          </div>
+
           <div class="sec-label">¿Quién gestiona?</div>
           <div class="selector-field" onclick="openSubModal(&#39;gestor&#39;)">
             <span class="sel-label" id="gestor-label" style="display: none;">¿Quién gestiona?</span>
-            <div style="display:flex;align-items:center;gap:8px"><span id="gestor-badges" style="display:flex;gap:6px;flex-wrap:wrap"><span class="sel-badge" style="background:#c5d8f7;color:#1a1a1a">VIC</span></span><span class="sel-arrow">›</span></div>
+            <div style="display:flex;align-items:center;gap:8px"><span id="gestor-badges" style="display:flex;gap:6px;flex-wrap:wrap"><span class="sel-badge" style="background:#c5d8f7;color:#1a1a1a;font-weight:700">VIC</span></span><span class="sel-arrow">›</span></div>
           </div>
 
           <div class="sec-label">Detalles del evento</div>
@@ -417,19 +427,19 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
           <div class="actores-cols">
             <div class="actores-col">
               <div class="actores-col-head" style="background:#27ae60">CONFIRMADO/A</div>
-              <div class="actores-col-body" id="col-confirmado"><button class="actor-btn confirmado" onclick="cycleActor(&#39;VIC&#39;,&#39;confirmado&#39;)">VIC</button><button class="actor-btn confirmado" onclick="cycleActor(&#39;MON&#39;,&#39;confirmado&#39;)">MON</button><div style="border:2px dashed #bbb;border-radius:6px;padding:8px 4px;font-size:12px;font-weight:700;color:#bbb;text-align:center;margin-bottom:4px;background:#fafafa">faltan 3</div><div style="border:2px dashed #bbb;border-radius:6px;padding:8px 4px;font-size:12px;font-weight:700;color:#bbb;text-align:center;margin-bottom:4px;background:#fafafa">faltan 3</div><div style="border:2px dashed #bbb;border-radius:6px;padding:8px 4px;font-size:12px;font-weight:700;color:#bbb;text-align:center;margin-bottom:4px;background:#fafafa">faltan 3</div></div>
+              <div class="actores-col-body" id="col-confirmado"><button class="actor-btn confirmado" onclick="cycleActor(&#39;JL&#39;,&#39;confirmado&#39;)">JL</button><div style="border:2px dashed #bbb;border-radius:6px;padding:8px 4px;font-size:12px;font-weight:700;color:#bbb;text-align:center;margin-bottom:4px;background:#fafafa">faltan 4</div><div style="border:2px dashed #bbb;border-radius:6px;padding:8px 4px;font-size:12px;font-weight:700;color:#bbb;text-align:center;margin-bottom:4px;background:#fafafa">faltan 4</div><div style="border:2px dashed #bbb;border-radius:6px;padding:8px 4px;font-size:12px;font-weight:700;color:#bbb;text-align:center;margin-bottom:4px;background:#fafafa">faltan 4</div><div style="border:2px dashed #bbb;border-radius:6px;padding:8px 4px;font-size:12px;font-weight:700;color:#bbb;text-align:center;margin-bottom:4px;background:#fafafa">faltan 4</div></div>
             </div>
             <div class="actores-col">
               <div class="actores-col-head" style="background:#f39c12">PROPUESTO/A</div>
-              <div class="actores-col-body" id="col-propuesto"><button class="actor-btn propuesto" onclick="cycleActor(&#39;JL&#39;,&#39;propuesto&#39;)">JL</button><button class="actor-btn propuesto" onclick="cycleActor(&#39;AGUS&#39;,&#39;propuesto&#39;)">AGUS</button></div>
+              <div class="actores-col-body" id="col-propuesto"><button class="actor-btn propuesto" onclick="cycleActor(&#39;ARANCHA&#39;,&#39;propuesto&#39;)">ARANCHA</button><button class="actor-btn propuesto" onclick="cycleActor(&#39;DIANA&#39;,&#39;propuesto&#39;)">DIANA</button><button class="actor-btn propuesto" onclick="cycleActor(&#39;AGUS&#39;,&#39;propuesto&#39;)">AGUS</button></div>
             </div>
             <div class="actores-col">
               <div class="actores-col-head" style="background:#e74c3c">NO DISPONIBLE</div>
-              <div class="actores-col-body" id="col-nodisponible"><button class="actor-btn nodisponible" onclick="cycleActor(&#39;MAX&#39;,&#39;nodisponible&#39;)">MAX</button></div>
+              <div class="actores-col-body" id="col-nodisponible"></div>
             </div>
             <div class="actores-col">
               <div class="actores-col-head" style="background:#5b9bd5">BASE DE DATOS</div>
-              <div class="actores-col-body" id="col-bbdd"><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;ARANCHA&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;ARANCHA&#39;)">ARANCHA</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;DIANA&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;DIANA&#39;)">DIANA</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;ISRA&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;ISRA&#39;)">ISRA</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;PABLO BARRIOS&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;PABLO BARRIOS&#39;)">PABLO BARRIOS</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;OTROS&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;OTROS&#39;)">OTROS</button></div>
+              <div class="actores-col-body" id="col-bbdd"><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;VIC&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;VIC&#39;)">VIC</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;MON&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;MON&#39;)">MON</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;MAX&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;MAX&#39;)">MAX</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;ISRA&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;ISRA&#39;)">ISRA</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;PABLO BARRIOS&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;PABLO BARRIOS&#39;)">PABLO BARRIOS</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;OTROS&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;OTROS&#39;)">OTROS</button></div>
             </div>
           </div>
 
@@ -466,8 +476,8 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
 <!-- SUBMODAL -->
 <div class="submodal-backdrop" id="submodal" onclick="if(event.target===this)closeSubModal()">
   <div class="submodal-box">
-    <div class="submodal-title" id="submodal-title">Estado</div>
-    <div class="submodal-btns" id="submodal-btns" style="grid-template-columns: repeat(3, 1fr);"><button class="sub-btn" style="background:#f5c518;color:#1a1a1a;font-size:18px;font-weight:900;min-height:72px" onclick="pickSubModal(0)">POSIBLE</button><button class="sub-btn" style="background:#4a90d9;color:#fff;font-size:18px;font-weight:900;min-height:72px" onclick="pickSubModal(1)">CONFIRMADO</button><button class="sub-btn" style="background:#95a5a6;color:#fff;font-size:18px;font-weight:900;min-height:72px" onclick="pickSubModal(2)">FINALIZADO</button><button class="sub-btn" style="background:#27ae60;color:#fff;font-size:18px;font-weight:900;min-height:72px" onclick="pickSubModal(3)">APLAZADO</button><button class="sub-btn" style="background:#c0392b;color:#fff;font-size:18px;font-weight:900;min-height:72px" onclick="pickSubModal(4)">CANCELADO</button></div>
+    <div class="submodal-title" id="submodal-title">¿Quién gestiona?</div>
+    <div class="submodal-btns" id="submodal-btns" style="grid-template-columns: repeat(3, 1fr);"><button class="sub-btn" id="gbtn-DIANA" style="background: rgb(232, 213, 245); color: rgb(26, 26, 26); opacity: 0.4; font-size: 22px; font-weight: 900; min-height: 80px;" onclick="toggleGestorBtn(&#39;DIANA&#39;)">DIANA</button><button class="sub-btn" id="gbtn-VIC" style="background: rgb(197, 216, 247); color: rgb(26, 26, 26); opacity: 1; font-size: 22px; font-weight: 900; min-height: 80px;" onclick="toggleGestorBtn(&#39;VIC&#39;)">VIC ✓</button><button class="sub-btn" id="gbtn-JL" style="background: rgb(197, 232, 213); color: rgb(26, 26, 26); opacity: 0.4; font-size: 22px; font-weight: 900; min-height: 80px;" onclick="toggleGestorBtn(&#39;JL&#39;)">JL</button><button class="btn-save" style="grid-column:1/-1;margin-top:4px;border-radius:10px;padding:14px;font-size:15px" onclick="closeSubModal();if(_pendingSave)saveEvent()">Listo</button></div>
     <button class="submodal-cancel" onclick="closeSubModal()">Cancelar</button>
   </div>
 </div>
@@ -527,21 +537,49 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
   <div class="gest-box">
     <div class="gest-head">
       <div class="gest-head-top">
-        <span class="gest-title" id="gest-event-title">⚙️ Gestionar evento</span>
+        <span class="gest-title" id="gest-event-title">⚙️ Nuevo evento</span>
         <button class="modal-close" onclick="closeGestionar()">✕</button>
       </div>
-      <div class="gest-tabs">
-        <div class="gest-tab active" onclick="showGestTab(&#39;evento&#39;,this)">Evento</div>
-        <div class="gest-tab" onclick="showGestTab(&#39;espacio&#39;,this)">Espacio</div>
-        <div class="gest-tab" onclick="showGestTab(&#39;actores&#39;,this)">Actores</div>
-        <div class="gest-tab" onclick="showGestTab(&#39;disponibilidad&#39;,this)">Disponibilidad</div>
-        <div class="gest-tab" onclick="showGestTab(&#39;produccion&#39;,this)">Producción</div>
-        <div class="gest-tab" onclick="showGestTab(&#39;concursos&#39;,this)">Concursos y Pres.</div>
-        <div class="gest-tab" onclick="showGestTab(&#39;facturacion&#39;,this)">Facturación</div>
-        <div class="gest-tab" onclick="showGestTab(&#39;cambios&#39;,this)">Cambios</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 0 14px">
+        <button class="gest-big-btn active" id="gbtn-espacio" onclick="showGestTab(&#39;espacio&#39;,this)" style="background:#5b9bd5">ESPACIO</button>
+        <button class="gest-big-btn" id="gbtn-produccion" onclick="showGestTab(&#39;produccion&#39;,this)" style="background:#e67e22">PRODUCCIÓN</button>
+        <button class="gest-big-btn" id="gbtn-concursos" onclick="showGestTab(&#39;concursos&#39;,this)" style="background:#8430ce">CONCURSOS Y PRESENTACIONES</button>
+        <button class="gest-big-btn" id="gbtn-facturacion" onclick="showGestTab(&#39;facturacion&#39;,this)" style="background:#27ae60">FACTURACIÓN</button>
       </div>
     </div>
-    <div class="gest-body" id="gest-body"></div>
+    <div class="gest-body" id="gest-body">
+      <div class="gest-two-col">
+        <div>
+          <div class="gest-field"><label>Estado del espacio</label>
+            <select id="espacio-estado-sel" onchange="selEspacioEstado(null,this.value)" style="border:2px solid var(--border);border-radius:8px;padding:12px;font-size:16px;font-weight:600;background:#fff9c4">
+              <option value="Sin definir" style="background:#f8f8f8">Sin definir</option><option value="Está buscando el cliente" style="background:#fff9c4">Está buscando el cliente</option><option value="Estamos buscando nosotros" style="background:#fff9c4">Estamos buscando nosotros</option><option value="Hemos enviado las propuestas" style="background:#fff9c4">Hemos enviado las propuestas</option><option value="Confirmado (a falta de llamada)" selected="" style="background:#fff9c4">Confirmado (a falta de llamada)</option><option value="Confirmado" style="background:#d4edda">Confirmado</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <div class="gest-field"><label>Nombre del espacio</label>
+            <div style="position:relative">
+              <input type="text" id="espacio-search" placeholder="Buscar o escribir espacio..." value="BIOHUB" oninput="filterEspacios()" autocomplete="off">
+              <div id="espacio-dropdown" class="autocomplete-dropdown"></div>
+            </div>
+          </div>
+          <div class="gest-two-col">
+            <div class="gest-field"><label>Contacto 1</label><input type="text" id="esp-contacto-in" value=""></div>
+            <div class="gest-field"><label>Teléfono 1</label><input type="text" id="esp-telefono-in" value=""></div>
+            <div class="gest-field"><label>Contacto 2</label><input type="text" id="esp-contacto2-in" value=""></div>
+            <div class="gest-field"><label>Teléfono 2</label><input type="text" id="esp-telefono2-in" value=""></div>
+            <div class="gest-field"><label>Correo</label><input type="text" id="esp-email-in" value=""></div>
+            <div class="gest-field"><label>Dirección</label><input type="text" id="esp-dir-in" value=""></div>
+          </div>
+          <div class="gest-field"><label>Detalles del espacio</label><textarea id="esp-detalles" style="min-height:80px"></textarea></div>
+          <div class="dist-box" id="esp-dist">
+            📍 Ruta desde la oficina (rellena el espacio primero)
+          </div>
+          <div class="gest-field"><label>🗺 Google Maps</label>
+            <button onclick="event.stopPropagation();var u=&#39;&#39;;if(u)window.open(u,&#39;_blank&#39;);" style="background:none;border:none;color:var(--blue);font-size:13px;cursor:pointer;text-align:left;padding:0;word-break:break-all">Se generará al buscar el espacio</button>
+          </div>
+        </div>
+      </div></div>
     <div class="gest-footer">
       <button class="btn-cancel" onclick="closeGestionar()">Cerrar</button>
       <button class="gest-save-btn" onclick="saveGestionar()">💾 Guardar</button>
@@ -595,12 +633,19 @@ const ACTORES_PHONES={
   'OTROS':''
 };
 
-let DB_CLIENTES=['Banco Santander','Coca-Cola España','El Corte Inglés','Ferrovial','Iberdrola','Inditex','MAPFRE','Mercadona','Repsol','Telefónica'];
+let DB_PROVEEDORES=[
+  {nombre:'Ponte Karaoke', contacto:'Joan', telefono:'647410937'},
+  {nombre:'Gonzalo Melomans', contacto:'', telefono:'648031827'},
+  {nombre:'Elena Fotógrafa - Studio Vlak', contacto:'Elena', telefono:'(667) 841-2457'},
+  {nombre:'Catering El Alto', contacto:'Raúl Membrives', telefono:'686749947'}
+];
+let DB_ESPACIOS_NOMBRES=['AC Hotel by Marriott Alicante','Ad Hoc Parque Bétera','Akuarela Playa','Alquería del Básquet','Alquería Kukala','Ateneo Restaurante','Barrio Hub Madrid','Base 1 La Marina','BIOHUB','Bodega Casa Sicilia','Box Art Hotel Alpino (Navacerrada)','Caixa Forum','Casa de la mar','Casino Cirsa Valencia','Chalet Alquilado','El Huerto de Santa María (El Puig)','El Poblet de Atalayas','Masía Xamandreu'];
+let DB_CLIENTES=['A J VALENCIA GUIAS SL','A V A E ESCUELAS DE CONDUCTORES SOCIEDAD LIMITADA','ABO ENERGY ESPAÑA SA','ABOLLADO REGO, MARCOS','ABSOLUTE EXPERIENCIAS DE COMUNICACION SL','AC HOTEL VALENCIA SL','ACEESCA','ACEESCA ASOC DE APOYO A PERSONAS CON DIVERSIDAD INTELECTUAL','ACHM SPAIN MANAGEMENT SL','ACTEMIUM ASAS SOCIEDAD LIMITADA','ADECCO FORMACIÓN SA.','ADN COMUNICACIO S.L','AGENCIA PUBLICIDAD MKPLACE SL','AGRO2AGRI SL','AGUA MINERAL SAN BENEDETTO SA','AGUAS DE VALENCIA SA','AGUAS DEL ARCO MEDITERRANEO SA','AGUAS MUNICIPALIZADAS DE ALICANTE E.MIXTA','AIGUES I SANEJAMENT D\'ELX SA','AIMPLAS-ASOCIACION DE INVESTIGACION DE MATERIALES PLASTICOS Y CONEXAS','AIR LIQUIDE HEALTHCARE INTERNATIONAL SERVICES & TECHNOLOGY SPAIN SOCIEDAD LIMITADA','AJE BALEARS','ALEJANDRIA CENTRO MEDICO Y DOCENTE SOCIEDAD LIMITADA','ALENTO-ASOCIACION DE DAÑO CEREBRAL','ALLASON CONSULTORES S.L.','ALLGOLF SL','ALMA CARRAOVEJAS SL','ALONDRA SERVICIOS INMOBILIARIOS SL','ALTERNATIVA VIATGES SA','ALZHEIMER CATALUNYA FUNDACIO PRIVADA','AMAYA REY URIARTE','AMAZON SPAIN SERVICES SL','AMEX GLOBAL BUSSINES TRAVEL','AMPLIO ESPECTRO SL','APPLE RETAIL SPAIN SL','ARTE-XIXONA SL','ARTESANIA CERDA SLU','ASOC ADEPSI','ASOC DE JOVENES EMPRESARIOS AJE VALENCIA','ASOC EMPRESAS Y ENTIDADES QUE CONSTITUYEN LA BIOREGION DE LA COMUNIDADVALENCIANA','ASOC MAMAS EN ACCION','ASOC NACIONAL DE PERFUMERIA Y COSMETICA','ASOC SAN XEROME EMILIANI','ASOC VALENCIANA DE START-UPS','ASOC.EMPRESARIAS Y PROFESIONALES PROVINCIA ALICANTE','ASOCIACION DE INVESTIGACION DE LA INDUSTRIA AGROALIMENTARIA','ASOCIACION ESPAÑOLA CONTRA EL CANCER','ASTERISCO COOP V','ASUNTOS PUBLICOS ESTRATEGOS SL','ATLANTA AGENCIA DE VIAJES SA','ATURFAM CV','AUTISMO SEVILLA','AUTORIDAD PORTUARIA DE VALENCIA','AUTOSUR DE LEVANTE SA','AVANQUA OCEANOGRAFIC SL','AVIACION ALICANTINA AVIAL SL','AVORIS RETAIL DIVISION SL','AXIS CAPITAL','AYUNTAMIENTO DE LA POBLA DE FARNALS','AYUNTAMIENTO DE NAQUERA','AYUNTAMIENTO DE QUART DE POBLET','AYUNTAMIENTO DE VALENCIA','Alberto Díaz Echevarría','BABARIA SL','BALEARES CONSIGNATARIOS TOURS SL','BALEARIA EUROLINEAS MARITIMAS SA','BANCOLOR BAUX SL','BARRACHINA VICENTE, JOSE FERNANDO','BAUMIT BETEILIGUNGEN GMBH','BAYER CROPSCIENCE SL','BCD MEETINGS & EVENTS','BE BARCELONA - MADRID EXPERIENCES SL','BESTCYCLING SL','BET SOLAR S.L.','BIGFINITE BARCELONA SL','BILBAO COMPAÑIA ANONIMA DE SEGUROS Y REASEGUROS','BOLLORE TRANSPORT LOGISTICS SPAIN SOCIEDAD ANONIMA','BRAINS AND TEETH CONSULTING GROUP SOCIEDAD LIMITADA','BROT CULTURAL SOCIEDAD LIMITADA','BTRAVEL TURISMO ACCESIBLE SA','BULEVAR DEL ARTE Y LA CULTURA SA','C. JUAN Mª ASOC. ESPERANZA VALLE MIÑOR','C.E.E. APADIS SL','CABANYAL GARDEN SOCIEDAD LIMITADA','CAIXA POPULAR-CAIXA RUR. S.COOP CREDITO V','CAIXA RURAL TORRENT COOPERATIVA DE CREDIT VALENCIANA','CAIXABANK SA','CAMARA OFICIAL DE COMERCIO INDUSTRIA SERVICIOS Y NAVEGACION DE VALENCIA','CARRETILLAS ELEVADORAS SUDESTE SA','CASCARA DE NUEZ S.L.','CASTEVILA DISTRIBUCIONES SOCIEDAD LIMITADA','CENTRO EUROPEO DE EMPRESAS E INNOVACIÓN DE VALENCIA (CEEI VALENCIA)','CERVEZAS SAN MIGUEL SL','CIEVA SL','CIPHERBIT SL','CITY DESTINSTIONS ALLIANCE','CLEANITY SOCIEDAD LIMITADA','CLINICA OFTALMOLOGICA DOCTOR VILA SL','CLUB EMPRESAS RESPON. Y SOST. C.V.-CERS','CMC SAFETY FORMACION S.L.','COCA-COLA EUROPACIFIC PARTNERS IBERIA SL','COL OF DE DIETISTAS-NUTRICIONISTAS C.V.','COLEGIO DE GESTORES ADMINISTRATIVOS','COLEGIO NUESTRA SEÑORA DE BEGOÑA','COLEGIO SAGRADO CORAZON','COLEGIO SALESIANO SAN ANTONIO ABAD EN VALENCIA CS SALESIANA SANTO DOMINGO SAVIO','COLEGIO VIRGEN DE GRACIA DE ALTURA','COMEVAL VALVE SYSTEMS SL Y CIA S.COMANDI.','COMPASS GROUP HOLDINGS SPAIN SL','CONFERENCIA INT. DE ENTIDADES ALUMINI','CONSCYTEC SOCIEDAD LIMITADA','CONSORCIO ASESOR DEL SURESTE SL','CONSTRUCCIONES FRANCES SA','CONSUM S COOP V','COPISTERIA SANCHIS S.L.','COSTA BELLVER SA','COSTA BLANCA DMC','CRAYON SOFTWARE EXPERTS SPAIN SL','CRUZ ROJA ESPAÑOLA','CRUZ ROJA OFIC. PROV. VALENCIA','CWT GLOBAL ESPAÑA SL','Carlos Vargas Ríos','Centro de Seguros y Servicios ECI, Agencia de Seguros Vinculada, S.A.','DACHSER Valencia','DAI FRUITS SL','DECATHLON ESPAÑA SA','DECOM MEDIA SL','DEKRA SERVICES SA','DELIBREADS EUROPE SOCIEDAD LIMITADA','DELOITTE','DELUX HOUSE CONSTRUCCIONES SL','DGLOBAL EVENTOS Y CONGRESOS SOCIEDAD LIMITADA','DIAGNOSTICA LONGWOOD SL','DIAZ DELGADO CABO CARLOS','DOCTAFORUM MEDICAL MARKETING, S.L.','DVILA COMUNICACION Y MARKETING SOCIEDAD LIMITADA','Dr Schar','EAE MADRID CENTRO EDUCACION SUPERIOR SL','EBA VALLCARCA SLP','EDWARDS LIFESCIENCES SL','EGG SP SL','EIFFAGE ENERGIA S.L.','EL ALTO VALENCIA SOCIEDAD LIMITADA','EL CORTE INGLES SA','ELECNOR SERVICIOS Y PROYECTOS SA','EMA POVEDA SOCIEDAD LIMITADA','EMOTIONAL BUSINESS SL','EMUCA SA','ENAGAS','ENERGY SISTEM TECHNOLOGY SA','ENTIDAD MAYA SL','EQUIPO MEDICO CRESPO SOCIEDAD LIMITADA','ESCUELA DE EMPRESARIOS FUND. C. VAL','ESCUELA DE NEGOCIOS MEDITERRANEO IEM 4 SL','ESCUELAS DE ESTUDIOS SUPERIORES ESIC SACERDOTES DEL CORAZON DE JESUS PADRES REPARADORES','ESFERA PROCESS SOCIEDAD LIMITADA','ESK SA','ESPECIALIZADA Y PRIMARIA L HORTA MANISES SA','ESPINAR ROBLES SL','EUREST COLECTIVIDADES S.L','EUROCONGRES VIAJES SA','EUROMADI IBERICA SA','EUROPEAN INDUSTRIAL GASES ASSOCIATION AISBL','EVA MAZUECOS PÉREZ','EVENT-TWO DMC SL','EVENTOLOGIES SL','EXCELENTISIMA DIPUTACIO PROVINCIAL DE VALENCIA','EXCLUSIVE SPAIN TOURS SOCIEDAD LIMITADA','EXPANSION CULINARIA SL','EXQUISITE FRUITS SOCIEDAD LIMITADA','FACEPHI BIOMETRIA SA','FACULTAD DE FARMÀCIA U.V.','FAH FORVIA','FAMILIAR DE SEGUROS ACTIVE SA','FARMINGTON INVESTMENT SL','FCC AQUALIA SA','FEDERACION ESPAÑOLA DE MUNICIPIOS Y PROVINCIAS','FEDERATION ROYALE MAROCAINE DE FOOTBALL','FERROS LA POBLA S.A.','FERVOR ESTUDIO SL','FINANCIERA ESPAÑOLA DE CREDITO A DISTANCIA EFC SA','FINCA EL RANCHO SOCIEDAD LIMITADA','FOMENTO BENICASIM SA','FOMENTO VALENCIA MEDIOAMBIENTE S.L.','FORGAL FORMACION Y CONSULTORIA SL','FRIMAR PANADEROS SL','FRONIUS ESPAÑA SOCIEDAD LIMITADA','FUND. VLCNA. PREMIOS REI JAUME I DE CVA.','FUNDACIO GENERAL DE LA UNIVERSITAT DE VALENCIA','FUNDACIO PER A. LA UNIVERSITAT OBERTA DE CATALUNYA','FUNDACIO UNIVERSITAT-EMPRESA DE VALENCIA CONSELL SOCIAL DE LA UNIVERSITAT DE VALENCIA ESTUDI GENERAL','FUNDACION ADECCO','FUNDACION DE LA UNIVERSIDAD AUTONOMA DE MADRID','FUNDACION DEPORTIVA MUNICIPAL DE VALENCIA','FUNDACION ESFERA','FUNDACION INTERNACIONAL JOSE CARRERAS','FUNDACION JESUS SERRA','FUNDACION MARCELINO BOTIN S. SAUTUOLA Y LOPEZ','FUNDACION MARGARITA SALAS','FUNDACION UNIVERISAD CATOLICA SAN VTE MARTIR','FUNDACIÓ HORTA SUD','G.I. GROUP SPAIN EMPRESA DE TRABAJO TEMPORAL SL','GABOL SL','GAOLANIA SERVICIOS SL','GARMIN EUROPE LIMITED','GAS NATURAL COMERCIALIZADORA SA','GASTROGESTION JD SOCIEDAD LIMITADA','GASTRONOMIA PREMIUM SOCIEDAD LIMITADA','GENIA BIOENERGY SL','GESTIONES FORMATIVAS DE LEVANTE SOCIEDAD LIMITADA','GESTORA VALENCIANA DE TRANSPORTES Y MOVILIDAD S.L.','GLOBAL BUSINESS TRAVEL SPAIN SL','GLOBAL MICE FORUMS SOCIEDAD LIMITADA','GLOBAL OMNIUM IDRICA S.L.','GLOBAL RENEWABLE ENERGY SOLUTIONS','GLOBAL YACHTING & TRAINING GROUP SL','GM NEOLOGIC SLU','GOBERNA PEREZ & ASOCIADOS SL','GRAMAMI SL','GREFUSA SL','GREMIO EMPRESARIAL Y PROFESIONAL DE AGENCIAS DE VIAJES','GRUPO BALI-HOTELES','GRUPO CATALANA OCCIDENTE GESTION DE ACTIVOS SA SGIIC','GRUPO CATALANA OCCIDENTE SA','GRUPO CATALANA OCCIDENTE TECNOLOGIA Y SERVICIOS AIE','GRUPO GENIADABAR SL','GRUPO MCR','GRUPO TEC SERVICIOS DE INGENIERIA SL','GRUPO VESTEL CARALVISA SL','GRUPOR VALENCIA IMAGEN ESTRATEGICA S.L.','GUILLO FORMACION SL','GULA CONCEPT SOCIEDAD LIMITADA','GULA CONCEPT, SL','H SANTOS D SOCIEDAD LIMITADA','HABITATSOFT S.L.','HABITATSOFT SL','HAPPYDONIA SL','HDN CORPORATE SL','HEALTH IN CODE SOCIEDAD LIMITADA','HERRERA SISTERNES S.L.','HERVAS SOLUTIONS SOCIEDAD LIMITADA','HFS SALAMANDRA SL','HIDRAQUA GESTION INTGL AGUAS DE LEVANTE SA','HILTON OF SPAIN SL','HIPERION HOTEL GROUP SL','HISENSE IBERIA SOCIEDAD LIMITADA','HOGAR Y CLINICA SAN RAFAEL','HONEYGREEN SA','HOSPITAL INTERMUTUAL DE LEVANTE (HIL)','HOSPITAL SANT JOAN DE DEU','HOTEL AD HOC PARQUE SL','HUMACT B. P. O. SL','Héctor Sánchez Borona','IBERSURGICAL SOCIEDAD LIMITADA','ICE COACHING SL','IDOM CONSULTING ENGINEERING ARCHITECTURE SOCIEDAD ANONIMA','IGENOMIX SL','IMPACT HUB S.L.U.','IMPORTACO SA','IMPROVEN CONSULTING SL','IN RED ASOC PROFESIONAL Y EMPRESARIAL GALLEGA DE CENTROS ESPECIALES DE EMPLEO Y ENTIDADES DEL AMBITO','INDAMAT GESTION SOCIEDAD LIMITADA','INDOMIO S.L.U.','INDUSTRIAL FARMACEUTICA CANTABRIA SA','INDUSTRIAS AFRASA SOCIEDAD ANONIMA','INDUSTRIAS ALEGRE SA','INEO INNOVATIVE TECHNOLOGIES SA','INFINITO EVENTOS & COMUNICACIÓN SL','INFORMATICA Y DESARROLLO DE SOFTWARE SL','INFRAESTRUCTURAS Y SERVICIOS SERVITRIA SA','INGENIERIA PLANA ALTA SA','INGENIUM CAPITAL ALLIANCE S.L.','INMACULADA RANGEL VACAS','INNOVACIONES TECNICAS Y RECURSOS CONSTRUCTIVOS SA','INSTAIMED S.A.','INSTITUT D ESTUDIS PROFESSIONALS AQUICOLES I AMBIENTALS DE CATALUNYA','INSTITUTO TECNOLOGICO INFORMATICA','INSTITUTO TECNOLÓGICO DE LA ENERGÍA ITE','INTEGRACION AGENCIAS DE VIAJES SA','INTEGRAIAV SL','INTEGRAVAL HORTUS SOCIEDAD LIMITADA','INTERTEK POLAND SP, Z.O.O.','INVERSIONES EVFRAN SOCIEDAD LIMITADA','IVNOSYS SOLUCIONES SOCIEDAD LIMITADA','JAMONDUL SL','JJ MATRIZ CAPITAL SOCIEDAD DE RESPONSABILIDAD LIMITADA','JOAN FAGOAGA GOMEZ','JOAN FAGOAGA GÓMEZ','JONES LANG LASALLE LTD.','JTB VIAJES -SPAIN- SA','JUAN COMENIUS COOP V','JULIA GRUP FURNITURE SOLUTIONS SL','JUNTA CENTRAL FALLERA DE VALENCIA','JYSK DBL IBERIA SL','KAVE HOME SL','KENMEI TECHNOLOGIES SOCIEDAD LIMITADA','KERN PHARMA','KILOUTOU ESPAÑA SA','KINAXIS IRELAND LIMITED','KONCITI VIAJES SA','KYOWA KIRIN FARMACEUTICA SL','LA BONA TRADICIO SL','LABERIT SISTEMAS SOCIEDAD LIMITADA','LABORATOIRES QUINTON INTERNATIONAL SL','LABORATORIOS BABE SL','LABORATORIOS FORENQUI SA','LIMAGRAIN IBERICA S.A','LOLI IMPACT','LOUDER PRODUCTIONS LTD','LVMH IBERIA SL','MACROSNACKS SOCIEDAD LIMITADA','MAICERIAS ESPAÑOLAS SA','MARTI SOROLLA COOP V','MASIA DE LAS ESTRELLAS SOCIEDAD LIMITADA','MASIMO MEDICAL TECHNOLOGIES -SPAIN- SL','MATCLINIC SL','MAXIMICE EVENTS GROUP SL','MAXLINEAR HISPANIA SL','MC CONSTRUCTION CHEMICALS SPAIN SL Y CIA S EN C','MEDITERRANEAN SHIPPING COMPANY ESPAÑA SL','MEDLINE INTERNATIONAL IBERIA SL','MEDVIDA PARTNERS DE SEGUROS Y REASEGUROS, S.A. (Sociedad Unipersonal)','MINDZET BUSINESS S.L','MIRA M. FUNDACIO DE LA COMUNITAT VALENCIANA','MOEBIUS BUSINESS BARCELONA SL','MSIG INSURANCE EUROPE AG SUCURSAL EN ESPAÑA','MULTISCAN TECHNOLOGIES SL','MV INCOMING S.L.','NATUREX IBERIAN PARTNERS SL','NAUTALIA VIAJES SL','NEXUS AZAFATAS SOCIEDAD LIMITADA','NOROTO SA','NORTEHISPANA DE SEGUROS Y REASEGUROS SA','NOVASOL NV','NTT DATA SPAIN SL','NUBA EXPEDICIONES SL','NV FOGES','OCTOPUS ENERGY ESPAÑA S.L.','OFIVAL SL','ONA SOL SLU','OPEM ORGANIZACION PERSONAS Y SISTEMAS SL','ORBITAL EOS SOCIEDAD LIMITADA','OSOPLO COMUNICACION SL','OVERLAP CONSULTORES EN MARKETING Y FORMACION SA','PANAMAR BAKERY GROUP SL','PANESPOL SYSTEMS DE ALCOY SL','PAVASAL EMPRESA CONSTRUCTORA SA.','PELAYO MUTUA DE SEGUROS Y REASEGUROS A PRIMA FIJA','PEOPLE MANAGEMENT SYSTEM SL','PINTURAS MONTO SA','PLANETA DE AGOSTINI FORMACION Y UNIVERSIDADES HOLDING SL','PLENA INCLUSIÓN CV ONG','PLUS ULTRA SEGUROS GENERALES Y VIDA SA DE SEGUROS Y REASEGUROS','POLITICAL INTELLIGENCE SL','PORT BENIDORM HOTELS S.L.','PRIME ENERGY PROJECT & SERVICES SL','PRODALIM IBERIA S.L','PRODEVELOP SL','PRODUCTO PROPIOINCOMING GRUPOS EUROPA SL','PRODUCTOS AGROVIN SA','PRODUCTOS ELECTRICOS INDUSTRIALES SA','PROFORMACION SL','PROVAQUIL SL','PROYME INGENIERÍA Y CONSTRUCCIÓN','PUBLICIDAD ANTON SL','PUNTO Y APARTE PRODUCCIONES SL','PV HARDWARE SOLUTIONS SL','QUIBIM SOCIEDAD LIMITADA','QUICKSAIL SOCIEDAD LIMITADA','QUIX ANALYTICS LIMITED','R N B SL','RALOE MEDITERRANEO SL','RAQUEL DAVÓ AÑÓN','READY & GO EVENTS SL','REALE SEGUROS GENERALES SA','RECOGIDA Y GESTION NFU DEL MEDITERRANEO SOCIEDAD LIMITADA','RECORD GO ALQUILER VACACIONAL S.L.','RECORD RENT A CAR SA','RED SLOW SOCIEDAD LIMITADA - CLÍNICAS W','REFRESCO IBERIA SA','RENOVEDUCH SL','RESTAURANTES SAONA S.L.','RIBERA SALUD TECNOLOGIAS S.L.','RIC SUN RENOVABLES SL','RK BY REALMARK INMOBILIARIA SOCIEDAD LIMITADA','ROCHE FARMA SA','ROQUETTE LAISA ESPAÑA S.A.','ROSSANO BENETAZZO','ROYO SPAIN SL','RS TURIA SL','RTA SPANISH EVENT & INCENTIVE ORGANISERS S.L','RUBEN MONTESINOS TORRES','RUBIX IBERIA S.A.U.','Revista Funeraria','SAGAFLUID SL','SAINT GOBAIN WEBER CEMARKSA SA','SANICITRUS S.L.','SANLUCAR FRUIT SOCIEDAD LIMITADA','SANSAN PRODESING SL','SANT DALMAI S.A.','SANT JOAN DE DEU TERRES DE LLEIDA','SBD TRAVEL SERVICE SA','SEGUROS CATALANA OCCIDENTE SOCIEDAD ANONIMA DE SEGUROS Y REASEGUROS','SENDA GESTION SL','SESAME LABS S.L.','SHELL ESPAÑA SA','SHOPPING & INCOMING SERVICES VALENCIA SL','SIGNNE CREATIVE HOUSE S.L.','SIPCAM IBERIA SL','SIPCAM INAGRA SA','SIPCAM JARDIN SL','SISTEMAS Y MONTAJES INDUSTRIALES SA','SMART IMPACT SL','SMURFIT KAPPA ESPAÑA S.A.','SOBI AG','SONAE ARAUCO ESPAÑA-SOLUCIONES DE MADERA SL','SRG GLOBAL LIRIA SL','STABILIMENTO BALNEARE S.L.','STRANGOZZERIA AVION S.L.','STYROLUTION EUROPE GMBH','SUTERRA EUROPE BIOCONTROL SL','SUÁREZ LÓPEZ, FERNANDO','SVENJA MV INCOMING','TALENTUM MOTOR SOCIEDAD LIMITADA','TAMARA BOTELHO TATO','TAYLOR HOPKINSON','TECNOBIT SL','TESELA GESTION S.L.','THE BEGIN S.R.L','THE BOOM IDEAS COMPANY SL','THE CORE ENTERTAINMENT SCIENCE SCHOOL SL','TM MARKETING & SALES SL','TOP SEEDS IBERICA SOCIEDAD LIMITADA','TORRESCAMARA Y CIA DE OBRAS SA','TOWER CONSULTORES SL','TRACOSA ADUANAS SA','TRANSPED SHIPPING LEVANTE SOCIEDAD LIMITADA','TRANSPORTES MARTINEZ ALBERT SOCIEDAD LIMITADA','TRUPA SL','UAV NAVIGATION SL','UMIVALE MUTUA DE ACCIDENTES DE TRABAJO Y ENFERMEDADES PROFESIONALES DE LA SEGURIDAD SOCIAL N 15','UNIE UNIVERSIDAD S.L.','UNIMAT PREVENCION SL','UNION DE EMPRESAS NAUTICAS','UNIPREX SA','UNIVERSIDAD CATÓLICA DE VALENCIA','UNIVERSIDAD EUROPEA DE VALENCIA SL','UNIVERSIDAD MIGUEL HERNANDEZ DE ELCHE','UNIVERSITAT INTERNACIONAL VALENCIANA S.L.','UOC CORPORATE SL','UPV Edificio ASIC 4L2','UTE CRAVITEN','UTOPYA INNOVATION SL','VALGRAI','VALORA PREVENCION SL','VB GLOBAL GROUP SOCIEDAD LIMITADA','VB INTEGRA GLOBAL SOCIEDAD LIMITADA','VENDER MI COCHE SA','VERONICA CARRASCOSA PEREZ','VHM SERVICIOS SOCIOSANITARIOS SL','VIAJES AVENTURA Y ECOTURISMO S.L.','VIAJES DE AUTOR SL','VIAJES ECUADOR S.A.','VIAJES TRANSVIA TOURS S.L','VINCCI HOTELES SA','VIROSQUE TRANSPORTE Y LOGISTICA SL','VITROLIFE MEDICAL DEVICES SPAIN SL','VIVA AQUA SERVICE SPAIN S.A','VOICEMOD INC. SUCURSAL EN ESPAÑA','W2M CORPORATE SL','WE THE CLUB SL','WECOLORS SL','WHITE AND COLORS EVENTS SL','WIN CHANNEL S.L','Y & P SUN ADVENTURERS SOCIEDAD LIMITADA','YANOINMA MTRO SL','YEDIMAR FEELING SOCIEDAD LIMITADA','ZAHONERO VIRGILI SL','ZENALCO SA','iPRONICS','ÓRBITA INGENIERIA S.L.'];
 let DB_AGENCIAS=['Agencia Creativa BCN','Eventalia','Grupo Eventoplus','ilusiona Eventos','Wonder Events'];
 const DB_POBLACIONES=['Valencia','A Coruña','Albacete','Alcalá de Henares','Alicante','Almería','Ávila','Badajoz','Badalona','Barcelona','Benidorm','Bilbao','Burgos','Cáceres','Cádiz','Cartagena','Castellón de la Plana','Ciudad Real','Córdoba','Cuenca','Elche','Fuengirola','Gandía','Getafe','Gijón','Girona','Granada','Guadalajara','Huelva','Huesca','Ibiza','Jaén','Jerez de la Frontera','Las Palmas de Gran Canaria','León','Lérida','Logroño','Lugo','Madrid','Málaga','Marbella','Melilla','Mérida','Móstoles','Murcia','Oviedo','Palencia','Palma de Mallorca','Pamplona','Pontevedra','Reus','Sabadell','Salamanca','San Sebastián','Santa Cruz de Tenerife','Santander','Santiago de Compostela','Segovia','Sevilla','Soria','Tarragona','Terrassa','Toledo','Torrevieja','Valencia','Valladolid','Vigo','Vitoria-Gasteiz','Zamora','Zaragoza'];
 
 // Estado formulario
-let selActividad=null, selEstado=null, selGestores=new Set();
+let selActividad=null, selEstado=null, selGestores=new Set(), selEspacio='';
 let _numActoresContratados=0;
 let selCliente='', selAgencia='';
 let actoresState={confirmado:[],propuesto:[],nodisponible:[],bbdd:[...ACTORES_BBDD]};
@@ -649,6 +694,7 @@ function cloneEvent(){
     cliente:selCliente||document.getElementById('cliente-input').value,
     agencia:selAgencia||document.getElementById('agencia-input').value,
     poblacion:document.getElementById('ev-poblacion').value,
+    espacio:selEspacio||document.getElementById('ev-espacio').value,
     gestores:Array.from(selGestores),
     detallesCliente:document.getElementById('ev-detalles-cliente').value,
     detalles:document.getElementById('ev-detalles').value,
@@ -738,6 +784,7 @@ function openModal(dateStr){
   document.getElementById('cliente-input').value='';
   document.getElementById('agencia-input').value='';
   document.getElementById('ev-poblacion').value='';
+  selEspacio='';document.getElementById('ev-espacio').value='';
   document.getElementById('ev-detalles-cliente').value='';
   document.getElementById('ev-detalles').value='';
   document.getElementById('ev-timing-cliente').value='10:00 Inicio actividad\n12:30 Fin actividad\n';
@@ -1055,19 +1102,72 @@ function restoreActores(data){
 }
 
 // ===== AUTOCOMPLETE =====
+// ===== FUZZY SEARCH =====
+function normalize(str){
+  return str.toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g,'') // remove accents
+    .replace(/[^a-z0-9]/g,''); // remove spaces, hyphens, etc
+}
+
+function fuzzyMatch(query, target){
+  const q=normalize(query);
+  const t=normalize(target);
+  if(!q) return true;
+  if(t.includes(q)) return true;
+  // Each word must appear in target (min 2 chars per word)
+  const words=query.trim().split(' ').map(normalize).filter(function(w){return w.length>=2;});
+  if(words.length>0 && words.every(function(w){return t.includes(w);})) return true;
+  return false;
+}
+
+function fuzzyScore(query, target){
+  const q=normalize(query);
+  const t=normalize(target);
+  if(t.startsWith(q)) return 3;
+  if(t.includes(q)) return 2;
+  return 1;
+}
+
+function fuzzyFilter(query, list){
+  if(!query) return list.slice(0,20);
+  const matches=list.filter(item=>fuzzyMatch(query,item));
+  return matches.sort((a,b)=>fuzzyScore(query,b)-fuzzyScore(query,a)).slice(0,15);
+}
+
 function filterAC(type){
+  if(type==='espacio'){
+    const inp=document.getElementById('ev-espacio').value.toLowerCase();
+    const matches=fuzzyFilter(inp,DB_ESPACIOS_NOMBRES);
+    const dd=document.getElementById('espacio-dropdown2');
+    let html=matches.map(it=>`<div class="ac-item" onmousedown="pickEspacioMain('${it.replace(/'/g,"\'")}')"> ${it}</div>`).join('');
+    if(inp&&!matches.some(x=>x.toLowerCase()===inp))
+      html+=`<div class="ac-add" onmousedown="addEspacioToDb()">＋ Añadir "${document.getElementById('ev-espacio').value}"</div>`;
+    dd.innerHTML=html;
+    dd.classList.toggle('open',html.length>0);
+    return;
+  }
   const inputId=type==='poblacion'?'ev-poblacion':type+'-input';
   const inp=document.getElementById(inputId).value.toLowerCase();
   const db=type==='cliente'?DB_CLIENTES:type==='agencia'?DB_AGENCIAS:DB_POBLACIONES;
-  renderDropdown(type,db.filter(x=>x.toLowerCase().includes(inp)),inp);
+  renderDropdown(type,fuzzyFilter(inp,db),inp);
 }
 function showAC(type){
+  if(type==='espacio'){
+    const inp=document.getElementById('ev-espacio').value.toLowerCase();
+    const matches=fuzzyFilter(inp,DB_ESPACIOS_NOMBRES);
+    const dd=document.getElementById('espacio-dropdown2');
+    let html=matches.map(it=>`<div class="ac-item" onmousedown="pickEspacioMain('${it.replace(/'/g,"\'")}')"> ${it}</div>`).join('');
+    dd.innerHTML=html;
+    dd.classList.toggle('open',html.length>0);
+    return;
+  }
   const inputId=type==='poblacion'?'ev-poblacion':type+'-input';
   const inp=document.getElementById(inputId).value.toLowerCase();
   const db=type==='cliente'?DB_CLIENTES:type==='agencia'?DB_AGENCIAS:DB_POBLACIONES;
-  renderDropdown(type,db.filter(x=>!inp||x.toLowerCase().includes(inp)),inp);
+  renderDropdown(type,fuzzyFilter(inp,db),inp);
 }
-function hideAC(type,delay){setTimeout(()=>{const ddId=type==='poblacion'?'poblacion-dropdown':type+'-dropdown';document.getElementById(ddId).classList.remove('open');},delay)}
+function hideAC(type,delay){
+  if(type==='espacio'){setTimeout(()=>{document.getElementById('espacio-dropdown2').classList.remove('open');},delay);return;}setTimeout(()=>{const ddId=type==='poblacion'?'poblacion-dropdown':type+'-dropdown';document.getElementById(ddId).classList.remove('open');},delay)}
 function renderDropdown(type,items,query){
   const ddId=type==='poblacion'?'poblacion-dropdown':type+'-dropdown';
   const inputId=type==='poblacion'?'ev-poblacion':type+'-input';
@@ -1084,6 +1184,18 @@ function pickAC(type,val){
   document.getElementById(inputId).value=val;
   document.getElementById(ddId).classList.remove('open');
   if(type==='cliente')selCliente=val; else if(type==='agencia')selAgencia=val;
+}
+function pickEspacioMain(val){
+  document.getElementById('ev-espacio').value=val;
+  document.getElementById('espacio-dropdown2').classList.remove('open');
+  selEspacio=val;
+}
+function addEspacioToDb(){
+  const val=document.getElementById('ev-espacio').value.trim();
+  if(!val)return;
+  if(!DB_ESPACIOS_NOMBRES.includes(val))DB_ESPACIOS_NOMBRES.push(val);
+  selEspacio=val;
+  document.getElementById('espacio-dropdown2').classList.remove('open');
 }
 function addToDb(type){
   const val=document.getElementById(type+'-input').value.trim();
@@ -1112,6 +1224,7 @@ function saveEvent(){
     cliente:selCliente||document.getElementById('cliente-input').value,
     agencia:selAgencia||document.getElementById('agencia-input').value,
     poblacion:document.getElementById('ev-poblacion').value,
+    espacio:selEspacio||document.getElementById('ev-espacio').value,
     gestores:Array.from(selGestores),
     detallesCliente:document.getElementById('ev-detalles-cliente').value,
     detalles:document.getElementById('ev-detalles').value,
@@ -1146,6 +1259,7 @@ function editEventByIdx(idx){
     document.getElementById('cliente-input').value=ev.cliente||''; selCliente=ev.cliente||'';
     document.getElementById('agencia-input').value=ev.agencia||''; selAgencia=ev.agencia||'';
     document.getElementById('ev-poblacion').value=ev.poblacion||'';
+    selEspacio=ev.espacio||'';document.getElementById('ev-espacio').value=ev.espacio||'';
     document.getElementById('ev-detalles-cliente').value=ev.detallesCliente||'';
     document.getElementById('ev-detalles').value=ev.detalles||'';
     document.getElementById('ev-timing-cliente').value=ev.timingCliente||'';
@@ -1251,140 +1365,286 @@ function openGestionar(){
   _gestEvIdx=_editIdx;
   const title=ev?(ev.actividad||ev.tipo)+' · '+(ev.poblacion||''):'Nuevo evento';
   document.getElementById('gest-event-title').textContent='⚙️ '+title;
-  document.querySelectorAll('.gest-tab').forEach((t,i)=>{t.classList.toggle('active',i===0)});
-  showGestTab('evento', document.querySelector('.gest-tab'));
+  document.querySelectorAll('.gest-big-btn').forEach(t=>t.classList.remove('active'));document.getElementById('gbtn-espacio').classList.add('active');
+  showGestTab('espacio', document.getElementById('gbtn-espacio'));
   document.getElementById('gest-modal').classList.add('open');
 }
 function closeGestionar(){document.getElementById('gest-modal').classList.remove('open')}
 
 function showGestTab(tab, el){
-  document.querySelectorAll('.gest-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.gest-big-btn').forEach(t=>t.classList.remove('active'));
   if(el)el.classList.add('active');
+  else {const btn=document.getElementById('gbtn-'+tab);if(btn)btn.classList.add('active');}
   const body=document.getElementById('gest-body');
-  const ev=(_gestEvIdx!==null&&events[_gestEvIdx])||{};
-  const g=ev.gestionar||{};
+  // Read live from form if editing, fallback to saved event
+  const savedEv=(_gestEvIdx!==null&&events[_gestEvIdx])||{};
+  const ev={
+    ...savedEv,
+    actividad:selActividad||savedEv.actividad||'',
+    startTime:(document.getElementById('ev-start')&&document.getElementById('ev-start').value)||savedEv.startTime||'',
+    endTime:(document.getElementById('ev-end')&&document.getElementById('ev-end').value)||savedEv.endTime||'',
+    pax:(document.getElementById('ev-pax')&&document.getElementById('ev-pax').value)||savedEv.pax||'',
+    estado:selEstado||savedEv.estado||'',
+    cliente:selCliente||(document.getElementById('cliente-input')&&document.getElementById('cliente-input').value)||savedEv.cliente||'',
+    agencia:selAgencia||(document.getElementById('agencia-input')&&document.getElementById('agencia-input').value)||savedEv.agencia||'',
+    poblacion:(document.getElementById('ev-poblacion')&&document.getElementById('ev-poblacion').value)||savedEv.poblacion||'',
+    espacio:selEspacio||(document.getElementById('ev-espacio')&&document.getElementById('ev-espacio').value)||savedEv.espacio||'',
+    gestores:selGestores.size>0?Array.from(selGestores):savedEv.gestores||[],
+    detalles:(document.getElementById('ev-detalles')&&document.getElementById('ev-detalles').value)||savedEv.detalles||'',
+    date:_currentDate||savedEv.date||new Date()
+  };
+  const g=ev.gestionar||{}; 
 
   if(tab==='evento'){
+    const fecha=ev.date?ev.date.getDate()+'/'+(ev.date.getMonth()+1)+'/'+ev.date.getFullYear():'—';
     body.innerHTML=`
-      <div class="gest-two-col">
-        <div>
-          <div class="gest-field"><label>Actividad</label><input type="text" id="g-actividad" value="${ev.actividad||''}"/></div>
-          <div class="gest-field"><label>Fecha</label><input type="date" id="g-fecha" value="${ev.date?ev.date.toISOString().slice(0,10):''}"/></div>
-          <div class="gest-field"><label>Hora inicio</label><input type="time" id="g-start" value="${ev.startTime||''}"/></div>
-          <div class="gest-field"><label>Hora fin</label><input type="time" id="g-end" value="${ev.endTime||''}"/></div>
-          <div class="gest-field"><label>Número de pax</label><input type="number" id="g-pax" value="${ev.pax||''}"/></div>
-          <div class="gest-field"><label>Población</label><input type="text" id="g-poblacion" value="${ev.poblacion||''}"/></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px">
+        <div style="background:#f8f8f8;border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px">Actividad</div>
+          <div style="font-size:18px;font-weight:800;color:var(--text)">${ev.actividad||'—'}</div>
         </div>
-        <div>
-          <div class="gest-field"><label>Cliente</label><input type="text" id="g-cliente" value="${ev.cliente||''}"/></div>
-          <div class="gest-field"><label>Agencia</label><input type="text" id="g-agencia" value="${ev.agencia||''}"/></div>
-          <div class="gest-field"><label>Estado</label><input type="text" id="g-estado" value="${ev.estado||''}"/></div>
-          <div class="gest-field"><label>Gestores</label><input type="text" id="g-gestores" value="${(ev.gestores||[]).join(', ')}"/></div>
-          <div class="gest-field"><label>Detalles del evento</label><textarea id="g-detalles" style="min-height:100px">${ev.detalles||''}</textarea></div>
+        <div style="background:#f8f8f8;border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px">Fecha</div>
+          <div style="font-size:18px;font-weight:800;color:var(--text)">${fecha}</div>
         </div>
-      </div>`;
+        <div style="background:#f8f8f8;border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px">Horario</div>
+          <div style="font-size:18px;font-weight:800;color:var(--text)">${ev.startTime||'—'} – ${ev.endTime||'—'}</div>
+        </div>
+        <div style="background:#f8f8f8;border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px">Pax</div>
+          <div style="font-size:18px;font-weight:800;color:var(--text)">${ev.pax||'—'}</div>
+        </div>
+        <div style="background:#f8f8f8;border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px">Cliente</div>
+          <div style="font-size:16px;font-weight:800;color:var(--text)">${ev.cliente||'—'}</div>
+        </div>
+        <div style="background:#f8f8f8;border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px">Población</div>
+          <div style="font-size:16px;font-weight:800;color:var(--text)">${ev.poblacion||'—'}</div>
+        </div>
+        <div style="background:#f8f8f8;border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px">Estado</div>
+          <div style="font-size:16px;font-weight:800;color:var(--text)">${ev.estado||'—'}</div>
+        </div>
+        <div style="background:#f8f8f8;border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px">Gestores</div>
+          <div style="font-size:16px;font-weight:800;color:var(--text)">${(ev.gestores||[]).join(', ')||'—'}</div>
+        </div>
+        <div style="background:#f8f8f8;border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px">Agencia</div>
+          <div style="font-size:16px;font-weight:800;color:var(--text)">${ev.agencia||'—'}</div>
+        </div>
+      </div>
+      <div class="gest-field"><label>Detalles del evento</label><textarea style="min-height:80px">${ev.detalles||''}</textarea></div>`;
 
   } else if(tab==='espacio'){
     const esp=g.espacio||{};
-    const estadoEsp=esp.estado||'Sin definir';
+    const estadoEsp=esp.estado||'Confirmado (a falta de llamada)';
+    const estadosEsp=['Sin definir','Está buscando el cliente','Estamos buscando nosotros','Hemos enviado las propuestas','Confirmado (a falta de llamada)','Confirmado'];
+    const estadoColors={'Sin definir':'#f8f8f8','Está buscando el cliente':'#fff9c4','Estamos buscando nosotros':'#fff9c4','Hemos enviado las propuestas':'#fff9c4','Confirmado (a falta de llamada)':'#fff9c4','Confirmado':'#d4edda'};
+    const espacioNombreActual=esp.nombre||ev.espacio||'';
+    // Auto-fill from DB if we have a name but no contact data yet
+    if(espacioNombreActual && !esp.contacto){
+      const dbEsp=DB_ESPACIOS.find(e=>fuzzyMatch(espacioNombreActual,e.nombre));
+      if(dbEsp){
+        if(!ev.gestionar)ev.gestionar={};
+        ev.gestionar.espacio=Object.assign({nombre:espacioNombreActual},dbEsp,ev.gestionar?.espacio||{});
+        Object.assign(esp, ev.gestionar.espacio);
+      }
+    }
     body.innerHTML=`
       <div class="gest-two-col">
         <div>
           <div class="gest-field"><label>Estado del espacio</label>
-            <div>${ESPACIO_ESTADOS.map(s=>`<button class="espacio-estado-btn${estadoEsp===s?' selected':''}" onclick="selEspacioEstado(this,'${s}')" style="background:${ESPACIO_ESTADOS_COLORS[s]||'#f8f8f8'}">${s}</button>`).join('')}</div>
+            <select id="espacio-estado-sel" onchange="selEspacioEstado(null,this.value)"
+              style="border:2px solid var(--border);border-radius:8px;padding:12px;font-size:16px;font-weight:600;background:${estadoColors[estadoEsp]||'#f8f8f8'}">
+              ${estadosEsp.map(s=>`<option value="${s}" ${estadoEsp===s?'selected':''} style="background:${estadoColors[s]||'#f8f8f8'}">${s}</option>`).join('')}
+            </select>
           </div>
         </div>
         <div>
-          <div class="gest-field"><label>Buscar espacio</label>
+          <div class="gest-field"><label>Nombre del espacio</label>
             <div style="position:relative">
-              <input type="text" id="espacio-search" placeholder="Escribe el nombre del espacio..." value="${esp.nombre||''}" oninput="filterEspacios()" autocomplete="off"/>
+              <input type="text" id="espacio-search" placeholder="Buscar o escribir espacio..." value="${espacioNombreActual}" oninput="filterEspacios()" autocomplete="off"/>
               <div id="espacio-dropdown" class="autocomplete-dropdown"></div>
             </div>
           </div>
-          <div id="espacio-info" style="display:${esp.nombre?'block':'none'}">
-            <div class="espacio-result">
-              <div class="espacio-result-name" id="esp-nombre">${esp.nombre||''}</div>
-              <div class="espacio-result-grid">
-                <div><div class="espacio-result-label">Contacto</div><div class="espacio-result-val" id="esp-contacto">${esp.contacto||'—'}</div></div>
-                <div><div class="espacio-result-label">Teléfono</div><div class="espacio-result-val" id="esp-telefono">${esp.telefono||'—'}</div></div>
-                <div><div class="espacio-result-label">Contacto 2</div><div class="espacio-result-val" id="esp-contacto2">${esp.contacto2||'—'}</div></div>
-                <div><div class="espacio-result-label">Teléfono 2</div><div class="espacio-result-val" id="esp-telefono2">${esp.telefono2||'—'}</div></div>
-              </div>
-            </div>
-            <div class="dist-box" id="esp-dist">📍 Calculando distancia desde la oficina...</div>
-            <div class="gest-field"><label>🗺 Google Maps</label>
-              <a id="esp-maps" href="${esp.mapsUrl||'#'}" target="_blank" style="color:var(--blue);font-size:14px;word-break:break-all">${esp.mapsUrl||'Se generará automáticamente'}</a>
-            </div>
-            <div class="gest-field"><label>Detalles del espacio</label>
-              <textarea id="esp-detalles" style="min-height:80px">${esp.detalles||''}</textarea>
-            </div>
+          <div class="gest-two-col">
+            <div class="gest-field"><label>Contacto 1</label><input type="text" id="esp-contacto-in" value="${esp.contacto||''}"/></div>
+            <div class="gest-field"><label>Teléfono 1</label><input type="text" id="esp-telefono-in" value="${esp.telefono||''}"/></div>
+            <div class="gest-field"><label>Contacto 2</label><input type="text" id="esp-contacto2-in" value="${esp.contacto2||''}"/></div>
+            <div class="gest-field"><label>Teléfono 2</label><input type="text" id="esp-telefono2-in" value="${esp.telefono2||''}"/></div>
+            <div class="gest-field"><label>Correo</label><input type="text" id="esp-email-in" value="${esp.email||''}"/></div>
+            <div class="gest-field"><label>Dirección</label><input type="text" id="esp-dir-in" value="${esp.direccion||''}"/></div>
+          </div>
+          <div class="gest-field"><label>Detalles del espacio</label><textarea id="esp-detalles" style="min-height:80px">${esp.detalles||''}</textarea></div>
+          <div class="dist-box" id="esp-dist">
+            ${esp.nombre?'<button onclick="event.stopPropagation();window.open(\'https://www.google.com/maps/dir/Calle+Bernat+i+Baldov%C3%AD,+3,+Burjassot/'+encodeURIComponent((esp.nombre||'')+' '+(esp.poblacion||ev.poblacion||''))+'\',\'_blank\');" style="background:none;border:none;color:#1a73e8;font-weight:700;cursor:pointer;font-size:14px;padding:0">📍 Ver ruta desde la oficina →</button>':'📍 Ruta desde la oficina (rellena el espacio primero)'}
+          </div>
+          <div class="gest-field"><label>🗺 Google Maps</label>
+            <button onclick="event.stopPropagation();var u='${esp.mapsUrl||''}';if(u)window.open(u,'_blank');" style="background:none;border:none;color:var(--blue);font-size:13px;cursor:pointer;text-align:left;padding:0;word-break:break-all">${esp.mapsUrl||'Se generará al buscar el espacio'}</button>
           </div>
         </div>
       </div>`;
-    if(esp.nombre) calcDistancia(esp.nombre, esp.poblacion);
 
   } else if(tab==='actores'){
-    body.innerHTML=`<div style="padding:20px;text-align:center;color:var(--muted)">🎭 Gestión de actores — próximamente conectado a Airtable</div>`;
+    body.innerHTML=`<div style="padding:30px;text-align:center;color:var(--muted);font-size:16px">🎭 Los actores se gestionan en la ventana principal del evento</div>`;
+
   } else if(tab==='disponibilidad'){
-    body.innerHTML=`<div style="padding:20px;text-align:center;color:var(--muted)">📅 Disponibilidad — próximamente</div>`;
+    body.innerHTML=`<div style="padding:30px;text-align:center;color:var(--muted);font-size:16px">📅 Próximamente</div>`;
+
   } else if(tab==='produccion'){
     const prod=g.produccion||{};
+    const ESTADOS_PROD=['No necesario','No solicitado','Solicitado','Disponible en correo','Disponible en carpeta','Hecho'];
+    const selDropdown=(id,val)=>`<select id="${id}" style="border:2px solid var(--border);border-radius:8px;padding:10px;font-size:14px;width:100%">${ESTADOS_PROD.map(o=>`<option ${val===o?'selected':''}>${o}</option>`).join('')}</select>`;
     body.innerHTML=`
       <div class="gest-two-col">
         <div>
-          <div class="gest-field"><label>Necesidades técnicas</label><textarea id="g-tecnico" style="min-height:120px">${prod.tecnico||''}</textarea></div>
-          <div class="gest-field"><label>Materiales</label><textarea id="g-materiales" style="min-height:100px">${prod.materiales||''}</textarea></div>
+          <div class="gest-field"><label>Pruebas</label><textarea id="g-pruebas" style="min-height:140px">${prod.pruebas||''}</textarea></div>
+          <div class="gest-field"><label>Nº Equipos</label><input type="number" id="g-equipos" value="${prod.equipos||''}"/></div>
+          <div class="gest-field"><label>¿Quieren extras?</label>
+            <select id="g-extras-yn" onchange="toggleExtras()" style="border:2px solid var(--border);border-radius:8px;padding:10px;font-size:15px;width:100%">
+              <option ${prod.extrasYN==='No'||!prod.extrasYN?'selected':''}>No</option>
+              <option ${prod.extrasYN==='Sí'?'selected':''}>Sí</option>
+            </select>
+          </div>
+          <div id="extras-detail" style="display:${prod.extrasYN==='Sí'?'block':'none'}">
+            <div class="gest-field"><label>Atrezzo extra</label>
+              <select id="g-extras-atrezzo" style="border:2px solid var(--border);border-radius:8px;padding:10px;font-size:14px;width:100%">
+                <option ${prod.extrasAtrezzo==='No'||!prod.extrasAtrezzo?'selected':''}>No</option>
+                <option ${prod.extrasAtrezzo==='Sí'?'selected':''}>Sí</option>
+              </select>
+            </div>
+            <div class="gest-field"><label>Billetes personalizados</label>
+              <select id="g-extras-billetes" style="border:2px solid var(--border);border-radius:8px;padding:10px;font-size:14px;width:100%">
+                <option ${prod.extrasBilletes==='No'||!prod.extrasBilletes?'selected':''}>No</option>
+                <option ${prod.extrasBilletes==='Sí'?'selected':''}>Sí</option>
+              </select>
+            </div>
+          </div>
+          <div class="gest-field"><label>Producción / Notas</label><textarea id="g-prod-notas" style="min-height:100px">${prod.notas||''}</textarea></div>
+          <div class="gest-field"><label>Comida actores</label><textarea id="g-comida" style="min-height:80px">${prod.comida||''}</textarea></div>
+          <div class="gest-field"><label>Desplazamientos</label><textarea id="g-desplaz" style="min-height:80px">${prod.desplaz||''}</textarea></div>
+          <div class="gest-field"><label>Hotel</label><input type="text" id="g-hotel" value="${prod.hotel||''}"/></div>
         </div>
         <div>
-          <div class="gest-field"><label>Transporte / Logística</label><textarea id="g-transporte" style="min-height:120px">${prod.transporte||''}</textarea></div>
-          <div class="gest-field"><label>Notas de producción</label><textarea id="g-notas-prod" style="min-height:100px">${prod.notas||''}</textarea></div>
+          <div class="gest-field"><label>Proveedor</label>
+            <div style="position:relative">
+              <input type="text" id="g-proveedor" placeholder="Buscar proveedor..." value="${prod.proveedor||''}" oninput="filterProveedores()" autocomplete="off"/>
+              <div id="proveedor-dropdown" class="autocomplete-dropdown"></div>
+            </div>
+          </div>
+          <div class="gest-field"><label>Logo</label>${selDropdown('g-logo',prod.logo||'No solicitado')}</div>
+          <div class="gest-field"><label>Listado equipos</label>${selDropdown('g-listadoEq',prod.listadoEq||'No solicitado')}</div>
+          <div class="gest-field"><label>¿Atrezzo para jefes/as?</label>
+            <select id="g-atrezzo-yn" onchange="toggleAtrezzo()" style="border:2px solid var(--border);border-radius:8px;padding:10px;font-size:15px;width:100%">
+              <option ${prod.atrezzoYN==='No'||!prod.atrezzoYN?'selected':''}>No</option>
+              <option ${prod.atrezzoYN==='Sí'?'selected':''}>Sí</option>
+            </select>
+          </div>
+          <div id="atrezzo-detail" style="display:${prod.atrezzoYN==='Sí'?'block':'none'}">
+            <div class="gest-field"><label>Tallaje ropa</label><input type="text" id="g-tallaje-ropa" placeholder="XS, S, M, L, XL..." value="${prod.tallajeRopa||''}"/></div>
+            <div class="gest-field"><label>Tallaje calzado</label><input type="text" id="g-tallaje-calzado" placeholder="37, 38, 39..." value="${prod.tallajeCalzado||''}"/></div>
+          </div>
         </div>
       </div>`;
+    // Add toggle functions inline
+    window.toggleExtras=function(){const v=document.getElementById('g-extras-yn').value;document.getElementById('extras-detail').style.display=v==='Sí'?'block':'none';};
+    window.toggleAtrezzo=function(){const v=document.getElementById('g-atrezzo-yn').value;document.getElementById('atrezzo-detail').style.display=v==='Sí'?'block':'none';};
+    window.filterProveedores=function(){
+      const q=document.getElementById('g-proveedor').value;
+      const matches=fuzzyFilter(q,DB_PROVEEDORES.map(p=>p.nombre));
+      const dd=document.getElementById('proveedor-dropdown');
+      dd.innerHTML=matches.map(n=>`<div class="ac-item" onmousedown="pickProveedor('${n.replace(/'/g,"\'")}')"> ${n}</div>`).join('');
+      dd.classList.toggle('open',matches.length>0&&q.length>0);
+    };
+    window.pickProveedor=function(nombre){
+      document.getElementById('g-proveedor').value=nombre;
+      document.getElementById('proveedor-dropdown').classList.remove('open');
+    };
+
   } else if(tab==='concursos'){
     const con=g.concursos||{};
     body.innerHTML=`
       <div class="gest-field"><label>Tipo de concurso / presentación</label><input type="text" id="g-tipo-conc" value="${con.tipo||''}"/></div>
-      <div class="gest-field"><label>Dinámica</label><textarea id="g-dinamica" style="min-height:120px">${con.dinamica||''}</textarea></div>
-      <div class="gest-field"><label>Premios</label><textarea id="g-premios" style="min-height:80px">${con.premios||''}</textarea></div>
+      <div class="gest-two-col">
+        <div class="gest-field"><label>Dinámica</label><textarea id="g-dinamica" style="min-height:120px">${con.dinamica||''}</textarea></div>
+        <div class="gest-field"><label>Premios</label><textarea id="g-premios" style="min-height:120px">${con.premios||''}</textarea></div>
+      </div>
       <div class="gest-field"><label>Notas</label><textarea id="g-notas-conc" style="min-height:80px">${con.notas||''}</textarea></div>`;
+
   } else if(tab==='facturacion'){
     const fac=g.facturacion||{};
+    const ESTADOS_FAC=['PPTs generadas','PPTs enviadas','Presupuesto enviado','Factura reserva enviada','Factura final enviada','Rechazada'];
+    const estadoFacActual=fac.pipeline||'';
     body.innerHTML=`
+      <div class="gest-field"><label>Pipeline / Estado facturación</label>
+        <div style="display:flex;gap:0;border-radius:10px;overflow:hidden;border:2px solid var(--border);margin-bottom:14px">
+          ${ESTADOS_FAC.map(s=>`<button onclick="selFacPipeline('${s}',this)" style="flex:1;border:none;padding:10px 4px;font-size:11px;font-weight:700;cursor:pointer;background:${estadoFacActual===s?'#8430ce':'#f8f8f8'};color:${estadoFacActual===s?'#fff':'#666'};transition:all .15s;text-align:center">${s}</button>`).join('')}
+        </div>
+      </div>
       <div class="gest-two-col">
         <div>
+          <div class="gest-field"><label>A quién facturamos</label><input type="text" id="g-fac-cliente" value="${fac.cliente||ev.cliente||''}"/></div>
           <div class="gest-field"><label>Importe (€)</label><input type="number" id="g-importe" value="${fac.importe||''}"/></div>
-          <div class="gest-field"><label>Estado factura</label>
-            <select id="g-fac-estado">
-              <option ${!fac.estadoFac?'selected':''}>Pendiente</option>
-              <option ${fac.estadoFac==='Enviada'?'selected':''}>Enviada</option>
-              <option ${fac.estadoFac==='Cobrada'?'selected':''}>Cobrada</option>
-              <option ${fac.estadoFac==='Cancelada'?'selected':''}>Cancelada</option>
+          <div class="gest-field"><label>Plus fecha</label>
+            <select id="g-plus-fecha" style="border:2px solid var(--border);border-radius:8px;padding:10px;font-size:15px">
+              <option ${!fac.plusFecha?'selected':''}>Ninguno</option>
+              <option ${fac.plusFecha==='Fin de semana'?'selected':''}>Fin de semana</option>
+              <option ${fac.plusFecha==='Festivo'?'selected':''}>Festivo</option>
             </select>
           </div>
-          <div class="gest-field"><label>Número de factura</label><input type="text" id="g-num-fac" value="${fac.numero||''}"/></div>
+          <div class="gest-field"><label>Inc. población (%)</label><input type="number" id="g-inc-pob" value="${fac.incPob||''}"/></div>
         </div>
         <div>
+          <div class="gest-field"><label>Número de factura</label><input type="text" id="g-num-fac" value="${fac.numero||''}"/></div>
           <div class="gest-field"><label>Forma de pago</label><input type="text" id="g-pago" value="${fac.pago||''}"/></div>
           <div class="gest-field"><label>Notas de facturación</label><textarea id="g-notas-fac" style="min-height:120px">${fac.notas||''}</textarea></div>
         </div>
       </div>`;
+
   } else if(tab==='cambios'){
     const cam=g.cambios||{};
     body.innerHTML=`
       <div class="gest-field">
-        <label>⚠️ Alerta activa</label>
-        <label style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;text-transform:none;letter-spacing:0">
-          <input type="checkbox" id="g-alerta" ${cam.alerta?'checked':''} style="width:20px;height:20px;accent-color:#e74c3c"/>
-          Marcar este evento como alerta
+        <label style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;text-transform:none;letter-spacing:0;cursor:pointer">
+          <input type="checkbox" id="g-alerta" ${cam.alerta?'checked':''} style="width:22px;height:22px;accent-color:#e74c3c"/>
+          <span style="font-size:16px;font-weight:700">⚠️ Marcar como ALERTA</span>
         </label>
       </div>
-      <div class="gest-field"><label>Historial de cambios</label><textarea id="g-historial" style="min-height:200px" placeholder="Anota aquí cualquier cambio importante del evento...">${cam.historial||''}</textarea></div>`;
+      <div class="gest-field"><label>Historial de cambios</label><textarea id="g-historial" style="min-height:200px" placeholder="Anota aquí cualquier cambio importante...">${cam.historial||''}</textarea></div>`;
   }
 }
 
+function selProdEstado(field, val, btn){
+  if(!events[_gestEvIdx])return;
+  if(!events[_gestEvIdx].gestionar)events[_gestEvIdx].gestionar={};
+  if(!events[_gestEvIdx].gestionar.produccion)events[_gestEvIdx].gestionar.produccion={};
+  events[_gestEvIdx].gestionar.produccion[field]=val;
+  // update button styles in container
+  btn.parentElement.querySelectorAll('button').forEach(b=>{
+    b.style.border=b.textContent===val?'2px solid #333':'2px solid transparent';
+  });
+}
+
+function selFacPipeline(val, btn){
+  if(!events[_gestEvIdx])return;
+  if(!events[_gestEvIdx].gestionar)events[_gestEvIdx].gestionar={};
+  if(!events[_gestEvIdx].gestionar.facturacion)events[_gestEvIdx].gestionar.facturacion={};
+  events[_gestEvIdx].gestionar.facturacion.pipeline=val;
+  btn.parentElement.querySelectorAll('button').forEach(b=>{
+    b.style.background=b.textContent===val?'#8430ce':'#f8f8f8';
+    b.style.color=b.textContent===val?'#fff':'#666';
+  });
+}
+
+
 function selEspacioEstado(btn,estado){
-  document.querySelectorAll('.espacio-estado-btn').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected');
+  if(btn)document.querySelectorAll('.espacio-estado-btn').forEach(b=>b.classList.remove('selected'));
+  if(btn)btn.classList.add('selected');
+  const sel=document.getElementById('espacio-estado-sel');
+  if(sel){const cols={'Sin definir':'#f8f8f8','Está buscando el cliente':'#fff9c4','Estamos buscando nosotros':'#fff9c4','Hemos enviado las propuestas':'#fff9c4','Confirmado (a falta de llamada)':'#fff9c4','Confirmado':'#d4edda'};sel.style.background=cols[estado]||'#f8f8f8';}
   if(!events[_gestEvIdx])return;
   if(!events[_gestEvIdx].gestionar)events[_gestEvIdx].gestionar={};
   if(!events[_gestEvIdx].gestionar.espacio)events[_gestEvIdx].gestionar.espacio={};
@@ -1395,32 +1655,35 @@ function filterEspacios(){
   const q=document.getElementById('espacio-search').value.toLowerCase();
   const dd=document.getElementById('espacio-dropdown');
   if(!q){dd.classList.remove('open');return;}
-  const matches=DB_ESPACIOS.filter(e=>e.nombre.toLowerCase().includes(q)).slice(0,8);
+  const matches=DB_ESPACIOS.filter(e=>fuzzyMatch(q,e.nombre)).sort((a,b)=>fuzzyScore(q,b.nombre)-fuzzyScore(q,a.nombre)).slice(0,8);
   if(!matches.length){dd.classList.remove('open');return;}
   dd.innerHTML=matches.map(e=>`<div class="ac-item" onmousedown="pickEspacio('${e.nombre.replace(/'/g,"\\'")}')"><strong>${e.nombre}</strong> <span style="color:var(--muted);font-size:12px">${e.poblacion||''}</span></div>`).join('');
   dd.classList.add('open');
 }
 
 function pickEspacio(nombre){
-  const esp=DB_ESPACIOS.find(e=>e.nombre===nombre);
-  if(!esp)return;
+  const esp=DB_ESPACIOS.find(e=>fuzzyMatch(nombre,e.nombre))||DB_ESPACIOS.find(e=>e.nombre===nombre);
   document.getElementById('espacio-search').value=nombre;
   document.getElementById('espacio-dropdown').classList.remove('open');
   document.getElementById('espacio-info').style.display='block';
-  document.getElementById('esp-nombre').textContent=esp.nombre;
-  document.getElementById('esp-contacto').textContent=esp.contacto||'—';
-  document.getElementById('esp-telefono').textContent=esp.telefono||'—';
-  document.getElementById('esp-contacto2').textContent=esp.contacto2||'—';
-  document.getElementById('esp-telefono2').textContent=esp.telefono2||'—';
-  // Google Maps URL
-  const mapsUrl='https://www.google.com/maps/search/'+encodeURIComponent(esp.nombre+(esp.poblacion?' '+esp.poblacion:''));
-  document.getElementById('esp-maps').href=mapsUrl;
-  document.getElementById('esp-maps').textContent=mapsUrl;
-  calcDistancia(esp.nombre, esp.poblacion);
-  // Save to event
+  document.getElementById('esp-nombre').textContent=nombre;
+  // Fill form fields if we have data
+  const c=document.getElementById('esp-contacto-in');if(c&&esp)c.value=esp.contacto||'';
+  const t=document.getElementById('esp-telefono-in');if(t&&esp)t.value=esp.telefono||'';
+  const c2=document.getElementById('esp-contacto2-in');if(c2&&esp)c2.value=esp.contacto2||'';
+  const t2=document.getElementById('esp-telefono2-in');if(t2&&esp)t2.value=esp.telefono2||'';
+  document.getElementById('esp-contacto').textContent=esp?esp.contacto||'—':'—';
+  document.getElementById('esp-telefono').textContent=esp?esp.telefono||'—':'—';
+  document.getElementById('esp-contacto2').textContent=esp?esp.contacto2||'—':'—';
+  document.getElementById('esp-telefono2').textContent=esp?esp.telefono2||'—':'—';
+  const mapsUrl='https://www.google.com/maps/search/'+encodeURIComponent(nombre+(esp&&esp.poblacion?' '+esp.poblacion:''));
+  const mapsEl=document.getElementById('esp-maps');
+  if(mapsEl){mapsEl.href=mapsUrl;mapsEl.textContent=nombre+' en Maps';}
+  calcDistancia(nombre, esp?esp.poblacion:'');
   if(events[_gestEvIdx]){
     if(!events[_gestEvIdx].gestionar)events[_gestEvIdx].gestionar={};
-    events[_gestEvIdx].gestionar.espacio=Object.assign(events[_gestEvIdx].gestionar.espacio||{},{...esp,mapsUrl});
+    const merged=Object.assign({},esp||{},{nombre,mapsUrl});
+    events[_gestEvIdx].gestionar.espacio=Object.assign(events[_gestEvIdx].gestionar.espacio||{},merged);
   }
 }
 
@@ -1438,20 +1701,69 @@ function saveGestionar(){
   if(_gestEvIdx===null||!events[_gestEvIdx])return;
   const ev=events[_gestEvIdx];
   if(!ev.gestionar)ev.gestionar={};
-  // Save whatever fields are visible
-  const fields={
-    'g-actividad':'actividad','g-pax':'pax','g-poblacion':'poblacion',
-    'g-cliente':'cliente','g-estado':'estado','g-detalles':'detalles'
-  };
-  Object.entries(fields).forEach(([id,key])=>{const el=document.getElementById(id);if(el)ev[key]=el.value;});
-  if(document.getElementById('g-start'))ev.startTime=document.getElementById('g-start').value;
-  if(document.getElementById('g-end'))ev.endTime=document.getElementById('g-end').value;
+  // Espacio
+  const espContacto=document.getElementById('esp-contacto-in');
+  if(espContacto){
+    if(!ev.gestionar.espacio)ev.gestionar.espacio={};
+    ev.gestionar.espacio.contacto=espContacto.value;
+    ev.gestionar.espacio.contacto2=document.getElementById('esp-contacto2-in')?.value||'';
+    ev.gestionar.espacio.telefono2=document.getElementById('esp-telefono2-in')?.value||'';
+    ev.gestionar.espacio.telefono=document.getElementById('esp-telefono-in')?.value||'';
+    ev.gestionar.espacio.email=document.getElementById('esp-email-in')?.value||'';
+    ev.gestionar.espacio.direccion=document.getElementById('esp-dir-in')?.value||'';
+    ev.gestionar.espacio.detalles=document.getElementById('esp-detalles')?.value||'';
+    ev.gestionar.espacio.nombre=document.getElementById('espacio-search')?.value||'';
+  }
   // Produccion
-  if(document.getElementById('g-tecnico'))ev.gestionar.produccion={tecnico:document.getElementById('g-tecnico').value,materiales:document.getElementById('g-materiales')?.value||'',transporte:document.getElementById('g-transporte')?.value||'',notas:document.getElementById('g-notas-prod')?.value||''};
+  const gPruebas=document.getElementById('g-pruebas');
+  if(gPruebas){
+    if(!ev.gestionar.produccion)ev.gestionar.produccion={};
+    ev.gestionar.produccion.pruebas=gPruebas.value;
+    ev.gestionar.produccion.equipos=document.getElementById('g-equipos')?.value||'';
+    ev.gestionar.produccion.extrasYN=document.getElementById('g-extras-yn')?.value||'';
+    ev.gestionar.produccion.extrasDet=document.getElementById('g-extras-det')?.value||'';
+    ev.gestionar.produccion.notas=document.getElementById('g-prod-notas')?.value||'';
+    ev.gestionar.produccion.comida=document.getElementById('g-comida')?.value||'';
+    ev.gestionar.produccion.desplaz=document.getElementById('g-desplaz')?.value||'';
+    ev.gestionar.produccion.hotel=document.getElementById('g-hotel')?.value||'';
+    ev.gestionar.produccion.proveedor=document.getElementById('g-proveedor')?.value||'';
+    ev.gestionar.produccion.logo=document.getElementById('g-logo')?.value||'';
+    ev.gestionar.produccion.listadoEq=document.getElementById('g-listadoEq')?.value||'';
+    ev.gestionar.produccion.extrasYN=document.getElementById('g-extras-yn')?.value||'';
+    ev.gestionar.produccion.extrasAtrezzo=document.getElementById('g-extras-atrezzo')?.value||'';
+    ev.gestionar.produccion.extrasBilletes=document.getElementById('g-extras-billetes')?.value||'';
+    ev.gestionar.produccion.atrezzoYN=document.getElementById('g-atrezzo-yn')?.value||'';
+    ev.gestionar.produccion.tallajeRopa=document.getElementById('g-tallaje-ropa')?.value||'';
+    ev.gestionar.produccion.tallajeCalzado=document.getElementById('g-tallaje-calzado')?.value||'';
+  }
   // Facturacion
-  if(document.getElementById('g-importe'))ev.gestionar.facturacion={importe:document.getElementById('g-importe').value,estadoFac:document.getElementById('g-fac-estado')?.value||'',numero:document.getElementById('g-num-fac')?.value||'',pago:document.getElementById('g-pago')?.value||'',notas:document.getElementById('g-notas-fac')?.value||''};
+  const gImporte=document.getElementById('g-importe');
+  if(gImporte){
+    if(!ev.gestionar.facturacion)ev.gestionar.facturacion={};
+    ev.gestionar.facturacion.importe=gImporte.value;
+    ev.gestionar.facturacion.cliente=document.getElementById('g-fac-cliente')?.value||'';
+    ev.gestionar.facturacion.plusFecha=document.getElementById('g-plus-fecha')?.value||'';
+    ev.gestionar.facturacion.incPob=document.getElementById('g-inc-pob')?.value||'';
+    ev.gestionar.facturacion.numero=document.getElementById('g-num-fac')?.value||'';
+    ev.gestionar.facturacion.pago=document.getElementById('g-pago')?.value||'';
+    ev.gestionar.facturacion.notas=document.getElementById('g-notas-fac')?.value||'';
+  }
+  // Concursos
+  const gTipoConc=document.getElementById('g-tipo-conc');
+  if(gTipoConc){
+    if(!ev.gestionar.concursos)ev.gestionar.concursos={};
+    ev.gestionar.concursos.tipo=gTipoConc.value;
+    ev.gestionar.concursos.dinamica=document.getElementById('g-dinamica')?.value||'';
+    ev.gestionar.concursos.premios=document.getElementById('g-premios')?.value||'';
+    ev.gestionar.concursos.notas=document.getElementById('g-notas-conc')?.value||'';
+  }
   // Cambios
-  if(document.getElementById('g-alerta'))ev.gestionar.cambios={alerta:document.getElementById('g-alerta').checked,historial:document.getElementById('g-historial')?.value||''};
+  const gAlerta=document.getElementById('g-alerta');
+  if(gAlerta){
+    if(!ev.gestionar.cambios)ev.gestionar.cambios={};
+    ev.gestionar.cambios.alerta=gAlerta.checked;
+    ev.gestionar.cambios.historial=document.getElementById('g-historial')?.value||'';
+  }
   renderGrid();
   closeGestionar();
 }
