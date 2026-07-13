@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0048)file:///C:/Users/Usuario/Downloads/index_30.html -->
+<!-- saved from url=(0048)file:///C:/Users/Usuario/Downloads/index_33.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -343,22 +343,22 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
 <div class="modal-backdrop" id="modal">
   <div class="modal-box" id="modal-box" autocomplete="off">
     <div class="modal-head">
-      <span class="modal-head-date" id="modal-date-label">Miércoles, 22 de julio 2026</span>
+      <span class="modal-head-date" id="modal-date-label"></span>
       <div style="display:flex;gap:8px;align-items:center"><button onclick="openGestionar()" style="background:#8430ce;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">⚙️ Gestionar</button><button onclick="cloneEvent()" style="background:#f39c12;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">📋 Clonar</button><button class="modal-close" onclick="closeModal()">✕</button></div>
     </div>
     <div class="modal-body">
       <div class="modal-two-col">
         <div class="modal-col-left">
           <div class="sec-label">Evento</div>
-          <div class="selector-field" id="evento-field" onclick="openActividadModal()" style="min-height: 96px; background: rgb(196, 168, 130); border-color: rgb(196, 168, 130);">
-            <span class="sel-label" id="evento-label" style="display: none;">Toca para seleccionar</span>
-            <div style="display:flex;align-items:center;gap:8px"><span id="evento-badge"><span style="font-size:30px;font-weight:900;color:#1a1a1a;text-shadow:none;text-transform:uppercase;letter-spacing:.5px;line-height:1.2">A Tempo</span></span><span class="sel-arrow">›</span></div>
+          <div class="selector-field" id="evento-field" onclick="openActividadModal()" style="min-height:96px">
+            <span class="sel-label" id="evento-label">Toca para seleccionar</span>
+            <div style="display:flex;align-items:center;gap:8px"><span id="evento-badge"></span><span class="sel-arrow">›</span></div>
           </div>
 
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
             <span class="sec-label" style="margin-bottom:0">Horario</span>
-            <button class="turno-btn" id="turno-manana" onclick="setTurno(&#39;manana&#39;)">☀️ Mañana</button>
-            <button class="turno-btn active" id="turno-tarde" onclick="setTurno(&#39;tarde&#39;)">🌤 Tarde</button>
+            <button class="turno-btn active" id="turno-manana" onclick="setTurno(&#39;manana&#39;)">☀️ Mañana</button>
+            <button class="turno-btn" id="turno-tarde" onclick="setTurno(&#39;tarde&#39;)">🌤 Tarde</button>
             <button class="turno-btn" id="turno-noche" onclick="setTurno(&#39;noche&#39;)">🌙 Noche</button>
             <div style="margin-left:8px;display:flex;border:2px solid var(--border);border-radius:20px;overflow:hidden;flex-shrink:0">
               <button id="btn-provisional" onclick="setHorarioTipo(&#39;provisional&#39;)" style="border:none;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;background:#f39c12;color:#fff;transition:all .15s">PROVISIONAL</button>
@@ -366,8 +366,8 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
             </div>
           </div>
           <div class="input-row">
-            <div class="form-group"><label>Inicio</label><input type="time" id="ev-start" value="10:00" oninput="recalcEnd()" style="background: rgb(255, 249, 230); border-color: rgb(243, 156, 18);"></div>
-            <div class="form-group"><label>Fin</label><input type="time" id="ev-end" value="12:30" oninput="recalcTiming()" style="background: rgb(255, 249, 230); border-color: rgb(243, 156, 18);"></div>
+            <div class="form-group"><label>Inicio</label><input type="time" id="ev-start" value="10:00" oninput="recalcEnd()"></div>
+            <div class="form-group"><label>Fin</label><input type="time" id="ev-end" value="12:30" oninput="recalcTiming()"></div>
           </div>
 
           <div class="sec-label">Número de pax</div>
@@ -376,15 +376,15 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
           </div>
 
           <div class="sec-label">Estado</div>
-          <div class="selector-field" id="estado-field" onclick="openSubModal(&#39;estado&#39;)" style="background: rgb(245, 197, 24); border-color: rgb(245, 197, 24);">
-            <span class="sel-label" id="estado-label" style="display: none;">Toca para seleccionar</span>
-            <div style="display:flex;align-items:center;gap:8px"><span id="estado-badge"><span style="font-size:17px;font-weight:900;color:#1a1a1a;text-transform:uppercase">POSIBLE</span></span><span class="sel-arrow">›</span></div>
+          <div class="selector-field" id="estado-field" onclick="openSubModal(&#39;estado&#39;)">
+            <span class="sel-label" id="estado-label">Toca para seleccionar</span>
+            <div style="display:flex;align-items:center;gap:8px"><span id="estado-badge"></span><span class="sel-arrow">›</span></div>
           </div>
 
           <div class="sec-label">Cliente</div>
           <div class="autocomplete-wrap">
             <input type="text" id="cliente-input" placeholder="Buscar cliente..." autocomplete="off" oninput="filterAC(&#39;cliente&#39;)" onfocus="showAC(&#39;cliente&#39;)" onblur="hideAC(&#39;cliente&#39;,300)">
-            <div class="autocomplete-dropdown" id="cliente-dropdown"><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;A J VALENCIA GUIAS SL&#39;)">A J VALENCIA GUIAS SL</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;A V A E ESCUELAS DE CONDUCTORES SOCIEDAD LIMITADA&#39;)">A V A E ESCUELAS DE CONDUCTORES SOCIEDAD LIMITADA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ABO ENERGY ESPAÑA SA&#39;)">ABO ENERGY ESPAÑA SA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ABOLLADO REGO, MARCOS&#39;)">ABOLLADO REGO, MARCOS</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ABSOLUTE EXPERIENCIAS DE COMUNICACION SL&#39;)">ABSOLUTE EXPERIENCIAS DE COMUNICACION SL</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AC HOTEL VALENCIA SL&#39;)">AC HOTEL VALENCIA SL</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ACEESCA&#39;)">ACEESCA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ACEESCA ASOC DE APOYO A PERSONAS CON DIVERSIDAD INTELECTUAL&#39;)">ACEESCA ASOC DE APOYO A PERSONAS CON DIVERSIDAD INTELECTUAL</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ACHM SPAIN MANAGEMENT SL&#39;)">ACHM SPAIN MANAGEMENT SL</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ACTEMIUM ASAS SOCIEDAD LIMITADA&#39;)">ACTEMIUM ASAS SOCIEDAD LIMITADA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ADECCO FORMACIÓN SA.&#39;)">ADECCO FORMACIÓN SA.</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;ADN COMUNICACIO S.L&#39;)">ADN COMUNICACIO S.L</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AGENCIA PUBLICIDAD MKPLACE SL&#39;)">AGENCIA PUBLICIDAD MKPLACE SL</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AGRO2AGRI SL&#39;)">AGRO2AGRI SL</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AGUA MINERAL SAN BENEDETTO SA&#39;)">AGUA MINERAL SAN BENEDETTO SA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AGUAS DE VALENCIA SA&#39;)">AGUAS DE VALENCIA SA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AGUAS DEL ARCO MEDITERRANEO SA&#39;)">AGUAS DEL ARCO MEDITERRANEO SA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AGUAS MUNICIPALIZADAS DE ALICANTE E.MIXTA&#39;)">AGUAS MUNICIPALIZADAS DE ALICANTE E.MIXTA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AIGUES I SANEJAMENT D\&#39;ELX SA&#39;)">AIGUES I SANEJAMENT D'ELX SA</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;AIMPLAS-ASOCIACION DE INVESTIGACION DE MATERIALES PLASTICOS Y CONEXAS&#39;)">AIMPLAS-ASOCIACION DE INVESTIGACION DE MATERIALES PLASTICOS Y CONEXAS</div></div>
+            <div class="autocomplete-dropdown" id="cliente-dropdown"></div>
           </div>
 
           <div class="sec-label">Detalles del cliente</div>
@@ -399,19 +399,19 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
           <div class="sec-label">Población</div>
           <div class="autocomplete-wrap">
             <input type="text" id="ev-poblacion" placeholder="Escribe o busca ciudad..." autocomplete="off" oninput="filterAC(&#39;poblacion&#39;)" onfocus="showAC(&#39;poblacion&#39;)" onblur="hideAC(&#39;poblacion&#39;,300)">
-            <div class="autocomplete-dropdown" id="poblacion-dropdown"><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Valencia&#39;)">Valencia</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;A Coruña&#39;)">A Coruña</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Albacete&#39;)">Albacete</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Alcalá de Henares&#39;)">Alcalá de Henares</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Alicante&#39;)">Alicante</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Almería&#39;)">Almería</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Ávila&#39;)">Ávila</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Badajoz&#39;)">Badajoz</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Badalona&#39;)">Badalona</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Barcelona&#39;)">Barcelona</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Benidorm&#39;)">Benidorm</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Bilbao&#39;)">Bilbao</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Burgos&#39;)">Burgos</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Cáceres&#39;)">Cáceres</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Cádiz&#39;)">Cádiz</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Cartagena&#39;)">Cartagena</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Castellón de la Plana&#39;)">Castellón de la Plana</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Ciudad Real&#39;)">Ciudad Real</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Córdoba&#39;)">Córdoba</div><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Cuenca&#39;)">Cuenca</div></div>
+            <div class="autocomplete-dropdown" id="poblacion-dropdown"></div>
           </div>
 
           <div class="sec-label">Espacio</div>
           <div class="autocomplete-wrap">
             <input type="text" id="ev-espacio" placeholder="Buscar o añadir espacio..." autocomplete="off" oninput="filterAC(&#39;espacio&#39;)" onfocus="showAC(&#39;espacio&#39;)" onblur="hideAC(&#39;espacio&#39;,300)">
-            <div class="autocomplete-dropdown" id="espacio-dropdown2"><div class="ac-item" onmousedown="pickEspacioMain(&#39;AC Hotel by Marriott Alicante&#39;)"> AC Hotel by Marriott Alicante</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Ad Hoc Parque Bétera&#39;)"> Ad Hoc Parque Bétera</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Akuarela Playa&#39;)"> Akuarela Playa</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Alquería del Básquet&#39;)"> Alquería del Básquet</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Alquería Kukala&#39;)"> Alquería Kukala</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Ateneo Restaurante&#39;)"> Ateneo Restaurante</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Barrio Hub Madrid&#39;)"> Barrio Hub Madrid</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Base 1 La Marina&#39;)"> Base 1 La Marina</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;BIOHUB&#39;)"> BIOHUB</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Bodega Casa Sicilia&#39;)"> Bodega Casa Sicilia</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Box Art Hotel Alpino (Navacerrada)&#39;)"> Box Art Hotel Alpino (Navacerrada)</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Caixa Forum&#39;)"> Caixa Forum</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Casa de la mar&#39;)"> Casa de la mar</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Casino Cirsa Valencia&#39;)"> Casino Cirsa Valencia</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Chalet Alquilado&#39;)"> Chalet Alquilado</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;El Huerto de Santa María (El Puig)&#39;)"> El Huerto de Santa María (El Puig)</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;El Poblet de Atalayas&#39;)"> El Poblet de Atalayas</div><div class="ac-item" onmousedown="pickEspacioMain(&#39;Masía Xamandreu&#39;)"> Masía Xamandreu</div></div>
+            <div class="autocomplete-dropdown" id="espacio-dropdown2"></div>
           </div>
 
           <div class="sec-label">¿Quién gestiona?</div>
           <div class="selector-field" onclick="openSubModal(&#39;gestor&#39;)">
-            <span class="sel-label" id="gestor-label" style="display: none;">¿Quién gestiona?</span>
-            <div style="display:flex;align-items:center;gap:8px"><span id="gestor-badges" style="display:flex;gap:6px;flex-wrap:wrap"><span class="sel-badge" style="background:#c5d8f7;color:#1a1a1a;font-weight:700">VIC</span></span><span class="sel-arrow">›</span></div>
+            <span class="sel-label" id="gestor-label">¿Quién gestiona?</span>
+            <div style="display:flex;align-items:center;gap:8px"><span id="gestor-badges" style="display:flex;gap:6px;flex-wrap:wrap"></span><span class="sel-arrow">›</span></div>
           </div>
 
           <div class="sec-label">Detalles del evento</div>
@@ -427,11 +427,11 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
           <div class="actores-cols">
             <div class="actores-col">
               <div class="actores-col-head" style="background:#27ae60">CONFIRMADO/A</div>
-              <div class="actores-col-body" id="col-confirmado"><button class="actor-btn confirmado" onclick="cycleActor(&#39;JL&#39;,&#39;confirmado&#39;)">JL</button><div style="border:2px dashed #bbb;border-radius:6px;padding:8px 4px;font-size:12px;font-weight:700;color:#bbb;text-align:center;margin-bottom:4px;background:#fafafa">faltan 4</div><div style="border:2px dashed #bbb;border-radius:6px;padding:8px 4px;font-size:12px;font-weight:700;color:#bbb;text-align:center;margin-bottom:4px;background:#fafafa">faltan 4</div><div style="border:2px dashed #bbb;border-radius:6px;padding:8px 4px;font-size:12px;font-weight:700;color:#bbb;text-align:center;margin-bottom:4px;background:#fafafa">faltan 4</div><div style="border:2px dashed #bbb;border-radius:6px;padding:8px 4px;font-size:12px;font-weight:700;color:#bbb;text-align:center;margin-bottom:4px;background:#fafafa">faltan 4</div></div>
+              <div class="actores-col-body" id="col-confirmado"></div>
             </div>
             <div class="actores-col">
               <div class="actores-col-head" style="background:#f39c12">PROPUESTO/A</div>
-              <div class="actores-col-body" id="col-propuesto"><button class="actor-btn propuesto" onclick="cycleActor(&#39;ARANCHA&#39;,&#39;propuesto&#39;)">ARANCHA</button><button class="actor-btn propuesto" onclick="cycleActor(&#39;DIANA&#39;,&#39;propuesto&#39;)">DIANA</button><button class="actor-btn propuesto" onclick="cycleActor(&#39;AGUS&#39;,&#39;propuesto&#39;)">AGUS</button></div>
+              <div class="actores-col-body" id="col-propuesto"></div>
             </div>
             <div class="actores-col">
               <div class="actores-col-head" style="background:#e74c3c">NO DISPONIBLE</div>
@@ -439,7 +439,7 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
             </div>
             <div class="actores-col">
               <div class="actores-col-head" style="background:#5b9bd5">BASE DE DATOS</div>
-              <div class="actores-col-body" id="col-bbdd"><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;VIC&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;VIC&#39;)">VIC</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;MON&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;MON&#39;)">MON</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;MAX&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;MAX&#39;)">MAX</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;ISRA&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;ISRA&#39;)">ISRA</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;PABLO BARRIOS&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;PABLO BARRIOS&#39;)">PABLO BARRIOS</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;OTROS&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;OTROS&#39;)">OTROS</button></div>
+              <div class="actores-col-body" id="col-bbdd"></div>
             </div>
           </div>
 
@@ -476,8 +476,8 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
 <!-- SUBMODAL -->
 <div class="submodal-backdrop" id="submodal" onclick="if(event.target===this)closeSubModal()">
   <div class="submodal-box">
-    <div class="submodal-title" id="submodal-title">¿Quién gestiona?</div>
-    <div class="submodal-btns" id="submodal-btns" style="grid-template-columns: repeat(3, 1fr);"><button class="sub-btn" id="gbtn-DIANA" style="background: rgb(232, 213, 245); color: rgb(26, 26, 26); opacity: 0.4; font-size: 22px; font-weight: 900; min-height: 80px;" onclick="toggleGestorBtn(&#39;DIANA&#39;)">DIANA</button><button class="sub-btn" id="gbtn-VIC" style="background: rgb(197, 216, 247); color: rgb(26, 26, 26); opacity: 1; font-size: 22px; font-weight: 900; min-height: 80px;" onclick="toggleGestorBtn(&#39;VIC&#39;)">VIC ✓</button><button class="sub-btn" id="gbtn-JL" style="background: rgb(197, 232, 213); color: rgb(26, 26, 26); opacity: 0.4; font-size: 22px; font-weight: 900; min-height: 80px;" onclick="toggleGestorBtn(&#39;JL&#39;)">JL</button><button class="btn-save" style="grid-column:1/-1;margin-top:4px;border-radius:10px;padding:14px;font-size:15px" onclick="closeSubModal();if(_pendingSave)saveEvent()">Listo</button></div>
+    <div class="submodal-title" id="submodal-title"></div>
+    <div class="submodal-btns" id="submodal-btns"></div>
     <button class="submodal-cancel" onclick="closeSubModal()">Cancelar</button>
   </div>
 </div>
@@ -485,8 +485,8 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
 <!-- MODAL ACTIVIDAD -->
 <div class="submodal-backdrop" id="actividad-modal" onclick="if(event.target===this)closeActividadModal()">
   <div class="submodal-box" style="max-width:720px">
-    <div class="submodal-title" id="act-title">TEAM BUILDING</div>
-    <div class="submodal-btns" id="act-btns" style="grid-template-columns: repeat(3, 1fr);"><button class="sub-btn" style="background:#eee;color:#333;grid-column:1/-1;min-height:44px;font-size:13px" onclick="openActividadModal()">← Volver</button><button class="sub-btn" style="background:#f0a0a4" onclick="pickItem(&#39;Casa de Papel&#39;)">Casa de Papel</button><button class="sub-btn" style="background:#7ab3e0" onclick="pickItem(&#39;Intocables&#39;)">Intocables</button><button class="sub-btn" style="background:#c4a882" onclick="pickItem(&#39;A Tempo&#39;)">A Tempo</button><button class="sub-btn" style="background:#a8d8b8" onclick="pickItem(&#39;Concurso Música es la Pista&#39;)">Concurso Música es la Pista</button><button class="sub-btn" style="background:#94cce0" onclick="pickItem(&#39;Concurso Live Music&#39;)">Concurso Live Music</button><button class="sub-btn" style="background:#e89898" onclick="pickItem(&#39;First Dates&#39;)">First Dates</button><button class="sub-btn" style="background:#e0bcd8" onclick="pickItem(&#39;Concurso MIX&#39;)">Concurso MIX</button><button class="sub-btn" style="background:#94c8e8" onclick="pickItem(&#39;Aquellos Maravillosos Años&#39;)">Aquellos Maravillosos Años</button><button class="sub-btn" style="background:#c4a882" onclick="pickItem(&#39;Guardianes&#39;)">Guardianes</button><button class="sub-btn" style="background:#a8d8aa" onclick="pickItem(&#39;Cluedo&#39;)">Cluedo</button><button class="sub-btn" style="background:#d0d0d0" onclick="pickItem(&#39;OTROS&#39;)">OTROS</button></div>
+    <div class="submodal-title" id="act-title">Tipo de evento</div>
+    <div class="submodal-btns" id="act-btns" style="grid-template-columns:repeat(3,1fr)"></div>
     <button class="submodal-cancel" onclick="closeActividadModal()">Cancelar</button>
   </div>
 </div>
@@ -537,55 +537,23 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
   <div class="gest-box">
     <div class="gest-head">
       <div class="gest-head-top">
-        <span class="gest-title" id="gest-event-title">⚙️ Nuevo evento</span>
+        <span class="gest-title" id="gest-event-title">⚙️ Gestionar evento</span><span id="gest-autosave" style="font-size:12px;color:#27ae60;font-weight:600;opacity:0;transition:opacity .3s;margin-left:10px">✓ Guardado</span>
         <button class="modal-close" onclick="closeGestionar()">✕</button>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 0 14px">
-        <button class="gest-big-btn active" id="gbtn-espacio" onclick="showGestTab(&#39;espacio&#39;,this)" style="background:#5b9bd5">ESPACIO</button>
+      <div id="gest-summary" style="display:flex;flex-wrap:wrap;gap:6px;padding:8px 0 10px;border-bottom:1px solid var(--border);margin-bottom:2px"></div>
+        <button class="gest-big-btn" id="gbtn-espacio" onclick="showGestTab(&#39;espacio&#39;,this)" style="background:#5b9bd5">ESPACIO</button>
         <button class="gest-big-btn" id="gbtn-produccion" onclick="showGestTab(&#39;produccion&#39;,this)" style="background:#e67e22">PRODUCCIÓN</button>
         <button class="gest-big-btn" id="gbtn-concursos" onclick="showGestTab(&#39;concursos&#39;,this)" style="background:#8430ce">CONCURSOS Y PRESENTACIONES</button>
         <button class="gest-big-btn" id="gbtn-facturacion" onclick="showGestTab(&#39;facturacion&#39;,this)" style="background:#27ae60">FACTURACIÓN</button>
       </div>
     </div>
-    <div class="gest-body" id="gest-body">
-      <div class="gest-two-col">
-        <div>
-          <div class="gest-field"><label>Estado del espacio</label>
-            <select id="espacio-estado-sel" onchange="selEspacioEstado(null,this.value)" style="border:2px solid var(--border);border-radius:8px;padding:12px;font-size:16px;font-weight:600;background:#fff9c4">
-              <option value="Sin definir" style="background:#f8f8f8">Sin definir</option><option value="Está buscando el cliente" style="background:#fff9c4">Está buscando el cliente</option><option value="Estamos buscando nosotros" style="background:#fff9c4">Estamos buscando nosotros</option><option value="Hemos enviado las propuestas" style="background:#fff9c4">Hemos enviado las propuestas</option><option value="Confirmado (a falta de llamada)" selected="" style="background:#fff9c4">Confirmado (a falta de llamada)</option><option value="Confirmado" style="background:#d4edda">Confirmado</option>
-            </select>
-          </div>
-        </div>
-        <div>
-          <div class="gest-field"><label>Nombre del espacio</label>
-            <div style="position:relative">
-              <input type="text" id="espacio-search" placeholder="Buscar o escribir espacio..." value="BIOHUB" oninput="filterEspacios()" autocomplete="off">
-              <div id="espacio-dropdown" class="autocomplete-dropdown"></div>
-            </div>
-          </div>
-          <div class="gest-two-col">
-            <div class="gest-field"><label>Contacto 1</label><input type="text" id="esp-contacto-in" value=""></div>
-            <div class="gest-field"><label>Teléfono 1</label><input type="text" id="esp-telefono-in" value=""></div>
-            <div class="gest-field"><label>Contacto 2</label><input type="text" id="esp-contacto2-in" value=""></div>
-            <div class="gest-field"><label>Teléfono 2</label><input type="text" id="esp-telefono2-in" value=""></div>
-            <div class="gest-field"><label>Correo</label><input type="text" id="esp-email-in" value=""></div>
-            <div class="gest-field"><label>Dirección</label><input type="text" id="esp-dir-in" value=""></div>
-          </div>
-          <div class="gest-field"><label>Detalles del espacio</label><textarea id="esp-detalles" style="min-height:80px"></textarea></div>
-          <div class="dist-box" id="esp-dist">
-            📍 Ruta desde la oficina (rellena el espacio primero)
-          </div>
-          <div class="gest-field"><label>🗺 Google Maps</label>
-            <button onclick="event.stopPropagation();var u=&#39;&#39;;if(u)window.open(u,&#39;_blank&#39;);" style="background:none;border:none;color:var(--blue);font-size:13px;cursor:pointer;text-align:left;padding:0;word-break:break-all">Se generará al buscar el espacio</button>
-          </div>
-        </div>
-      </div></div>
+    <div class="gest-body" id="gest-body" oninput="scheduleAutoSave()" onchange="scheduleAutoSave()"></div>
     <div class="gest-footer">
       <button class="btn-cancel" onclick="closeGestionar()">Cerrar</button>
-      <button class="gest-save-btn" onclick="saveGestionar()">💾 Guardar</button>
+      <button class="gest-save-btn" onclick="saveGestionar()">💾 Cerrar y guardar</button>
     </div>
   </div>
-</div>
+
 
 <!-- ESTADÍSTICAS -->
 <div class="stats-backdrop" id="stats-modal" onclick="if(event.target===this)closeStats()">
@@ -1358,6 +1326,52 @@ let DB_ESPACIOS=[
   {nombre:'Akuarela Playa',poblacion:'Valencia',provincia:'Valencia',contacto:'',telefono:'960000300',etiquetas:['discoteca']},
 ];
 
+function autoSaveGestionar(){
+  // Silent save without closing
+  if(_gestEvIdx===null||!events[_gestEvIdx])return;
+  const ev=events[_gestEvIdx];
+  if(!ev.gestionar)ev.gestionar={};
+  // Espacio fields
+  const espContacto=document.getElementById('esp-contacto-in');
+  if(espContacto){
+    if(!ev.gestionar.espacio)ev.gestionar.espacio={};
+    ['contacto','telefono','contacto2','telefono2','email','direccion','detalles'].forEach(function(f){
+      const id='esp-'+f.replace('contacto2','contacto2')+'-in';
+      const el=document.getElementById('esp-'+f+'-in')||document.getElementById('esp-'+f);
+      if(el)ev.gestionar.espacio[f]=el.value||el.textContent||'';
+    });
+    const sn=document.getElementById('espacio-search');if(sn)ev.gestionar.espacio.nombre=sn.value;
+    const ses=document.getElementById('espacio-estado-sel');if(ses){ev.gestionar.espacio.estado=ses.value;}
+  }
+  // Produccion fields
+  const fields=['g-pruebas','g-equipos','g-extras-yn','g-extras-atrezzo','g-extras-billetes','g-prod-notas','g-comida','g-desplaz','g-hotel','g-proveedor','g-logo','g-listadoEq','g-atrezzo-yn','g-tallaje-ropa','g-tallaje-calzado'];
+  const prodKeys=['pruebas','equipos','extrasYN','extrasAtrezzo','extrasBilletes','notas','comida','desplaz','hotel','proveedor','logo','listadoEq','atrezzoYN','tallajeRopa','tallajeCalzado'];
+  let hasProd=false;
+  fields.forEach(function(id,i){const el=document.getElementById(id);if(el){hasProd=true;if(!ev.gestionar.produccion)ev.gestionar.produccion={};ev.gestionar.produccion[prodKeys[i]]=el.value;}});
+  // Concursos
+  const gTipoConc=document.getElementById('g-tipo-conc');
+  if(gTipoConc){if(!ev.gestionar.concursos)ev.gestionar.concursos={};['tipo','dinamica','premios','notas-conc'].forEach(function(f){const el=document.getElementById('g-'+f);if(el)ev.gestionar.concursos[f.replace('-conc','')]=el.value;});}
+  // Facturacion
+  const gImporte=document.getElementById('g-importe');
+  if(gImporte){if(!ev.gestionar.facturacion)ev.gestionar.facturacion={};['importe','fac-cliente','plus-fecha','inc-pob','num-fac','pago','notas-fac'].forEach(function(f){const el=document.getElementById('g-'+f);if(el)ev.gestionar.facturacion[f.replace('fac-','').replace('notas-fac','notas')]=el.value;});}
+  // Show brief saved indicator
+  showAutoSaved();
+}
+
+var _autoSaveTimer=null;
+function scheduleAutoSave(){
+  clearTimeout(_autoSaveTimer);
+  _autoSaveTimer=setTimeout(autoSaveGestionar, 800);
+}
+
+function showAutoSaved(){
+  var el=document.getElementById('gest-autosave');
+  if(!el)return;
+  el.style.opacity='1';
+  clearTimeout(el._fadeTimer);
+  el._fadeTimer=setTimeout(function(){el.style.opacity='0';},2000);
+}
+
 function openGestionar(){
   // Get current event
   let ev=null;
@@ -1365,6 +1379,23 @@ function openGestionar(){
   _gestEvIdx=_editIdx;
   const title=ev?(ev.actividad||ev.tipo)+' · '+(ev.poblacion||''):'Nuevo evento';
   document.getElementById('gest-event-title').textContent='⚙️ '+title;
+  // Render summary chips
+  const chips=[
+    {label:'ACTIVIDAD', val:ev.actividad||ev.tipo},
+    {label:'FECHA', val:ev.date?ev.date.getDate()+'/'+(ev.date.getMonth()+1)+'/'+ev.date.getFullYear():'—'},
+    {label:'HORARIO', val:ev.startTime&&ev.endTime?ev.startTime+' – '+ev.endTime:'—'},
+    {label:'PAX', val:ev.pax||'—'},
+    {label:'CIUDAD', val:ev.poblacion||'—'},
+    {label:'ESPACIO', val:ev.espacio||'—'},
+    {label:'CLIENTE', val:ev.cliente||'—'},
+    {label:'ESTADO', val:ev.estado||'—'},
+  ];
+  document.getElementById('gest-summary').innerHTML=chips.map(c=>
+    `<div style="background:#f0f0f0;border-radius:8px;padding:5px 10px;font-size:11px;font-weight:700;color:#555">
+      <span style="color:#999;font-size:10px;display:block;letter-spacing:.5px">${c.label}</span>
+      <span style="color:#1a1a1a;font-size:13px">${c.val}</span>
+    </div>`
+  ).join('');
   document.querySelectorAll('.gest-big-btn').forEach(t=>t.classList.remove('active'));document.getElementById('gbtn-espacio').classList.add('active');
   showGestTab('espacio', document.getElementById('gbtn-espacio'));
   document.getElementById('gest-modal').classList.add('open');
@@ -1697,76 +1728,7 @@ function calcDistancia(nombre, poblacion){
   distEl.innerHTML='📍 <a href="'+mapsDir+'" target="_blank" style="color:#1a73e8;font-weight:700">Ver ruta desde la oficina (Burjassot)</a>';
 }
 
-function saveGestionar(){
-  if(_gestEvIdx===null||!events[_gestEvIdx])return;
-  const ev=events[_gestEvIdx];
-  if(!ev.gestionar)ev.gestionar={};
-  // Espacio
-  const espContacto=document.getElementById('esp-contacto-in');
-  if(espContacto){
-    if(!ev.gestionar.espacio)ev.gestionar.espacio={};
-    ev.gestionar.espacio.contacto=espContacto.value;
-    ev.gestionar.espacio.contacto2=document.getElementById('esp-contacto2-in')?.value||'';
-    ev.gestionar.espacio.telefono2=document.getElementById('esp-telefono2-in')?.value||'';
-    ev.gestionar.espacio.telefono=document.getElementById('esp-telefono-in')?.value||'';
-    ev.gestionar.espacio.email=document.getElementById('esp-email-in')?.value||'';
-    ev.gestionar.espacio.direccion=document.getElementById('esp-dir-in')?.value||'';
-    ev.gestionar.espacio.detalles=document.getElementById('esp-detalles')?.value||'';
-    ev.gestionar.espacio.nombre=document.getElementById('espacio-search')?.value||'';
-  }
-  // Produccion
-  const gPruebas=document.getElementById('g-pruebas');
-  if(gPruebas){
-    if(!ev.gestionar.produccion)ev.gestionar.produccion={};
-    ev.gestionar.produccion.pruebas=gPruebas.value;
-    ev.gestionar.produccion.equipos=document.getElementById('g-equipos')?.value||'';
-    ev.gestionar.produccion.extrasYN=document.getElementById('g-extras-yn')?.value||'';
-    ev.gestionar.produccion.extrasDet=document.getElementById('g-extras-det')?.value||'';
-    ev.gestionar.produccion.notas=document.getElementById('g-prod-notas')?.value||'';
-    ev.gestionar.produccion.comida=document.getElementById('g-comida')?.value||'';
-    ev.gestionar.produccion.desplaz=document.getElementById('g-desplaz')?.value||'';
-    ev.gestionar.produccion.hotel=document.getElementById('g-hotel')?.value||'';
-    ev.gestionar.produccion.proveedor=document.getElementById('g-proveedor')?.value||'';
-    ev.gestionar.produccion.logo=document.getElementById('g-logo')?.value||'';
-    ev.gestionar.produccion.listadoEq=document.getElementById('g-listadoEq')?.value||'';
-    ev.gestionar.produccion.extrasYN=document.getElementById('g-extras-yn')?.value||'';
-    ev.gestionar.produccion.extrasAtrezzo=document.getElementById('g-extras-atrezzo')?.value||'';
-    ev.gestionar.produccion.extrasBilletes=document.getElementById('g-extras-billetes')?.value||'';
-    ev.gestionar.produccion.atrezzoYN=document.getElementById('g-atrezzo-yn')?.value||'';
-    ev.gestionar.produccion.tallajeRopa=document.getElementById('g-tallaje-ropa')?.value||'';
-    ev.gestionar.produccion.tallajeCalzado=document.getElementById('g-tallaje-calzado')?.value||'';
-  }
-  // Facturacion
-  const gImporte=document.getElementById('g-importe');
-  if(gImporte){
-    if(!ev.gestionar.facturacion)ev.gestionar.facturacion={};
-    ev.gestionar.facturacion.importe=gImporte.value;
-    ev.gestionar.facturacion.cliente=document.getElementById('g-fac-cliente')?.value||'';
-    ev.gestionar.facturacion.plusFecha=document.getElementById('g-plus-fecha')?.value||'';
-    ev.gestionar.facturacion.incPob=document.getElementById('g-inc-pob')?.value||'';
-    ev.gestionar.facturacion.numero=document.getElementById('g-num-fac')?.value||'';
-    ev.gestionar.facturacion.pago=document.getElementById('g-pago')?.value||'';
-    ev.gestionar.facturacion.notas=document.getElementById('g-notas-fac')?.value||'';
-  }
-  // Concursos
-  const gTipoConc=document.getElementById('g-tipo-conc');
-  if(gTipoConc){
-    if(!ev.gestionar.concursos)ev.gestionar.concursos={};
-    ev.gestionar.concursos.tipo=gTipoConc.value;
-    ev.gestionar.concursos.dinamica=document.getElementById('g-dinamica')?.value||'';
-    ev.gestionar.concursos.premios=document.getElementById('g-premios')?.value||'';
-    ev.gestionar.concursos.notas=document.getElementById('g-notas-conc')?.value||'';
-  }
-  // Cambios
-  const gAlerta=document.getElementById('g-alerta');
-  if(gAlerta){
-    if(!ev.gestionar.cambios)ev.gestionar.cambios={};
-    ev.gestionar.cambios.alerta=gAlerta.checked;
-    ev.gestionar.cambios.historial=document.getElementById('g-historial')?.value||'';
-  }
-  renderGrid();
-  closeGestionar();
-}
+function saveGestionar(){autoSaveGestionar();closeGestionar();}
 function openStats(){renderStats();document.getElementById('stats-modal').classList.add('open')}
 function closeStats(){document.getElementById('stats-modal').classList.remove('open')}
 function renderStats(){
