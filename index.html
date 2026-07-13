@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0034)file:///D:/Descargas/index_81.html -->
+<!-- saved from url=(0047)file:///C:/Users/Usuario/Downloads/index_5.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,7 +57,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 .modal-head-date{font-size:26px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.3px}
 .modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center}
 .modal-close:hover{background:var(--hover)}
-.modal-body{padding:16px 20px;flex:1;overflow-y:auto}
+.modal-body{padding:16px 20px;flex:1;overflow-y:visible}
 .modal-two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 @media(max-width:700px){.modal-two-col{grid-template-columns:1fr}}
 .modal-col-left,.modal-col-right{display:flex;flex-direction:column}
@@ -164,6 +164,36 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 .trash-clear-btn{background:none;border:2px solid #e74c3c;padding:10px 18px;border-radius:8px;cursor:pointer;font-size:14px;color:#e74c3c;font-weight:700}
 .trash-close-btn{background:var(--blue);border:none;padding:10px 22px;border-radius:8px;cursor:pointer;font-size:15px;color:#fff;font-weight:700}
 
+/* ===== GESTIONAR ===== */
+.gest-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:400;align-items:center;justify-content:center}
+.gest-backdrop.open{display:flex;animation:fadeIn .2s}
+.gest-box{background:#fff;border-radius:14px;width:min(1100px,97vw);max-height:94vh;display:flex;flex-direction:column;box-shadow:0 16px 48px rgba(0,0,0,.3);animation:fadeInScale .2s cubic-bezier(.22,1,.36,1)}
+.gest-head{padding:16px 20px 0;background:#fff;border-radius:14px 14px 0 0;flex-shrink:0}
+.gest-head-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.gest-title{font-size:18px;font-weight:800;color:var(--text)}
+.gest-tabs{display:flex;gap:0;border-bottom:2px solid var(--border);overflow-x:auto}
+.gest-tab{padding:10px 16px;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;letter-spacing:.5px;text-transform:uppercase;transition:all .15s}
+.gest-tab:hover{color:var(--text)}
+.gest-tab.active{color:#8430ce;border-bottom-color:#8430ce}
+.gest-body{flex:1;overflow-y:auto;padding:20px}
+.gest-field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.gest-field label{font-size:11px;font-weight:700;color:#1a1a1a;letter-spacing:.7px;text-transform:uppercase}
+.gest-field input,.gest-field textarea,.gest-field select{border:2px solid var(--border);border-radius:8px;padding:10px 12px;font-size:15px;color:var(--text);outline:none;font-family:inherit;width:100%}
+.gest-field input:focus,.gest-field textarea:focus{border-color:#8430ce}
+.gest-two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.gest-two-col{grid-template-columns:1fr}}
+.gest-footer{padding:12px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px;flex-shrink:0;background:#fff;border-radius:0 0 14px 14px}
+.gest-save-btn{background:#8430ce;border:none;padding:10px 22px;border-radius:8px;cursor:pointer;font-size:14px;color:#fff;font-weight:700}
+.gest-save-btn:hover{background:#6a25a8}
+.espacio-estado-btn{border:2px solid var(--border);border-radius:8px;padding:10px 16px;font-size:14px;font-weight:600;cursor:pointer;text-align:left;background:#f8f8f8;color:var(--text);width:100%;margin-bottom:6px}
+.espacio-estado-btn.selected{border-color:#8430ce;background:#f3e8ff;color:#8430ce}
+.espacio-result{border:2px solid var(--border);border-radius:10px;padding:14px;background:#f8f8f8;margin-bottom:14px}
+.espacio-result-name{font-size:17px;font-weight:800;color:var(--text);margin-bottom:8px}
+.espacio-result-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+.espacio-result-label{color:var(--muted);font-size:11px;font-weight:600;text-transform:uppercase}
+.espacio-result-val{font-weight:600;color:var(--text)}
+.dist-box{background:#e8f0fe;border-radius:8px;padding:12px 16px;font-size:14px;font-weight:600;color:#1a73e8;margin-bottom:14px}
+
 /* ESTADÍSTICAS */
 .stats-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;align-items:center;justify-content:center}
 .stats-backdrop.open{display:flex;animation:fadeIn .2s}
@@ -205,7 +235,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
       <div class="month-dow">LUN</div><div class="month-dow">MAR</div><div class="month-dow">MIÉ</div>
       <div class="month-dow">JUE</div><div class="month-dow">VIE</div><div class="month-dow">SÁB</div><div class="month-dow">DOM</div>
     </div>
-    <div class="month-grid" id="month-grid"><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-06-29&#39;)"><div class="cell-num">29</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-06-30&#39;)"><div class="cell-num">30</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-01&#39;)"><div class="cell-num">1</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-02&#39;)"><div class="cell-num">2</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-03&#39;)"><div class="cell-num">3</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-04&#39;)"><div class="cell-num">4</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-05&#39;)"><div class="cell-num">5</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-06&#39;)"><div class="cell-num">6</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-07&#39;)"><div class="cell-num">7</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-08&#39;)"><div class="cell-num">8</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-09&#39;)"><div class="cell-num">9</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-10&#39;)"><div class="cell-num">10</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-11&#39;)"><div class="cell-num">11</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-12&#39;)"><div class="cell-num">12</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-13&#39;)"><div class="cell-num today">13</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-14&#39;)"><div class="cell-num">14</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-15&#39;)"><div class="cell-num">15</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-16&#39;)"><div class="cell-num">16</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-17&#39;)"><div class="cell-num">17</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-18&#39;)"><div class="cell-num">18</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-19&#39;)"><div class="cell-num">19</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-20&#39;)"><div class="cell-num">20</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-21&#39;)"><div class="cell-num">21</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-22&#39;)"><div class="cell-num">22</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-23&#39;)"><div class="cell-num">23</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-24&#39;)"><div class="cell-num">24</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-25&#39;)"><div class="cell-num">25</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-26&#39;)"><div class="cell-num">26</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-27&#39;)"><div class="cell-num">27</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-28&#39;)"><div class="cell-num">28</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-29&#39;)"><div class="cell-num">29</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-30&#39;)"><div class="cell-num">30</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-31&#39;)"><div class="cell-num">31</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-08-01&#39;)"><div class="cell-num">1</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-08-02&#39;)"><div class="cell-num">2</div><div class="cell-events"></div></div></div>
+    <div class="month-grid" id="month-grid"><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-06-29&#39;)"><div class="cell-num">29</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-06-30&#39;)"><div class="cell-num">30</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-01&#39;)"><div class="cell-num">1</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-02&#39;)"><div class="cell-num">2</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-03&#39;)"><div class="cell-num">3</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-04&#39;)"><div class="cell-num">4</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-05&#39;)"><div class="cell-num">5</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-06&#39;)"><div class="cell-num">6</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-07&#39;)"><div class="cell-num">7</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-08&#39;)"><div class="cell-num">8</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-09&#39;)"><div class="cell-num">9</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-10&#39;)"><div class="cell-num">10</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-11&#39;)"><div class="cell-num">11</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-12&#39;)"><div class="cell-num">12</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-13&#39;)"><div class="cell-num today">13</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-14&#39;)"><div class="cell-num">14</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-15&#39;)"><div class="cell-num">15</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-16&#39;)"><div class="cell-num">16</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-17&#39;)"><div class="cell-num">17</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-18&#39;)"><div class="cell-num">18</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-19&#39;)"><div class="cell-num">19</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-20&#39;)"><div class="cell-num">20</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-21&#39;)"><div class="cell-num">21</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-22&#39;)"><div class="cell-num">22</div><div class="cell-events"><div class="cell-event" style="background:#4a90d9" onclick="event.stopPropagation();showPopup(0,this)" ondblclick="event.stopPropagation();editEventByIdx(0)">12:00 C. DE PAPEL · 30p · Alicante</div></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-23&#39;)"><div class="cell-num">23</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-24&#39;)"><div class="cell-num">24</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-25&#39;)"><div class="cell-num">25</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-26&#39;)"><div class="cell-num">26</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-27&#39;)"><div class="cell-num">27</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-28&#39;)"><div class="cell-num">28</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-29&#39;)"><div class="cell-num">29</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-30&#39;)"><div class="cell-num">30</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-31&#39;)"><div class="cell-num">31</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-08-01&#39;)"><div class="cell-num">1</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-08-02&#39;)"><div class="cell-num">2</div><div class="cell-events"></div></div></div>
   </div>
 </div>
 
@@ -247,16 +277,16 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 <div class="modal-backdrop" id="modal">
   <div class="modal-box" id="modal-box" autocomplete="off">
     <div class="modal-head">
-      <span class="modal-head-date" id="modal-date-label"></span>
-      <div style="display:flex;gap:8px;align-items:center"><button onclick="cloneEvent()" style="background:#f39c12;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">📋 Clonar</button><button class="modal-close" onclick="closeModal()">✕</button></div>
+      <span class="modal-head-date" id="modal-date-label">Miércoles, 22 de julio 2026</span>
+      <div style="display:flex;gap:8px;align-items:center"><button onclick="openGestionar()" style="background:#8430ce;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">⚙️ Gestionar</button><button onclick="cloneEvent()" style="background:#f39c12;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">📋 Clonar</button><button class="modal-close" onclick="closeModal()">✕</button></div>
     </div>
     <div class="modal-body">
       <div class="modal-two-col">
         <div class="modal-col-left">
           <div class="sec-label">Evento</div>
-          <div class="selector-field" id="evento-field" onclick="openActividadModal()" style="min-height:96px">
-            <span class="sel-label" id="evento-label">Toca para seleccionar</span>
-            <div style="display:flex;align-items:center;gap:8px"><span id="evento-badge"></span><span class="sel-arrow">›</span></div>
+          <div class="selector-field" id="evento-field" onclick="openActividadModal()" style="min-height: 96px; background: rgb(232, 196, 196); border-color: rgb(232, 196, 196);">
+            <span class="sel-label" id="evento-label" style="display: none;">Toca para seleccionar</span>
+            <div style="display:flex;align-items:center;gap:8px"><span id="evento-badge"><span style="font-size:30px;font-weight:900;color:#2c2c2c;text-transform:uppercase;letter-spacing:.5px;line-height:1.2">Casa de Papel</span></span><span class="sel-arrow">›</span></div>
           </div>
 
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
@@ -264,10 +294,14 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
             <button class="turno-btn active" id="turno-manana" onclick="setTurno(&#39;manana&#39;)">☀️ Mañana</button>
             <button class="turno-btn" id="turno-tarde" onclick="setTurno(&#39;tarde&#39;)">🌤 Tarde</button>
             <button class="turno-btn" id="turno-noche" onclick="setTurno(&#39;noche&#39;)">🌙 Noche</button>
+            <div style="margin-left:8px;display:flex;border:2px solid var(--border);border-radius:20px;overflow:hidden;flex-shrink:0">
+              <button id="btn-provisional" onclick="setHorarioTipo(&#39;provisional&#39;)" style="border:none;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;background:#f39c12;color:#fff;transition:all .15s">PROVISIONAL</button>
+              <button id="btn-real" onclick="setHorarioTipo(&#39;real&#39;)" style="border:none;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;background:#f0f0f0;color:#aaa;transition:all .15s">REAL</button>
+            </div>
           </div>
           <div class="input-row">
-            <div class="form-group"><label>Inicio</label><input type="time" id="ev-start" value="10:00" oninput="recalcEnd()"></div>
-            <div class="form-group"><label>Fin</label><input type="time" id="ev-end" value="12:30" oninput="recalcTiming()"></div>
+            <div class="form-group"><label>Inicio</label><input type="time" id="ev-start" value="10:00" oninput="recalcEnd()" style="background: rgb(255, 249, 230); border-color: rgb(243, 156, 18);"></div>
+            <div class="form-group"><label>Fin</label><input type="time" id="ev-end" value="12:30" oninput="recalcTiming()" style="background: rgb(255, 249, 230); border-color: rgb(243, 156, 18);"></div>
           </div>
 
           <div class="sec-label">Número de pax</div>
@@ -276,15 +310,15 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
           </div>
 
           <div class="sec-label">Estado</div>
-          <div class="selector-field" id="estado-field" onclick="openSubModal(&#39;estado&#39;)">
-            <span class="sel-label" id="estado-label">Toca para seleccionar</span>
-            <div style="display:flex;align-items:center;gap:8px"><span id="estado-badge"></span><span class="sel-arrow">›</span></div>
+          <div class="selector-field" id="estado-field" onclick="openSubModal(&#39;estado&#39;)" style="background: rgb(74, 144, 217); border-color: rgb(74, 144, 217);">
+            <span class="sel-label" id="estado-label" style="display: none;">Toca para seleccionar</span>
+            <div style="display:flex;align-items:center;gap:8px"><span id="estado-badge"><span style="font-size:17px;font-weight:900;color:#fff;text-transform:uppercase">CONFIRMADO</span></span><span class="sel-arrow">›</span></div>
           </div>
 
           <div class="sec-label">Cliente</div>
           <div class="autocomplete-wrap">
             <input type="text" id="cliente-input" placeholder="Buscar cliente..." autocomplete="off" oninput="filterAC(&#39;cliente&#39;)" onfocus="showAC(&#39;cliente&#39;)" onblur="hideAC(&#39;cliente&#39;,300)">
-            <div class="autocomplete-dropdown" id="cliente-dropdown"></div>
+            <div class="autocomplete-dropdown" id="cliente-dropdown"><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Banco Santander&#39;)">Banco Santander</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Coca-Cola España&#39;)">Coca-Cola España</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;El Corte Inglés&#39;)">El Corte Inglés</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Ferrovial&#39;)">Ferrovial</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Iberdrola&#39;)">Iberdrola</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Inditex&#39;)">Inditex</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;MAPFRE&#39;)">MAPFRE</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Mercadona&#39;)">Mercadona</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Repsol&#39;)">Repsol</div><div class="ac-item" onmousedown="pickAC(&#39;cliente&#39;,&#39;Telefónica&#39;)">Telefónica</div></div>
           </div>
 
           <div class="sec-label">Detalles del cliente</div>
@@ -299,13 +333,13 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
           <div class="sec-label">Población</div>
           <div class="autocomplete-wrap">
             <input type="text" id="ev-poblacion" placeholder="Escribe o busca ciudad..." autocomplete="off" oninput="filterAC(&#39;poblacion&#39;)" onfocus="showAC(&#39;poblacion&#39;)" onblur="hideAC(&#39;poblacion&#39;,300)">
-            <div class="autocomplete-dropdown" id="poblacion-dropdown"></div>
+            <div class="autocomplete-dropdown" id="poblacion-dropdown"><div class="ac-item" onmousedown="pickAC(&#39;poblacion&#39;,&#39;Alicante&#39;)">Alicante</div></div>
           </div>
 
           <div class="sec-label">¿Quién gestiona?</div>
           <div class="selector-field" onclick="openSubModal(&#39;gestor&#39;)">
-            <span class="sel-label" id="gestor-label">¿Quién gestiona?</span>
-            <div style="display:flex;align-items:center;gap:8px"><span id="gestor-badges" style="display:flex;gap:6px;flex-wrap:wrap"></span><span class="sel-arrow">›</span></div>
+            <span class="sel-label" id="gestor-label" style="display: none;">¿Quién gestiona?</span>
+            <div style="display:flex;align-items:center;gap:8px"><span id="gestor-badges" style="display:flex;gap:6px;flex-wrap:wrap"><span class="sel-badge" style="background:#c5e8d5;color:#1a1a1a;font-weight:700">JL</span></span><span class="sel-arrow">›</span></div>
           </div>
 
           <div class="sec-label">Detalles del evento</div>
@@ -317,11 +351,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
           <div class="actores-cols">
             <div class="actores-col">
               <div class="actores-col-head" style="background:#27ae60">CONFIRMADO/A</div>
-              <div class="actores-col-body" id="col-confirmado"></div>
+              <div class="actores-col-body" id="col-confirmado"><button class="actor-btn confirmado" onclick="cycleActor(&#39;JL&#39;,&#39;confirmado&#39;)">JL</button><button class="actor-btn confirmado" onclick="cycleActor(&#39;VIC&#39;,&#39;confirmado&#39;)">VIC</button></div>
             </div>
             <div class="actores-col">
               <div class="actores-col-head" style="background:#f39c12">PROPUESTO/A</div>
-              <div class="actores-col-body" id="col-propuesto"></div>
+              <div class="actores-col-body" id="col-propuesto"><button class="actor-btn propuesto" onclick="cycleActor(&#39;ARANCHA&#39;,&#39;propuesto&#39;)">ARANCHA</button><button class="actor-btn propuesto" onclick="cycleActor(&#39;MON&#39;,&#39;propuesto&#39;)">MON</button></div>
             </div>
             <div class="actores-col">
               <div class="actores-col-head" style="background:#e74c3c">NO DISPONIBLE</div>
@@ -329,15 +363,27 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
             </div>
             <div class="actores-col">
               <div class="actores-col-head" style="background:#5b9bd5">BASE DE DATOS</div>
-              <div class="actores-col-body" id="col-bbdd"></div>
+              <div class="actores-col-body" id="col-bbdd"><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;AGUS&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;AGUS&#39;)">AGUS</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;DIANA&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;DIANA&#39;)">DIANA</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;MAX&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;MAX&#39;)">MAX</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;ISRA&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;ISRA&#39;)">ISRA</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;PABLO BARRIOS&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;PABLO BARRIOS&#39;)">PABLO BARRIOS</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;OTROS&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;OTROS&#39;)">OTROS</button></div>
             </div>
           </div>
 
-          <div class="sec-label">Timing del cliente</div>
-          <textarea id="ev-timing-cliente" class="modal-textarea" style="min-height:120px"></textarea>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <span class="sec-label" style="margin-bottom:0">Timing del cliente</span>
+            <div style="display:flex;border:2px solid var(--border);border-radius:20px;overflow:hidden;flex-shrink:0">
+              <button id="btn-cliente-provisional" onclick="setTimingTipo(&#39;cliente&#39;,&#39;provisional&#39;)" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; padding: 4px 10px; font-size: 11px; font-weight: 700; cursor: pointer; background: rgb(240, 240, 240); color: rgb(170, 170, 170);">PROVISIONAL</button>
+              <button id="btn-cliente-real" onclick="setTimingTipo(&#39;cliente&#39;,&#39;real&#39;)" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; padding: 4px 10px; font-size: 11px; font-weight: 700; cursor: pointer; background: rgb(39, 174, 96); color: rgb(255, 255, 255);">REAL</button>
+            </div>
+          </div>
+          <textarea id="ev-timing-cliente" class="modal-textarea" style="min-height: 120px; background: rgb(240, 255, 244); border-color: rgb(39, 174, 96);"></textarea>
 
-          <div class="sec-label">Timing nuestro</div>
-          <textarea id="ev-timing-nuestro" class="modal-textarea" style="min-height:260px"></textarea>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <span class="sec-label" style="margin-bottom:0">Timing nuestro</span>
+            <div style="display:flex;border:2px solid var(--border);border-radius:20px;overflow:hidden;flex-shrink:0">
+              <button id="btn-nuestro-provisional" onclick="setTimingTipo(&#39;nuestro&#39;,&#39;provisional&#39;)" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; padding: 4px 10px; font-size: 11px; font-weight: 700; cursor: pointer; background: rgb(243, 156, 18); color: rgb(255, 255, 255);">PROVISIONAL</button>
+              <button id="btn-nuestro-real" onclick="setTimingTipo(&#39;nuestro&#39;,&#39;real&#39;)" style="border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; padding: 4px 10px; font-size: 11px; font-weight: 700; cursor: pointer; background: rgb(240, 240, 240); color: rgb(170, 170, 170);">REAL</button>
+            </div>
+          </div>
+          <textarea id="ev-timing-nuestro" class="modal-textarea" style="min-height: 260px; background: rgb(255, 249, 230); border-color: rgb(243, 156, 18);"></textarea>
         </div>
       </div>
     </div>
@@ -351,8 +397,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 <!-- SUBMODAL -->
 <div class="submodal-backdrop" id="submodal" onclick="if(event.target===this)closeSubModal()">
   <div class="submodal-box">
-    <div class="submodal-title" id="submodal-title"></div>
-    <div class="submodal-btns" id="submodal-btns"></div>
+    <div class="submodal-title" id="submodal-title">¿Quién gestiona?</div>
+    <div class="submodal-btns" id="submodal-btns" style="grid-template-columns: repeat(3, 1fr);"><button class="sub-btn" id="gbtn-DIANA" style="background: rgb(232, 213, 245); color: rgb(26, 26, 26); opacity: 0.4; font-size: 22px; font-weight: 900; min-height: 80px;" onclick="toggleGestorBtn(&#39;DIANA&#39;)">DIANA</button><button class="sub-btn" id="gbtn-VIC" style="background: rgb(197, 216, 247); color: rgb(26, 26, 26); opacity: 0.4; font-size: 22px; font-weight: 900; min-height: 80px;" onclick="toggleGestorBtn(&#39;VIC&#39;)">VIC</button><button class="sub-btn" id="gbtn-JL" style="background: rgb(197, 232, 213); color: rgb(26, 26, 26); opacity: 1; font-size: 22px; font-weight: 900; min-height: 80px;" onclick="toggleGestorBtn(&#39;JL&#39;)">JL ✓</button><button class="btn-save" style="grid-column:1/-1;margin-top:4px;border-radius:10px;padding:14px;font-size:15px" onclick="closeSubModal();if(_pendingSave)saveEvent()">Listo</button></div>
     <button class="submodal-cancel" onclick="closeSubModal()">Cancelar</button>
   </div>
 </div>
@@ -360,8 +406,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 <!-- MODAL ACTIVIDAD -->
 <div class="submodal-backdrop" id="actividad-modal" onclick="if(event.target===this)closeActividadModal()">
   <div class="submodal-box" style="max-width:720px">
-    <div class="submodal-title" id="act-title">Tipo de evento</div>
-    <div class="submodal-btns" id="act-btns" style="grid-template-columns:repeat(3,1fr)"></div>
+    <div class="submodal-title" id="act-title">TEAM BUILDING</div>
+    <div class="submodal-btns" id="act-btns" style="grid-template-columns: repeat(3, 1fr);"><button class="sub-btn" style="background:#eee;color:#333;grid-column:1/-1;min-height:44px;font-size:13px" onclick="openActividadModal()">← Volver</button><button class="sub-btn" style="background:#f8d7da" onclick="pickItem(&#39;Casa de Papel&#39;)">Casa de Papel</button><button class="sub-btn" style="background:#fce8d5" onclick="pickItem(&#39;Intocables&#39;)">Intocables</button><button class="sub-btn" style="background:#fef9c3" onclick="pickItem(&#39;A Tempo&#39;)">A Tempo</button><button class="sub-btn" style="background:#d4edda" onclick="pickItem(&#39;Concurso Música es la Pista&#39;)">Concurso Música es la Pista</button><button class="sub-btn" style="background:#d1ecf1" onclick="pickItem(&#39;Concurso Live Music&#39;)">Concurso Live Music</button><button class="sub-btn" style="background:#e2d9f3" onclick="pickItem(&#39;First Dates&#39;)">First Dates</button><button class="sub-btn" style="background:#fddde6" onclick="pickItem(&#39;Concurso MIX&#39;)">Concurso MIX</button><button class="sub-btn" style="background:#d6eaf8" onclick="pickItem(&#39;Aquellos Maravillosos Años&#39;)">Aquellos Maravillosos Años</button><button class="sub-btn" style="background:#fde8d8" onclick="pickItem(&#39;Guardianes&#39;)">Guardianes</button><button class="sub-btn" style="background:#e8f5e9" onclick="pickItem(&#39;Cluedo&#39;)">Cluedo</button><button class="sub-btn" style="background:#f0f0f0" onclick="pickItem(&#39;OTROS&#39;)">OTROS</button></div>
     <button class="submodal-cancel" onclick="closeActividadModal()">Cancelar</button>
   </div>
 </div>
@@ -403,6 +449,33 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
     <div style="display:flex;gap:10px">
       <button onclick="closeWA()" style="flex:1;background:none;border:2px solid var(--border);border-radius:10px;padding:12px;font-size:15px;font-weight:600;cursor:pointer;color:var(--muted)">No</button>
       <button id="wa-send-btn" onclick="sendWA()" style="flex:2;background:#25D366;border:none;border-radius:10px;padding:12px;font-size:15px;font-weight:700;cursor:pointer;color:#fff">✓ Enviar WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<!-- GESTIONAR -->
+<div class="gest-backdrop" id="gest-modal" onclick="if(event.target===this)closeGestionar()">
+  <div class="gest-box">
+    <div class="gest-head">
+      <div class="gest-head-top">
+        <span class="gest-title" id="gest-event-title">⚙️ Gestionar evento</span>
+        <button class="modal-close" onclick="closeGestionar()">✕</button>
+      </div>
+      <div class="gest-tabs">
+        <div class="gest-tab active" onclick="showGestTab(&#39;evento&#39;,this)">Evento</div>
+        <div class="gest-tab" onclick="showGestTab(&#39;espacio&#39;,this)">Espacio</div>
+        <div class="gest-tab" onclick="showGestTab(&#39;actores&#39;,this)">Actores</div>
+        <div class="gest-tab" onclick="showGestTab(&#39;disponibilidad&#39;,this)">Disponibilidad</div>
+        <div class="gest-tab" onclick="showGestTab(&#39;produccion&#39;,this)">Producción</div>
+        <div class="gest-tab" onclick="showGestTab(&#39;concursos&#39;,this)">Concursos y Pres.</div>
+        <div class="gest-tab" onclick="showGestTab(&#39;facturacion&#39;,this)">Facturación</div>
+        <div class="gest-tab" onclick="showGestTab(&#39;cambios&#39;,this)">Cambios</div>
+      </div>
+    </div>
+    <div class="gest-body" id="gest-body"></div>
+    <div class="gest-footer">
+      <button class="btn-cancel" onclick="closeGestionar()">Cerrar</button>
+      <button class="gest-save-btn" onclick="saveGestionar()">💾 Guardar</button>
     </div>
   </div>
 </div>
@@ -599,11 +672,19 @@ function openModal(dateStr){
   document.getElementById('ev-timing-nuestro').value=calcTiming('10:00','12:30');
   document.querySelectorAll('.turno-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('turno-manana').classList.add('active');
+  selHorarioTipo='provisional';
+  setHorarioTipo('provisional');
   resetActores();
   const mb=document.getElementById('modal-box');
+  const mbody=document.querySelector('.modal-body');
   mb.scrollTop=0;
+  if(mbody)mbody.scrollTop=0;
   document.getElementById('modal').classList.add('open');
-  requestAnimationFrame(()=>{mb.scrollTop=0;});
+  requestAnimationFrame(()=>{
+    mb.scrollTop=0;
+    if(mbody)mbody.scrollTop=0;
+    setTimeout(()=>{mb.scrollTop=0;if(mbody)mbody.scrollTop=0;},80);
+  });
 }
 function closeModal(){document.getElementById('modal').classList.remove('open')}
 
@@ -633,6 +714,46 @@ function recalcTiming(){
   const e=document.getElementById('ev-end').value;
   if(s&&e)document.getElementById('ev-timing-nuestro').value=calcTiming(s,e);
 }
+let selHorarioTipo='provisional';
+function setHorarioTipo(tipo){
+  selHorarioTipo=tipo;
+  const bp=document.getElementById('btn-provisional');
+  const br=document.getElementById('btn-real');
+  const startEl=document.getElementById('ev-start');
+  const endEl=document.getElementById('ev-end');
+  if(tipo==='provisional'){
+    bp.style.background='#f39c12';bp.style.color='#fff';
+    br.style.background='#f0f0f0';br.style.color='#aaa';
+    if(startEl){startEl.style.background='#fff9e6';startEl.style.borderColor='#f39c12';}
+    if(endEl){endEl.style.background='#fff9e6';endEl.style.borderColor='#f39c12';}
+  } else {
+    br.style.background='#27ae60';br.style.color='#fff';
+    bp.style.background='#f0f0f0';bp.style.color='#aaa';
+    if(startEl){startEl.style.background='#f0fff4';startEl.style.borderColor='#27ae60';}
+    if(endEl){endEl.style.background='#f0fff4';endEl.style.borderColor='#27ae60';}
+  }
+}
+
+let selTimingClienteTipo='provisional';
+let selTimingNuestroTipo='provisional';
+
+function setTimingTipo(section, tipo){
+  if(section==='cliente') selTimingClienteTipo=tipo;
+  else selTimingNuestroTipo=tipo;
+  const bp=document.getElementById('btn-'+section+'-provisional');
+  const br=document.getElementById('btn-'+section+'-real');
+  const ta=document.getElementById(section==='cliente'?'ev-timing-cliente':'ev-timing-nuestro');
+  if(tipo==='provisional'){
+    if(bp){bp.style.background='#f39c12';bp.style.color='#fff';}
+    if(br){br.style.background='#f0f0f0';br.style.color='#aaa';}
+    if(ta){ta.style.background='#fff9e6';ta.style.borderColor='#f39c12';}
+  } else {
+    if(br){br.style.background='#27ae60';br.style.color='#fff';}
+    if(bp){bp.style.background='#f0f0f0';bp.style.color='#aaa';}
+    if(ta){ta.style.background='#f0fff4';ta.style.borderColor='#27ae60';}
+  }
+}
+
 function setTurno(t){
   document.querySelectorAll('.turno-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('turno-'+t).classList.add('active');
@@ -893,6 +1014,7 @@ function saveEvent(){
     tipo:selActividad,
     startTime:document.getElementById('ev-start').value,
     endTime:document.getElementById('ev-end').value,
+    horarioTipo:selHorarioTipo,
     pax:document.getElementById('ev-pax').value,
     estado:selEstado,
     cliente:selCliente||document.getElementById('cliente-input').value,
@@ -924,6 +1046,7 @@ function editEventByIdx(idx){
     }
     document.getElementById('ev-start').value=ev.startTime;
     document.getElementById('ev-end').value=ev.endTime;
+    setHorarioTipo(ev.horarioTipo||'provisional');selHorarioTipo=ev.horarioTipo||'provisional';
     document.getElementById('ev-pax').value=ev.pax||'';
     if(ev.estado){selEstado=ev.estado;const elbl=document.getElementById('estado-label');elbl.style.display='none';const it=ESTADOS.find(e=>e.label===ev.estado);if(it){document.getElementById('estado-badge').innerHTML='<span style="font-size:17px;font-weight:900;color:'+it.text+';text-transform:uppercase">'+it.label+'</span>';document.getElementById('estado-field').style.background=it.color;document.getElementById('estado-field').style.borderColor=it.color;}}
     document.getElementById('cliente-input').value=ev.cliente||''; selCliente=ev.cliente||'';
@@ -1012,7 +1135,229 @@ function restoreEvent(i){events.push(trash[i]);trash.splice(i,1);renderGrid();re
 function permanentDelete(i){if(confirm('¿Eliminar definitivamente?')){trash.splice(i,1);renderTrashList();updateTrashCount();}}
 function clearAllTrash(){if(!trash.length)return;if(confirm('¿Vaciar la papelera?')){trash=[];renderTrashList();updateTrashCount();}}
 
-// ===== ESTADÍSTICAS =====
+// ===== GESTIONAR =====
+let _gestEvIdx=null;
+const ESPACIO_ESTADOS=['Sin definir','Está buscando el cliente','Estamos buscando nosotros','Hemos enviado las propuestas','Confirmado (a falta de llamada)','Confirmado'];
+const ESPACIO_ESTADOS_COLORS={'Sin definir':'#fce4ec','Está buscando el cliente':'#fff9c4','Estamos buscando nosotros':'#fff9c4','Hemos enviado las propuestas':'#fff9c4','Confirmado (a falta de llamada)':'#fff9c4','Confirmado':'#e8f5e9'};
+
+// DB local de espacios (se conectará a Airtable)
+let DB_ESPACIOS=[
+  {nombre:'AC Hotel by Marriott Alicante',poblacion:'Alicante',provincia:'Alicante',contacto:'',telefono:'965120178',etiquetas:['hotel']},
+  {nombre:'Ad Hoc Parque Bétera',poblacion:'Bétera',provincia:'Valencia',contacto:'Recepción',telefono:'961698393',contacto2:'Sarai',telefono2:'637305212'},
+  {nombre:'Akuarela Playa',poblacion:'Valencia',provincia:'Valencia',contacto:'',telefono:'960000300',etiquetas:['discoteca']},
+];
+
+function openGestionar(){
+  // Get current event
+  let ev=null;
+  if(_editIdx!==null&&_editIdx!==undefined) ev=events[_editIdx];
+  _gestEvIdx=_editIdx;
+  const title=ev?(ev.actividad||ev.tipo)+' · '+(ev.poblacion||''):'Nuevo evento';
+  document.getElementById('gest-event-title').textContent='⚙️ '+title;
+  document.querySelectorAll('.gest-tab').forEach((t,i)=>{t.classList.toggle('active',i===0)});
+  showGestTab('evento', document.querySelector('.gest-tab'));
+  document.getElementById('gest-modal').classList.add('open');
+}
+function closeGestionar(){document.getElementById('gest-modal').classList.remove('open')}
+
+function showGestTab(tab, el){
+  document.querySelectorAll('.gest-tab').forEach(t=>t.classList.remove('active'));
+  if(el)el.classList.add('active');
+  const body=document.getElementById('gest-body');
+  const ev=(_gestEvIdx!==null&&events[_gestEvIdx])||{};
+  const g=ev.gestionar||{};
+
+  if(tab==='evento'){
+    body.innerHTML=`
+      <div class="gest-two-col">
+        <div>
+          <div class="gest-field"><label>Actividad</label><input type="text" id="g-actividad" value="${ev.actividad||''}"/></div>
+          <div class="gest-field"><label>Fecha</label><input type="date" id="g-fecha" value="${ev.date?ev.date.toISOString().slice(0,10):''}"/></div>
+          <div class="gest-field"><label>Hora inicio</label><input type="time" id="g-start" value="${ev.startTime||''}"/></div>
+          <div class="gest-field"><label>Hora fin</label><input type="time" id="g-end" value="${ev.endTime||''}"/></div>
+          <div class="gest-field"><label>Número de pax</label><input type="number" id="g-pax" value="${ev.pax||''}"/></div>
+          <div class="gest-field"><label>Población</label><input type="text" id="g-poblacion" value="${ev.poblacion||''}"/></div>
+        </div>
+        <div>
+          <div class="gest-field"><label>Cliente</label><input type="text" id="g-cliente" value="${ev.cliente||''}"/></div>
+          <div class="gest-field"><label>Agencia</label><input type="text" id="g-agencia" value="${ev.agencia||''}"/></div>
+          <div class="gest-field"><label>Estado</label><input type="text" id="g-estado" value="${ev.estado||''}"/></div>
+          <div class="gest-field"><label>Gestores</label><input type="text" id="g-gestores" value="${(ev.gestores||[]).join(', ')}"/></div>
+          <div class="gest-field"><label>Detalles del evento</label><textarea id="g-detalles" style="min-height:100px">${ev.detalles||''}</textarea></div>
+        </div>
+      </div>`;
+
+  } else if(tab==='espacio'){
+    const esp=g.espacio||{};
+    const estadoEsp=esp.estado||'Sin definir';
+    body.innerHTML=`
+      <div class="gest-two-col">
+        <div>
+          <div class="gest-field"><label>Estado del espacio</label>
+            <div>${ESPACIO_ESTADOS.map(s=>`<button class="espacio-estado-btn${estadoEsp===s?' selected':''}" onclick="selEspacioEstado(this,'${s}')" style="background:${ESPACIO_ESTADOS_COLORS[s]||'#f8f8f8'}">${s}</button>`).join('')}</div>
+          </div>
+        </div>
+        <div>
+          <div class="gest-field"><label>Buscar espacio</label>
+            <div style="position:relative">
+              <input type="text" id="espacio-search" placeholder="Escribe el nombre del espacio..." value="${esp.nombre||''}" oninput="filterEspacios()" autocomplete="off"/>
+              <div id="espacio-dropdown" class="autocomplete-dropdown"></div>
+            </div>
+          </div>
+          <div id="espacio-info" style="display:${esp.nombre?'block':'none'}">
+            <div class="espacio-result">
+              <div class="espacio-result-name" id="esp-nombre">${esp.nombre||''}</div>
+              <div class="espacio-result-grid">
+                <div><div class="espacio-result-label">Contacto</div><div class="espacio-result-val" id="esp-contacto">${esp.contacto||'—'}</div></div>
+                <div><div class="espacio-result-label">Teléfono</div><div class="espacio-result-val" id="esp-telefono">${esp.telefono||'—'}</div></div>
+                <div><div class="espacio-result-label">Contacto 2</div><div class="espacio-result-val" id="esp-contacto2">${esp.contacto2||'—'}</div></div>
+                <div><div class="espacio-result-label">Teléfono 2</div><div class="espacio-result-val" id="esp-telefono2">${esp.telefono2||'—'}</div></div>
+              </div>
+            </div>
+            <div class="dist-box" id="esp-dist">📍 Calculando distancia desde la oficina...</div>
+            <div class="gest-field"><label>🗺 Google Maps</label>
+              <a id="esp-maps" href="${esp.mapsUrl||'#'}" target="_blank" style="color:var(--blue);font-size:14px;word-break:break-all">${esp.mapsUrl||'Se generará automáticamente'}</a>
+            </div>
+            <div class="gest-field"><label>Detalles del espacio</label>
+              <textarea id="esp-detalles" style="min-height:80px">${esp.detalles||''}</textarea>
+            </div>
+          </div>
+        </div>
+      </div>`;
+    if(esp.nombre) calcDistancia(esp.nombre, esp.poblacion);
+
+  } else if(tab==='actores'){
+    body.innerHTML=`<div style="padding:20px;text-align:center;color:var(--muted)">🎭 Gestión de actores — próximamente conectado a Airtable</div>`;
+  } else if(tab==='disponibilidad'){
+    body.innerHTML=`<div style="padding:20px;text-align:center;color:var(--muted)">📅 Disponibilidad — próximamente</div>`;
+  } else if(tab==='produccion'){
+    const prod=g.produccion||{};
+    body.innerHTML=`
+      <div class="gest-two-col">
+        <div>
+          <div class="gest-field"><label>Necesidades técnicas</label><textarea id="g-tecnico" style="min-height:120px">${prod.tecnico||''}</textarea></div>
+          <div class="gest-field"><label>Materiales</label><textarea id="g-materiales" style="min-height:100px">${prod.materiales||''}</textarea></div>
+        </div>
+        <div>
+          <div class="gest-field"><label>Transporte / Logística</label><textarea id="g-transporte" style="min-height:120px">${prod.transporte||''}</textarea></div>
+          <div class="gest-field"><label>Notas de producción</label><textarea id="g-notas-prod" style="min-height:100px">${prod.notas||''}</textarea></div>
+        </div>
+      </div>`;
+  } else if(tab==='concursos'){
+    const con=g.concursos||{};
+    body.innerHTML=`
+      <div class="gest-field"><label>Tipo de concurso / presentación</label><input type="text" id="g-tipo-conc" value="${con.tipo||''}"/></div>
+      <div class="gest-field"><label>Dinámica</label><textarea id="g-dinamica" style="min-height:120px">${con.dinamica||''}</textarea></div>
+      <div class="gest-field"><label>Premios</label><textarea id="g-premios" style="min-height:80px">${con.premios||''}</textarea></div>
+      <div class="gest-field"><label>Notas</label><textarea id="g-notas-conc" style="min-height:80px">${con.notas||''}</textarea></div>`;
+  } else if(tab==='facturacion'){
+    const fac=g.facturacion||{};
+    body.innerHTML=`
+      <div class="gest-two-col">
+        <div>
+          <div class="gest-field"><label>Importe (€)</label><input type="number" id="g-importe" value="${fac.importe||''}"/></div>
+          <div class="gest-field"><label>Estado factura</label>
+            <select id="g-fac-estado">
+              <option ${!fac.estadoFac?'selected':''}>Pendiente</option>
+              <option ${fac.estadoFac==='Enviada'?'selected':''}>Enviada</option>
+              <option ${fac.estadoFac==='Cobrada'?'selected':''}>Cobrada</option>
+              <option ${fac.estadoFac==='Cancelada'?'selected':''}>Cancelada</option>
+            </select>
+          </div>
+          <div class="gest-field"><label>Número de factura</label><input type="text" id="g-num-fac" value="${fac.numero||''}"/></div>
+        </div>
+        <div>
+          <div class="gest-field"><label>Forma de pago</label><input type="text" id="g-pago" value="${fac.pago||''}"/></div>
+          <div class="gest-field"><label>Notas de facturación</label><textarea id="g-notas-fac" style="min-height:120px">${fac.notas||''}</textarea></div>
+        </div>
+      </div>`;
+  } else if(tab==='cambios'){
+    const cam=g.cambios||{};
+    body.innerHTML=`
+      <div class="gest-field">
+        <label>⚠️ Alerta activa</label>
+        <label style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;text-transform:none;letter-spacing:0">
+          <input type="checkbox" id="g-alerta" ${cam.alerta?'checked':''} style="width:20px;height:20px;accent-color:#e74c3c"/>
+          Marcar este evento como alerta
+        </label>
+      </div>
+      <div class="gest-field"><label>Historial de cambios</label><textarea id="g-historial" style="min-height:200px" placeholder="Anota aquí cualquier cambio importante del evento...">${cam.historial||''}</textarea></div>`;
+  }
+}
+
+function selEspacioEstado(btn,estado){
+  document.querySelectorAll('.espacio-estado-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  if(!events[_gestEvIdx])return;
+  if(!events[_gestEvIdx].gestionar)events[_gestEvIdx].gestionar={};
+  if(!events[_gestEvIdx].gestionar.espacio)events[_gestEvIdx].gestionar.espacio={};
+  events[_gestEvIdx].gestionar.espacio.estado=estado;
+}
+
+function filterEspacios(){
+  const q=document.getElementById('espacio-search').value.toLowerCase();
+  const dd=document.getElementById('espacio-dropdown');
+  if(!q){dd.classList.remove('open');return;}
+  const matches=DB_ESPACIOS.filter(e=>e.nombre.toLowerCase().includes(q)).slice(0,8);
+  if(!matches.length){dd.classList.remove('open');return;}
+  dd.innerHTML=matches.map(e=>`<div class="ac-item" onmousedown="pickEspacio('${e.nombre.replace(/'/g,"\\'")}')"><strong>${e.nombre}</strong> <span style="color:var(--muted);font-size:12px">${e.poblacion||''}</span></div>`).join('');
+  dd.classList.add('open');
+}
+
+function pickEspacio(nombre){
+  const esp=DB_ESPACIOS.find(e=>e.nombre===nombre);
+  if(!esp)return;
+  document.getElementById('espacio-search').value=nombre;
+  document.getElementById('espacio-dropdown').classList.remove('open');
+  document.getElementById('espacio-info').style.display='block';
+  document.getElementById('esp-nombre').textContent=esp.nombre;
+  document.getElementById('esp-contacto').textContent=esp.contacto||'—';
+  document.getElementById('esp-telefono').textContent=esp.telefono||'—';
+  document.getElementById('esp-contacto2').textContent=esp.contacto2||'—';
+  document.getElementById('esp-telefono2').textContent=esp.telefono2||'—';
+  // Google Maps URL
+  const mapsUrl='https://www.google.com/maps/search/'+encodeURIComponent(esp.nombre+(esp.poblacion?' '+esp.poblacion:''));
+  document.getElementById('esp-maps').href=mapsUrl;
+  document.getElementById('esp-maps').textContent=mapsUrl;
+  calcDistancia(esp.nombre, esp.poblacion);
+  // Save to event
+  if(events[_gestEvIdx]){
+    if(!events[_gestEvIdx].gestionar)events[_gestEvIdx].gestionar={};
+    events[_gestEvIdx].gestionar.espacio=Object.assign(events[_gestEvIdx].gestionar.espacio||{},{...esp,mapsUrl});
+  }
+}
+
+function calcDistancia(nombre, poblacion){
+  const distEl=document.getElementById('esp-dist');
+  if(!distEl)return;
+  // Use Google Maps Directions URL with our office as origin
+  const origen='Calle+Bernat+i+Baldov%C3%AD,+3,+Burjassot';
+  const destino=encodeURIComponent((nombre||'')+(poblacion?' '+poblacion:''));
+  const mapsDir='https://www.google.com/maps/dir/'+origen+'/'+destino;
+  distEl.innerHTML='📍 <a href="'+mapsDir+'" target="_blank" style="color:#1a73e8;font-weight:700">Ver ruta desde la oficina (Burjassot)</a>';
+}
+
+function saveGestionar(){
+  if(_gestEvIdx===null||!events[_gestEvIdx])return;
+  const ev=events[_gestEvIdx];
+  if(!ev.gestionar)ev.gestionar={};
+  // Save whatever fields are visible
+  const fields={
+    'g-actividad':'actividad','g-pax':'pax','g-poblacion':'poblacion',
+    'g-cliente':'cliente','g-estado':'estado','g-detalles':'detalles'
+  };
+  Object.entries(fields).forEach(([id,key])=>{const el=document.getElementById(id);if(el)ev[key]=el.value;});
+  if(document.getElementById('g-start'))ev.startTime=document.getElementById('g-start').value;
+  if(document.getElementById('g-end'))ev.endTime=document.getElementById('g-end').value;
+  // Produccion
+  if(document.getElementById('g-tecnico'))ev.gestionar.produccion={tecnico:document.getElementById('g-tecnico').value,materiales:document.getElementById('g-materiales')?.value||'',transporte:document.getElementById('g-transporte')?.value||'',notas:document.getElementById('g-notas-prod')?.value||''};
+  // Facturacion
+  if(document.getElementById('g-importe'))ev.gestionar.facturacion={importe:document.getElementById('g-importe').value,estadoFac:document.getElementById('g-fac-estado')?.value||'',numero:document.getElementById('g-num-fac')?.value||'',pago:document.getElementById('g-pago')?.value||'',notas:document.getElementById('g-notas-fac')?.value||''};
+  // Cambios
+  if(document.getElementById('g-alerta'))ev.gestionar.cambios={alerta:document.getElementById('g-alerta').checked,historial:document.getElementById('g-historial')?.value||''};
+  renderGrid();
+  closeGestionar();
+}
 function openStats(){renderStats();document.getElementById('stats-modal').classList.add('open')}
 function closeStats(){document.getElementById('stats-modal').classList.remove('open')}
 function renderStats(){
