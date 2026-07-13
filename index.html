@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0048)file:///C:/Users/Usuario/Downloads/index_33.html -->
+<!-- saved from url=(0034)file:///D:/Descargas/index_82.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -165,9 +165,9 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 .trash-close-btn{background:var(--blue);border:none;padding:10px 22px;border-radius:8px;cursor:pointer;font-size:15px;color:#fff;font-weight:700}
 
 /* ===== GESTIONAR ===== */
-.gest-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:400;align-items:center;justify-content:center}
+.gest-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:400;align-items:flex-end;justify-content:center}
 .gest-backdrop.open{display:flex;animation:appleFade .3s ease}
-.gest-box{background:#fff;border-radius:14px;width:min(1100px,97vw);max-height:94vh;display:flex;flex-direction:column;box-shadow:0 16px 48px rgba(0,0,0,.3);animation:appleScale .4s cubic-bezier(.16,1,.3,1)}
+.gest-box{background:#fff;border-radius:16px 16px 0 0;width:100%;max-height:96vh;display:flex;flex-direction:column;box-shadow:0 16px 48px rgba(0,0,0,.3);animation:appleSlideUp .4s cubic-bezier(.16,1,.3,1)}
 .gest-head{padding:16px 20px 0;background:#fff;border-radius:14px 14px 0 0;flex-shrink:0}
 .gest-head-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .gest-title{font-size:18px;font-weight:800;color:var(--text)}
@@ -181,6 +181,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px}
 .gest-field input,.gest-field textarea,.gest-field select{border:2px solid var(--border);border-radius:8px;padding:10px 12px;font-size:15px;color:var(--text);outline:none;font-family:inherit;width:100%}
 .gest-field input:focus,.gest-field textarea:focus{border-color:#8430ce}
 .gest-two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(min-width:700px){.gest-backdrop{align-items:center}.gest-box{border-radius:14px;width:min(1100px,97vw);animation:appleScale .4s cubic-bezier(.16,1,.3,1)}}
 @media(max-width:640px){.gest-two-col{grid-template-columns:1fr}}
 .gest-big-btn{border:none;border-radius:12px;padding:16px 10px;font-size:16px;font-weight:900;color:#1a1a1a;cursor:pointer;text-align:center;text-transform:uppercase;letter-spacing:.3px;transition:transform .12s,filter .12s,box-shadow .12s;opacity:.45;filter:saturate(.2) brightness(.85)}
 .gest-big-btn:hover{opacity:.7;filter:saturate(.5)}
@@ -301,7 +302,7 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
       <div class="month-dow">LUN</div><div class="month-dow">MAR</div><div class="month-dow">MIÉ</div>
       <div class="month-dow">JUE</div><div class="month-dow">VIE</div><div class="month-dow">SÁB</div><div class="month-dow">DOM</div>
     </div>
-    <div class="month-grid" id="month-grid"><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-06-29&#39;)"><div class="cell-num">29</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-06-30&#39;)"><div class="cell-num">30</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-01&#39;)"><div class="cell-num">1</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-02&#39;)"><div class="cell-num">2</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-03&#39;)"><div class="cell-num">3</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-04&#39;)"><div class="cell-num">4</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-05&#39;)"><div class="cell-num">5</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-06&#39;)"><div class="cell-num">6</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-07&#39;)"><div class="cell-num">7</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-08&#39;)"><div class="cell-num">8</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-09&#39;)"><div class="cell-num">9</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-10&#39;)"><div class="cell-num">10</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-11&#39;)"><div class="cell-num">11</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-12&#39;)"><div class="cell-num">12</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-13&#39;)"><div class="cell-num today">13</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-14&#39;)"><div class="cell-num">14</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-15&#39;)"><div class="cell-num">15</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-16&#39;)"><div class="cell-num">16</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-17&#39;)"><div class="cell-num">17</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-18&#39;)"><div class="cell-num">18</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-19&#39;)"><div class="cell-num">19</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-20&#39;)"><div class="cell-num">20</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-21&#39;)"><div class="cell-num">21</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-22&#39;)"><div class="cell-num">22</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-23&#39;)"><div class="cell-num">23</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-24&#39;)"><div class="cell-num">24</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-25&#39;)"><div class="cell-num">25</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-26&#39;)"><div class="cell-num">26</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-27&#39;)"><div class="cell-num">27</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-28&#39;)"><div class="cell-num">28</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-29&#39;)"><div class="cell-num">29</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-30&#39;)"><div class="cell-num">30</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-31&#39;)"><div class="cell-num">31</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-08-01&#39;)"><div class="cell-num">1</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-08-02&#39;)"><div class="cell-num">2</div><div class="cell-events"></div></div></div>
+    <div class="month-grid" id="month-grid"><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-06-29&#39;)"><div class="cell-num">29</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-06-30&#39;)"><div class="cell-num">30</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-01&#39;)"><div class="cell-num">1</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-02&#39;)"><div class="cell-num">2</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-03&#39;)"><div class="cell-num">3</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-04&#39;)"><div class="cell-num">4</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-05&#39;)"><div class="cell-num">5</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-06&#39;)"><div class="cell-num">6</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-07&#39;)"><div class="cell-num">7</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-08&#39;)"><div class="cell-num">8</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-09&#39;)"><div class="cell-num">9</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-10&#39;)"><div class="cell-num">10</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-11&#39;)"><div class="cell-num">11</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-12&#39;)"><div class="cell-num">12</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-13&#39;)"><div class="cell-num">13</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-14&#39;)"><div class="cell-num today">14</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-15&#39;)"><div class="cell-num">15</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-16&#39;)"><div class="cell-num">16</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-17&#39;)"><div class="cell-num">17</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-18&#39;)"><div class="cell-num">18</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-19&#39;)"><div class="cell-num">19</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-20&#39;)"><div class="cell-num">20</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-21&#39;)"><div class="cell-num">21</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-22&#39;)"><div class="cell-num">22</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-23&#39;)"><div class="cell-num">23</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-24&#39;)"><div class="cell-num">24</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-25&#39;)"><div class="cell-num">25</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-26&#39;)"><div class="cell-num">26</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-27&#39;)"><div class="cell-num">27</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-28&#39;)"><div class="cell-num">28</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-29&#39;)"><div class="cell-num">29</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-30&#39;)"><div class="cell-num">30</div><div class="cell-events"></div></div><div class="month-cell" onclick="cellClick(event,&#39;2026-07-31&#39;)"><div class="cell-num">31</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-08-01&#39;)"><div class="cell-num">1</div><div class="cell-events"></div></div><div class="month-cell other-month" onclick="cellClick(event,&#39;2026-08-02&#39;)"><div class="cell-num">2</div><div class="cell-events"></div></div></div>
   </div>
 </div>
 
@@ -343,16 +344,16 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
 <div class="modal-backdrop" id="modal">
   <div class="modal-box" id="modal-box" autocomplete="off">
     <div class="modal-head">
-      <span class="modal-head-date" id="modal-date-label"></span>
-      <div style="display:flex;gap:8px;align-items:center"><button onclick="openGestionar()" style="background:#8430ce;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">⚙️ Gestionar</button><button onclick="cloneEvent()" style="background:#f39c12;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">📋 Clonar</button><button class="modal-close" onclick="closeModal()">✕</button></div>
+      <span class="modal-head-date" id="modal-date-label">Jueves, 16 de julio 2026</span>
+      <div style="display:flex;gap:8px;align-items:center"><button onclick="openGestionar()" style="background:#8430ce;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">⚙️ Gestionar</button><button onclick="openConocidos()" style="background:#0097a7;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">🔍 ¿Cómo nos conocieron?</button><button onclick="cloneEvent()" style="background:#f39c12;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">📋 Clonar</button><button class="modal-close" onclick="closeModal()">✕</button></div>
     </div>
     <div class="modal-body">
       <div class="modal-two-col">
         <div class="modal-col-left">
           <div class="sec-label">Evento</div>
-          <div class="selector-field" id="evento-field" onclick="openActividadModal()" style="min-height:96px">
-            <span class="sel-label" id="evento-label">Toca para seleccionar</span>
-            <div style="display:flex;align-items:center;gap:8px"><span id="evento-badge"></span><span class="sel-arrow">›</span></div>
+          <div class="selector-field" id="evento-field" onclick="openActividadModal()" style="min-height: 96px; background: rgb(240, 160, 164); border-color: rgb(240, 160, 164);">
+            <span class="sel-label" id="evento-label" style="display: none;">Toca para seleccionar</span>
+            <div style="display:flex;align-items:center;gap:8px"><span id="evento-badge"><span style="font-size:30px;font-weight:900;color:#1a1a1a;text-shadow:none;text-transform:uppercase;letter-spacing:.5px;line-height:1.2">Casa de Papel</span></span><span class="sel-arrow">›</span></div>
           </div>
 
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
@@ -366,8 +367,8 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
             </div>
           </div>
           <div class="input-row">
-            <div class="form-group"><label>Inicio</label><input type="time" id="ev-start" value="10:00" oninput="recalcEnd()"></div>
-            <div class="form-group"><label>Fin</label><input type="time" id="ev-end" value="12:30" oninput="recalcTiming()"></div>
+            <div class="form-group"><label>Inicio</label><input type="time" id="ev-start" value="10:00" oninput="recalcEnd()" style="background: rgb(255, 249, 230); border-color: rgb(243, 156, 18);"></div>
+            <div class="form-group"><label>Fin</label><input type="time" id="ev-end" value="12:30" oninput="recalcTiming()" style="background: rgb(255, 249, 230); border-color: rgb(243, 156, 18);"></div>
           </div>
 
           <div class="sec-label">Número de pax</div>
@@ -376,9 +377,9 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
           </div>
 
           <div class="sec-label">Estado</div>
-          <div class="selector-field" id="estado-field" onclick="openSubModal(&#39;estado&#39;)">
-            <span class="sel-label" id="estado-label">Toca para seleccionar</span>
-            <div style="display:flex;align-items:center;gap:8px"><span id="estado-badge"></span><span class="sel-arrow">›</span></div>
+          <div class="selector-field" id="estado-field" onclick="openSubModal(&#39;estado&#39;)" style="background: rgb(245, 197, 24); border-color: rgb(245, 197, 24);">
+            <span class="sel-label" id="estado-label" style="display: none;">Toca para seleccionar</span>
+            <div style="display:flex;align-items:center;gap:8px"><span id="estado-badge"><span style="font-size:17px;font-weight:900;color:#1a1a1a;text-transform:uppercase">POSIBLE</span></span><span class="sel-arrow">›</span></div>
           </div>
 
           <div class="sec-label">Cliente</div>
@@ -410,8 +411,8 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
 
           <div class="sec-label">¿Quién gestiona?</div>
           <div class="selector-field" onclick="openSubModal(&#39;gestor&#39;)">
-            <span class="sel-label" id="gestor-label">¿Quién gestiona?</span>
-            <div style="display:flex;align-items:center;gap:8px"><span id="gestor-badges" style="display:flex;gap:6px;flex-wrap:wrap"></span><span class="sel-arrow">›</span></div>
+            <span class="sel-label" id="gestor-label" style="display: none;">¿Quién gestiona?</span>
+            <div style="display:flex;align-items:center;gap:8px"><span id="gestor-badges" style="display:flex;gap:6px;flex-wrap:wrap"><span class="sel-badge" style="background:#c5d8f7;color:#1a1a1a;font-weight:700">VIC</span></span><span class="sel-arrow">›</span></div>
           </div>
 
           <div class="sec-label">Detalles del evento</div>
@@ -439,7 +440,7 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
             </div>
             <div class="actores-col">
               <div class="actores-col-head" style="background:#5b9bd5">BASE DE DATOS</div>
-              <div class="actores-col-body" id="col-bbdd"></div>
+              <div class="actores-col-body" id="col-bbdd"><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;VIC&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;VIC&#39;)">VIC</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;JL&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;JL&#39;)">JL</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;MON&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;MON&#39;)">MON</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;ARANCHA&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;ARANCHA&#39;)">ARANCHA</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;AGUS&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;AGUS&#39;)">AGUS</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;DIANA&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;DIANA&#39;)">DIANA</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;MAX&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;MAX&#39;)">MAX</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;ISRA&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;ISRA&#39;)">ISRA</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;PABLO BARRIOS&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;PABLO BARRIOS&#39;)">PABLO BARRIOS</button><button class="actor-btn bbdd" onclick="actorSingleClick(this,&#39;OTROS&#39;)" ondblclick="event.stopPropagation();actorDoubleClick(this,&#39;OTROS&#39;)">OTROS</button></div>
             </div>
           </div>
 
@@ -476,8 +477,8 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
 <!-- SUBMODAL -->
 <div class="submodal-backdrop" id="submodal" onclick="if(event.target===this)closeSubModal()">
   <div class="submodal-box">
-    <div class="submodal-title" id="submodal-title"></div>
-    <div class="submodal-btns" id="submodal-btns"></div>
+    <div class="submodal-title" id="submodal-title">¿Quién gestiona?</div>
+    <div class="submodal-btns" id="submodal-btns" style="grid-template-columns: repeat(3, 1fr);"><button class="sub-btn" id="gbtn-DIANA" style="background: rgb(232, 213, 245); color: rgb(26, 26, 26); opacity: 0.4; font-size: 22px; font-weight: 900; min-height: 80px;" onclick="toggleGestorBtn(&#39;DIANA&#39;)">DIANA</button><button class="sub-btn" id="gbtn-VIC" style="background: rgb(197, 216, 247); color: rgb(26, 26, 26); opacity: 1; font-size: 22px; font-weight: 900; min-height: 80px;" onclick="toggleGestorBtn(&#39;VIC&#39;)">VIC ✓</button><button class="sub-btn" id="gbtn-JL" style="background: rgb(197, 232, 213); color: rgb(26, 26, 26); opacity: 0.4; font-size: 22px; font-weight: 900; min-height: 80px;" onclick="toggleGestorBtn(&#39;JL&#39;)">JL</button><button class="btn-save" style="grid-column:1/-1;margin-top:4px;border-radius:10px;padding:14px;font-size:15px" onclick="closeSubModal();if(_pendingSave)saveEvent()">Listo</button></div>
     <button class="submodal-cancel" onclick="closeSubModal()">Cancelar</button>
   </div>
 </div>
@@ -485,9 +486,26 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
 <!-- MODAL ACTIVIDAD -->
 <div class="submodal-backdrop" id="actividad-modal" onclick="if(event.target===this)closeActividadModal()">
   <div class="submodal-box" style="max-width:720px">
-    <div class="submodal-title" id="act-title">Tipo de evento</div>
-    <div class="submodal-btns" id="act-btns" style="grid-template-columns:repeat(3,1fr)"></div>
+    <div class="submodal-title" id="act-title">TEAM BUILDING</div>
+    <div class="submodal-btns" id="act-btns" style="grid-template-columns: repeat(3, 1fr);"><button class="sub-btn" style="background:#eee;color:#333;grid-column:1/-1;min-height:44px;font-size:13px" onclick="openActividadModal()">← Volver</button><button class="sub-btn" style="background:#f0a0a4" onclick="pickItem(&#39;Casa de Papel&#39;)">Casa de Papel</button><button class="sub-btn" style="background:#7ab3e0" onclick="pickItem(&#39;Intocables&#39;)">Intocables</button><button class="sub-btn" style="background:#c4a882" onclick="pickItem(&#39;A Tempo&#39;)">A Tempo</button><button class="sub-btn" style="background:#a8d8b8" onclick="pickItem(&#39;Concurso Música es la Pista&#39;)">Concurso Música es la Pista</button><button class="sub-btn" style="background:#94cce0" onclick="pickItem(&#39;Concurso Live Music&#39;)">Concurso Live Music</button><button class="sub-btn" style="background:#e89898" onclick="pickItem(&#39;First Dates&#39;)">First Dates</button><button class="sub-btn" style="background:#e0bcd8" onclick="pickItem(&#39;Concurso MIX&#39;)">Concurso MIX</button><button class="sub-btn" style="background:#94c8e8" onclick="pickItem(&#39;Aquellos Maravillosos Años&#39;)">Aquellos Maravillosos Años</button><button class="sub-btn" style="background:#c4a882" onclick="pickItem(&#39;Guardianes&#39;)">Guardianes</button><button class="sub-btn" style="background:#a8d8aa" onclick="pickItem(&#39;Cluedo&#39;)">Cluedo</button><button class="sub-btn" style="background:#d0d0d0" onclick="pickItem(&#39;OTROS&#39;)">OTROS</button></div>
     <button class="submodal-cancel" onclick="closeActividadModal()">Cancelar</button>
+  </div>
+</div>
+
+<!-- CONOCIDOS MODAL -->
+<div class="submodal-backdrop" id="conocidos-modal" onclick="if(event.target===this)closeConocidos()">
+  <div class="submodal-box" style="max-width:420px">
+    <div class="submodal-title">¿Por dónde nos han conocido?</div>
+    <div id="conocidos-sel-display" style="text-align:center;font-size:16px;font-weight:700;color:#0097a7;min-height:28px;margin-bottom:10px"></div>
+    <div class="submodal-btns" style="grid-template-columns:repeat(2,1fr)">
+      <button class="sub-btn" style="background:#b2dfdb" onclick="pickConocidos(&#39;Recomendación de cliente&#39;)">👥 Recomendación de cliente</button>
+      <button class="sub-btn" style="background:#c8e6c9" onclick="pickConocidos(&#39;Búsqueda en Google&#39;)">🔍 Búsqueda en Google</button>
+      <button class="sub-btn" style="background:#bbdefb" onclick="pickConocidos(&#39;Redes sociales&#39;)">📱 Redes sociales</button>
+      <button class="sub-btn" style="background:#ffe0b2" onclick="pickConocidos(&#39;Repetición&#39;)">🔄 Repetición</button>
+      <button class="sub-btn" style="background:#e1bee7" onclick="pickConocidos(&#39;LinkedIn&#39;)">💼 LinkedIn</button>
+      <button class="sub-btn" style="background:#f5f5f5" onclick="pickConocidos(&#39;Otros&#39;)">📋 Otros</button>
+    </div>
+    <button class="submodal-cancel" onclick="closeConocidos()">Cancelar</button>
   </div>
 </div>
 
@@ -669,6 +687,7 @@ function cloneEvent(){
     timingCliente:document.getElementById('ev-timing-cliente').value,
     timingNuestro:document.getElementById('ev-timing-nuestro').value,
     actores:getActoresData(),
+    conocidos:window._tempConocidos||savedEv?.conocidos||'',
     numActores:document.getElementById('ev-num-actores').value,
     obsActores:document.getElementById('ev-obs-actores').value
   };
@@ -1199,6 +1218,7 @@ function saveEvent(){
     timingCliente:document.getElementById('ev-timing-cliente').value,
     timingNuestro:document.getElementById('ev-timing-nuestro').value,
     actores:getActoresData(),
+    conocidos:window._tempConocidos||savedEv?.conocidos||'',
     numActores:document.getElementById('ev-num-actores').value,
     obsActores:document.getElementById('ev-obs-actores').value
   };
@@ -1729,6 +1749,25 @@ function calcDistancia(nombre, poblacion){
 }
 
 function saveGestionar(){autoSaveGestionar();closeGestionar();}
+function openConocidos(){
+  const ev=(_currentDate&&_editIdx!==null)?events[_editIdx]:null;
+  const current=ev?ev.conocidos:'';
+  document.getElementById('conocidos-sel-display').textContent=current?'Seleccionado: '+current:'';
+  document.getElementById('conocidos-modal').classList.add('open');
+}
+function closeConocidos(){document.getElementById('conocidos-modal').classList.remove('open');}
+function pickConocidos(val){
+  // Save to current event being edited
+  if(_editIdx!==null&&_editIdx!==undefined&&events[_editIdx]){
+    events[_editIdx].conocidos=val;
+  } else {
+    // store temporarily for new event
+    window._tempConocidos=val;
+  }
+  document.getElementById('conocidos-sel-display').textContent='✓ '+val;
+  setTimeout(closeConocidos,700);
+}
+
 function openStats(){renderStats();document.getElementById('stats-modal').classList.add('open')}
 function closeStats(){document.getElementById('stats-modal').classList.remove('open')}
 function renderStats(){
