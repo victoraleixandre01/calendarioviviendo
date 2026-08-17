@@ -4,6 +4,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calendario Viviendo</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Google Sans',Roboto,Arial,sans-serif}
 :root{--blue:#1a73e8;--blue-light:#e8f0fe;--surface:#fff;--bg:#f6f8fc;--border:#dadce0;--text:#3c4043;--muted:#70757a;--hover:#f1f3f4}
@@ -364,7 +367,7 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
   <div class="modal-box" id="modal-box" autocomplete="off">
     <div class="modal-head">
       <span class="modal-head-date" id="modal-date-label"></span>
-      <div style="display:flex;gap:8px;align-items:center"><button onclick="openGestionar()" style="background:#8430ce;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">⚙️ Gestionar</button><button onclick="cloneEvent()" style="background:#f39c12;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">📋 Clonar</button><button class="modal-close" onclick="closeModal()">✕</button></div>
+      <div style="display:flex;gap:8px;align-items:center"><button id="origen-header-btn" onclick="openSubModal('origen')" style="background:#607d8b;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">¿Cómo nos conocieron?</button><button onclick="openGestionar()" style="background:#8430ce;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">⚙️ Gestionar</button><button onclick="cloneEvent()" style="background:#f39c12;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">📋 Clonar</button><button class="modal-close" onclick="closeModal()">✕</button></div>
     </div>
     <div class="modal-body">
       <div class="modal-two-col">
@@ -587,6 +590,92 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
 </div>
 
 <script>
+// ===== FIREBASE (sincronización compartida en tiempo real) =====
+// 1) Ve a https://console.firebase.google.com, crea un proyecto (o reusa uno)
+// 2) Activa "Firestore Database" (modo producción, ubicación europe-west)
+// 3) Activa "Authentication" > Sign-in method > Anonymous
+// 4) Registra una app web (icono </>) y pega aquí el objeto de configuración
+const firebaseConfig = {
+  apiKey: "PEGA_AQUI_TU_API_KEY",
+  authDomain: "PEGA_AQUI_TU_PROYECTO.firebaseapp.com",
+  projectId: "PEGA_AQUI_TU_PROYECTO",
+  storageBucket: "PEGA_AQUI_TU_PROYECTO.appspot.com",
+  messagingSenderId: "PEGA_AQUI_TU_SENDER_ID",
+  appId: "PEGA_AQUI_TU_APP_ID"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+db.settings({ ignoreUndefinedProperties: true });
+
+let _fsReady=false;
+firebase.auth().signInAnonymously().then(function(){
+  _fsReady=true;
+  startRealtimeSync();
+}).catch(function(err){
+  console.error('Error de autenticación Firebase:', err);
+  alert('No se ha podido conectar con la base de datos compartida (revisa tu conexión, o que la configuración de Firebase esté rellenada).');
+});
+
+function fsDocToEvent(id, data){
+  const ev=Object.assign({}, data);
+  ev.id=id;
+  if(ev.date && typeof ev.date.toDate==='function') ev.date=ev.date.toDate();
+  else if(ev.date) ev.date=new Date(ev.date);
+  return ev;
+}
+
+function saveEventToFirestore(data, id){
+  const payload=Object.assign({}, data);
+  delete payload.id;
+  if(id){
+    db.collection('events').doc(id).set(payload,{merge:true}).catch(function(e){console.error('Error guardando en Firestore:',e);alert('No se ha podido guardar en la base compartida. Comprueba tu conexión.');});
+  } else {
+    db.collection('events').add(payload).catch(function(e){console.error('Error creando en Firestore:',e);alert('No se ha podido guardar en la base compartida. Comprueba tu conexión.');});
+  }
+}
+
+function removeLocalById(id){
+  let i=events.findIndex(function(e){return e.id===id;});
+  if(i>-1)events.splice(i,1);
+  i=trash.findIndex(function(e){return e.id===id;});
+  if(i>-1)trash.splice(i,1);
+}
+
+function applyDocChange(change){
+  const id=change.doc.id;
+  if(change.type==='removed'){ removeLocalById(id); return; }
+  const ev=fsDocToEvent(id, change.doc.data());
+  const evIdx=events.findIndex(function(e){return e.id===id;});
+  const trIdx=trash.findIndex(function(e){return e.id===id;});
+  if(ev.deleted){
+    if(evIdx>-1)events.splice(evIdx,1);
+    if(trIdx>-1) Object.assign(trash[trIdx], ev);
+    else trash.push(ev);
+  } else {
+    if(trIdx>-1)trash.splice(trIdx,1);
+    if(evIdx>-1) Object.assign(events[evIdx], ev);
+    else events.push(ev);
+  }
+}
+
+let _fsUnsub=null;
+function startRealtimeSync(){
+  if(_fsUnsub)_fsUnsub();
+  _fsUnsub=db.collection('events').onSnapshot(function(snap){
+    snap.docChanges().forEach(applyDocChange);
+    renderGrid();
+    renderTrashList();
+    updateTrashCount();
+  }, function(err){
+    console.error('Error de sincronización Firestore:', err);
+  });
+}
+
+function persistGestEvent(){
+  if(_gestEvIdx===null||!events[_gestEvIdx]||!events[_gestEvIdx].id)return;
+  saveEventToFirestore(events[_gestEvIdx], events[_gestEvIdx].id);
+}
+
 // ===== DATOS =====
 const MONTHS_ES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 const DAYS_ES=['lunes','martes','miércoles','jueves','viernes','sábado','domingo'];
@@ -607,6 +696,7 @@ const ACTIVIDADES_TREE={
 
 const ESTADOS=[{label:'POSIBLE',color:'#f5c518',text:'#1a1a1a'},{label:'CONFIRMADO',color:'#4a90d9',text:'#fff'},{label:'FINALIZADO',color:'#95a5a6',text:'#fff'},{label:'APLAZADO',color:'#27ae60',text:'#fff'},{label:'CANCELADO',color:'#c0392b',text:'#fff'}];
 const GESTORES=[{label:'DIANA',color:'#e8d5f5',text:'#1a1a1a'},{label:'VIC',color:'#c5d8f7',text:'#1a1a1a'},{label:'JL',color:'#c5e8d5',text:'#1a1a1a'}];
+const ORIGENES=[{label:'Cliente que repite',color:'#4a90d9',text:'#fff'},{label:'Referencia / boca a boca',color:'#27ae60',text:'#fff'},{label:'Google/SEO',color:'#f5c518',text:'#1a1a1a'},{label:'Redes sociales',color:'#8430ce',text:'#fff'},{label:'Cuestionario de la web',color:'#e67e22',text:'#fff'},{label:'Otro',color:'#95a5a6',text:'#fff'}];
 const ACTORES_BBDD=['VIC','JL','MON','ARANCHA','AGUS','DIANA','MAX','ISRA','PABLO BARRIOS','OTROS'];
 const ACTORES_PHONES={
   'VIC':'34670374782',
@@ -633,7 +723,7 @@ let DB_AGENCIAS=['Agencia Creativa BCN','Eventalia','Grupo Eventoplus','ilusiona
 const DB_POBLACIONES=['Valencia','A Coruña','Albacete','Alcalá de Henares','Alicante','Almería','Ávila','Badajoz','Badalona','Barcelona','Benidorm','Bilbao','Burgos','Cáceres','Cádiz','Cartagena','Castellón de la Plana','Ciudad Real','Córdoba','Cuenca','Elche','Fuengirola','Gandía','Getafe','Gijón','Girona','Granada','Guadalajara','Huelva','Huesca','Ibiza','Jaén','Jerez de la Frontera','Las Palmas de Gran Canaria','León','Lérida','Logroño','Lugo','Madrid','Málaga','Marbella','Melilla','Mérida','Móstoles','Murcia','Oviedo','Palencia','Palma de Mallorca','Pamplona','Pontevedra','Reus','Sabadell','Salamanca','San Sebastián','Santa Cruz de Tenerife','Santander','Santiago de Compostela','Segovia','Sevilla','Soria','Tarragona','Terrassa','Toledo','Torrevieja','Valencia','Valladolid','Vigo','Vitoria-Gasteiz','Zamora','Zaragoza'];
 
 // Estado formulario
-let selActividad=null, selEstado=null, selGestores=new Set(), selEspacio='';
+let selActividad=null, selEstado=null, selGestores=new Set(), selEspacio='', selOrigen='';
 let _numActoresContratados=0;
 let selCliente='', selAgencia='';
 let actoresState={confirmado:[],propuesto:[],nodisponible:[],bbdd:[...ACTORES_BBDD]};
@@ -665,7 +755,8 @@ function confirmClone(){
   const newDate=new Date(val+'T00:00:00');
   if(isNaN(newDate.getTime()))return;
   const clone=Object.assign({},_cloneSource,{date:newDate});
-  events.push(clone);
+  delete clone.id;
+  saveEventToFirestore(clone, null);
   renderGrid();
   closeCloneModal();
   closeModal();
@@ -679,6 +770,7 @@ function cloneEvent(){
     endTime:document.getElementById('ev-end').value,
     pax:document.getElementById('ev-pax').value,
     estado:selEstado,
+    origen:selOrigen,
     cliente:selCliente||document.getElementById('cliente-input').value,
     agencia:selAgencia||document.getElementById('agencia-input').value,
     poblacion:document.getElementById('ev-poblacion').value,
@@ -762,9 +854,10 @@ function openModal(dateStr){
   const dow=DAYS_ES[dowLun(d)];
   document.getElementById('modal-date-label').textContent=capFirst(dow)+', '+d.getDate()+' de '+MONTHS_ES[d.getMonth()]+' '+d.getFullYear();
   // reset campos
-  selActividad=null; selEstado=null; selGestores=new Set(); selCliente=''; selAgencia='';
+  selActividad=null; selEstado=null; selGestores=new Set(); selCliente=''; selAgencia=''; selOrigen='';
   document.getElementById('evento-label').style.display=''; document.getElementById('evento-label').textContent='Toca para seleccionar'; document.getElementById('evento-badge').innerHTML=''; document.getElementById('evento-field').style.background=''; document.getElementById('evento-field').style.borderColor='';
   document.getElementById('estado-label').style.display=''; document.getElementById('estado-label').textContent='Toca para seleccionar'; document.getElementById('estado-badge').innerHTML=''; document.getElementById('estado-field').style.background=''; document.getElementById('estado-field').style.borderColor='';
+  document.getElementById('origen-header-btn').textContent='¿Cómo nos conocieron?'; document.getElementById('origen-header-btn').style.background='#607d8b'; document.getElementById('origen-header-btn').style.color='#fff';
   document.getElementById('gestor-label').style.display=''; document.getElementById('gestor-label').textContent='¿Quién gestiona?'; document.getElementById('gestor-badges').innerHTML='';
   document.getElementById('ev-start').value='10:00';
   document.getElementById('ev-end').value='12:30';
@@ -959,12 +1052,15 @@ function setEvento(val,color){
 // ===== SUBMODAL (estado / gestor) =====
 function openSubModal(target){
   subModalTarget=target;
-  const titles={estado:'Estado',gestor:'¿Quién gestiona?'};
+  const titles={estado:'Estado',gestor:'¿Quién gestiona?',origen:'¿Cómo nos conocieron?'};
   document.getElementById('submodal-title').textContent=titles[target]||target;
   const btns=document.getElementById('submodal-btns');
   if(target==='estado'){
     btns.style.gridTemplateColumns='repeat(2,1fr)';
     btns.style.gridTemplateColumns='repeat(3,1fr)'; btns.innerHTML=ESTADOS.map((it,i)=>`<button class="sub-btn" style="background:${it.color};color:${it.text};font-size:18px;font-weight:900;min-height:72px" onclick="pickSubModal(${i})">${it.label}</button>`).join('');
+  } else if(target==='origen'){
+    btns.style.gridTemplateColumns='repeat(2,1fr)';
+    btns.innerHTML=ORIGENES.map((it,i)=>`<button class="sub-btn" style="background:${it.color};color:${it.text};font-size:15px;font-weight:900;min-height:64px" onclick="pickSubModal(${i})">${it.label}</button>`).join('');
   } else if(target==='gestor'){
     btns.style.gridTemplateColumns='repeat(3,1fr)';
     btns.innerHTML=GESTORES.map((it,i)=>{
@@ -980,6 +1076,14 @@ function pickSubModal(i){
     selEstado=it.label;
     document.getElementById('estado-label').style.display='none';
     const ef=document.getElementById('estado-field')||document.querySelector('[onclick*="estado"]'); document.getElementById('estado-badge').innerHTML=`<span style="font-size:17px;font-weight:900;color:${it.text};text-transform:uppercase">${it.label}</span>`; document.getElementById('estado-field').style.background=it.color; document.getElementById('estado-field').style.borderColor=it.color;
+    closeSubModal();
+  } else if(subModalTarget==='origen'){
+    const it=ORIGENES[i];
+    selOrigen=it.label;
+    const ob=document.getElementById('origen-header-btn');
+    ob.textContent=it.label;
+    ob.style.background=it.color;
+    ob.style.color=it.text;
     closeSubModal();
   }
 }
@@ -1209,6 +1313,7 @@ function saveEvent(){
     horarioTipo:selHorarioTipo,
     pax:document.getElementById('ev-pax').value,
     estado:selEstado,
+    origen:selOrigen,
     cliente:selCliente||document.getElementById('cliente-input').value,
     agencia:selAgencia||document.getElementById('agencia-input').value,
     poblacion:document.getElementById('ev-poblacion').value,
@@ -1222,8 +1327,13 @@ function saveEvent(){
     numActores:document.getElementById('ev-num-actores').value,
     obsActores:document.getElementById('ev-obs-actores').value
   };
-  if(_editIdx!==null&&_editIdx!==undefined) events[_editIdx]=evData;
-  else events.push(evData);
+  if(_editIdx!==null&&_editIdx!==undefined&&events[_editIdx]){
+    const prev=events[_editIdx];
+    evData.gestionar=prev.gestionar||null;
+    saveEventToFirestore(evData, prev.id);
+  } else {
+    saveEventToFirestore(evData, null);
+  }
   _editIdx=null;
   closeModal();renderGrid();
 }
@@ -1244,6 +1354,7 @@ function editEventByIdx(idx){
     setHorarioTipo(ev.horarioTipo||'provisional');selHorarioTipo=ev.horarioTipo||'provisional';
     document.getElementById('ev-pax').value=ev.pax||'';
     if(ev.estado){selEstado=ev.estado;const elbl=document.getElementById('estado-label');elbl.style.display='none';const it=ESTADOS.find(e=>e.label===ev.estado);if(it){document.getElementById('estado-badge').innerHTML='<span style="font-size:17px;font-weight:900;color:'+it.text+';text-transform:uppercase">'+it.label+'</span>';document.getElementById('estado-field').style.background=it.color;document.getElementById('estado-field').style.borderColor=it.color;}}
+    if(ev.origen){selOrigen=ev.origen;const oit=ORIGENES.find(o=>o.label===ev.origen);if(oit){const ob=document.getElementById('origen-header-btn');ob.textContent=oit.label;ob.style.background=oit.color;ob.style.color=oit.text;}}
     document.getElementById('cliente-input').value=ev.cliente||''; selCliente=ev.cliente||'';
     document.getElementById('agencia-input').value=ev.agencia||''; selAgencia=ev.agencia||'';
     document.getElementById('ev-poblacion').value=ev.poblacion||'';
@@ -1314,9 +1425,10 @@ function closeDayViewOut(e){if(e.target===document.getElementById('dayview'))clo
 function updateTrashCount(){const b=document.getElementById('trash-count');if(trash.length>0){b.style.display='block';b.textContent=trash.length;}else b.style.display='none';}
 function deleteEvent(){
   if(_popupEvIdx===null)return;
-  const ev=events[_popupEvIdx];ev._deletedAt=new Date().toLocaleDateString('es-ES');
-  trash.push(ev);events.splice(_popupEvIdx,1);
-  closePopup();renderGrid();updateTrashCount();
+  const ev=events[_popupEvIdx];
+  const updated=Object.assign({},ev,{deleted:true,_deletedAt:new Date().toLocaleDateString('es-ES')});
+  saveEventToFirestore(updated, ev.id);
+  closePopup();
 }
 function openTrash(){renderTrashList();document.getElementById('trash-modal').classList.add('open')}
 function closeTrash(){document.getElementById('trash-modal').classList.remove('open')}
@@ -1330,9 +1442,24 @@ function renderTrashList(){
     return `<div class="trash-item"><div class="trash-item-dot" style="background:${bg}"></div><div class="trash-item-info"><div class="trash-item-title">${ev.actividad||ev.tipo}</div><div class="trash-item-sub">${sub}</div>${ev._deletedAt?`<div class="trash-item-sub" style="color:#e74c3c;font-size:11px">Eliminado el ${ev._deletedAt}</div>`:''}</div><div class="trash-item-actions"><button class="trash-restore-btn" onclick="restoreEvent(${i})">↩</button><button class="trash-del-btn" onclick="permanentDelete(${i})">✕</button></div></div>`;
   }).join('');
 }
-function restoreEvent(i){events.push(trash[i]);trash.splice(i,1);renderGrid();renderTrashList();updateTrashCount();}
-function permanentDelete(i){if(confirm('¿Eliminar definitivamente?')){trash.splice(i,1);renderTrashList();updateTrashCount();}}
-function clearAllTrash(){if(!trash.length)return;if(confirm('¿Vaciar la papelera?')){trash=[];renderTrashList();updateTrashCount();}}
+function restoreEvent(i){
+  const ev=trash[i];
+  const updated=Object.assign({},ev,{deleted:false});
+  delete updated._deletedAt;
+  saveEventToFirestore(updated, ev.id);
+}
+function permanentDelete(i){
+  if(confirm('¿Eliminar definitivamente?')){
+    const ev=trash[i];
+    if(ev&&ev.id)db.collection('events').doc(ev.id).delete().catch(function(e){console.error(e);});
+  }
+}
+function clearAllTrash(){
+  if(!trash.length)return;
+  if(confirm('¿Vaciar la papelera?')){
+    trash.forEach(function(ev){if(ev.id)db.collection('events').doc(ev.id).delete().catch(function(e){console.error(e);});});
+  }
+}
 
 // ===== GESTIONAR =====
 let _gestEvIdx=null;
@@ -1376,6 +1503,7 @@ function autoSaveGestionar(){
   if(gImporte){if(!ev.gestionar.facturacion)ev.gestionar.facturacion={};['importe','fac-cliente','plus-fecha','inc-pob','num-fac','pago','notas-fac'].forEach(function(f){const el=document.getElementById('g-'+f);if(el)ev.gestionar.facturacion[f.replace('fac-','').replace('notas-fac','notas')]=el.value;});}
   // Show brief saved indicator
   showAutoSaved();
+  persistGestEvent();
 }
 
 var _autoSaveTimer=null;
@@ -1677,6 +1805,7 @@ function selProdEstado(field, val, btn){
   btn.parentElement.querySelectorAll('button').forEach(b=>{
     b.style.border=b.textContent===val?'2px solid #333':'2px solid transparent';
   });
+  persistGestEvent();
 }
 
 function selFacPipeline(val, btn){
@@ -1688,6 +1817,7 @@ function selFacPipeline(val, btn){
     b.style.background=b.textContent===val?'#8430ce':'#f8f8f8';
     b.style.color=b.textContent===val?'#fff':'#666';
   });
+  persistGestEvent();
 }
 
 
@@ -1700,6 +1830,7 @@ function selEspacioEstado(btn,estado){
   if(!events[_gestEvIdx].gestionar)events[_gestEvIdx].gestionar={};
   if(!events[_gestEvIdx].gestionar.espacio)events[_gestEvIdx].gestionar.espacio={};
   events[_gestEvIdx].gestionar.espacio.estado=estado;
+  persistGestEvent();
 }
 
 function filterEspacios(){
@@ -1735,6 +1866,7 @@ function pickEspacio(nombre){
     if(!events[_gestEvIdx].gestionar)events[_gestEvIdx].gestionar={};
     const merged=Object.assign({},esp||{},{nombre,mapsUrl});
     events[_gestEvIdx].gestionar.espacio=Object.assign(events[_gestEvIdx].gestionar.espacio||{},merged);
+    persistGestEvent();
   }
 }
 
