@@ -4,14 +4,14 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calendario Viviendo</title>
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120.png">
-<link rel="manifest" href="manifest.json">
+<link rel="icon" href="favicon.ico?v=3" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=3">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png?v=3">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=3">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120.png?v=3">
+<link rel="manifest" href="manifest.json?v=3">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Eventos">
+<meta name="apple-mobile-web-app-title" content="CALENDARIO">
 <meta name="theme-color" content="#000000">
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
@@ -84,12 +84,12 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px;over
 }
 .modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center}
 .modal-close:hover{background:var(--hover)}
-.modal-body{padding:16px 20px;flex:1;overflow-y:visible}
+.modal-body{padding:16px 20px}
 .modal-two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 @media(max-width:1024px){.modal-two-col{grid-template-columns:1fr}}
 .modal-col-left,.modal-col-right{display:flex;flex-direction:column}
 .modal-col-right{container-type:inline-size}
-.modal-footer{padding:12px 20px 16px;display:flex;justify-content:flex-end;gap:10px;border-top:1px solid var(--border);position:sticky;bottom:0;background:#fff;flex-shrink:0}
+.modal-footer{padding:12px 20px 16px;display:flex;justify-content:flex-end;gap:10px;border-top:1px solid var(--border);background:#fff;flex-shrink:0}
 .sec-label{font-size:16px;font-weight:700;color:#1a1a1a;letter-spacing:.6px;text-transform:uppercase;margin-bottom:8px;margin-top:4px}
 .selector-field{display:flex;align-items:center;justify-content:space-between;border:2px solid var(--border);border-radius:12px;padding:14px 16px;cursor:pointer;margin-bottom:14px;background:#fff;min-height:56px}
 .selector-field:hover{border-color:var(--blue)}
@@ -912,9 +912,9 @@ function calcTiming(startVal,endVal){
 }
 function recalcEnd(){
   const startVal=document.getElementById('ev-start').value;
-  if(!startVal||!selActividad)return;
+  if(!startVal)return;
   const [h,m]=startVal.split(':').map(Number);
-  const esConcurso=selActividad.toLowerCase().includes('concurso');
+  const esConcurso=selActividad&&selActividad.toLowerCase().includes('concurso');
   const mins=h*60+m+(esConcurso?75:150);
   const endVal=pad(Math.floor(mins/60)%24)+':'+pad(mins%60);
   document.getElementById('ev-end').value=endVal;
