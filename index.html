@@ -73,12 +73,12 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px;over
   .modal-backdrop{align-items:center}
   .modal-box{border-radius:14px;width:min(1400px,98vw);max-height:95vh;animation:fadeInScale .2s cubic-bezier(.22,1,.36,1)}
 }
-.modal-head{padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:2;flex-shrink:0;flex-wrap:wrap;row-gap:10px}
+.modal-head{padding:16px 48px 12px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:2;flex-shrink:0;flex-wrap:wrap;row-gap:10px;position:relative}
 .modal-head-date{font-size:26px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.3px}
 @media(max-width:640px){
-  .modal-head{padding:12px 14px 10px}
+  .modal-head{padding:14px 44px 10px 14px}
   .modal-head-date{font-size:17px;flex:1 1 100%;order:1;line-height:1.25}
-  .modal-head>div{order:2;flex:1 1 100%;justify-content:flex-end;flex-wrap:wrap;row-gap:6px}
+  .modal-head>div{order:2;flex:1 1 100%;justify-content:flex-start;row-gap:6px}
   .modal-head>div button{font-size:12px!important;padding:6px 10px!important}
   .modal-body{padding:14px}
 }
@@ -376,7 +376,8 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
   <div class="modal-box" id="modal-box" autocomplete="off">
     <div class="modal-head">
       <span class="modal-head-date" id="modal-date-label"></span>
-      <div style="display:flex;gap:8px;align-items:center"><button id="origen-header-btn" onclick="openSubModal('origen')" style="background:#607d8b;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">¿Cómo nos conocieron?</button><button onclick="openGestionar()" style="background:#8430ce;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">⚙️ Gestionar</button><button onclick="cloneEvent()" style="background:#f39c12;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">📋 Clonar</button><button class="modal-close" onclick="closeModal()">✕</button></div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button id="origen-header-btn" onclick="openSubModal('origen')" style="background:#607d8b;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">¿Cómo nos conocieron?</button><button onclick="openGestionar()" style="background:#8430ce;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">⚙️ Gestionar</button><button onclick="cloneEvent()" style="background:#f39c12;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">📋 Clonar</button></div>
+      <button class="modal-close" onclick="closeModal()" style="position:absolute;top:14px;right:16px">✕</button>
     </div>
     <div class="modal-body">
       <div class="modal-two-col">
@@ -919,11 +920,15 @@ function recalcEnd(){
   const endVal=pad(Math.floor(mins/60)%24)+':'+pad(mins%60);
   document.getElementById('ev-end').value=endVal;
   document.getElementById('ev-timing-nuestro').value=calcTiming(startVal,endVal);
+  document.getElementById('ev-timing-cliente').value=startVal+' Inicio actividad\n'+endVal+' Fin actividad\n';
 }
 function recalcTiming(){
   const s=document.getElementById('ev-start').value;
   const e=document.getElementById('ev-end').value;
-  if(s&&e)document.getElementById('ev-timing-nuestro').value=calcTiming(s,e);
+  if(s&&e){
+    document.getElementById('ev-timing-nuestro').value=calcTiming(s,e);
+    document.getElementById('ev-timing-cliente').value=s+' Inicio actividad\n'+e+' Fin actividad\n';
+  }
 }
 let selHorarioTipo='provisional';
 function setHorarioTipo(tipo){
