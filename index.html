@@ -68,7 +68,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px;over
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;align-items:flex-end;justify-content:center}
 .modal-backdrop.open{display:flex}
-.modal-box{background:#fff;border-radius:16px 16px 0 0;width:100%;max-height:95vh;overflow-y:auto;display:flex;flex-direction:column;animation:fadeInUp .25s cubic-bezier(.22,1,.36,1)}
+.modal-box{background:#fff;border-radius:16px 16px 0 0;width:100%;max-height:95vh;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;animation:fadeInUp .25s cubic-bezier(.22,1,.36,1)}
 @media(min-width:700px){
   .modal-backdrop{align-items:center}
   .modal-box{border-radius:14px;width:min(1400px,98vw);max-height:95vh;animation:fadeInScale .2s cubic-bezier(.22,1,.36,1)}
@@ -97,7 +97,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px;over
 .sel-arrow{color:var(--muted);font-size:20px;font-weight:700;flex-shrink:0}
 .sel-badge{padding:5px 14px;border-radius:20px;font-size:15px;font-weight:800;display:inline-block}
 .input-row{display:flex;gap:12px;margin-bottom:14px}
-.form-group{display:flex;flex-direction:column;gap:5px;flex:1}
+.form-group{display:flex;flex-direction:column;gap:5px;flex:1;min-width:0}
 .form-group label{font-size:11px;font-weight:700;color:#1a1a1a;letter-spacing:.7px;text-transform:uppercase}
 .form-group input[type=time],.form-group input[type=number],.form-group input[type=text]{border:2px solid var(--border);border-radius:10px;padding:12px 12px;font-size:18px;color:var(--text);outline:none;background:#fff;width:100%;font-weight:600}
 .form-group input:focus{border-color:var(--blue)}
@@ -376,7 +376,7 @@ if(sessionStorage.getItem('vdc_auth')==='1'){
   <div class="modal-box" id="modal-box" autocomplete="off">
     <div class="modal-head">
       <span class="modal-head-date" id="modal-date-label"></span>
-      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button id="origen-header-btn" onclick="openSubModal('origen')" style="background:#607d8b;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">¿Cómo nos conocieron?</button><button onclick="openGestionar()" style="background:#8430ce;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">⚙️ Gestionar</button><button onclick="cloneEvent()" style="background:#f39c12;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">📋 Clonar</button></div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button id="origen-header-btn" onclick="openSubModal('origen')" style="background:#607d8b;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">¿Cómo nos conocieron?</button><button onclick="openGestionar()" style="background:#8430ce;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">⚙️ Gestionar</button><button onclick="cloneEvent()" style="background:#f39c12;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">📋 Clonar</button><button onclick="saveEvent()" style="background:#27ae60;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#fff;cursor:pointer">💾 Guardar</button></div>
       <button class="modal-close" onclick="closeModal()" style="position:absolute;top:14px;right:16px">✕</button>
     </div>
     <div class="modal-body">
