@@ -97,6 +97,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-size:14px;over
 .sel-arrow{color:var(--muted);font-size:20px;font-weight:700;flex-shrink:0}
 .sel-badge{padding:5px 14px;border-radius:20px;font-size:15px;font-weight:800;display:inline-block}
 .input-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin-bottom:14px}
+@media(max-width:480px){.input-row{grid-template-columns:1fr}}
 .form-group{display:flex;flex-direction:column;gap:5px;min-width:0}
 .form-group label{font-size:11px;font-weight:700;color:#1a1a1a;letter-spacing:.7px;text-transform:uppercase}
 .form-group input[type=time],.form-group input[type=number],.form-group input[type=text]{border:2px solid var(--border);border-radius:10px;padding:12px 12px;font-size:18px;color:var(--text);outline:none;background:#fff;width:100%;min-width:0;font-weight:600;box-sizing:border-box}
